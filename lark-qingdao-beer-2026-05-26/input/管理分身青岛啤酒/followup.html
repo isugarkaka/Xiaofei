@@ -1,0 +1,1650 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>青啤 AI 分身 · 小青 — 督办全景图</title>
+  <style>
+/* ============================================================
+   Lark PPT — Foundations: Colors & Type
+   Source: 飞书母版2025-打单 (LarkPPTTemplate.thmx)
+   Theme:  飞书PPT 主题色  ·  Font scheme: 飞书品牌字
+   ============================================================ */
+
+/* ---- Webfonts -------------------------------------------------
+   Original: 方正兰亭黑Pro_GB18030 (FangZheng LanTing Hei Pro)
+   This is a licensed commercial CJK family. We substitute Noto
+   Sans SC, the closest open-source geometric grotesque CJK
+   sans available on Google Fonts. FLAG to user: replace with
+   licensed FZLanTingHeiPro-* files for production parity.
+---------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+
+  /* ============================================================
+     COLOR PRIMITIVES — drawn directly from theme1.xml clrScheme
+     ============================================================ */
+
+  /* Background / surface — slides ship dark by default
+     (master clrMap swaps bg1="dk1", so dk1 is the page color) */
+  --lark-bg-black:    #000000;   /* dk1  · primary slide bg */
+  --lark-bg-deep:     #04060F;   /* near-black, used for hero gradients */
+  --lark-bg-navy:     #0A1230;   /* deep navy, hero gradient origin */
+  --lark-bg-twilight: #1B1F3A;   /* secondary panel */
+
+  /* Foreground (on dark) */
+  --lark-fg-white:    #FFFFFF;   /* lt1 · primary text on dark */
+  --lark-fg-muted:    #E7E6E6;   /* lt2 · low-emphasis text on dark */
+  --lark-fg-soft:     rgba(255,255,255,0.72);
+  --lark-fg-quiet:    rgba(255,255,255,0.48);
+  --lark-fg-faint:    rgba(255,255,255,0.16);
+
+  /* Foreground (on light, for product UI surfaces) */
+  --lark-ink:         #1F2329;   /* primary text on light surfaces */
+  --lark-ink-2:       #51565D;
+  --lark-ink-3:       #8F959E;
+  --lark-ink-4:       #BBBFC4;
+  --lark-line:        #DEE0E3;   /* divider on light */
+  --lark-surface:     #FFFFFF;
+  --lark-surface-2:   #F5F6F7;   /* page bg in product */
+  --lark-surface-3:   #EFF0F1;
+
+  /* Neutral — dk2/lt2 in theme */
+  --lark-neutral-700: #767171;   /* dk2 */
+  --lark-neutral-200: #E7E6E6;   /* lt2 */
+
+  /* ---------- Brand accent palette (the 6 swatches) ---------- */
+  --lark-blue:    #3C7FFF;       /* accent1 · primary brand blue */
+  --lark-cyan:    #24C3FF;       /* accent2 */
+  --lark-purple:  #5C3FFB;       /* accent3 · deep purple */
+  --lark-teal:    #33D6C0;       /* accent4 · Lark logo teal */
+  --lark-violet:  #9F6FF1;       /* accent5 */
+  --lark-orange:  #FE7F00;       /* accent6 */
+
+  /* Tints / shades for the brand blue (most-used accent) */
+  --lark-blue-50:  #EAF1FF;
+  --lark-blue-100: #C9DCFF;
+  --lark-blue-200: #9DBEFF;
+  --lark-blue-300: #6A9DFF;
+  --lark-blue-400: #3C7FFF;      /* base · accent1 */
+  --lark-blue-500: #2566EC;
+  --lark-blue-600: #0057F9;      /* folHlink */
+  --lark-blue-700: #003FB8;
+
+  /* Semantic */
+  --lark-link:           #3C7FFF;  /* hlink */
+  --lark-link-visited:   #0057F9;  /* folHlink */
+  --lark-success:        #33D6C0;
+  --lark-warning:        #FE7F00;
+  --lark-danger:         #F54A45;  /* commonly used in Lark product UI */
+  --lark-info:           #24C3FF;
+
+  /* ---------- Brand-defining gradients ---------- */
+  /* Hero/cover gradient: navy fades to black with a faint blue
+     glow top-left (matches image1.jpg / image4.jpg / image5.jpg) */
+  --lark-grad-hero:
+    radial-gradient(120% 100% at 0% 0%, #0F1A4A 0%, #060B22 38%, #000 78%);
+
+  /* Section gradient: deeper, used for chapter pages */
+  --lark-grad-section:
+    radial-gradient(140% 110% at 100% 0%, #1A2256 0%, #050817 50%, #000 100%);
+
+  /* Brand gradient (logo-derived: teal → cobalt → deep navy) */
+  --lark-grad-brand:
+    linear-gradient(135deg, #33D6C0 0%, #3C7FFF 50%, #1A1F6B 100%);
+
+  /* Accent strip gradient (used for thin keylines / dividers) */
+  --lark-grad-keyline:
+    linear-gradient(90deg, #33D6C0 0%, #3C7FFF 50%, #5C3FFB 100%);
+
+  /* ============================================================
+     TYPE — drawn from theme1.xml fontScheme + slideMaster txStyles
+     ============================================================ */
+
+  /* Display / sans CJK — primary brand face */
+  --lark-font-sans:
+    "Noto Sans SC", "FZLanTingHeiPro_GB18030",
+    "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB",
+    "Helvetica Neue", Arial, sans-serif;
+
+  /* Latin counterpart (numerals, English copy) */
+  --lark-font-latin:
+    "Inter", "Helvetica Neue", Arial,
+    "Noto Sans SC", sans-serif;
+
+  /* Mono (supporting — not in original theme, sensible default) */
+  --lark-font-mono:
+    "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+
+  /* ---- Weights ---- */
+  --lark-w-light:    300;
+  --lark-w-regular:  400;
+  --lark-w-medium:   500;   /* FZLanTingHei Medium — body copy default */
+  --lark-w-semibold: 600;   /* FZLanTingHei SemiBold — H1/H2/title */
+  --lark-w-bold:     700;   /* FZLanTingHei Bold — cover & big numbers */
+  --lark-w-black:    900;
+
+  /* ---- Type scale (slide-friendly @ 1920×1080)
+     Names match the slide-master txStyles roles. Sizes scale
+     linearly to product UI when used inside a `.product` scope. ---- */
+  --lark-text-cover:    96px;   /* 50pt @ 1280 → ≈96px @ 1920 */
+  --lark-text-section:  84px;   /* 一级章节页 — chapter headers */
+  --lark-text-h1:       56px;   /* 30pt centered title */
+  --lark-text-h2:       40px;   /* 26pt content-page title */
+  --lark-text-h3:       32px;
+  --lark-text-quote:    52px;   /* 金句页 (key-quote slide) */
+  --lark-text-subtitle: 28px;   /* eyebrow / secondary line */
+  --lark-text-body:     24px;   /* slide body — never below 24 */
+  --lark-text-caption:  18px;
+  --lark-text-eyebrow:  16px;   /* uppercase metadata */
+
+  /* Line-height */
+  --lark-lh-tight:   1.10;
+  --lark-lh-snug:    1.25;
+  --lark-lh-normal:  1.40;
+  --lark-lh-loose:   1.65;
+
+  /* Letter-spacing (CJK is ~0; latin caps slightly tracked) */
+  --lark-tracking-tight:  -0.01em;
+  --lark-tracking-normal: 0;
+  --lark-tracking-wide:    0.04em;
+  --lark-tracking-eyebrow: 0.14em;
+
+  /* ============================================================
+     SPACING / RADII / SHADOWS / MOTION
+     ============================================================ */
+
+  --lark-space-1: 4px;
+  --lark-space-2: 8px;
+  --lark-space-3: 12px;
+  --lark-space-4: 16px;
+  --lark-space-5: 24px;
+  --lark-space-6: 32px;
+  --lark-space-7: 48px;
+  --lark-space-8: 64px;
+  --lark-space-9: 96px;
+  --lark-space-10: 128px;
+
+  --lark-radius-xs: 4px;
+  --lark-radius-sm: 6px;       /* Lark product buttons */
+  --lark-radius-md: 8px;       /* cards, inputs */
+  --lark-radius-lg: 12px;
+  --lark-radius-xl: 16px;
+  --lark-radius-2xl: 24px;
+  --lark-radius-pill: 999px;
+
+  /* Shadows — Lark product cards use soft, low elevations */
+  --lark-shadow-1: 0 1px 2px rgba(31, 35, 41, 0.06), 0 0 1px rgba(31, 35, 41, 0.10);
+  --lark-shadow-2: 0 4px 12px rgba(31, 35, 41, 0.08), 0 0 1px rgba(31, 35, 41, 0.10);
+  --lark-shadow-3: 0 8px 32px rgba(31, 35, 41, 0.12);
+  --lark-shadow-glow-blue: 0 0 32px rgba(60, 127, 255, 0.32);
+  --lark-shadow-glow-teal: 0 0 32px rgba(51, 214, 192, 0.28);
+
+  /* Borders */
+  --lark-border-thin:   1px solid rgba(255,255,255,0.10);
+  --lark-border-strong: 1px solid rgba(255,255,255,0.20);
+  --lark-border-light:  1px solid var(--lark-line);
+
+  /* Motion */
+  --lark-ease:          cubic-bezier(0.4, 0, 0.2, 1);
+  --lark-ease-out:      cubic-bezier(0.0, 0, 0.2, 1);
+  --lark-ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
+  --lark-dur-fast:      120ms;
+  --lark-dur-base:      200ms;
+  --lark-dur-slow:      400ms;
+}
+
+/* ============================================================
+   SEMANTIC ROLES — apply directly to elements
+   ============================================================ */
+
+.lark-deck-bg {
+  background: var(--lark-grad-hero);
+  color: var(--lark-fg-white);
+  font-family: var(--lark-font-sans);
+}
+
+/* Cover slide title */
+.lark-cover-title {
+  font-family: var(--lark-font-sans);
+  font-weight: var(--lark-w-bold);
+  font-size: var(--lark-text-cover);
+  line-height: var(--lark-lh-tight);
+  letter-spacing: var(--lark-tracking-tight);
+  color: var(--lark-fg-white);
+}
+
+/* Section / chapter header */
+.lark-section-title {
+  font-family: var(--lark-font-sans);
+  font-weight: var(--lark-w-bold);
+  font-size: var(--lark-text-section);
+  line-height: var(--lark-lh-tight);
+  color: var(--lark-fg-white);
+}
+
+/* Content-page title (slide H2) */
+.lark-h1 {
+  font-family: var(--lark-font-sans);
+  font-weight: var(--lark-w-semibold);
+  font-size: var(--lark-text-h1);
+  line-height: var(--lark-lh-snug);
+  color: var(--lark-fg-white);
+}
+.lark-h2 {
+  font-family: var(--lark-font-sans);
+  font-weight: var(--lark-w-semibold);
+  font-size: var(--lark-text-h2);
+  line-height: var(--lark-lh-snug);
+  color: var(--lark-fg-white);
+}
+.lark-h3 {
+  font-family: var(--lark-font-sans);
+  font-weight: var(--lark-w-semibold);
+  font-size: var(--lark-text-h3);
+  line-height: var(--lark-lh-snug);
+  color: var(--lark-fg-white);
+}
+
+.lark-quote {
+  font-family: var(--lark-font-sans);
+  font-weight: var(--lark-w-semibold);
+  font-size: var(--lark-text-quote);
+  line-height: var(--lark-lh-snug);
+  color: var(--lark-fg-white);
+}
+
+.lark-subtitle {
+  font-family: var(--lark-font-sans);
+  font-weight: var(--lark-w-medium);
+  font-size: var(--lark-text-subtitle);
+  line-height: var(--lark-lh-normal);
+  color: var(--lark-fg-soft);
+}
+
+.lark-body {
+  font-family: var(--lark-font-sans);
+  font-weight: var(--lark-w-medium);
+  font-size: var(--lark-text-body);
+  line-height: var(--lark-lh-normal);
+  color: var(--lark-fg-soft);
+}
+
+.lark-caption {
+  font-family: var(--lark-font-sans);
+  font-weight: var(--lark-w-regular);
+  font-size: var(--lark-text-caption);
+  line-height: var(--lark-lh-normal);
+  color: var(--lark-fg-quiet);
+}
+
+.lark-eyebrow {
+  font-family: var(--lark-font-latin);
+  font-weight: var(--lark-w-semibold);
+  font-size: var(--lark-text-eyebrow);
+  letter-spacing: var(--lark-tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--lark-blue);
+}
+
+/* ============================================================
+   PRODUCT-UI scope — Lark Suite app (light surface)
+   Use by adding class `lark-product` on a container.
+   ============================================================ */
+.lark-product {
+  background: var(--lark-surface-2);
+  color: var(--lark-ink);
+  font-family: var(--lark-font-sans);
+  font-size: 14px;
+  line-height: var(--lark-lh-normal);
+}
+.lark-product h1 { font-size: 28px; font-weight: var(--lark-w-semibold); color: var(--lark-ink); }
+.lark-product h2 { font-size: 20px; font-weight: var(--lark-w-semibold); color: var(--lark-ink); }
+.lark-product h3 { font-size: 16px; font-weight: var(--lark-w-semibold); color: var(--lark-ink); }
+.lark-product p  { font-size: 14px; color: var(--lark-ink); }
+.lark-product a  { color: var(--lark-link); text-decoration: none; }
+.lark-product a:hover { text-decoration: underline; }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: transparent; overflow: hidden; }
+    body { font-family: var(--lark-font-sans); }
+    #root { min-height: 100vh; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+
+  <script type="text/babel">
+
+// iOS.jsx — Simplified iOS 26 (Liquid Glass) device frame
+// Based on the iOS 26 UI Kit + Figma status bar spec. No assets, no deps.
+// Exports: IOSDevice, IOSStatusBar, IOSNavBar, IOSGlassPill, IOSList, IOSListRow, IOSKeyboard
+
+// ─────────────────────────────────────────────────────────────
+// Status bar
+// ─────────────────────────────────────────────────────────────
+function IOSStatusBar({ dark = false, time = '9:41' }) {
+  const c = dark ? '#fff' : '#000';
+  return (
+    <div style={{
+      display: 'flex', gap: 154, alignItems: 'center', justifyContent: 'center',
+      padding: '21px 24px 19px', boxSizing: 'border-box',
+      position: 'relative', zIndex: 20, width: '100%',
+    }}>
+      <div style={{ flex: 1, height: 22, display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: 1.5 }}>
+        <span style={{
+          fontFamily: '-apple-system, "SF Pro", system-ui', fontWeight: 590,
+          fontSize: 17, lineHeight: '22px', color: c,
+        }}>{time}</span>
+      </div>
+      <div style={{ flex: 1, height: 22, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7, paddingTop: 1, paddingRight: 1 }}>
+        <svg width="19" height="12" viewBox="0 0 19 12">
+          <rect x="0" y="7.5" width="3.2" height="4.5" rx="0.7" fill={c}/>
+          <rect x="4.8" y="5" width="3.2" height="7" rx="0.7" fill={c}/>
+          <rect x="9.6" y="2.5" width="3.2" height="9.5" rx="0.7" fill={c}/>
+          <rect x="14.4" y="0" width="3.2" height="12" rx="0.7" fill={c}/>
+        </svg>
+        <svg width="17" height="12" viewBox="0 0 17 12">
+          <path d="M8.5 3.2C10.8 3.2 12.9 4.1 14.4 5.6L15.5 4.5C13.7 2.7 11.2 1.5 8.5 1.5C5.8 1.5 3.3 2.7 1.5 4.5L2.6 5.6C4.1 4.1 6.2 3.2 8.5 3.2Z" fill={c}/>
+          <path d="M8.5 6.8C9.9 6.8 11.1 7.3 12 8.2L13.1 7.1C11.8 5.9 10.2 5.1 8.5 5.1C6.8 5.1 5.2 5.9 3.9 7.1L5 8.2C5.9 7.3 7.1 6.8 8.5 6.8Z" fill={c}/>
+          <circle cx="8.5" cy="10.5" r="1.5" fill={c}/>
+        </svg>
+        <svg width="27" height="13" viewBox="0 0 27 13">
+          <rect x="0.5" y="0.5" width="23" height="12" rx="3.5" stroke={c} strokeOpacity="0.35" fill="none"/>
+          <rect x="2" y="2" width="20" height="9" rx="2" fill={c}/>
+          <path d="M25 4.5V8.5C25.8 8.2 26.5 7.2 26.5 6.5C26.5 5.8 25.8 4.8 25 4.5Z" fill={c} fillOpacity="0.4"/>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────
+// Liquid glass pill — blur + tint + shine
+// ─────────────────────────────────────────────────────────────
+function IOSGlassPill({ children, dark = false, style = {} }) {
+  return (
+    <div style={{
+      height: 44, minWidth: 44, borderRadius: 9999,
+      position: 'relative', overflow: 'hidden',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      boxShadow: dark
+        ? '0 2px 6px rgba(0,0,0,0.35), 0 6px 16px rgba(0,0,0,0.2)'
+        : '0 1px 3px rgba(0,0,0,0.07), 0 3px 10px rgba(0,0,0,0.06)',
+      ...style,
+    }}>
+      {/* blur + tint */}
+      <div style={{
+        position: 'absolute', inset: 0, borderRadius: 9999,
+        backdropFilter: 'blur(12px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(12px) saturate(180%)',
+        background: dark ? 'rgba(120,120,128,0.28)' : 'rgba(255,255,255,0.5)',
+      }} />
+      {/* shine */}
+      <div style={{
+        position: 'absolute', inset: 0, borderRadius: 9999,
+        boxShadow: dark
+          ? 'inset 1.5px 1.5px 1px rgba(255,255,255,0.15), inset -1px -1px 1px rgba(255,255,255,0.08)'
+          : 'inset 1.5px 1.5px 1px rgba(255,255,255,0.7), inset -1px -1px 1px rgba(255,255,255,0.4)',
+        border: dark ? '0.5px solid rgba(255,255,255,0.15)' : '0.5px solid rgba(0,0,0,0.06)',
+      }} />
+      <div style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', padding: '0 4px' }}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────
+// Navigation bar — glass pills + large title
+// ─────────────────────────────────────────────────────────────
+function IOSNavBar({ title = 'Title', dark = false, trailingIcon = true }) {
+  const muted = dark ? 'rgba(255,255,255,0.6)' : '#404040';
+  const text = dark ? '#fff' : '#000';
+  const pillIcon = (content) => (
+    <IOSGlassPill dark={dark}>
+      <div style={{ width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {content}
+      </div>
+    </IOSGlassPill>
+  );
+  return (
+    <div style={{
+      display: 'flex', flexDirection: 'column', gap: 10,
+      paddingTop: 62, paddingBottom: 10, position: 'relative', zIndex: 5,
+    }}>
+      <div style={{
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        padding: '0 16px',
+      }}>
+        {/* back chevron */}
+        {pillIcon(
+          <svg width="12" height="20" viewBox="0 0 12 20" fill="none" style={{ marginLeft: -1 }}>
+            <path d="M10 2L2 10l8 8" stroke={muted} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        )}
+        {/* trailing ellipsis */}
+        {trailingIcon && pillIcon(
+          <svg width="22" height="6" viewBox="0 0 22 6">
+            <circle cx="3" cy="3" r="2.5" fill={muted}/>
+            <circle cx="11" cy="3" r="2.5" fill={muted}/>
+            <circle cx="19" cy="3" r="2.5" fill={muted}/>
+          </svg>
+        )}
+      </div>
+      {/* large title */}
+      <div style={{
+        padding: '0 16px',
+        fontFamily: '-apple-system, system-ui',
+        fontSize: 34, fontWeight: 700, lineHeight: '41px',
+        color: text, letterSpacing: 0.4,
+      }}>{title}</div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────
+// Grouped list (inset card, r:26) + row (52px)
+// ─────────────────────────────────────────────────────────────
+function IOSListRow({ title, detail, icon, chevron = true, isLast = false, dark = false }) {
+  const text = dark ? '#fff' : '#000';
+  const sec = dark ? 'rgba(235,235,245,0.6)' : 'rgba(60,60,67,0.6)';
+  const ter = dark ? 'rgba(235,235,245,0.3)' : 'rgba(60,60,67,0.3)';
+  const sep = dark ? 'rgba(84,84,88,0.65)' : 'rgba(60,60,67,0.12)';
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', minHeight: 52,
+      padding: '0 16px', position: 'relative',
+      fontFamily: '-apple-system, system-ui', fontSize: 17,
+      letterSpacing: -0.43,
+    }}>
+      {icon && (
+        <div style={{
+          width: 30, height: 30, borderRadius: 7, background: icon,
+          marginRight: 12, flexShrink: 0,
+        }} />
+      )}
+      <div style={{ flex: 1, color: text }}>{title}</div>
+      {detail && <span style={{ color: sec, marginRight: 6 }}>{detail}</span>}
+      {chevron && (
+        <svg width="8" height="14" viewBox="0 0 8 14" style={{ flexShrink: 0 }}>
+          <path d="M1 1l6 6-6 6" stroke={ter} strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      )}
+      {!isLast && (
+        <div style={{
+          position: 'absolute', bottom: 0, right: 0,
+          left: icon ? 58 : 16, height: 0.5, background: sep,
+        }} />
+      )}
+    </div>
+  );
+}
+
+function IOSList({ header, children, dark = false }) {
+  const hc = dark ? 'rgba(235,235,245,0.6)' : 'rgba(60,60,67,0.6)';
+  const bg = dark ? '#1C1C1E' : '#fff';
+  return (
+    <div>
+      {header && (
+        <div style={{
+          fontFamily: '-apple-system, system-ui', fontSize: 13,
+          color: hc, textTransform: 'uppercase',
+          padding: '8px 36px 6px', letterSpacing: -0.08,
+        }}>{header}</div>
+      )}
+      <div style={{
+        background: bg, borderRadius: 26,
+        margin: '0 16px', overflow: 'hidden',
+      }}>{children}</div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────
+// Device frame
+// ─────────────────────────────────────────────────────────────
+function IOSDevice({
+  children, width = 402, height = 874, dark = false,
+  title, keyboard = false,
+}) {
+  return (
+    <div style={{
+      width, height, borderRadius: 48, overflow: 'hidden',
+      position: 'relative', background: dark ? '#000' : '#F2F2F7',
+      boxShadow: '0 40px 80px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.12)',
+      fontFamily: '-apple-system, system-ui, sans-serif',
+      WebkitFontSmoothing: 'antialiased',
+    }}>
+      {/* dynamic island */}
+      <div style={{
+        position: 'absolute', top: 11, left: '50%', transform: 'translateX(-50%)',
+        width: 126, height: 37, borderRadius: 24, background: '#000', zIndex: 50,
+      }} />
+      {/* status bar (absolute) */}
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10 }}>
+        <IOSStatusBar dark={dark} />
+      </div>
+      {/* nav + content */}
+      <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+        {title !== undefined && <IOSNavBar title={title} dark={dark} />}
+        <div style={{ flex: 1, overflow: 'auto' }}>{children}</div>
+        {keyboard && <IOSKeyboard dark={dark} />}
+      </div>
+      {/* home indicator — always on top */}
+      <div style={{
+        position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 60,
+        height: 34, display: 'flex', justifyContent: 'center', alignItems: 'flex-end',
+        paddingBottom: 8, pointerEvents: 'none',
+      }}>
+        <div style={{
+          width: 139, height: 5, borderRadius: 100,
+          background: dark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.25)',
+        }} />
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────
+// Keyboard — iOS 26 liquid glass
+// ─────────────────────────────────────────────────────────────
+function IOSKeyboard({ dark = false }) {
+  const glyph = dark ? 'rgba(255,255,255,0.7)' : '#595959';
+  const sugg = dark ? 'rgba(255,255,255,0.6)' : '#333';
+  const keyBg = dark ? 'rgba(255,255,255,0.22)' : 'rgba(255,255,255,0.85)';
+
+  // special-key icons
+  const icons = {
+    shift: <svg width="19" height="17" viewBox="0 0 19 17"><path d="M9.5 1L1 9.5h4.5V16h8V9.5H18L9.5 1z" fill={glyph}/></svg>,
+    del: <svg width="23" height="17" viewBox="0 0 23 17"><path d="M7 1h13a2 2 0 012 2v11a2 2 0 01-2 2H7l-6-7.5L7 1z" fill="none" stroke={glyph} strokeWidth="1.6" strokeLinejoin="round"/><path d="M10 5l7 7M17 5l-7 7" stroke={glyph} strokeWidth="1.6" strokeLinecap="round"/></svg>,
+    ret: <svg width="20" height="14" viewBox="0 0 20 14"><path d="M18 1v6H4m0 0l4-4M4 7l4 4" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+  };
+
+  const key = (content, { w, flex, ret, fs = 25, k } = {}) => (
+    <div key={k} style={{
+      height: 42, borderRadius: 8.5,
+      flex: flex ? 1 : undefined, width: w, minWidth: 0,
+      background: ret ? '#08f' : keyBg,
+      boxShadow: '0 1px 0 rgba(0,0,0,0.075)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      fontFamily: '-apple-system, "SF Compact", system-ui',
+      fontSize: fs, fontWeight: 458, color: ret ? '#fff' : glyph,
+    }}>{content}</div>
+  );
+
+  const row = (keys, pad = 0) => (
+    <div style={{ display: 'flex', gap: 6.5, justifyContent: 'center', padding: `0 ${pad}px` }}>
+      {keys.map(l => key(l, { flex: true, k: l }))}
+    </div>
+  );
+
+  return (
+    <div style={{
+      position: 'relative', zIndex: 15, borderRadius: 27, overflow: 'hidden',
+      padding: '11px 0 2px',
+      display: 'flex', flexDirection: 'column', alignItems: 'center',
+      boxShadow: dark
+        ? '0 -2px 20px rgba(0,0,0,0.09)'
+        : '0 -1px 6px rgba(0,0,0,0.018), 0 -3px 20px rgba(0,0,0,0.012)',
+    }}>
+      {/* liquid glass bg — same recipe as nav pills */}
+      <div style={{
+        position: 'absolute', inset: 0, borderRadius: 27,
+        backdropFilter: 'blur(12px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(12px) saturate(180%)',
+        background: dark ? 'rgba(120,120,128,0.14)' : 'rgba(255,255,255,0.25)',
+      }} />
+      <div style={{
+        position: 'absolute', inset: 0, borderRadius: 27,
+        boxShadow: dark
+          ? 'inset 1.5px 1.5px 1px rgba(255,255,255,0.15)'
+          : 'inset 1.5px 1.5px 1px rgba(255,255,255,0.7), inset -1px -1px 1px rgba(255,255,255,0.4)',
+        border: dark ? '0.5px solid rgba(255,255,255,0.15)' : '0.5px solid rgba(0,0,0,0.06)',
+        pointerEvents: 'none',
+      }} />
+
+      {/* autocorrect bar */}
+      <div style={{
+        display: 'flex', gap: 20, alignItems: 'center',
+        padding: '8px 22px 13px', width: '100%', boxSizing: 'border-box',
+        position: 'relative',
+      }}>
+        {['"The"', 'the', 'to'].map((w, i) => (
+          <React.Fragment key={i}>
+            {i > 0 && <div style={{ width: 1, height: 25, background: '#ccc', opacity: 0.3 }} />}
+            <div style={{
+              flex: 1, textAlign: 'center',
+              fontFamily: '-apple-system, system-ui', fontSize: 17,
+              color: sugg, letterSpacing: -0.43, lineHeight: '22px',
+            }}>{w}</div>
+          </React.Fragment>
+        ))}
+      </div>
+
+      {/* key layout */}
+      <div style={{
+        display: 'flex', flexDirection: 'column', gap: 13,
+        padding: '0 6.5px', width: '100%', boxSizing: 'border-box',
+        position: 'relative',
+      }}>
+        {row(['q','w','e','r','t','y','u','i','o','p'])}
+        {row(['a','s','d','f','g','h','j','k','l'], 20)}
+        <div style={{ display: 'flex', gap: 14.25, alignItems: 'center' }}>
+          {key(icons.shift, { w: 45, k: 'shift' })}
+          <div style={{ display: 'flex', gap: 6.5, flex: 1 }}>
+            {['z','x','c','v','b','n','m'].map(l => key(l, { flex: true, k: l }))}
+          </div>
+          {key(icons.del, { w: 45, k: 'del' })}
+        </div>
+        <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+          {key('ABC', { w: 92.25, fs: 18, k: 'abc' })}
+          {key('', { flex: true, k: 'space' })}
+          {key(icons.ret, { w: 92.25, ret: true, k: 'ret' })}
+        </div>
+      </div>
+
+      {/* bottom spacer (emoji+mic area, icons omitted) */}
+      <div style={{ height: 56, width: '100%', position: 'relative' }} />
+    </div>
+  );
+}
+
+Object.assign(window, {
+  IOSDevice, IOSStatusBar, IOSNavBar, IOSGlassPill, IOSList, IOSListRow, IOSKeyboard,
+});
+
+// 督办全景图 — 青啤 AI 分身 weekly follow-up dashboard for 范总
+// "上周决策今安在" · Monday morning push that reveals what's really moving
+
+const { useState, useEffect, useRef, createContext, useContext } = React;
+
+// ───────────────────────────────────────────────
+// Shared anim helpers (inline; this file is standalone)
+// ───────────────────────────────────────────────
+const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+const easeOutQuint = (t) => 1 - Math.pow(1 - t, 5);
+
+function inAt(t, start, dur = 500, easing = easeOut) {
+  return easing(clamp((t - start) / dur));
+}
+
+const TCtx = createContext(0);
+const useT = () => useContext(TCtx);
+
+function In({ start = 0, dur = 500, dy = 10, dx = 0, children, style = {}, easing = easeOut }) {
+  const t = useT();
+  const p = inAt(t, start, dur, easing);
+  return (
+    <div
+      style={{
+        opacity: p,
+        transform: `translate(${(1 - p) * dx}px, ${(1 - p) * dy}px)`,
+        willChange: 'transform, opacity',
+        ...style,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+function CountUp({ to, start, dur = 800, decimals = 0 }) {
+  const t = useT();
+  const p = inAt(t, start, dur, easeOut);
+  return <>{(to * p).toFixed(decimals)}</>;
+}
+
+// ───────────────────────────────────────────────
+// Icons
+// ───────────────────────────────────────────────
+const I = {
+  back: (c = '#1F2329') => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke={c} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+  ),
+  filter: (c = '#1F2329') => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M6 12h12M10 18h4" stroke={c} strokeWidth="2" strokeLinecap="round"/></svg>
+  ),
+  alert: (c = '#FE7F00') => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 21h20L12 2z" stroke={c} strokeWidth="2" strokeLinejoin="round"/><path d="M12 9v5M12 17.5v.5" stroke={c} strokeWidth="2" strokeLinecap="round"/></svg>
+  ),
+  sparkle: (c = '#3C7FFF') => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" fill={c}/></svg>
+  ),
+  doc: (c = '#8F959E') => (
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9l-6-6z" stroke={c} strokeWidth="2" strokeLinejoin="round"/><path d="M14 3v6h6" stroke={c} strokeWidth="2" strokeLinejoin="round"/></svg>
+  ),
+  chat: (c = '#8F959E') => (
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke={c} strokeWidth="2"/></svg>
+  ),
+  cal: (c = '#8F959E') => (
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke={c} strokeWidth="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke={c} strokeWidth="2"/></svg>
+  ),
+  hr: (c = '#8F959E') => (
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke={c} strokeWidth="2"/><path d="M4 21a8 8 0 0116 0" stroke={c} strokeWidth="2"/></svg>
+  ),
+  check: (c = '#33D6C0') => (
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke={c} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg>
+  ),
+  clock: (c = '#FE7F00') => (
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke={c} strokeWidth="2"/><path d="M12 7v5l3 2" stroke={c} strokeWidth="2" strokeLinecap="round"/></svg>
+  ),
+  zero: (c = '#F54A45') => (
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke={c} strokeWidth="2"/><path d="M6 18L18 6" stroke={c} strokeWidth="2" strokeLinecap="round"/></svg>
+  ),
+  arrow: (c = '#3C7FFF') => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke={c} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+  ),
+};
+
+function FanAvatar({ size = 36 }) {
+  return (
+    <div style={{
+      width: size, height: size, borderRadius: '50%',
+      overflow: 'hidden',
+      background: '#EAF1FF',
+      flexShrink: 0,
+      position: 'relative',
+    }}>
+      <img src="assets/qingdao-ai-avatar.svg" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+      <div style={{
+        position: 'absolute', right: -1, bottom: -1,
+        width: Math.max(10, size * 0.32), height: Math.max(10, size * 0.32),
+        borderRadius: '50%',
+        background: 'linear-gradient(135deg, #3C7FFF 0%, #5C3FFB 100%)',
+        border: '2px solid #fff',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+      }}>
+        <svg width={Math.max(6, size * 0.18)} height={Math.max(6, size * 0.18)} viewBox="0 0 24 24" fill="none">
+          <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" fill="#fff"/>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+// ───────────────────────────────────────────────
+// Push notification (Phase 1 — slides down from top)
+// ───────────────────────────────────────────────
+function PushNotif({ start, leave }) {
+  const t = useT();
+  const enterP = inAt(t, start, 500, easeOut);
+  const leaveP = inAt(t, leave, 400, easeOut);
+  const visible = t >= start && t < leave + 500;
+  if (!visible) return null;
+  return (
+    <div style={{
+      position: 'absolute', top: 56, left: 12, right: 12, zIndex: 100,
+      opacity: enterP * (1 - leaveP),
+      transform: `translateY(${(1 - enterP) * -20 - leaveP * 60}px) scale(${1 - leaveP * 0.06})`,
+      pointerEvents: 'none',
+    }}>
+      <div style={{
+        background: 'rgba(28, 28, 30, 0.78)',
+        backdropFilter: 'blur(24px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(24px) saturate(180%)',
+        borderRadius: 18,
+        padding: '11px 14px',
+        boxShadow: '0 12px 32px rgba(0,0,0,0.35)',
+        color: '#fff',
+        display: 'flex', gap: 11, alignItems: 'flex-start',
+      }}>
+        <FanAvatar size={36} />
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
+            <div style={{ fontSize: 13, fontWeight: 600 }}>青啤 AI 分身 · 小青</div>
+            <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.55)', marginLeft: 'auto' }}>09:00</div>
+          </div>
+          <div style={{ fontSize: 13, marginTop: 3, lineHeight: 1.4 }}>
+            <b>上周决策今安在</b> 已生成
+          </div>
+          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.7)', marginTop: 2 }}>
+            12 件拍板 · 1 件需立即关注
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ───────────────────────────────────────────────
+// Dashboard header
+// ───────────────────────────────────────────────
+function DashHeader({ start }) {
+  return (
+    <In start={start} dur={400} dy={-8}>
+      <div style={{
+        paddingTop: 52,
+        background: '#fff',
+        borderBottom: '1px solid #EFF0F1',
+      }}>
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 12,
+          padding: '8px 16px 12px',
+        }}>
+          <div style={{ width: 24 }}>{I.back('#1F2329')}</div>
+          <div style={{ flex: 1, lineHeight: 1.1 }}>
+            <div style={{ fontSize: 12, color: '#8F959E', display: 'flex', alignItems: 'center', gap: 4 }}>
+              <FanAvatar size={14} />
+              <span>青啤 AI 分身 · 小青 ·  第 19 周</span>
+            </div>
+            <div style={{ fontSize: 17, fontWeight: 600, color: '#1F2329', marginTop: 4 }}>
+              上周决策今安在
+            </div>
+          </div>
+          <div style={{ width: 22 }}>{I.filter('#1F2329')}</div>
+        </div>
+      </div>
+    </In>
+  );
+}
+
+// ───────────────────────────────────────────────
+// Hero stats card
+// ───────────────────────────────────────────────
+function HeroStats({ start }) {
+  const t = useT();
+  const p = inAt(t, start, 600, easeOut);
+  const barP = inAt(t, start + 400, 900, easeOutQuint);
+  const total = 12;
+  const items = [
+    { label: '按节点推进', count: 8, color: '#33D6C0', delay: 700 },
+    { label: '延期', count: 3, color: '#FE7F00', delay: 900 },
+    { label: '无动静', count: 1, color: '#F54A45', delay: 1100 },
+  ];
+
+  return (
+    <div style={{
+      margin: '14px 14px 0',
+      borderRadius: 16,
+      padding: '16px 16px 14px',
+      background: 'linear-gradient(135deg, #0A1230 0%, #161B45 60%, #0A1230 100%)',
+      color: '#fff', position: 'relative', overflow: 'hidden',
+      boxShadow: '0 6px 22px rgba(10,18,48,0.18)',
+      opacity: p, transform: `translateY(${(1-p)*16}px)`,
+    }}>
+      {/* glow */}
+      <div style={{
+        position: 'absolute', top: -50, right: -50,
+        width: 160, height: 160, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(60,127,255,0.45) 0%, transparent 65%)',
+      }} />
+      <div style={{
+        position: 'absolute', bottom: -40, left: -20,
+        width: 130, height: 130, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(92,63,251,0.25) 0%, transparent 65%)',
+      }} />
+
+      <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div style={{
+          fontSize: 9, fontWeight: 700, letterSpacing: 1.4,
+          color: 'rgba(255,255,255,0.65)',
+        }}>FOLLOW-UP · 督办全景</div>
+        <div style={{ marginLeft: 'auto', fontSize: 10, color: 'rgba(255,255,255,0.45)' }}>
+          2026.05.18 — 05.24
+        </div>
+      </div>
+
+      <div style={{ position: 'relative', display: 'flex', alignItems: 'baseline', gap: 8, marginTop: 8 }}>
+        <div style={{ fontSize: 44, fontWeight: 700, fontFamily: 'Inter', letterSpacing: -1.5, lineHeight: 1 }}>
+          <CountUp to={total} start={start + 200} dur={700} />
+        </div>
+        <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>件 您上周拍板的事项</div>
+      </div>
+
+      {/* Stacked bar */}
+      <div style={{
+        position: 'relative', marginTop: 14, height: 10, borderRadius: 999,
+        background: 'rgba(255,255,255,0.08)', overflow: 'hidden', display: 'flex',
+      }}>
+        {items.map((it, i) => (
+          <div key={i} style={{
+            height: '100%',
+            width: `${(it.count / total) * 100 * barP}%`,
+            background: it.color,
+            transition: 'width 0.05s linear',
+          }} />
+        ))}
+      </div>
+
+      {/* Legend */}
+      <div style={{ position: 'relative', marginTop: 12, display: 'flex', gap: 8 }}>
+        {items.map((it, i) => {
+          const lp = inAt(t, start + it.delay, 400);
+          return (
+            <div key={i} style={{
+              flex: 1,
+              opacity: lp, transform: `translateY(${(1-lp)*6}px)`,
+              padding: '8px 10px',
+              background: 'rgba(255,255,255,0.06)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: 10,
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                <div style={{ width: 6, height: 6, borderRadius: '50%', background: it.color }} />
+                <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.7)' }}>{it.label}</div>
+              </div>
+              <div style={{ marginTop: 2, fontSize: 20, fontWeight: 700, fontFamily: 'Inter' }}>
+                {it.count}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// ───────────────────────────────────────────────
+// Section header
+// ───────────────────────────────────────────────
+function SectionHeader({ start, color, label, count, suffix }) {
+  return (
+    <In start={start} dur={400} dy={6}>
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: 8,
+        padding: '18px 18px 8px',
+      }}>
+        <div style={{ width: 4, height: 14, borderRadius: 2, background: color }} />
+        <div style={{ fontSize: 13, fontWeight: 600, color: '#1F2329' }}>{label}</div>
+        <div style={{
+          fontSize: 10, color, padding: '2px 7px',
+          background: `${color}1A`, borderRadius: 999, fontWeight: 600,
+        }}>{count}</div>
+        {suffix && <div style={{ marginLeft: 'auto', fontSize: 12, color: '#8F959E' }}>{suffix}</div>}
+      </div>
+    </In>
+  );
+}
+
+// ───────────────────────────────────────────────
+// Delayed (延期) card — the killer feature
+// ───────────────────────────────────────────────
+function DelayedCard({ start, data }) {
+  const t = useT();
+  const p = inAt(t, start, 500, easeOut);
+  const statedP = inAt(t, start + 250, 400, easeOut);
+  const sparkP = inAt(t, start + 700, 500, easeOut);
+  const realP = inAt(t, start + 1000, 600, easeOut);
+  const evidenceP = inAt(t, start + 1500, 500, easeOut);
+
+  return (
+    <div style={{
+      margin: '0 14px 10px',
+      borderRadius: 12, background: '#fff',
+      boxShadow: '0 1px 2px rgba(31,35,41,0.04), 0 0 0 1px rgba(31,35,41,0.05)',
+      opacity: p, transform: `translateY(${(1-p)*12}px)`,
+      overflow: 'hidden',
+    }}>
+      {/* Top eyebrow */}
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: 6,
+        padding: '11px 13px 0',
+      }}>
+        {I.clock('#FE7F00')}
+        <div style={{ fontSize: 10, fontWeight: 600, color: '#FE7F00', letterSpacing: 0.4 }}>
+          延期 · 已 {data.daysLate} 天
+        </div>
+        <div style={{ marginLeft: 'auto', fontSize: 10, color: '#8F959E' }}>{data.bu}</div>
+      </div>
+
+      {/* Title */}
+      <div style={{ padding: '6px 13px 0' }}>
+        <div style={{ fontSize: 14, fontWeight: 600, color: '#1F2329', lineHeight: 1.35 }}>
+          {data.title}
+        </div>
+        <div style={{ fontSize: 12, color: '#8F959E', marginTop: 3 }}>
+          您 {data.decided} 拍板 · 应于 {data.due} {data.action}
+        </div>
+      </div>
+
+      {/* Stated reason */}
+      <div style={{
+        margin: '11px 13px 0',
+        padding: '8px 10px',
+        background: '#F8F9FA',
+        borderRadius: 8,
+        opacity: statedP, transform: `translateY(${(1-statedP)*4}px)`,
+      }}>
+        <div style={{ fontSize: 10, color: '#8F959E', marginBottom: 3, letterSpacing: 0.3 }}>
+          责任人汇报 · {data.reporter}
+        </div>
+        <div style={{ fontSize: 13, color: '#51565D', fontStyle: 'italic' }}>
+          "{data.stated}"
+        </div>
+      </div>
+
+      {/* Divider with sparkle */}
+      <div style={{
+        margin: '8px 13px',
+        display: 'flex', alignItems: 'center', gap: 8,
+        opacity: sparkP,
+      }}>
+        <div style={{ flex: 1, height: 1, background: 'linear-gradient(90deg, transparent, #DEE0E3)' }} />
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 4,
+          padding: '2px 8px',
+          background: 'linear-gradient(135deg, #3C7FFF, #5C3FFB)',
+          borderRadius: 999, color: '#fff',
+          fontSize: 10, fontWeight: 600,
+        }}>
+          {I.sparkle('#fff')} 小青推断
+        </div>
+        <div style={{ flex: 1, height: 1, background: 'linear-gradient(90deg, #DEE0E3, transparent)' }} />
+      </div>
+
+      {/* Real cause */}
+      <div style={{
+        margin: '0 13px',
+        padding: '10px 12px',
+        background: 'linear-gradient(135deg, rgba(60,127,255,0.06) 0%, rgba(92,63,251,0.04) 100%)',
+        border: '1px solid rgba(60,127,255,0.2)',
+        borderRadius: 10,
+        opacity: realP, transform: `translateY(${(1-realP)*6}px) scale(${0.98 + realP * 0.02})`,
+      }}>
+        <div style={{ fontSize: 10, color: '#3C7FFF', marginBottom: 4, fontWeight: 600, letterSpacing: 0.3 }}>
+          真实卡点
+        </div>
+        <div style={{ fontSize: 13, color: '#1F2329', lineHeight: 1.5 }}>
+          {data.real}
+        </div>
+      </div>
+
+      {/* Evidence chips */}
+      <div style={{
+        padding: '10px 13px 12px',
+        opacity: evidenceP, transform: `translateY(${(1-evidenceP)*4}px)`,
+      }}>
+        <div style={{ fontSize: 10, color: '#8F959E', marginBottom: 6 }}>依据 · 飞书协作数据</div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
+          {data.evidence.map((e, i) => (
+            <div key={i} style={{
+              display: 'flex', alignItems: 'center', gap: 4,
+              padding: '4px 8px',
+              background: '#F5F6F7', borderRadius: 6,
+              fontSize: 10.5, color: '#51565D',
+            }}>
+              {e.icon} <span>{e.text}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ───────────────────────────────────────────────
+// No-activity card with heatmap
+// ───────────────────────────────────────────────
+function NoActivityCard({ start, data }) {
+  const t = useT();
+  const p = inAt(t, start, 500, easeOut);
+  const heatP = inAt(t, start + 400, 1500, easeOut);
+  const rowsP = inAt(t, start + 800, 600, easeOut);
+  const adviceP = inAt(t, start + 1600, 500, easeOut);
+
+  // 30 days × responsible person activity (all near-zero)
+  // Generate a deterministic "almost blank" heatmap
+  const days = 30;
+  const channels = [
+    { name: '文档编辑', count: 0, icon: I.doc('#8F959E') },
+    { name: '会议出席', count: 0, icon: I.cal('#8F959E') },
+    { name: '群聊提及', count: 1, icon: I.chat('#8F959E'), passive: true },
+    { name: '任务推进', count: 0, icon: I.check('#8F959E') },
+  ];
+
+  return (
+    <div style={{
+      margin: '0 14px 10px',
+      borderRadius: 12, background: '#fff',
+      boxShadow: '0 1px 2px rgba(31,35,41,0.04), 0 0 0 1px rgba(245,74,69,0.15)',
+      opacity: p, transform: `translateY(${(1-p)*12}px)`,
+      overflow: 'hidden',
+    }}>
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: 6,
+        padding: '11px 13px 0',
+      }}>
+        {I.zero('#F54A45')}
+        <div style={{ fontSize: 10, fontWeight: 600, color: '#F54A45', letterSpacing: 0.4 }}>
+          无动静 · 30 天 · 高危
+        </div>
+        <div style={{ marginLeft: 'auto', fontSize: 10, color: '#8F959E' }}>{data.bu}</div>
+      </div>
+
+      <div style={{ padding: '6px 13px 0' }}>
+        <div style={{ fontSize: 14, fontWeight: 600, color: '#1F2329', lineHeight: 1.35 }}>
+          {data.title}
+        </div>
+        <div style={{ fontSize: 12, color: '#8F959E', marginTop: 3 }}>
+          您 {data.decided} 拍板 · 应于 {data.due} {data.action}
+        </div>
+      </div>
+
+      {/* Heatmap */}
+      <div style={{ padding: '12px 13px 0' }}>
+        <div style={{ fontSize: 10, color: '#8F959E', marginBottom: 6 }}>
+          责任人 {data.reporter} 近 30 天对该议题的飞书活动
+        </div>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: `repeat(${days}, 1fr)`,
+          gap: 2,
+        }}>
+          {Array.from({ length: days }).map((_, i) => {
+            // Almost all empty, occasionally a tiny dot for the 1 passive mention
+            const isActive = i === 18; // single pixel of activity
+            const cellP = inAt(t, start + 400 + i * 25, 200, easeOut);
+            return (
+              <div key={i} style={{
+                aspectRatio: '1',
+                borderRadius: 2,
+                background: isActive ? '#FE7F00' : '#F5F6F7',
+                opacity: cellP * (isActive ? 0.55 : 1),
+                border: isActive ? '0' : '1px solid #EFF0F1',
+              }} />
+            );
+          })}
+        </div>
+        <div style={{
+          display: 'flex', justifyContent: 'space-between',
+          fontSize: 9, color: '#BBBFC4', marginTop: 4,
+        }}>
+          <span>04-25</span><span>05-09</span><span>05-24</span>
+        </div>
+      </div>
+
+      {/* Channel breakdown */}
+      <div style={{
+        padding: '12px 13px 0',
+        opacity: rowsP, transform: `translateY(${(1-rowsP)*4}px)`,
+      }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6 }}>
+          {channels.map((c, i) => (
+            <div key={i} style={{
+              display: 'flex', alignItems: 'center', gap: 6,
+              padding: '6px 8px', background: '#F8F9FA', borderRadius: 6,
+            }}>
+              {c.icon}
+              <div style={{ fontSize: 11, color: '#51565D', flex: 1 }}>{c.name}</div>
+              <div style={{
+                fontSize: 13, fontWeight: 600,
+                color: c.count === 0 ? '#F54A45' : '#FE7F00',
+                fontFamily: 'Inter',
+              }}>
+                {c.count}
+              </div>
+              {c.passive && <div style={{ fontSize: 9, color: '#8F959E' }}>被动</div>}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Side-by-side comparison */}
+      <div style={{
+        margin: '10px 13px 0',
+        padding: '8px 10px',
+        background: 'rgba(254,127,0,0.06)',
+        borderLeft: '3px solid #FE7F00',
+        borderRadius: '4px 8px 8px 4px',
+        opacity: rowsP, transform: `translateY(${(1-rowsP)*4}px)`,
+      }}>
+        <div style={{ fontSize: 11, color: '#1F2329', lineHeight: 1.5 }}>
+          同期，{data.reporter} 在 <b style={{ color: '#FE7F00' }}>「啤酒节主视觉」</b>上累计 47 条协作记录、6 次会议。
+        </div>
+      </div>
+
+      {/* Advice */}
+      <div style={{
+        margin: '10px 13px 12px',
+        padding: '10px 12px',
+        background: 'linear-gradient(135deg, rgba(245,74,69,0.06) 0%, rgba(254,127,0,0.04) 100%)',
+        border: '1px solid rgba(245,74,69,0.2)',
+        borderRadius: 10,
+        opacity: adviceP, transform: `translateY(${(1-adviceP)*4}px)`,
+      }}>
+        <div style={{ fontSize: 10, fontWeight: 600, color: '#F54A45', marginBottom: 4, letterSpacing: 0.3 }}>
+          小青建议
+        </div>
+        <div style={{ fontSize: 14, color: '#1F2329', lineHeight: 1.5 }}>
+          本周亲自过问，或评估是否调整责任人。可由小青起草一份催办函与会议邀约。
+        </div>
+        <div style={{ display: 'flex', gap: 6, marginTop: 8 }}>
+          <div style={{
+            padding: '5px 10px', background: '#fff', border: '1px solid #DEE0E3',
+            borderRadius: 6, fontSize: 11, color: '#1F2329', fontWeight: 500,
+          }}>起草催办</div>
+          <div style={{
+            padding: '5px 10px',
+            background: 'linear-gradient(135deg, #3C7FFF, #2566EC)',
+            borderRadius: 6, fontSize: 11, color: '#fff', fontWeight: 600,
+            display: 'flex', alignItems: 'center', gap: 4,
+          }}>约见责任人 {I.arrow('#fff')}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ───────────────────────────────────────────────
+// On-track condensed list (8 items)
+// ───────────────────────────────────────────────
+function OnTrackList({ start }) {
+  const t = useT();
+  const items = [
+    { title: '青岛纯生夜宵终端陈列复盘', bu: '华东营销中心', pct: 0.62 },
+    { title: '华南大区高端餐饮进店计划', bu: '华南营销中心', pct: 0.41 },
+    { title: '崂山啤酒社区团购价盘修正', bu: '新零售渠道', pct: 0.88 },
+    { title: '青岛经典罐装焕新试销', bu: '品牌中心', pct: 0.55 },
+    { title: '冰柜铺设二维码资产盘点', bu: '销售管理部', pct: 0.72 },
+    { title: '夏季音乐节联合投放排期', bu: '品牌中心', pct: 0.81 },
+    { title: '经销商返利政策清账', bu: '财务 BP', pct: 0.49 },
+    { title: '重点城市终端巡检整改', bu: '渠道运营部', pct: 0.76 },
+  ];
+  const p = inAt(t, start, 400, easeOut);
+
+  return (
+    <div style={{
+      margin: '0 14px',
+      borderRadius: 12, background: '#fff',
+      boxShadow: '0 1px 2px rgba(31,35,41,0.04), 0 0 0 1px rgba(31,35,41,0.05)',
+      opacity: p, transform: `translateY(${(1-p)*10}px)`,
+      overflow: 'hidden',
+    }}>
+      {items.map((it, i) => {
+        const rp = inAt(t, start + 100 + i * 80, 400, easeOut);
+        const barP = inAt(t, start + 200 + i * 80, 800, easeOutQuint);
+        return (
+          <div key={i} style={{
+            padding: '10px 13px',
+            borderBottom: i < items.length - 1 ? '1px solid #F5F6F7' : 'none',
+            display: 'flex', alignItems: 'center', gap: 10,
+            opacity: rp, transform: `translateX(${(1-rp)*-8}px)`,
+          }}>
+            {I.check('#33D6C0')}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{
+                fontSize: 13, color: '#1F2329', fontWeight: 500,
+                whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+              }}>{it.title}</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4 }}>
+                <div style={{
+                  flex: 1, height: 3, borderRadius: 999, background: '#F0F1F2', overflow: 'hidden',
+                }}>
+                  <div style={{
+                    width: `${it.pct * 100 * barP}%`, height: '100%',
+                    background: '#33D6C0', borderRadius: 999,
+                  }} />
+                </div>
+                <div style={{ fontSize: 10, color: '#8F959E', minWidth: 64, textAlign: 'right' }}>
+                  {it.bu} · {Math.round(it.pct * 100)}%
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+// ───────────────────────────────────────────────
+// Contradiction alert — 前后批示口径
+// ───────────────────────────────────────────────
+function ContradictionAlert({ start }) {
+  const t = useT();
+  const p = inAt(t, start, 500, easeOut);
+  const diffs = [
+    { from: '只投高动销 A/B 类门店', to: '含 C 类低动销门店', delta: '放宽' },
+    { from: '费用随周销达成滚动释放', to: '一次性全额预拨', delta: '前置' },
+    { from: '冰柜需扫码建档回收', to: '未提及', delta: '缺' },
+  ];
+
+  return (
+    <div style={{
+      margin: '14px 14px 0',
+      borderRadius: 14,
+      padding: '14px',
+      background: 'linear-gradient(135deg, #FFFBF5 0%, #FFF7EC 100%)',
+      border: '1px solid rgba(254,127,0,0.25)',
+      opacity: p, transform: `translateY(${(1-p)*14}px)`,
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        {I.alert('#FE7F00')}
+        <div style={{ fontSize: 13, fontWeight: 600, color: '#1F2329' }}>批示口径检查</div>
+        <div style={{ marginLeft: 'auto', fontSize: 10, color: '#FE7F00', fontWeight: 600 }}>3 处差异</div>
+      </div>
+      <div style={{ fontSize: 13, color: '#1F2329', marginTop: 8, lineHeight: 1.55 }}>
+        上周您对「<b>华东营销中心夜宵渠道费用追加</b>」的批示，与您 2026-04-18 对同类旺季投放的批示口径存在差异。
+      </div>
+      <div style={{
+        marginTop: 10,
+        background: '#fff', borderRadius: 8,
+        padding: '8px 10px',
+        border: '1px solid rgba(254,127,0,0.15)',
+      }}>
+        {diffs.map((d, i) => {
+          const dp = inAt(t, start + 400 + i * 150, 400, easeOut);
+          return (
+            <div key={i} style={{
+              display: 'flex', alignItems: 'center', gap: 8,
+              padding: '6px 0',
+              borderBottom: i < diffs.length - 1 ? '1px solid #F5F6F7' : 'none',
+              opacity: dp, transform: `translateX(${(1-dp)*-6}px)`,
+            }}>
+              <div style={{ fontSize: 14, color: '#8F959E', flex: 1, lineHeight: 1.4 }}>
+                {d.from}
+              </div>
+              <svg width="12" height="10" viewBox="0 0 16 10" style={{ flexShrink: 0 }}>
+                <path d="M0 5h14M10 1l4 4-4 4" stroke="#FE7F00" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <div style={{ fontSize: 14, color: '#1F2329', flex: 1, fontWeight: 500 }}>
+                {d.to}
+              </div>
+              <div style={{
+                fontSize: 9, fontWeight: 600, color: '#FE7F00',
+                background: 'rgba(254,127,0,0.1)', padding: '2px 6px', borderRadius: 4,
+              }}>{d.delta}</div>
+            </div>
+          );
+        })}
+      </div>
+      <div style={{
+        marginTop: 10, fontSize: 14, color: '#51565D', lineHeight: 1.5,
+      }}>
+        建议：补充一份费用释放与冰柜回收口径说明，或由小青代拟一份"旺季投放批示一致性"备忘。
+      </div>
+    </div>
+  );
+}
+
+// ───────────────────────────────────────────────
+// This week's recommended actions (本周建议 3 件)
+// ───────────────────────────────────────────────
+function WeekActions({ start }) {
+  const t = useT();
+  const p = inAt(t, start, 400);
+  const actions = [
+    { tag: '主动过问', tagColor: '#F54A45', who: '品牌中心 周 XX', what: '经典罐焕新试销复盘无更新 14 天' },
+    { tag: '催办', tagColor: '#FE7F00', who: '华东营销中心 张 XX', what: '龙虾节费用追加预算拆分延期 2 天' },
+    { tag: '统一口径', tagColor: '#5C3FFB', who: '销售管理部 王 XX', what: '冰柜责任书扫码回收条款未同步' },
+  ];
+
+  return (
+    <div style={{ margin: '0 14px', opacity: p, transform: `translateY(${(1-p)*10}px)` }}>
+      {actions.map((a, i) => {
+        const ap = inAt(t, start + 100 + i * 180, 400, easeOut);
+        return (
+          <div key={i} style={{
+            padding: '10px 13px',
+            background: '#fff', borderRadius: 10,
+            marginBottom: 6,
+            display: 'flex', alignItems: 'center', gap: 10,
+            boxShadow: '0 1px 2px rgba(31,35,41,0.04), 0 0 0 1px rgba(31,35,41,0.05)',
+            opacity: ap, transform: `translateY(${(1-ap)*8}px)`,
+          }}>
+            <div style={{
+              fontSize: 10, fontWeight: 600, color: a.tagColor,
+              background: `${a.tagColor}15`,
+              padding: '3px 7px', borderRadius: 4, flexShrink: 0,
+            }}>{a.tag}</div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: 13, color: '#1F2329', fontWeight: 500 }}>{a.who}</div>
+              <div style={{
+                fontSize: 12, color: '#8F959E', marginTop: 2,
+                whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+              }}>{a.what}</div>
+            </div>
+            {I.arrow('#3C7FFF')}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+// ───────────────────────────────────────────────
+// Timeline
+// ───────────────────────────────────────────────
+const T = {
+  notif: 300,
+  notifLeave: 2200,
+  header: 2400,
+  hero: 2700,
+  alertSec: 4500,
+  delayedHdr: 5000,
+  delay1: 5300,
+  delay2: 7300,
+  delay3: 9300,
+  noActHdr: 11500,
+  noAct: 11800,
+  contraSec: 16500,
+  contra: 16800,
+  actSec: 20000,
+  actions: 20200,
+  onTrackHdr: 22500,
+  onTrack: 22800,
+  hold: 26000,
+};
+
+const delayedData = [
+  {
+    daysLate: 2, bu: '华东营销中心', reporter: '张 XX',
+    title: '青岛纯生夏季龙虾节渠道政策费用追加',
+    decided: '05-19', due: '05-23', action: '补齐预算拆分',
+    stated: '门店名单还在确认',
+    real: '终端名单已确认，但财务 BP 未收到「夜宵街区 / 普通餐饮」分层，费用无法分摊到城市战区；竞品数据已在情报站更新。',
+    evidence: [
+      { icon: I.doc('#8F959E'), text: '多维表格 · 门店名单 05-20 已锁定' },
+      { icon: I.chat('#8F959E'), text: '财务群 · 预算科目缺分层' },
+      { icon: I.doc('#8F959E'), text: '情报站 · 竞品买赠变化已同步' },
+    ],
+  },
+  {
+    daysLate: 1, bu: '新零售渠道', reporter: '刘 XX',
+    title: '崂山啤酒社区团购价盘管控',
+    decided: '05-20', due: '05-24', action: '完成价盘修正',
+    stated: '平台活动排期冲突',
+    real: '三个平台已给可执行窗口，卡点是区域经销商返利口径未统一；低价链接仍在传播。',
+    evidence: [
+      { icon: I.chat('#8F959E'), text: '平台群 · 可执行窗口已确认' },
+      { icon: I.doc('#8F959E'), text: '价盘表 · 返利口径缺 2 个区域' },
+      { icon: I.cal('#8F959E'), text: '巡检 · 低价链接 11 条仍在线' },
+    ],
+  },
+  {
+    daysLate: 3, bu: '销售管理部', reporter: '王 XX',
+    title: '华北大区冰柜铺设与回收责任书',
+    decided: '05-17', due: '05-22', action: '完成责任书签署',
+    stated: '经销商反馈慢',
+    real: '重点经销商已回复，内部法务模板没有同步「扫码回收」条款，导致战区反复确认。',
+    evidence: [
+      { icon: I.chat('#8F959E'), text: '经销商群 · 重点客户已回复' },
+      { icon: I.doc('#8F959E'), text: '法务模板 · 缺扫码回收条款' },
+      { icon: I.cal('#8F959E'), text: '战区会议 · 同一问题重复 3 次' },
+    ],
+  },
+];
+
+const noActData = {
+  bu: '品牌中心', reporter: '周 XX',
+  title: '青岛经典罐装焕新包装试销复盘',
+  decided: '05-06', due: '05-24', action: '提交复盘',
+};
+
+function Dashboard() {
+  return (
+    <>
+      <DashHeader start={T.header} />
+
+      <HeroStats start={T.hero} />
+
+      <SectionHeader start={T.alertSec} color="#F54A45" label="需立即关注" count="2" suffix="按风险排序" />
+      <SectionHeader start={T.delayedHdr} color="#FE7F00" label="延期" count="3" suffix="小青推断真实卡点" />
+      <DelayedCard start={T.delay1} data={delayedData[0]} />
+      <DelayedCard start={T.delay2} data={delayedData[1]} />
+      <DelayedCard start={T.delay3} data={delayedData[2]} />
+
+      <SectionHeader start={T.noActHdr} color="#F54A45" label="无动静 · 高危" count="1" />
+      <NoActivityCard start={T.noAct} data={noActData} />
+
+      <SectionHeader start={T.contraSec} color="#FE7F00" label="批示口径检查" count="1" />
+      <ContradictionAlert start={T.contra} />
+
+      <SectionHeader start={T.actSec} color="#3C7FFF" label="本周建议动作" count="3" suffix="一键执行" />
+      <WeekActions start={T.actions} />
+
+      <SectionHeader start={T.onTrackHdr} color="#33D6C0" label="按节点推进" count="8" suffix="无需介入" />
+      <OnTrackList start={T.onTrack} />
+
+      <div style={{ height: 60 }} />
+    </>
+  );
+}
+
+// ───────────────────────────────────────────────
+// App
+// ───────────────────────────────────────────────
+function App() {
+  const PREVIEW_TICK = T.hero + 1200; // hero stats fully shown, scroll at top
+  const STOP_AT = T.hold;             // play once then freeze
+
+  const [phase, setPhase] = useState('preview');
+  const [tick, setTick] = useState(T.hero + 1200);
+  const startRef = useRef(null);
+
+  useEffect(() => {
+    if (phase !== 'playing') return;
+    startRef.current = performance.now();
+    let raf;
+    const loop = () => {
+      const elapsed = performance.now() - startRef.current;
+      if (elapsed >= STOP_AT) { setTick(STOP_AT); return; }
+      setTick(elapsed);
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(raf);
+  }, [phase]);
+
+  const [scale, setScale] = useState(1);
+  useEffect(() => {
+    const update = () => {
+      const dw = 393, dh = 852;
+      const s = Math.min(window.innerWidth / dw, window.innerHeight / dh);
+      setScale(s);
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
+  // Auto-scroll director
+  const scrollRef = useRef(null);
+  useEffect(() => {
+    if (!scrollRef.current) return;
+    let target = 0;
+    if (tick > T.hero) target = 0;
+    if (tick > T.hero + 1500) target = 60;
+    if (tick > T.delayedHdr) target = 180;
+    if (tick > T.delay1 + 1700) target = 300;
+    if (tick > T.delay2) target = 480;
+    if (tick > T.delay2 + 1700) target = 640;
+    if (tick > T.delay3) target = 800;
+    if (tick > T.delay3 + 1700) target = 970;
+    if (tick > T.noAct) target = 1110;
+    if (tick > T.noAct + 1200) target = 1280;
+    if (tick > T.noAct + 2400) target = 1430;
+    if (tick > T.contraSec) target = 1550;
+    if (tick > T.contra + 800) target = 1690;
+    if (tick > T.contra + 1800) target = 1820;
+    if (tick > T.actSec) target = 1960;
+    if (tick > T.actions + 800) target = 2050;
+    if (tick > T.onTrackHdr) target = 2180;
+    if (tick > T.onTrack + 800) target = 2320;
+    if (tick > T.hold) target = 2400;
+    const cur = scrollRef.current.scrollTop;
+    scrollRef.current.scrollTop = cur + (target - cur) * 0.12;
+  }, [tick]);
+
+  return (
+    <TCtx.Provider value={tick}>
+      <link rel="stylesheet" href="lark-tokens.css" />
+      <div onClick={() => phase === 'preview' && setPhase('playing')} style={{
+        position: 'absolute', inset: 0,
+        background: 'transparent',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        fontFamily: 'var(--lark-font-sans)',
+        overflow: 'hidden',
+        cursor: phase === 'preview' ? 'pointer' : 'default',
+      }}>
+        {phase === 'preview' && (
+          <div style={{
+            position: 'absolute', bottom: 90, left: 0, right: 0, zIndex: 100,
+            display: 'flex', justifyContent: 'center',
+            pointerEvents: 'none',
+          }}>
+            <div style={{
+              background: 'rgba(60,127,255,0.90)',
+              borderRadius: 999, padding: '9px 24px',
+              color: '#fff', fontSize: 13, fontWeight: 600,
+              boxShadow: '0 4px 18px rgba(60,127,255,0.40)',
+              display: 'flex', alignItems: 'center', gap: 8,
+            }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M5 3l14 9-14 9V3z"/></svg>
+              点击播放
+            </div>
+          </div>
+        )}
+
+        <div style={{ transform: `scale(${scale})`, transformOrigin: 'center center' }}>
+          <IOSDevice width={393} height={852}>
+            <div style={{ height: '100%', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+              {/* Push notification (overlay on lock-screen/blank period) */}
+              <PushNotif start={T.notif} leave={T.notifLeave} />
+
+              <div ref={scrollRef} className="no-scrollbar" style={{
+                flex: 1, overflowY: 'auto', overflowX: 'hidden',
+                background: '#F5F6F7',
+              }}>
+                <Dashboard />
+              </div>
+            </div>
+          </IOSDevice>
+        </div>
+
+        {/* Floating switch to the other demo */}
+        <a href="index.html" style={{
+          position: 'absolute', left: 24, bottom: 24,
+          padding: '10px 16px',
+          background: 'rgba(255,255,255,0.08)',
+          border: '1px solid rgba(255,255,255,0.15)',
+          borderRadius: 999, backdropFilter: 'blur(12px)',
+          color: 'rgba(255,255,255,0.85)',
+          fontSize: 13, textDecoration: 'none',
+          fontFamily: 'var(--lark-font-sans)',
+          display: 'flex', alignItems: 'center', gap: 6,
+        }}>
+          ← 批阅 demo
+        </a>
+      </div>
+
+      <style>{`
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { scrollbar-width: none; }
+      `}</style>
+    </TCtx.Provider>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
+  </script>
+</body>
+</html>

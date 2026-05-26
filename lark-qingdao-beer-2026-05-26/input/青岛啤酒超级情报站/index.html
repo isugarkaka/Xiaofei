@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>青岛啤酒 · 旺季渠道情报站</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap"/>
+<style>
+/* ============================================================
+   Lark PPT — Foundations: Colors & Type (inlined)
+   ============================================================ */
+:root {
+  --lark-bg-black:    #000000;
+  --lark-bg-deep:     #04060F;
+  --lark-bg-navy:     #0A1230;
+  --lark-bg-twilight: #1B1F3A;
+  --lark-fg-white:    #FFFFFF;
+  --lark-fg-muted:    #E7E6E6;
+  --lark-fg-soft:     rgba(255,255,255,0.72);
+  --lark-fg-quiet:    rgba(255,255,255,0.48);
+  --lark-fg-faint:    rgba(255,255,255,0.16);
+  --lark-ink:         #1F2329;
+  --lark-ink-2:       #51565D;
+  --lark-ink-3:       #8F959E;
+  --lark-ink-4:       #BBBFC4;
+  --lark-line:        #DEE0E3;
+  --lark-surface:     #FFFFFF;
+  --lark-surface-2:   #F5F6F7;
+  --lark-surface-3:   #EFF0F1;
+  --lark-neutral-700: #767171;
+  --lark-neutral-200: #E7E6E6;
+  --lark-blue:    #3C7FFF;
+  --lark-cyan:    #24C3FF;
+  --lark-purple:  #5C3FFB;
+  --lark-teal:    #33D6C0;
+  --lark-violet:  #9F6FF1;
+  --lark-orange:  #FE7F00;
+  --lark-blue-50:  #EAF1FF;
+  --lark-blue-100: #C9DCFF;
+  --lark-blue-200: #9DBEFF;
+  --lark-blue-300: #6A9DFF;
+  --lark-blue-400: #3C7FFF;
+  --lark-blue-500: #2566EC;
+  --lark-blue-600: #0057F9;
+  --lark-blue-700: #003FB8;
+  --lark-link:           #3C7FFF;
+  --lark-link-visited:   #0057F9;
+  --lark-success:        #33D6C0;
+  --lark-warning:        #FE7F00;
+  --lark-danger:         #F54A45;
+  --lark-info:           #24C3FF;
+  --lark-grad-hero:
+    radial-gradient(120% 100% at 0% 0%, #0F1A4A 0%, #060B22 38%, #000 78%);
+  --lark-grad-section:
+    radial-gradient(140% 110% at 100% 0%, #1A2256 0%, #050817 50%, #000 100%);
+  --lark-grad-brand:
+    linear-gradient(135deg, #33D6C0 0%, #3C7FFF 50%, #1A1F6B 100%);
+  --lark-grad-keyline:
+    linear-gradient(90deg, #33D6C0 0%, #3C7FFF 50%, #5C3FFB 100%);
+  --lark-font-sans:
+    "Noto Sans SC", "FZLanTingHeiPro_GB18030",
+    "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB",
+    "Helvetica Neue", Arial, sans-serif;
+  --lark-font-latin:
+    "Inter", "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+  --lark-font-mono:
+    "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  --lark-w-light:    300;
+  --lark-w-regular:  400;
+  --lark-w-medium:   500;
+  --lark-w-semibold: 600;
+  --lark-w-bold:     700;
+  --lark-w-black:    900;
+  --lark-ease:          cubic-bezier(0.4, 0, 0.2, 1);
+  --lark-ease-out:      cubic-bezier(0.0, 0, 0.2, 1);
+  --lark-ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
+  --lark-dur-fast:      120ms;
+  --lark-dur-base:      200ms;
+  --lark-dur-slow:      400ms;
+}
+
+/* ============================================================
+   App styles (inlined)
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; height: 100%; background: transparent; }
+body {
+  font-family: var(--lark-font-sans);
+  color: var(--lark-ink);
+  background: transparent;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+button { font: inherit; border: none; background: none; cursor: pointer; color: inherit; padding: 0; }
+button:focus-visible { outline: 2px solid var(--lark-blue); outline-offset: 2px; }
+
+.stage {
+  position: fixed; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: transparent;
+  overflow: hidden;
+}
+.stage-canvas {
+  width: 1440px;
+  height: 900px;
+  transform-origin: center center;
+  background: var(--lark-surface-2);
+  position: relative;
+  flex-shrink: 0;
+}
+#root { width: 100%; height: 100%; display: block; }
+
+.app {
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 100%;
+  width: 100%;
+}
+
+.rail {
+  background: #1F2329;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 14px 0; gap: 10px;
+}
+.rail .ws { width: 40px; height: 40px; border-radius: 9px; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; opacity: 0.55; transition: 0.15s; position: relative; }
+.rail .ws:hover { opacity: 1; }
+.rail .ws.active { opacity: 1; outline: 2px solid var(--lark-blue); outline-offset: 2px; }
+.rail .ws img { width: 100%; height: 100%; object-fit: contain; background: #000; padding: 6px; }
+.rail .ws .glyph {
+  width: 100%; height: 100%;
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; font-weight:700; font-size:15px;
+  background: linear-gradient(135deg, #3C7FFF 0%, #5C3FFB 100%);
+}
+.rail .ws.intel .glyph { background: linear-gradient(135deg, #33D6C0 0%, #3C7FFF 60%, #1A1F6B 100%); font-size: 13px; letter-spacing: -0.02em; }
+.rail .ws-add { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.55);
+                font-size: 20px; line-height: 1; }
+.rail .ws-add:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.rail .spacer { flex: 1; }
+.rail .me { width: 40px; height: 40px; border-radius: 999px;
+            background: #FE7F00; color: #fff; font-weight: 600; font-size: 14px;
+            display: flex; align-items: center; justify-content: center; }
+
+.main {
+  display: grid;
+  grid-template-rows: 64px auto 1fr;
+  min-width: 0;
+  min-height: 0;
+}
+
+.topbar {
+  background: #fff;
+  border-bottom: 1px solid var(--lark-line);
+  display: flex; align-items: center;
+  padding: 0 28px;
+  gap: 24px;
+}
+.topbar .brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.topbar .ctg-logo {
+  height: 38px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+.topbar .brand-divider {
+  width: 1px; height: 22px;
+  background: rgba(255,255,255,0.16);
+  flex-shrink: 0;
+}
+.topbar .brand-name { font-size: 17px; font-weight: 600; color: var(--lark-ink); }
+.topbar .tabs { display: flex; gap: 4px; margin-left: 24px; }
+.tab {
+  padding: 8px 14px; border-radius: 6px;
+  font-size: 14px; font-weight: 500; color: var(--lark-ink-2);
+  transition: 0.12s;
+}
+.tab:hover { background: var(--lark-surface-3); color: var(--lark-ink); }
+.tab.active { background: rgba(60,127,255,0.10); color: var(--lark-blue-500); font-weight: 600; }
+.topbar .spacer { flex: 1; }
+.topbar .top-right { display: flex; align-items: center; gap: 14px; }
+.search {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--lark-surface-2);
+  border: 1px solid var(--lark-line);
+  border-radius: 8px;
+  padding: 6px 12px;
+  width: 240px;
+  color: var(--lark-ink-3);
+  font-size: 13px;
+}
+.icon-btn {
+  width: 34px; height: 34px; border-radius: 8px;
+  color: var(--lark-ink-2);
+  display: flex; align-items: center; justify-content: center;
+  transition: 0.12s;
+}
+.icon-btn:hover { background: var(--lark-surface-3); color: var(--lark-ink); }
+.icon-btn .dot { position: absolute; width: 8px; height: 8px; border-radius: 999px; background: #F54A45; margin-top: -10px; margin-left: 8px; border: 1.5px solid #fff; }
+
+.me-chip {
+  width: 34px; height: 34px; border-radius: 999px;
+  background: linear-gradient(135deg, #FE7F00 0%, #F54A45 100%);
+  color: #fff; font-weight: 600; font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin-left: 6px;
+  cursor: pointer;
+}
+
+.hero {
+  background:
+    radial-gradient(120% 100% at 0% 0%, #0F1A4A 0%, #060B22 38%, #04060F 78%);
+  color: #fff;
+  padding: 24px 36px 24px;
+  display: grid;
+  grid-template-columns: 1.2fr 1.4fr;
+  gap: 32px;
+  align-items: stretch;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(60% 100% at 100% 0%, rgba(51,214,192,0.15), transparent 60%);
+  pointer-events: none;
+}
+.hero-left, .hero-right { position: relative; z-index: 1; }
+.hero-eyebrow {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+  font-weight: 600; color: var(--lark-teal);
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-eyebrow .pulse {
+  width: 8px; height: 8px; border-radius: 999px; background: var(--lark-teal);
+  box-shadow: 0 0 0 0 rgba(51,214,192, 0.7);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(51,214,192, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(51,214,192, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(51,214,192, 0); }
+}
+.hero h1 {
+  margin: 10px 0 0;
+  font-size: 32px; line-height: 1.18; font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.hero .hero-sub {
+  margin-top: 10px;
+  font-size: 15px; color: rgba(255,255,255,0.65); font-weight: 400;
+  max-width: 520px;
+}
+.hero-meta {
+  margin-top: 16px;
+  display: flex; gap: 18px; align-items: center;
+  font-size: 13px; color: rgba(255,255,255,0.55);
+}
+.hero-meta b { color: #fff; font-weight: 600; }
+.hero-meta .chip {
+  padding: 3px 10px; border-radius: 999px;
+  background: rgba(255,255,255,0.08); color: #fff;
+  font-weight: 500; font-size: 12px;
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.kpi {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex; flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.kpi .k-label {
+  font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); font-weight: 600;
+}
+.kpi .k-val {
+  font-family: var(--lark-font-latin);
+  font-size: 34px; font-weight: 700; color: #fff; line-height: 1;
+  margin-top: 4px;
+  letter-spacing: -0.02em;
+}
+.kpi .k-unit { font-size: 14px; color: rgba(255,255,255,0.55); margin-left: 4px; font-weight: 500; }
+.kpi .k-foot {
+  margin-top: 4px;
+  font-size: 12px; color: rgba(255,255,255,0.55);
+  display: flex; align-items: center; gap: 6px;
+}
+
+.body-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 20px;
+  padding: 20px 28px 28px;
+  overflow: hidden;
+  min-height: 0;
+}
+.col-main {
+  overflow-y: auto;
+  padding-right: 4px;
+  display: flex; flex-direction: column; gap: 20px;
+  min-height: 0;
+}
+.col-right {
+  overflow-y: auto;
+  display: flex; flex-direction: column; gap: 16px;
+  min-height: 0;
+}
+
+.section-head {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 12px;
+}
+.section-head .dot {
+  width: 10px; height: 10px; border-radius: 999px;
+}
+.section-head .dot.r { background: #F54A45; box-shadow: 0 0 0 4px rgba(245,74,69,0.16); }
+.section-head .dot.y { background: #FE7F00; box-shadow: 0 0 0 4px rgba(254,127,0,0.16); }
+.section-head .dot.g { background: #33D6C0; box-shadow: 0 0 0 4px rgba(51,214,192,0.16); }
+.section-head h2 {
+  margin: 0;
+  font-size: 18px; font-weight: 600; color: var(--lark-ink);
+}
+.section-head .count {
+  background: var(--lark-surface-3);
+  color: var(--lark-ink-2);
+  font-size: 12px; font-weight: 600;
+  padding: 3px 10px; border-radius: 999px;
+  font-family: var(--lark-font-latin);
+}
+.section-head .sub {
+  font-size: 13px; color: var(--lark-ink-3);
+  margin-left: 4px;
+}
+.section-head .spacer { flex: 1; }
+.section-head .more {
+  font-size: 13px; color: var(--lark-blue-500); font-weight: 500;
+}
+
+.high-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.lead-card {
+  background: #fff;
+  border: 1px solid var(--lark-line);
+  border-radius: 10px;
+  padding: 18px 20px;
+  display: flex; flex-direction: column; gap: 10px;
+  cursor: pointer;
+  transition: 0.15s;
+  position: relative;
+}
+.lead-card:hover {
+  border-color: rgba(60,127,255,0.4);
+  box-shadow: 0 4px 14px rgba(31, 35, 41, 0.08);
+}
+.lead-card.active {
+  border-color: var(--lark-blue);
+  box-shadow: 0 0 0 1px var(--lark-blue), 0 6px 18px rgba(60,127,255,0.18);
+}
+.lead-card .ribbon {
+  position: absolute; top: 16px; right: 18px;
+  background: rgba(245,74,69,0.10);
+  color: #C62828;
+  font-size: 11px; font-weight: 600;
+  padding: 3px 8px; border-radius: 6px;
+  font-family: var(--lark-font-latin);
+  letter-spacing: 0.04em;
+}
+.lc-head {
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.country-flag {
+  width: 32px; height: 32px; border-radius: 6px;
+  background: var(--lark-surface-3);
+  color: var(--lark-ink-2);
+  font-family: var(--lark-font-latin);
+  font-weight: 700; font-size: 12px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+.country-flag.US { background: #EFF6FF; color: #1E40AF; }
+.country-flag.UK { background: #FEF2F2; color: #991B1B; }
+.country-flag.DE { background: #FEFCE8; color: #854D0E; }
+.country-flag.AU { background: #FFFBEB; color: #92400E; }
+.country-flag.CA { background: #FEF2F2; color: #B91C1C; }
+.country-flag.FR { background: #EEF2FF; color: #3730A3; }
+.country-flag.JP { background: #FDF2F8; color: #BE185D; }
+.country-flag.SA { background: #ECFDF5; color: #065F46; }
+.country-flag.DK { background: #FEF2F2; color: #991B1B; }
+.country-flag.SG { background: #FEE2E2; color: #B91C1C; }
+.country-flag.MX { background: #ECFDF5; color: #166534; }
+.country-flag.BR { background: #FEFCE8; color: #166534; }
+.country-flag.EG { background: #F5F3FF; color: #6B21A8; }
+.country-flag.PL { background: #FEF2F2; color: #991B1B; }
+.country-flag.ID { background: #FEF2F2; color: #991B1B; }
+.lc-org { font-size: 17px; font-weight: 600; color: var(--lark-ink); line-height: 1.3; }
+.lc-meta { font-size: 12px; color: var(--lark-ink-3); margin-top: 2px; }
+.lc-title { font-size: 15px; color: var(--lark-ink); font-weight: 500; line-height: 1.45; }
+
+.lc-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  display: inline-flex; align-items: center;
+  font-size: 12px; font-weight: 500;
+  padding: 3px 9px; border-radius: 999px;
+  background: var(--lark-surface-3); color: var(--lark-ink-2);
+}
+.tag.blue   { background: rgba(60,127,255,0.10);  color: var(--lark-blue-500); }
+.tag.teal   { background: rgba(51,214,192,0.16);  color: #0D8772; }
+.tag.purple { background: rgba(92,63,251,0.10);   color: #4B2BD9; }
+.tag.orange { background: rgba(254,127,0,0.12);   color: #B45309; }
+
+.lc-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  border-top: 1px solid var(--lark-line);
+  padding-top: 10px;
+}
+.lc-stat .label { font-size: 11px; color: var(--lark-ink-3); letter-spacing: 0.06em;
+                   text-transform: uppercase; font-weight: 600; }
+.lc-stat .value { font-size: 15px; color: var(--lark-ink); font-weight: 600; margin-top: 2px; }
+
+.lc-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px;
+}
+.owner-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; color: var(--lark-ink-2);
+}
+.owner-chip .av {
+  width: 22px; height: 22px; border-radius: 999px;
+  color: #fff; font-size: 11px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+}
+.confidence {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; color: var(--lark-ink-3); letter-spacing: 0.04em;
+}
+.confidence b { color: var(--lark-ink); font-family: var(--lark-font-latin); font-weight: 600; }
+.confidence-bar {
+  width: 56px; height: 4px; border-radius: 999px; background: var(--lark-surface-3);
+  overflow: hidden;
+}
+.confidence-bar i { display: block; height: 100%; background: var(--lark-teal); }
+
+.fit { display: inline-flex; gap: 1px; color: #FFC107; font-size: 13px; }
+.fit i { font-style: normal; }
+.fit .empty { color: var(--lark-ink-4); }
+
+.table {
+  background: #fff; border: 1px solid var(--lark-line); border-radius: 10px;
+  overflow: hidden;
+}
+.table-row {
+  display: grid;
+  grid-template-columns: 32px 1.5fr 0.7fr 0.9fr 0.9fr 0.6fr 40px;
+  align-items: center;
+  padding: 12px 18px;
+  gap: 14px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--lark-line);
+  transition: 0.12s;
+}
+.table-row:last-child { border-bottom: none; }
+.table-row.head {
+  background: var(--lark-surface-2);
+  font-size: 11px; font-weight: 600; color: var(--lark-ink-3);
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.table-row:not(.head):hover { background: var(--lark-surface-2); cursor: pointer; }
+.table-row .t-org { font-weight: 600; color: var(--lark-ink); }
+.table-row .t-org-sub { font-size: 12px; color: var(--lark-ink-3); font-weight: 400; margin-top: 1px; }
+.table-row .t-num {
+  font-family: var(--lark-font-latin);
+  width: 22px; height: 22px; border-radius: 999px;
+  background: var(--lark-surface-3); color: var(--lark-ink-3);
+  font-size: 11px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+}
+.table-row .t-action {
+  width: 28px; height: 28px; border-radius: 6px;
+  color: var(--lark-ink-3); font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+.table-row:not(.head):hover .t-action { background: var(--lark-surface-3); color: var(--lark-blue-500); }
+
+.panel {
+  background: #fff;
+  border: 1px solid var(--lark-line);
+  border-radius: 10px;
+  padding: 18px 18px 16px;
+}
+.panel h3 {
+  margin: 0 0 14px; font-size: 14px; font-weight: 600; color: var(--lark-ink);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.panel h3 .pill {
+  font-size: 11px; font-weight: 600; color: var(--lark-blue-500);
+  background: rgba(60,127,255,0.10); padding: 2px 8px; border-radius: 999px;
+}
+
+.funnel-row {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 10px;
+}
+.funnel-row:last-child { margin-bottom: 0; }
+.funnel-row .bar-wrap { flex: 1; height: 24px; background: var(--lark-surface-2); border-radius: 6px; overflow: hidden; position: relative; }
+.funnel-row .bar { height: 100%;
+  background: linear-gradient(90deg, #33D6C0 0%, #3C7FFF 100%);
+  border-radius: 6px;
+  display: flex; align-items: center; padding: 0 10px;
+  color: #fff; font-size: 12px; font-weight: 600;
+  font-family: var(--lark-font-latin);
+}
+.funnel-row .label { font-size: 12px; color: var(--lark-ink-2); width: 88px; flex-shrink: 0; }
+.funnel-row .count { width: 36px; text-align: right;
+  font-family: var(--lark-font-latin); font-size: 13px; font-weight: 600; color: var(--lark-ink);
+}
+
+.source-row { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; font-size: 13px; }
+.source-row:last-child { margin-bottom: 0; }
+.source-row .sw { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.source-row .lbl { flex: 1; color: var(--lark-ink-2); }
+.source-row .pct { font-family: var(--lark-font-latin); font-weight: 600; color: var(--lark-ink); font-size: 12px; }
+.source-bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; margin: 8px 0 14px; background: var(--lark-surface-3); }
+.source-bar i { display: block; height: 100%; }
+
+.trend-card { padding-bottom: 8px; }
+.trend-meta { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+.trend-meta .big {
+  font-family: var(--lark-font-latin); font-size: 28px; font-weight: 700; color: var(--lark-ink); letter-spacing: -0.02em;
+}
+.trend-meta .delta { font-size: 12px; color: #0D8772; font-weight: 600; }
+.trend-meta .lbl { font-size: 12px; color: var(--lark-ink-3); }
+.trend-svg { display: block; width: 100%; height: 56px; }
+
+.scrim {
+  position: absolute; inset: 0;
+  background: rgba(15, 22, 41, 0.42);
+  backdrop-filter: blur(4px);
+  z-index: 50;
+  opacity: 0; pointer-events: none;
+  transition: opacity 200ms var(--lark-ease);
+}
+.scrim.open { opacity: 1; pointer-events: auto; }
+.drawer {
+  position: absolute; top: 0; right: 0; bottom: 0;
+  width: 720px;
+  background: #fff;
+  z-index: 60;
+  transform: translateX(100%);
+  transition: transform 280ms var(--lark-ease);
+  display: flex; flex-direction: column;
+  box-shadow: -8px 0 32px rgba(15, 22, 41, 0.18);
+}
+.drawer.open { transform: translateX(0); }
+.drawer-head {
+  padding: 22px 28px 16px;
+  border-bottom: 1px solid var(--lark-line);
+  background: linear-gradient(180deg, #FAFBFD 0%, #fff 100%);
+}
+.drawer-eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase;
+  color: var(--lark-ink-3); font-weight: 600;
+}
+.drawer-eyebrow .badge {
+  background: #F54A45; color: #fff;
+  padding: 2px 8px; border-radius: 4px; font-size: 10px;
+}
+.drawer-head h2 {
+  margin: 10px 0 4px;
+  font-size: 22px; font-weight: 700; color: var(--lark-ink);
+  letter-spacing: -0.01em;
+}
+.drawer-head .sub { color: var(--lark-ink-2); font-size: 14px; }
+.drawer-close {
+  position: absolute; top: 18px; right: 22px;
+  width: 32px; height: 32px; border-radius: 8px;
+  color: var(--lark-ink-3); font-size: 20px;
+  display: flex; align-items: center; justify-content: center;
+}
+.drawer-close:hover { background: var(--lark-surface-3); color: var(--lark-ink); }
+
+.drawer-body {
+  flex: 1; overflow-y: auto;
+  padding: 22px 28px 24px;
+}
+.field { margin-bottom: 18px; }
+.field .lab {
+  font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--lark-ink-3); font-weight: 600;
+  margin-bottom: 6px;
+  display: flex; align-items: center; gap: 8px;
+}
+.field .val { font-size: 14px; color: var(--lark-ink); line-height: 1.55; }
+.signal-quote {
+  background: linear-gradient(180deg, #F0F6FF 0%, #FFFFFF 100%);
+  border: 1px solid rgba(60,127,255,0.18);
+  border-left: 3px solid var(--lark-blue);
+  padding: 14px 16px;
+  border-radius: 8px;
+  font-size: 14px; color: var(--lark-ink);
+  line-height: 1.6;
+  font-style: italic;
+}
+.signal-quote .src { display: block; margin-top: 8px; font-style: normal;
+  font-size: 12px; color: var(--lark-ink-3); }
+
+.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.detail-cell {
+  padding: 12px 14px;
+  background: var(--lark-surface-2);
+  border-radius: 8px;
+}
+.detail-cell .lab { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--lark-ink-3); font-weight: 600; margin-bottom: 4px; }
+.detail-cell .val { font-size: 15px; font-weight: 600; color: var(--lark-ink); }
+
+.email-card {
+  border: 1px solid var(--lark-line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.email-head {
+  background: var(--lark-surface-2);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--lark-line);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.email-head .tag-ai {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: linear-gradient(135deg, #33D6C0 0%, #3C7FFF 100%);
+  color: #fff; padding: 3px 9px; border-radius: 999px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+}
+.email-head .meta { font-size: 11px; color: var(--lark-ink-3); }
+.email-body { padding: 14px 16px; font-size: 13px; color: var(--lark-ink); line-height: 1.65; }
+.email-body .row { display: grid; grid-template-columns: 60px 1fr; gap: 8px; margin-bottom: 4px; }
+.email-body .row .k { color: var(--lark-ink-3); font-size: 12px; }
+.email-body .row .v { color: var(--lark-ink); }
+.email-body pre {
+  margin: 12px 0 0; padding: 0;
+  font-family: var(--lark-font-sans); font-size: 13px; line-height: 1.7;
+  white-space: pre-wrap; color: var(--lark-ink);
+}
+
+.drawer-foot {
+  border-top: 1px solid var(--lark-line);
+  padding: 14px 28px;
+  display: flex; gap: 10px; align-items: center;
+}
+.drawer-foot .spacer { flex: 1; }
+.btn {
+  padding: 9px 18px;
+  border-radius: 6px;
+  font-size: 14px; font-weight: 500;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: 0.12s;
+}
+.btn-primary { background: var(--lark-blue); color: #fff; }
+.btn-primary:hover { background: var(--lark-blue-500); }
+.btn-ghost {
+  color: var(--lark-ink-2);
+  background: transparent;
+  border: 1px solid var(--lark-line);
+}
+.btn-ghost:hover { background: var(--lark-surface-2); color: var(--lark-ink); }
+.btn-teal { background: rgba(51,214,192,0.16); color: #0D8772; }
+.btn-teal:hover { background: rgba(51,214,192,0.24); }
+.row-flex { display: flex; align-items: center; gap: 10px; }
+
+.col-main::-webkit-scrollbar, .col-right::-webkit-scrollbar,
+.drawer-body::-webkit-scrollbar { width: 10px; }
+.col-main::-webkit-scrollbar-thumb, .col-right::-webkit-scrollbar-thumb,
+.drawer-body::-webkit-scrollbar-thumb { background: var(--lark-line); border-radius: 999px; border: 3px solid transparent; background-clip: padding-box; }
+
+/* ============================================================
+   DARK THEME OVERRIDES
+   ============================================================ */
+.stage-canvas { background: #04060F; }
+.topbar {
+  background: linear-gradient(180deg, #06091A 0%, #04060F 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.topbar .brand-name { color: #fff; }
+.tab { color: rgba(255,255,255,0.62); }
+.tab:hover { background: rgba(255,255,255,0.06); color: #fff; }
+.tab.active { background: rgba(60,127,255,0.16); color: #6A9DFF; }
+.search {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.48);
+}
+.icon-btn { color: rgba(255,255,255,0.62); }
+.icon-btn:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.icon-btn .dot { border-color: #06091A; }
+.hero {
+  background:
+    radial-gradient(120% 100% at 0% 0%, #15225A 0%, #0A1138 35%, #060B22 70%, #04060F 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.section-head h2 { color: #fff; }
+.section-head .count { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.72); }
+.section-head .sub { color: rgba(255,255,255,0.48); }
+.section-head .more { color: #6A9DFF; }
+.lead-card {
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset;
+}
+.lead-card:hover {
+  background: rgba(255,255,255,0.055);
+  border-color: rgba(106,157,255,0.45);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+.lead-card.active {
+  background: rgba(60,127,255,0.10);
+  border-color: var(--lark-blue);
+  box-shadow: 0 0 0 1px var(--lark-blue), 0 8px 28px rgba(60,127,255,0.30);
+}
+.lead-card .ribbon { background: rgba(245,74,69,0.18); color: #FF8A85; }
+.lc-org { color: #fff; }
+.lc-meta { color: rgba(255,255,255,0.48); }
+.lc-title { color: rgba(255,255,255,0.88); }
+.country-flag { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.85); }
+.country-flag.US { background: rgba(60,127,255,0.18);  color: #9DBEFF; }
+.country-flag.UK { background: rgba(245,74,69,0.18);   color: #FF8A85; }
+.country-flag.DE { background: rgba(254,200,0,0.16);   color: #FFD24D; }
+.country-flag.AU { background: rgba(254,127,0,0.18);   color: #FFB266; }
+.country-flag.CA { background: rgba(245,74,69,0.18);   color: #FF8A85; }
+.country-flag.FR { background: rgba(92,63,251,0.22);   color: #B9A6FF; }
+.country-flag.JP { background: rgba(255,105,180,0.18); color: #FFA8D1; }
+.country-flag.SA { background: rgba(51,214,192,0.18);  color: #6FE6D2; }
+.country-flag.DK { background: rgba(245,74,69,0.16);   color: #FF8A85; }
+.country-flag.SG { background: rgba(245,74,69,0.18);   color: #FF8A85; }
+.country-flag.MX { background: rgba(51,214,192,0.18);  color: #6FE6D2; }
+.country-flag.BR { background: rgba(254,200,0,0.16);   color: #FFD24D; }
+.country-flag.EG { background: rgba(159,111,241,0.22); color: #C6ADFF; }
+.country-flag.PL { background: rgba(245,74,69,0.16);   color: #FF8A85; }
+.country-flag.ID { background: rgba(245,74,69,0.16);   color: #FF8A85; }
+.tag { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.72); }
+.tag.blue   { background: rgba(60,127,255,0.18);  color: #9DBEFF; }
+.tag.teal   { background: rgba(51,214,192,0.18);  color: #6FE6D2; }
+.tag.purple { background: rgba(159,111,241,0.20); color: #C6ADFF; }
+.tag.orange { background: rgba(254,127,0,0.18);   color: #FFB266; }
+.lc-stats { border-top-color: rgba(255,255,255,0.08); }
+.lc-stat .label { color: rgba(255,255,255,0.48); }
+.lc-stat .value { color: #fff; }
+.owner-chip { color: rgba(255,255,255,0.72); }
+.confidence { color: rgba(255,255,255,0.48); }
+.confidence b { color: #fff; }
+.confidence-bar { background: rgba(255,255,255,0.10); }
+.fit .empty { color: rgba(255,255,255,0.18); }
+.table { background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.10); }
+.table-row { border-bottom-color: rgba(255,255,255,0.06); }
+.table-row.head { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.48); }
+.table-row:not(.head):hover { background: rgba(255,255,255,0.05); }
+.table-row .t-org { color: #fff; }
+.table-row .t-org-sub { color: rgba(255,255,255,0.48); }
+.table-row .t-num { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.62); }
+.table-row .t-action { color: rgba(255,255,255,0.48); }
+.table-row:not(.head):hover .t-action { background: rgba(60,127,255,0.16); color: #9DBEFF; }
+.table-row .t-cell { color: rgba(255,255,255,0.72); }
+.table-row .t-cell.strong { color: #fff; font-weight: 600; }
+.panel { background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.10); color: rgba(255,255,255,0.72); }
+.panel h3 { color: #fff; }
+.panel h3 .pill { background: rgba(60,127,255,0.18); color: #9DBEFF; }
+.funnel-row .label { color: rgba(255,255,255,0.62); }
+.funnel-row .bar-wrap { background: rgba(255,255,255,0.06); }
+.funnel-row .count { color: #fff; }
+.source-row .lbl { color: rgba(255,255,255,0.72); }
+.source-row .pct { color: #fff; }
+.source-bar { background: rgba(255,255,255,0.06); }
+.trend-meta .big { color: #fff; }
+.trend-meta .delta { color: #6FE6D2; }
+.trend-meta .lbl { color: rgba(255,255,255,0.48); }
+.panel.ai-brief {
+  background: linear-gradient(180deg, rgba(60,127,255,0.18) 0%, rgba(60,127,255,0.04) 100%);
+  border-color: rgba(60,127,255,0.32);
+}
+.panel.ai-brief h3 { color: #9DBEFF; }
+.panel.ai-brief p  { margin: 0 0 10px; font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.78); }
+.panel.ai-brief p b { color: #fff; }
+.scrim { background: rgba(0,0,0,0.55); }
+.drawer { background: #06091A; }
+.drawer-head {
+  background: linear-gradient(180deg, #0B1234 0%, #06091A 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.drawer-eyebrow { color: rgba(255,255,255,0.48); }
+.drawer-head h2 { color: #fff; }
+.drawer-head .sub { color: rgba(255,255,255,0.72); }
+.drawer-close { color: rgba(255,255,255,0.62); }
+.drawer-close:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.field .lab { color: rgba(255,255,255,0.48); }
+.field .val { color: #fff; }
+.signal-quote {
+  background: rgba(60,127,255,0.08);
+  border-color: rgba(60,127,255,0.30);
+  border-left-color: var(--lark-blue);
+  color: rgba(255,255,255,0.88);
+}
+.signal-quote .src { color: rgba(255,255,255,0.48); }
+.detail-cell { background: rgba(255,255,255,0.05); }
+.detail-cell .lab { color: rgba(255,255,255,0.48); }
+.detail-cell .val { color: #fff; }
+.field .val.ai-action {
+  padding: 12px 14px;
+  background: rgba(254,127,0,0.14);
+  border-radius: 8px;
+  color: #fff;
+}
+.email-card { border-color: rgba(255,255,255,0.10); background: rgba(255,255,255,0.03); }
+.email-head { background: rgba(255,255,255,0.06); border-bottom-color: rgba(255,255,255,0.08); }
+.email-head .meta { color: rgba(255,255,255,0.48); }
+.email-body { color: rgba(255,255,255,0.85); }
+.email-body .row .k { color: rgba(255,255,255,0.48); }
+.email-body .row .v { color: #fff; }
+.email-body pre { color: rgba(255,255,255,0.85); }
+.drawer-foot { border-top-color: rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); }
+.btn-ghost { color: rgba(255,255,255,0.72); border-color: rgba(255,255,255,0.16); background: transparent; }
+.btn-ghost:hover { background: rgba(255,255,255,0.06); color: #fff; }
+.btn-teal { background: rgba(51,214,192,0.16); color: #6FE6D2; }
+.btn-teal:hover { background: rgba(51,214,192,0.24); color: #fff; }
+.col-main::-webkit-scrollbar-thumb, .col-right::-webkit-scrollbar-thumb, .drawer-body::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.14); border: 3px solid transparent; background-clip: padding-box;
+}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="stage-canvas">
+    <div id="root"></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   Data (inlined from data.js)
+   ============================================================ */
+window.AppData = {
+  todayStats: {
+    newLeads: 47,
+    high: 8, mid: 22, low: 17,
+    weekDelta: '+18%',
+    contactedYesterday: 31,
+    inSourcedYesterday: 39,
+    initialContactYesterday: 18,
+    quotedYesterday: 6,
+  },
+  yearImpact: {
+    mtdLeads: 612,
+    mtdEstPipeline: '¥ 4,800 万',
+    quarterTarget: '¥ 1.2 亿',
+    progress: 0.41,
+  },
+  high: [
+    {
+      id: 'QD-2605-01', no: 1,
+      org: '青岛市北 · 登州路啤酒街',
+      country: 'QD', countryName: '青岛',
+      industry: '夜宵街区 · 餐饮终端',
+      title: '周末龙虾节预热，夜宵桌数连续 3 天上升',
+      signalText: '「本周五起啤酒街龙虾套餐预订明显增加，18:30 后翻台压力加大，门店临时追加冰镇啤酒。」',
+      signalAuthor: '美团 / 抖音团购公开热度',
+      signalSource: '本地生活平台 · 公开榜单',
+      signalTime: '2 小时前 · 公开',
+      scale: '72 家餐饮终端 · 预计 3 天新增 1.8 万桌',
+      estValue: '¥ 680 万动销机会',
+      bizLine: '餐饮即饮 + 纯生 / 白啤组合',
+      fit: 5,
+      tags: ['龙虾季', '夜宵街区', '即饮高峰'],
+      action: '当天分派市北战区，锁定 20 家 A 类餐饮店；补齐纯生、白啤冰柜库存，18 点前完成桌贴和套餐话术下发。',
+      owner: '青岛城市战区',
+      ownerName: '李海峰',
+      ownerColor: '#3C7FFF',
+      confidence: 92,
+      emailDraft: {
+        to: '市北战区 / 经销商赵总',
+        subject: '龙虾节周末动销应对：A 类餐饮终端补货与陈列动作',
+        body: '系统识别登州路啤酒街周末龙虾套餐热度快速上升，建议今日 18 点前完成 A 类餐饮终端补货、冰柜排面和桌贴物料下发。飞书已生成门店清单、业务代表路线和经销商备货建议。',
+      },
+    },
+    {
+      id: 'QD-2605-02', no: 2,
+      org: '济南 · 奥体商圈观赛夜',
+      country: 'JN', countryName: '济南',
+      industry: '体育赛事 · 酒吧夜场',
+      title: '足篮球赛事叠加，酒吧套餐预售升温',
+      signalText: '「奥体周边多家酒吧上线观赛套餐，预订量较上周同期提升 64%。」',
+      signalAuthor: '抖音团购 / 大众点评',
+      signalSource: '本地生活平台 · 公开活动',
+      signalTime: '昨日 21:10',
+      scale: '38 家夜场终端 · 预计 5,600 桌',
+      estValue: '¥ 260 万动销机会',
+      bizLine: '夜场即饮 + 经典 / 纯生组合',
+      fit: 5,
+      tags: ['观赛夜', '夜场套餐', '周末动销'],
+      action: '优先触达奥体 15 家高势能门店，生成观赛套餐建议和冰桶陈列标准，周五 16 点前完成执行回传。',
+      owner: '济南城市战区',
+      ownerName: '王晓晨',
+      ownerColor: '#33D6C0',
+      confidence: 88,
+    },
+    {
+      id: 'QD-2605-03', no: 3,
+      org: '南京 · 连锁烧烤渠道',
+      country: 'NJ', countryName: '南京',
+      industry: '餐饮连锁 · 烧烤',
+      title: '竞品买赠加码，A 类烧烤店货架风险上升',
+      signalText: '「竞品在南京 3 个烧烤连锁品牌追加买 5 赠 1，部分门店已提出换排面诉求。」',
+      signalAuthor: '业务代表拜访记录 + 门店照片',
+      signalSource: '飞书多维表格 · 终端巡店',
+      signalTime: '3 小时前',
+      scale: '52 家门店 · 影响 1.2 万箱月销',
+      estValue: '¥ 420 万防守机会',
+      bizLine: '餐饮渠道防守 + 价盘稳控',
+      fit: 5,
+      tags: ['竞品压价', '排面防守', '价盘预警'],
+      action: '生成 3 档费用审批建议，优先保障 Top20 门店排面；同步督办经销商 24 小时内回传陈列照片。',
+      owner: '华东餐饮渠道组',
+      ownerName: '赵铭',
+      ownerColor: '#FE7F00',
+      confidence: 84,
+    },
+    {
+      id: 'QD-2605-04', no: 4,
+      org: '成都 · 社区团购渠道',
+      country: 'CD', countryName: '成都',
+      industry: '社区团购 · 到家消费',
+      title: '社区团购价盘异动，低价链接扩散',
+      signalText: '「多个社区团长发布低于指导价的整箱链接，评论区出现跨区囤货讨论。」',
+      signalAuthor: '公开社群海报 / 小程序截图',
+      signalSource: '价盘监测 · 合规采集',
+      signalTime: '今晨 08:35',
+      scale: '9 个团长矩阵 · 预计影响 4 个区县',
+      estValue: '¥ 180 万价盘风险',
+      bizLine: '社区渠道治理 + 经销商协同',
+      fit: 4,
+      tags: ['价盘异动', '社区团购', '跨区窜货'],
+      action: '自动拉起价盘核查流程，分派区县经理核实货源；对异常链接生成经销商沟通纪要。',
+      owner: '西南渠道秩序组',
+      ownerName: '陈楠',
+      ownerColor: '#5C3FFB',
+      confidence: 81,
+    },
+    {
+      id: 'QD-2605-05', no: 5,
+      org: '西安 · 高校迎新季',
+      country: 'XA', countryName: '西安',
+      industry: '校园周边 · 小酒馆',
+      title: '高校毕业季聚餐启动，小酒馆预订升温',
+      signalText: '「高校周边小酒馆毕业聚餐套餐搜索量提升，多个商家新增 6-8 人餐。」',
+      signalAuthor: '小红书 / 美团公开热榜',
+      signalSource: '本地生活公开数据',
+      signalTime: '昨日 18:20',
+      scale: '31 家小酒馆 · 6 个高校商圈',
+      estValue: '¥ 150 万增量机会',
+      bizLine: '年轻化场景 + 白啤 / 皮尔森',
+      fit: 4,
+      tags: ['毕业季', '年轻化', '小酒馆'],
+      action: '生成毕业季套餐话术和门店海报，建议业务代表周三前完成 31 家门店拜访。',
+      owner: '西安城市战区',
+      ownerName: '张悦',
+      ownerColor: '#33D6C0',
+      confidence: 79,
+    },
+    {
+      id: 'QD-2605-06', no: 6,
+      org: '杭州 · 商超冰柜资源',
+      country: 'HZ', countryName: '杭州',
+      industry: '现代渠道 · 商超便利',
+      title: '高温预警提前到来，冰柜排面需要前置锁位',
+      signalText: '「未来 7 天最高温上探 34℃，商超冰饮销售进入上行窗口。」',
+      signalAuthor: '气象公开数据 + 商超促销档期',
+      signalSource: '天气 / 商超 DM · 公开信息',
+      signalTime: '今晨 06:40',
+      scale: '186 家商超便利 · 312 台冰柜',
+      estValue: '¥ 520 万增量机会',
+      bizLine: '现代渠道 + 冰饮陈列',
+      fit: 5,
+      tags: ['高温', '冰柜锁位', '商超促销'],
+      action: '生成冰柜锁位清单和补货建议，优先保障高温区 Top60 门店纯生 500ml 与经典罐装。',
+      owner: '浙江现代渠道组',
+      ownerName: '沈航',
+      ownerColor: '#9F6FF1',
+      confidence: 86,
+    },
+  ],
+  mid: [
+    { id:'M-01', org:'武汉 江汉路夜市 · 龙虾门店', country:'WH', industry:'夜市', scale:'43 店', est:'¥ 120 万', bizLine:'餐饮即饮', signal:'龙虾套餐搜索 +42%', confidence:64 },
+    { id:'M-02', org:'郑州 二七商圈 · KTV 观赛夜', country:'ZZ', industry:'夜场', scale:'18 店', est:'¥ 90 万', bizLine:'夜场渠道', signal:'观赛套餐上新', confidence:69 },
+    { id:'M-03', org:'苏州 工业园区 · 便利店冰柜', country:'SZ', industry:'便利', scale:'96 店', est:'¥ 150 万', bizLine:'现代渠道', signal:'高温 + 商超促销档期', confidence:62 },
+    { id:'M-04', org:'长沙 五一广场 · 小酒馆', country:'CS', industry:'小酒馆', scale:'27 店', est:'¥ 80 万', bizLine:'年轻化场景', signal:'毕业季聚餐热度提升', confidence:58 },
+    { id:'M-05', org:'重庆 观音桥 · 火锅渠道', country:'CQ', industry:'餐饮', scale:'36 店', est:'¥ 110 万', bizLine:'火锅即饮', signal:'排队指数连续 3 天上升', confidence:66 },
+    { id:'M-06', org:'厦门 沙坡尾 · 精酿酒馆', country:'XM', industry:'酒馆', scale:'14 店', est:'¥ 60 万', bizLine:'高端即饮', signal:'白啤新品试饮报名增加', confidence:61 },
+  ],
+  low: [
+    { id:'W-01', org:'合肥 夜市临时摊位', country:'HF', scale:'12 点位', est:'¥ 25 万', signal:'摊位公告', confidence:42 },
+    { id:'W-02', org:'南昌 社区团购低价链接', country:'NC', scale:'3 团长', est:'¥ 18 万', signal:'公开海报', confidence:38 },
+    { id:'W-03', org:'太原 商超周末陈列', country:'TY', scale:'21 店', est:'¥ 30 万', signal:'商超 DM', confidence:40 },
+    { id:'W-04', org:'佛山 烧烤街新品套餐', country:'FS', scale:'16 店', est:'¥ 42 万', signal:'大众点评菜单更新', confidence:44 },
+  ],
+  sources: [
+    { label: '本地生活公开榜单', pct: 28, color:'#3C7FFF' },
+    { label: '餐饮 / 夜场活动公告', pct: 22, color:'#33D6C0' },
+    { label: '商超 DM / 电商价格', pct: 18, color:'#5C3FFB' },
+    { label: '天气 / 节假日公开数据', pct: 14, color:'#9F6FF1' },
+    { label: '业务代表巡店回传', pct: 10, color:'#FE7F00' },
+    { label: '经销商进销存摘要', pct: 8, color:'#24C3FF' },
+  ],
+  funnel: [
+    { stage:'昨日新增机会', count:39, w:1.00 },
+    { stage:'已分派战区', count:34, w:0.87 },
+    { stage:'已触达终端', count:31, w:0.79 },
+    { stage:'生成应对包', count:18, w:0.46 },
+    { stage:'进入费用审批', count: 6, w:0.15 },
+  ],
+  trend: [3,4,5,6,5,7,6,8,9,7,10,9,11,8],
+};
+</script>
+
+<!-- React 18 + Babel standalone from CDN -->
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+/* ============================================================
+   App (inlined from app.jsx) — image paths fixed for iframe context
+   ============================================================ */
+const { useState, useMemo } = React;
+
+const I = ({ d, size=18, sw=1.8, fill='none' }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill={fill} stroke="currentColor"
+       strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round">{d}</svg>
+);
+const ICO = {
+  search:   <><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></>,
+  bell:     <><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></>,
+  settings: <><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9z"/></>,
+  filter:   <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/>,
+  sparkle:  <><path d="m12 3-1.9 5.7L4 11l6.1 1.9L12 19l1.9-6.1L20 11l-6.1-1.9z"/><path d="M5 3v4M3 5h4M19 17v4M17 19h4"/></>,
+  link:     <><path d="M9 17H7A5 5 0 0 1 7 7h2M15 7h2a5 5 0 1 1 0 10h-2M8 12h8"/></>,
+  ext:      <><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14 21 3"/></>,
+  copy:     <><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></>,
+  user:     <><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></>,
+  send:     <><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="M22 2 11 13"/></>,
+  check:    <path d="M20 6 9 17l-5-5"/>,
+  arrow:    <><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></>,
+  globe:    <><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></>,
+  chart:    <><path d="M3 3v18h18"/><path d="m7 14 3-3 4 4 5-5"/></>,
+  signal:   <><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 4v16"/></>,
+  flame:    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 17c1.39 0 2.5-1.12 2.5-2.5 0-1.65-1-2.83-3-5.5-2 2.67-3 3.85-3 5.5zm6.5-6.5C16 5 16 2 16 2c-3 0-6 2-7 5-1 3 1 6 1 6S6 9 6 6c0 0-2 4 0 8s8 5 8 5 4-3 4-7-2-7-3-4z"/>,
+  download: <><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5M12 15V3"/></>,
+  more:     <><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></>,
+  close:    <path d="M18 6 6 18M6 6l12 12"/>,
+  refresh:  <><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></>,
+};
+
+function Rail() {
+  return (
+    <aside className="rail">
+      <div className="ws"><div className="glyph">飞书</div></div>
+      <div className="ws"><div className="glyph">青啤</div></div>
+      <div className="ws active intel"><div className="glyph">情报</div></div>
+      <button className="ws ws-add" title="添加">+</button>
+      <div className="spacer"></div>
+      <div className="me">李</div>
+    </aside>
+  );
+}
+
+function TopBar({ tab, setTab }) {
+  const tabs = [
+    { id:'today',    label:'今日情报' },
+    { id:'pipeline', label:'我的跟进' },
+    { id:'sources',  label:'信源管理' },
+    { id:'analytics',label:'数据分析' },
+    { id:'config',   label:'AI 训练' },
+  ];
+  return (
+    <div className="topbar">
+      <div className="brand">
+        <div className="ctg-logo" style={{display:"flex",alignItems:"center",fontWeight:800,color:"#0A63C7",fontSize:20}}>青岛啤酒</div>
+        <div className="brand-divider"></div>
+        <div className="brand-name">旺季渠道情报站</div>
+      </div>
+      <div className="tabs">
+        {tabs.map(t => (
+          <button key={t.id} className={'tab ' + (tab===t.id?'active':'')} onClick={()=>setTab(t.id)}>
+            {t.label}
+          </button>
+        ))}
+      </div>
+      <div className="spacer"></div>
+      <div className="top-right">
+        <div className="search">
+          <I d={ICO.search} size={14}/>
+          <span>搜索城市、终端、信源…</span>
+        </div>
+        <button className="icon-btn" title="刷新"><I d={ICO.refresh} size={18}/></button>
+        <button className="icon-btn" title="通知">
+          <I d={ICO.bell} size={18}/>
+          <span className="dot"></span>
+        </button>
+        <button className="icon-btn"><I d={ICO.settings} size={18}/></button>
+        <div className="me-chip" title="李海峰 · 青岛啤酒">李</div>
+      </div>
+    </div>
+  );
+}
+
+function Hero() {
+  const s = AppData.todayStats;
+  return (
+    <section className="hero">
+      <div className="hero-left">
+        <div className="hero-eyebrow">
+          <span className="pulse"></span>
+          <span>晨报 · MORNING BRIEFING · 2026-05-15 (周五) 上午 08:02</span>
+        </div>
+        <h1>今日为青岛啤酒识别 <span style={{color:'#33D6C0'}}>{s.newLeads}</span> 条渠道机会<br/>
+            其中 <span style={{color:'#FF8A85'}}>{s.high}</span> 条建议当天触达
+        </h1>
+        <p className="hero-sub">
+          AI 已扫描本地生活、餐饮夜场、商超促销、天气节假日等 <b style={{color:'#fff'}}>1,840</b> 个公开信源；
+          经匹配青啤渠道能力、历史动销和终端画像，过滤后呈现下方建议。
+        </p>
+        <div className="hero-meta">
+          <span className="chip">数据范围：过去 24 小时</span>
+          <span>线索周环比 <b style={{color:'#33D6C0'}}>{s.weekDelta}</b></span>
+          <span>· 模型置信度 <b>0.81</b></span>
+        </div>
+      </div>
+      <div className="hero-right">
+        <div className="kpis">
+          <Kpi label="今日高优" val={s.high} foot="vs 昨日 6 · +33%" />
+          <Kpi label="本月在跟" val={AppData.yearImpact.mtdLeads} foot="预估管线 ¥4.8 亿" />
+          <Kpi label="昨日已联系" val={s.contactedYesterday} unit={`/${s.inSourcedYesterday}`} foot="覆盖率 58%" />
+          <Kpi label="季度目标进度" val={Math.round(AppData.yearImpact.progress*100)} unit="%" foot={`目标 ${AppData.yearImpact.quarterTarget}`} />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Kpi({label, val, unit, foot}) {
+  return (
+    <div className="kpi">
+      <div className="k-label">{label}</div>
+      <div className="k-val">{val}{unit && <span className="k-unit">{unit}</span>}</div>
+      <div className="k-foot">{foot}</div>
+    </div>
+  );
+}
+
+function HighSection({onOpen, openId}) {
+  return (
+    <section>
+      <header className="section-head">
+        <span className="dot r"></span>
+        <h2>高优先级 · 立刻联系</h2>
+        <span className="count">{AppData.todayStats.high}</span>
+        <span className="sub">建议 12 小时内触达 · 已自动匹配责任 BU 与英文邮件初稿</span>
+        <div className="spacer"></div>
+        <button className="more">查看全部 ›</button>
+      </header>
+      <div className="high-cards">
+        {AppData.high.map(l => (
+          <LeadCard key={l.id} lead={l} active={openId===l.id} onClick={()=>onOpen(l)} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function LeadCard({lead, active, onClick}) {
+  return (
+    <div className={'lead-card ' + (active?'active':'')} onClick={onClick}>
+      <div className="ribbon">#{String(lead.no).padStart(2,'0')} · 立刻</div>
+      <div className="lc-head">
+        <div className={'country-flag ' + lead.country}>{lead.country}</div>
+        <div style={{flex:1, minWidth:0}}>
+          <div className="lc-org">{lead.org}</div>
+          <div className="lc-meta">{lead.industry} · {lead.countryName}</div>
+        </div>
+      </div>
+      <div className="lc-title">{lead.title}</div>
+      <div className="lc-tags">
+        {lead.tags.map((t,i) => {
+          const cls = ['blue','teal','purple','orange'][i % 4];
+          return <span key={t} className={'tag ' + cls}>{t}</span>;
+        })}
+      </div>
+      <div className="lc-stats">
+        <div className="lc-stat">
+          <div className="label">预估价值</div>
+          <div className="value">{lead.estValue}</div>
+        </div>
+        <div className="lc-stat">
+          <div className="label">规模</div>
+          <div className="value">{lead.scale}</div>
+        </div>
+      </div>
+      <div className="lc-foot">
+        <span className="owner-chip">
+          <span className="av" style={{background:lead.ownerColor}}>{lead.ownerName[0]}</span>
+          {lead.owner} · {lead.ownerName}
+        </span>
+        <span className="confidence">
+          <span>匹配</span>
+          <span className="confidence-bar"><i style={{width:lead.confidence+'%'}}></i></span>
+          <b>{lead.confidence}</b>
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function MidSection() {
+  return (
+    <section>
+      <header className="section-head">
+        <span className="dot y"></span>
+        <h2>中优先级 · 建议跟进</h2>
+        <span className="count">{AppData.todayStats.mid}</span>
+        <span className="sub">本周内分派 · 转化窗口 7–14 天</span>
+        <div className="spacer"></div>
+        <button className="more">查看全部 ›</button>
+      </header>
+      <div className="table">
+        <div className="table-row head">
+          <div></div>
+          <div>机构 / 项目</div>
+          <div>国别</div>
+          <div>规模</div>
+          <div>预估价值</div>
+          <div>匹配</div>
+          <div></div>
+        </div>
+        {AppData.mid.map((m,i) => (
+          <div className="table-row" key={m.id}>
+            <div className="t-num">{String(i+1).padStart(2,'0')}</div>
+            <div>
+              <div className="t-org">{m.org}</div>
+              <div className="t-org-sub">{m.industry} · 信源：{m.signal}</div>
+            </div>
+            <div><div className={'country-flag '+m.country} style={{width:28, height:24, fontSize:11}}>{m.country}</div></div>
+            <div className="t-cell">{m.scale}</div>
+            <div className="t-cell strong">{m.est}</div>
+            <div className="confidence" style={{justifyContent:'flex-start'}}>
+              <span className="confidence-bar"><i style={{width:m.confidence+'%', background: m.confidence>65?'#33D6C0':'#FE7F00'}}></i></span>
+              <b>{m.confidence}</b>
+            </div>
+            <div className="t-action"><I d={ICO.arrow} size={16}/></div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function LowSection() {
+  return (
+    <section>
+      <header className="section-head">
+        <span className="dot g"></span>
+        <h2>低优先级 · 持续关注</h2>
+        <span className="count">{AppData.todayStats.low}</span>
+        <span className="sub">弱信号 · 自动入库 · 信号增强时升级</span>
+        <div className="spacer"></div>
+        <button className="more">查看全部 ›</button>
+      </header>
+      <div className="table">
+        <div className="table-row head" style={{gridTemplateColumns:'32px 1.5fr 0.7fr 0.9fr 0.9fr 0.6fr 40px'}}>
+          <div></div><div>机构 / 信源</div><div>国别</div><div>规模</div><div>预估价值</div><div>置信度</div><div></div>
+        </div>
+        {AppData.low.map((m,i) => (
+          <div className="table-row" key={m.id}>
+            <div className="t-num">{String(i+1).padStart(2,'0')}</div>
+            <div>
+              <div className="t-org">{m.org}</div>
+              <div className="t-org-sub">信源：{m.signal}</div>
+            </div>
+            <div><div className={'country-flag '+m.country} style={{width:28, height:24, fontSize:11}}>{m.country}</div></div>
+            <div className="t-cell">{m.scale}</div>
+            <div className="t-cell strong">{m.est}</div>
+            <div className="confidence" style={{justifyContent:'flex-start'}}>
+              <span className="confidence-bar"><i style={{width:m.confidence+'%', background:'#BBBFC4'}}></i></span>
+              <b>{m.confidence}</b>
+            </div>
+            <div className="t-action"><I d={ICO.arrow} size={16}/></div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function RightCol() {
+  const f = AppData.funnel;
+  const tr = AppData.trend;
+  return (
+    <>
+      <div className="panel">
+        <h3>昨日线索转化跟踪 <span className="pill">D-1</span></h3>
+        {f.map(row => (
+          <div className="funnel-row" key={row.stage}>
+            <span className="label">{row.stage}</span>
+            <div className="bar-wrap">
+              <div className="bar" style={{width:(row.w*100)+'%'}}>
+                {row.w >= 0.18 && <span>{Math.round(row.w*100)}%</span>}
+              </div>
+            </div>
+            <span className="count">{row.count}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="panel">
+        <h3>今日信源构成 <span className="pill">公开 100%</span></h3>
+        <div className="source-bar">
+          {AppData.sources.map(s => (
+            <i key={s.label} style={{width:s.pct+'%', background:s.color}}></i>
+          ))}
+        </div>
+        {AppData.sources.map(s => (
+          <div className="source-row" key={s.label}>
+            <span className="sw" style={{background:s.color}}></span>
+            <span className="lbl">{s.label}</span>
+            <span className="pct">{s.pct}%</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="panel trend-card">
+        <h3>过去 14 天 · 高优线索</h3>
+        <div className="trend-meta">
+          <span className="big">{tr.reduce((a,b)=>a+b,0)}</span>
+          <span className="delta">▲ 64% MoM</span>
+          <span className="lbl">总计 (条)</span>
+        </div>
+        <TrendSvg data={tr}/>
+      </div>
+
+      <div className="panel ai-brief">
+        <h3>💡 AI 周报建议</h3>
+        <p>
+          <b>本周 MICE 类信号显著上升</b>（+47%）。
+          建议华东餐饮渠道组本周增派 2 名业务代表，承接南京烧烤与青岛龙虾季两条高价值动销机会。
+        </p>
+        <button className="btn btn-teal" style={{padding:'6px 12px', fontSize:13}}>
+          <I d={ICO.sparkle} size={14}/> 查看完整 AI 周报
+        </button>
+      </div>
+    </>
+  );
+}
+
+function TrendSvg({data}) {
+  const w = 280, h = 56, pad = 4;
+  const max = Math.max(...data) * 1.2;
+  const step = (w - pad*2) / (data.length - 1);
+  const pts = data.map((v,i)=> [pad + i*step, h - pad - (v/max)*(h - pad*2)]);
+  const path = pts.map((p,i)=> (i===0?'M':'L') + p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ');
+  const area = path + ` L ${w-pad},${h-pad} L ${pad},${h-pad} Z`;
+  return (
+    <svg className="trend-svg" viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="tg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#3C7FFF" stopOpacity="0.32"/>
+          <stop offset="100%" stopColor="#3C7FFF" stopOpacity="0"/>
+        </linearGradient>
+      </defs>
+      <path d={area} fill="url(#tg)"/>
+      <path d={path} fill="none" stroke="#3C7FFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      {pts.map((p,i)=> i===pts.length-1 ? (
+        <g key={i}>
+          <circle cx={p[0]} cy={p[1]} r="4" fill="#fff" stroke="#3C7FFF" strokeWidth="2"/>
+        </g>
+      ) : null)}
+    </svg>
+  );
+}
+
+function LeadDrawer({lead, onClose}) {
+  if (!lead) return null;
+  const e = lead.emailDraft;
+  return (
+    <>
+      <div className={'scrim ' + (lead?'open':'')} onClick={onClose}></div>
+      <aside className={'drawer ' + (lead?'open':'')}>
+        <div className="drawer-head">
+          <div className="drawer-eyebrow">
+            <span className="badge">立刻联系</span>
+            <span>线索 ID · {lead.id}</span>
+            <span>·</span>
+            <span>信源：{lead.signalSource}</span>
+          </div>
+          <h2>{lead.org}</h2>
+          <div className="sub">{lead.title}</div>
+          <button className="drawer-close" onClick={onClose}><I d={ICO.close} size={20}/></button>
+        </div>
+
+        <div className="drawer-body">
+          <div className="field">
+            <div className="lab"><I d={ICO.signal} size={12}/> 信号原文</div>
+            <div className="signal-quote">
+              {lead.signalText}
+              <span className="src">— {lead.signalAuthor} · {lead.signalTime}</span>
+            </div>
+          </div>
+
+          <div className="detail-grid" style={{marginBottom:18}}>
+            <div className="detail-cell">
+              <div className="lab">国别 / 行业</div>
+              <div className="val">{lead.countryName} · {lead.industry}</div>
+            </div>
+            <div className="detail-cell">
+              <div className="lab">业务条线</div>
+              <div className="val">{lead.bizLine}</div>
+            </div>
+            <div className="detail-cell">
+              <div className="lab">预估规模</div>
+              <div className="val">{lead.scale}</div>
+            </div>
+            <div className="detail-cell">
+              <div className="lab">预估客单价</div>
+              <div className="val" style={{color:'#6FE6D2'}}>{lead.estValue}</div>
+            </div>
+            <div className="detail-cell">
+              <div className="lab">青啤匹配度</div>
+              <div className="val">
+                <span className="fit">
+                  {Array.from({length:5}).map((_,i)=>
+                    i<lead.fit ? <i key={i}>★</i> : <i key={i} className="empty">★</i>
+                  )}
+                </span>
+              </div>
+            </div>
+            <div className="detail-cell">
+              <div className="lab">建议负责人</div>
+              <div className="val row-flex">
+                <span className="av" style={{width:24,height:24,borderRadius:999,background:lead.ownerColor,color:'#fff',fontSize:11,fontWeight:600,display:'inline-flex',alignItems:'center',justifyContent:'center'}}>{lead.ownerName[0]}</span>
+                <span>{lead.ownerName}</span>
+                <span style={{fontSize:12, color:'rgba(255,255,255,0.48)'}}>· {lead.owner}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="field">
+            <div className="lab"><I d={ICO.flame} size={12}/> AI 建议动作</div>
+            <div className="val ai-action">{lead.action}</div>
+          </div>
+
+          {e && (
+            <div className="field">
+              <div className="lab"><I d={ICO.sparkle} size={12}/> AI 自动生成的英文外联邮件草稿</div>
+              <div className="email-card">
+                <div className="email-head">
+                  <span className="tag-ai"><I d={ICO.sparkle} size={11}/> AI Draft · v1</span>
+                  <span className="meta">基于该 CEO 公开发文语风 · 30 秒前生成</span>
+                </div>
+                <div className="email-body">
+                  <div className="row"><span className="k">To</span><span className="v">{e.to}</span></div>
+                  <div className="row"><span className="k">Subject</span><span className="v" style={{fontWeight:600}}>{e.subject}</span></div>
+                  <pre>{e.body}</pre>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="drawer-foot">
+          <button className="btn btn-ghost"><I d={ICO.ext} size={16}/> 打开原始信源</button>
+          <button className="btn btn-ghost"><I d={ICO.user} size={16}/> 重新分派</button>
+          <div className="spacer"></div>
+          <button className="btn btn-teal"><I d={ICO.copy} size={16}/> 复制邮件</button>
+          <button className="btn btn-primary"><I d={ICO.send} size={16}/> 发送并加入跟进</button>
+        </div>
+      </aside>
+    </>
+  );
+}
+
+function App() {
+  const [tab, setTab] = useState('today');
+  const [openLead, setOpenLead] = useState(null);
+
+  return (
+    <>
+      <div className="app">
+        <div className="main">
+          <TopBar tab={tab} setTab={setTab}/>
+          <Hero/>
+          <div className="body-grid">
+            <div className="col-main">
+              <HighSection onOpen={setOpenLead} openId={openLead?.id}/>
+              <MidSection/>
+              <LowSection/>
+            </div>
+            <div className="col-right">
+              <RightCol/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <LeadDrawer lead={openLead} onClose={()=>setOpenLead(null)}/>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+
+function fitStage() {
+  const canvas = document.querySelector('.stage-canvas');
+  if (!canvas) return;
+  const sx = window.innerWidth / 1440;
+  const sy = window.innerHeight / 900;
+  const s = Math.min(sx, sy, 1.4);
+  canvas.style.transform = `scale(${s})`;
+}
+window.addEventListener('resize', fitStage);
+setTimeout(fitStage, 0);
+setTimeout(fitStage, 100);
+</script>
+</body>
+</html>

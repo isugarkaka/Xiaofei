@@ -1,0 +1,3845 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>青岛啤酒 · 超级操作员控制台</title>
+  <style>
+/* ===== lib/lark-tokens.css ===== */
+/* ============================================================
+   Lark PPT — Foundations: Colors & Type
+   Source: 飞书母版2025-打单 (LarkPPTTemplate.thmx)
+   Theme:  飞书PPT 主题色  ·  Font scheme: 飞书品牌字
+   ============================================================ */
+
+/* ---- Webfonts -------------------------------------------------
+   Original: 方正兰亭黑Pro_GB18030 (FangZheng LanTing Hei Pro)
+   This is a licensed commercial CJK family. We substitute Noto
+   Sans SC, the closest open-source geometric grotesque CJK
+   sans available on Google Fonts. FLAG to user: replace with
+   licensed FZLanTingHeiPro-* files for production parity.
+---------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+
+  /* ============================================================
+     COLOR PRIMITIVES — drawn directly from theme1.xml clrScheme
+     ============================================================ */
+
+  /* Background / surface — slides ship dark by default
+     (master clrMap swaps bg1="dk1", so dk1 is the page color) */
+  --lark-bg-black:    #000000;   /* dk1  · primary slide bg */
+  --lark-bg-deep:     #04060F;   /* near-black, used for hero gradients */
+  --lark-bg-navy:     #0A1230;   /* deep navy, hero gradient origin */
+  --lark-bg-twilight: #1B1F3A;   /* secondary panel */
+
+  /* Foreground (on dark) */
+  --lark-fg-white:    #FFFFFF;   /* lt1 · primary text on dark */
+  --lark-fg-muted:    #E7E6E6;   /* lt2 · low-emphasis text on dark */
+  --lark-fg-soft:     rgba(255,255,255,0.72);
+  --lark-fg-quiet:    rgba(255,255,255,0.48);
+  --lark-fg-faint:    rgba(255,255,255,0.16);
+
+  /* Foreground (on light, for product UI surfaces) */
+  --lark-ink:         #1F2329;   /* primary text on light surfaces */
+  --lark-ink-2:       #51565D;
+  --lark-ink-3:       #8F959E;
+  --lark-ink-4:       #BBBFC4;
+  --lark-line:        #DEE0E3;   /* divider on light */
+  --lark-surface:     #FFFFFF;
+  --lark-surface-2:   #F5F6F7;   /* page bg in product */
+  --lark-surface-3:   #EFF0F1;
+
+  /* Neutral — dk2/lt2 in theme */
+  --lark-neutral-700: #767171;   /* dk2 */
+  --lark-neutral-200: #E7E6E6;   /* lt2 */
+
+  /* ---------- Brand accent palette (the 6 swatches) ---------- */
+  --lark-blue:    #3C7FFF;       /* accent1 · primary brand blue */
+  --lark-cyan:    #24C3FF;       /* accent2 */
+  --lark-purple:  #5C3FFB;       /* accent3 · deep purple */
+  --lark-teal:    #33D6C0;       /* accent4 · Lark logo teal */
+  --lark-violet:  #9F6FF1;       /* accent5 */
+  --lark-orange:  #FE7F00;       /* accent6 */
+
+  /* Tints / shades for the brand blue (most-used accent) */
+  --lark-blue-50:  #EAF1FF;
+  --lark-blue-100: #C9DCFF;
+  --lark-blue-200: #9DBEFF;
+  --lark-blue-300: #6A9DFF;
+  --lark-blue-400: #3C7FFF;      /* base · accent1 */
+  --lark-blue-500: #2566EC;
+  --lark-blue-600: #0057F9;      /* folHlink */
+  --lark-blue-700: #003FB8;
+
+  /* Semantic */
+  --lark-link:           #3C7FFF;  /* hlink */
+  --lark-link-visited:   #0057F9;  /* folHlink */
+  --lark-success:        #33D6C0;
+  --lark-warning:        #FE7F00;
+  --lark-danger:         #F54A45;  /* commonly used in Lark product UI */
+  --lark-info:           #24C3FF;
+
+  /* ---------- Brand-defining gradients ---------- */
+  /* Hero/cover gradient: navy fades to black with a faint blue
+     glow top-left (matches image1.jpg / image4.jpg / image5.jpg) */
+  --lark-grad-hero:
+    radial-gradient(120% 100% at 0% 0%, #0F1A4A 0%, #060B22 38%, #000 78%);
+
+  /* Section gradient: deeper, used for chapter pages */
+  --lark-grad-section:
+    radial-gradient(140% 110% at 100% 0%, #1A2256 0%, #050817 50%, #000 100%);
+
+  /* Brand gradient (logo-derived: teal → cobalt → deep navy) */
+  --lark-grad-brand:
+    linear-gradient(135deg, #33D6C0 0%, #3C7FFF 50%, #1A1F6B 100%);
+
+  /* Accent strip gradient (used for thin keylines / dividers) */
+  --lark-grad-keyline:
+    linear-gradient(90deg, #33D6C0 0%, #3C7FFF 50%, #5C3FFB 100%);
+
+  /* ============================================================
+     TYPE — drawn from theme1.xml fontScheme + slideMaster txStyles
+     ============================================================ */
+
+  /* Display / sans CJK — primary brand face */
+  --lark-font-sans:
+    "Noto Sans SC", "FZLanTingHeiPro_GB18030",
+    "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB",
+    "Helvetica Neue", Arial, sans-serif;
+
+  /* Latin counterpart (numerals, English copy) */
+  --lark-font-latin:
+    "Inter", "Helvetica Neue", Arial,
+    "Noto Sans SC", sans-serif;
+
+  /* Mono (supporting — not in original theme, sensible default) */
+  --lark-font-mono:
+    "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+
+  /* ---- Weights ---- */
+  --lark-w-light:    300;
+  --lark-w-regular:  400;
+  --lark-w-medium:   500;   /* FZLanTingHei Medium — body copy default */
+  --lark-w-semibold: 600;   /* FZLanTingHei SemiBold — H1/H2/title */
+  --lark-w-bold:     700;   /* FZLanTingHei Bold — cover & big numbers */
+  --lark-w-black:    900;
+
+  /* ---- Type scale (slide-friendly @ 1920×1080)
+     Names match the slide-master txStyles roles. Sizes scale
+     linearly to product UI when used inside a `.product` scope. ---- */
+  --lark-text-cover:    96px;   /* 50pt @ 1280 → ≈96px @ 1920 */
+  --lark-text-section:  84px;   /* 一级章节页 — chapter headers */
+  --lark-text-h1:       56px;   /* 30pt centered title */
+  --lark-text-h2:       40px;   /* 26pt content-page title */
+  --lark-text-h3:       32px;
+  --lark-text-quote:    52px;   /* 金句页 (key-quote slide) */
+  --lark-text-subtitle: 28px;   /* eyebrow / secondary line */
+  --lark-text-body:     24px;   /* slide body — never below 24 */
+  --lark-text-caption:  18px;
+  --lark-text-eyebrow:  16px;   /* uppercase metadata */
+
+  /* Line-height */
+  --lark-lh-tight:   1.10;
+  --lark-lh-snug:    1.25;
+  --lark-lh-normal:  1.40;
+  --lark-lh-loose:   1.65;
+
+  /* Letter-spacing (CJK is ~0; latin caps slightly tracked) */
+  --lark-tracking-tight:  -0.01em;
+  --lark-tracking-normal: 0;
+  --lark-tracking-wide:    0.04em;
+  --lark-tracking-eyebrow: 0.14em;
+
+  /* ============================================================
+     SPACING / RADII / SHADOWS / MOTION
+     ============================================================ */
+
+  --lark-space-1: 4px;
+  --lark-space-2: 8px;
+  --lark-space-3: 12px;
+  --lark-space-4: 16px;
+  --lark-space-5: 24px;
+  --lark-space-6: 32px;
+  --lark-space-7: 48px;
+  --lark-space-8: 64px;
+  --lark-space-9: 96px;
+  --lark-space-10: 128px;
+
+  --lark-radius-xs: 4px;
+  --lark-radius-sm: 6px;       /* Lark product buttons */
+  --lark-radius-md: 8px;       /* cards, inputs */
+  --lark-radius-lg: 12px;
+  --lark-radius-xl: 16px;
+  --lark-radius-2xl: 24px;
+  --lark-radius-pill: 999px;
+
+  /* Shadows — Lark product cards use soft, low elevations */
+  --lark-shadow-1: 0 1px 2px rgba(31, 35, 41, 0.06), 0 0 1px rgba(31, 35, 41, 0.10);
+  --lark-shadow-2: 0 4px 12px rgba(31, 35, 41, 0.08), 0 0 1px rgba(31, 35, 41, 0.10);
+  --lark-shadow-3: 0 8px 32px rgba(31, 35, 41, 0.12);
+  --lark-shadow-glow-blue: 0 0 32px rgba(60, 127, 255, 0.32);
+  --lark-shadow-glow-teal: 0 0 32px rgba(51, 214, 192, 0.28);
+
+  /* Borders */
+  --lark-border-thin:   1px solid rgba(255,255,255,0.10);
+  --lark-border-strong: 1px solid rgba(255,255,255,0.20);
+  --lark-border-light:  1px solid var(--lark-line);
+
+  /* Motion */
+  --lark-ease:          cubic-bezier(0.4, 0, 0.2, 1);
+  --lark-ease-out:      cubic-bezier(0.0, 0, 0.2, 1);
+  --lark-ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
+  --lark-dur-fast:      120ms;
+  --lark-dur-base:      200ms;
+  --lark-dur-slow:      400ms;
+}
+
+/* ============================================================
+   SEMANTIC ROLES — apply directly to elements
+   ============================================================ */
+
+.lark-deck-bg {
+  background: var(--lark-grad-hero);
+  color: var(--lark-fg-white);
+  font-family: var(--lark-font-sans);
+}
+
+/* Cover slide title */
+.lark-cover-title {
+  font-family: var(--lark-font-sans);
+  font-weight: var(--lark-w-bold);
+  font-size: var(--lark-text-cover);
+  line-height: var(--lark-lh-tight);
+  letter-spacing: var(--lark-tracking-tight);
+  color: var(--lark-fg-white);
+}
+
+/* Section / chapter header */
+.lark-section-title {
+  font-family: var(--lark-font-sans);
+  font-weight: var(--lark-w-bold);
+  font-size: var(--lark-text-section);
+  line-height: var(--lark-lh-tight);
+  color: var(--lark-fg-white);
+}
+
+/* Content-page title (slide H2) */
+.lark-h1 {
+  font-family: var(--lark-font-sans);
+  font-weight: var(--lark-w-semibold);
+  font-size: var(--lark-text-h1);
+  line-height: var(--lark-lh-snug);
+  color: var(--lark-fg-white);
+}
+.lark-h2 {
+  font-family: var(--lark-font-sans);
+  font-weight: var(--lark-w-semibold);
+  font-size: var(--lark-text-h2);
+  line-height: var(--lark-lh-snug);
+  color: var(--lark-fg-white);
+}
+.lark-h3 {
+  font-family: var(--lark-font-sans);
+  font-weight: var(--lark-w-semibold);
+  font-size: var(--lark-text-h3);
+  line-height: var(--lark-lh-snug);
+  color: var(--lark-fg-white);
+}
+
+.lark-quote {
+  font-family: var(--lark-font-sans);
+  font-weight: var(--lark-w-semibold);
+  font-size: var(--lark-text-quote);
+  line-height: var(--lark-lh-snug);
+  color: var(--lark-fg-white);
+}
+
+.lark-subtitle {
+  font-family: var(--lark-font-sans);
+  font-weight: var(--lark-w-medium);
+  font-size: var(--lark-text-subtitle);
+  line-height: var(--lark-lh-normal);
+  color: var(--lark-fg-soft);
+}
+
+.lark-body {
+  font-family: var(--lark-font-sans);
+  font-weight: var(--lark-w-medium);
+  font-size: var(--lark-text-body);
+  line-height: var(--lark-lh-normal);
+  color: var(--lark-fg-soft);
+}
+
+.lark-caption {
+  font-family: var(--lark-font-sans);
+  font-weight: var(--lark-w-regular);
+  font-size: var(--lark-text-caption);
+  line-height: var(--lark-lh-normal);
+  color: var(--lark-fg-quiet);
+}
+
+.lark-eyebrow {
+  font-family: var(--lark-font-latin);
+  font-weight: var(--lark-w-semibold);
+  font-size: var(--lark-text-eyebrow);
+  letter-spacing: var(--lark-tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--lark-blue);
+}
+
+/* ============================================================
+   PRODUCT-UI scope — Lark Suite app (light surface)
+   Use by adding class `lark-product` on a container.
+   ============================================================ */
+.lark-product {
+  background: var(--lark-surface-2);
+  color: var(--lark-ink);
+  font-family: var(--lark-font-sans);
+  font-size: 14px;
+  line-height: var(--lark-lh-normal);
+}
+.lark-product h1 { font-size: 28px; font-weight: var(--lark-w-semibold); color: var(--lark-ink); }
+.lark-product h2 { font-size: 20px; font-weight: var(--lark-w-semibold); color: var(--lark-ink); }
+.lark-product h3 { font-size: 16px; font-weight: var(--lark-w-semibold); color: var(--lark-ink); }
+.lark-product p  { font-size: 14px; color: var(--lark-ink); }
+.lark-product a  { color: var(--lark-link); text-decoration: none; }
+.lark-product a:hover { text-decoration: underline; }
+
+/* ===== styles.css ===== */
+/* ============================================================
+   Super Operator Console — Tsingtao × Lark
+   Built on Lark PPT tokens with desktop console scoping
+   ============================================================ */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--lark-bg-black);
+  color: var(--lark-fg-white);
+  font-family: var(--lark-font-sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body {
+  background:
+    radial-gradient(120% 80% at 18% -10%, rgba(60,127,255,0.18) 0%, rgba(6,11,34,0) 55%),
+    radial-gradient(90% 70% at 100% 110%, rgba(51,214,192,0.10) 0%, rgba(0,0,0,0) 60%),
+    linear-gradient(180deg, #060B22 0%, #03050E 50%, #000 100%);
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- App Shell ---------- */
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  min-width: 1440px;
+}
+
+/* ---------- Top Bar ---------- */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  padding: 0 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: rgba(4, 6, 15, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  gap: 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-name-zh {
+  font-size: 16px;
+  font-weight: var(--lark-w-semibold);
+  color: var(--lark-fg-white);
+  letter-spacing: 0.02em;
+}
+
+.brand-name-en {
+  font-size: 10px;
+  font-weight: var(--lark-w-regular);
+  color: var(--lark-fg-quiet);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.product-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 24px;
+  border-left: 1px solid rgba(255,255,255,0.10);
+}
+
+.product-title-zh {
+  font-size: 18px;
+  font-weight: var(--lark-w-semibold);
+  color: var(--lark-fg-white);
+  letter-spacing: 0.01em;
+}
+
+.product-title-tag {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--lark-cyan);
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid rgba(36,195,255,0.40);
+  border-radius: 4px;
+  background: rgba(36,195,255,0.06);
+}
+
+.topbar-spacer { flex: 1; }
+
+.topbar-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 13px;
+  color: var(--lark-fg-soft);
+}
+
+.live-pulse {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(51,214,192,0.10);
+  border: 1px solid rgba(51,214,192,0.30);
+  color: var(--lark-teal);
+  font-size: 12px;
+  font-weight: var(--lark-w-medium);
+  letter-spacing: 0.05em;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--lark-teal);
+  box-shadow: 0 0 0 0 rgba(51,214,192,0.7);
+  animation: pulse 1.6s ease-out infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(51,214,192,0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(51,214,192,0); }
+  100% { box-shadow: 0 0 0 0 rgba(51,214,192,0); }
+}
+
+.topbar-clock {
+  font-family: var(--lark-font-latin);
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+  color: var(--lark-fg-soft);
+}
+
+.topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  font-size: 13px;
+}
+
+.topbar-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3C7FFF 0%, #5C3FFB 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: var(--lark-w-semibold);
+}
+
+/* ---------- Sub-bar / Operator nav ---------- */
+
+.subbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 48px;
+  padding: 0 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: rgba(0,0,0,0.30);
+}
+
+.subbar-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  color: var(--lark-fg-quiet);
+  font-weight: var(--lark-w-medium);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color .2s, background .2s;
+}
+
+.subbar-tab.active {
+  color: var(--lark-fg-white);
+  background: rgba(60,127,255,0.12);
+}
+
+.subbar-tab .tab-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: var(--lark-w-semibold);
+  background: var(--lark-blue);
+  color: #fff;
+}
+
+.subbar-tab .tab-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--lark-orange);
+}
+
+.subbar-divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(255,255,255,0.08);
+  margin: 0 10px;
+}
+
+.subbar-store {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--lark-fg-soft);
+  margin-left: auto;
+}
+
+.subbar-store-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ---------- Main 2-col layout (operator focus) ---------- */
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 500px;
+  gap: 0;
+  flex: 1;
+  min-height: 0;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.col-response { border-left: 1px solid rgba(255,255,255,0.06); background: rgba(0,0,0,0.20); }
+
+.col-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px 12px;
+}
+
+.col-header-l {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.col-eyebrow {
+  font-family: var(--lark-font-latin);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lark-fg-quiet);
+  font-weight: var(--lark-w-semibold);
+}
+
+.col-title {
+  font-size: 22px;
+  font-weight: var(--lark-w-semibold);
+  color: var(--lark-fg-white);
+  letter-spacing: 0.01em;
+}
+
+.col-title-en {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--lark-fg-quiet);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.role-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: var(--lark-w-semibold);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+
+.role-pill.intel {
+  color: var(--lark-cyan);
+  background: rgba(36,195,255,0.10);
+  border: 1px solid rgba(36,195,255,0.30);
+}
+.role-pill.operator {
+  color: var(--lark-orange);
+  background: rgba(254,127,0,0.10);
+  border: 1px solid rgba(254,127,0,0.30);
+}
+
+.role-pill .pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ---------- Signals stream ---------- */
+
+.signals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 8px 18px 32px;
+  overflow-y: auto;
+}
+
+.signal-card {
+  position: relative;
+  padding: 14px 14px 14px 18px;
+  background: linear-gradient(180deg, rgba(20,28,55,0.85) 0%, rgba(12,18,40,0.75) 100%);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all .2s var(--lark-ease);
+  animation: slideIn .4s var(--lark-ease-out) backwards;
+}
+
+.signal-card.new { border-color: rgba(36,195,255,0.4); box-shadow: 0 0 0 1px rgba(36,195,255,0.10), 0 0 18px rgba(36,195,255,0.10); }
+
+.signal-card::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 14px; bottom: 14px;
+  width: 3px;
+  border-radius: 0 2px 2px 0;
+  background: var(--lark-cyan);
+  opacity: 0.6;
+}
+
+.signal-card.signal-high::before { background: var(--lark-orange); opacity: 1; }
+.signal-card.signal-mid::before { background: var(--lark-blue); opacity: 0.8; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.signal-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.signal-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--lark-fg-quiet);
+  font-weight: var(--lark-w-medium);
+}
+
+.signal-source-icon {
+  width: 16px; height: 16px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.06);
+  color: var(--lark-fg-soft);
+}
+
+.signal-time {
+  font-size: 10px;
+  color: var(--lark-fg-quiet);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+
+.signal-body {
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--lark-fg-white);
+  font-weight: var(--lark-w-medium);
+}
+
+.signal-body .signal-hl {
+  color: var(--lark-cyan);
+  font-weight: var(--lark-w-semibold);
+}
+.signal-body .signal-hl-warn {
+  color: var(--lark-orange);
+  font-weight: var(--lark-w-semibold);
+}
+
+.signal-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  color: var(--lark-fg-quiet);
+}
+
+.signal-meta-item {
+  display: inline-flex; align-items: center; gap: 4px;
+}
+
+/* ---------- Center column (legacy) ---------- */
+
+/* AI synthesis card */
+.synthesis-card {
+  position: relative;
+  padding: 28px 32px;
+  background:
+    linear-gradient(135deg, rgba(60,127,255,0.10) 0%, rgba(92,63,251,0.04) 50%, rgba(0,0,0,0) 100%),
+    rgba(255,255,255,0.025);
+  border: 1px solid rgba(60,127,255,0.30);
+  border-radius: 16px;
+  box-shadow: 0 0 40px rgba(60,127,255,0.10);
+}
+
+.synth-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.synth-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: var(--lark-w-semibold);
+  color: var(--lark-fg-white);
+  background: linear-gradient(90deg, rgba(60,127,255,0.6), rgba(92,63,251,0.4));
+  border-radius: 999px;
+}
+
+.synth-time {
+  font-size: 12px;
+  color: var(--lark-fg-quiet);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+}
+
+.synth-conf {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--lark-fg-soft);
+}
+.synth-conf-val {
+  color: var(--lark-teal);
+  font-weight: var(--lark-w-semibold);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.synth-title {
+  font-size: 32px;
+  line-height: 1.25;
+  font-weight: var(--lark-w-semibold);
+  color: var(--lark-fg-white);
+  letter-spacing: -0.005em;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.synth-title .hl-warm { color: var(--lark-orange); }
+.synth-title .hl-cool { color: var(--lark-cyan); }
+
+.synth-sub {
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--lark-fg-soft);
+}
+
+.synth-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+}
+
+.synth-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-right: 16px;
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+.synth-metric:last-child { border-right: 0; }
+
+.metric-label {
+  font-size: 12px;
+  color: var(--lark-fg-quiet);
+  letter-spacing: 0.04em;
+}
+
+.metric-val {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-variant-numeric: tabular-nums;
+  color: var(--lark-fg-white);
+}
+
+.metric-num {
+  font-size: 30px;
+  font-weight: var(--lark-w-bold);
+  letter-spacing: -0.01em;
+}
+.metric-unit {
+  font-size: 14px;
+  color: var(--lark-fg-soft);
+  font-weight: var(--lark-w-medium);
+}
+
+.metric-delta {
+  font-size: 12px;
+  font-weight: var(--lark-w-semibold);
+  margin-top: 2px;
+}
+.metric-delta.up { color: var(--lark-teal); }
+.metric-delta.down { color: var(--lark-danger); }
+
+/* Map/flow card */
+.flow-card {
+  margin-top: 24px;
+  padding: 24px 28px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+}
+
+.flow-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.flow-title {
+  font-size: 16px;
+  font-weight: var(--lark-w-semibold);
+  color: var(--lark-fg-white);
+}
+
+.flow-title-sub {
+  font-size: 12px;
+  color: var(--lark-fg-quiet);
+  letter-spacing: 0.04em;
+  margin-top: 3px;
+}
+
+.flow-legend {
+  display: flex; gap: 14px; font-size: 11px; color: var(--lark-fg-quiet);
+}
+
+.flow-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+.flow-legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+/* Sankey-ish flow */
+.flow-svg { width: 100%; height: 220px; }
+
+/* Day-by-day forecast bars */
+.forecast {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.forecast-head {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 12px; color: var(--lark-fg-quiet);
+  margin-bottom: 10px;
+}
+
+.forecast-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 80px 100px;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px dashed rgba(255,255,255,0.06);
+  font-size: 13px;
+}
+.forecast-row:last-child { border-bottom: 0; }
+
+.forecast-day {
+  color: var(--lark-fg-white);
+  font-weight: var(--lark-w-medium);
+}
+.forecast-day-sub {
+  color: var(--lark-fg-quiet);
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+.forecast-bar-track {
+  height: 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+.forecast-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--lark-blue) 0%, var(--lark-cyan) 100%);
+  border-radius: 4px;
+  position: relative;
+}
+
+.forecast-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--lark-w-semibold);
+  color: var(--lark-fg-white);
+}
+
+.forecast-source {
+  font-size: 11px;
+  color: var(--lark-fg-quiet);
+}
+
+/* Inline signals strip (sources) */
+.source-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.source-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 999px;
+  font-size: 11px;
+  color: var(--lark-fg-soft);
+  letter-spacing: 0.02em;
+}
+
+.source-chip-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--lark-teal);
+}
+
+/* ---------- Response column ---------- */
+
+.col-response .col-header { padding-top: 18px; }
+
+.response-list {
+  padding: 4px 22px 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pack-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.035) 0%, rgba(255,255,255,0.015) 100%);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.pack-head {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.pack-icon {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.pack-icon.sku { background: rgba(60,127,255,0.15); color: var(--lark-blue); }
+.pack-icon.display { background: rgba(51,214,192,0.12); color: var(--lark-teal); }
+.pack-icon.ba { background: rgba(159,111,241,0.15); color: var(--lark-violet); }
+.pack-icon.content { background: rgba(254,127,0,0.12); color: var(--lark-orange); }
+
+.pack-title-wrap { flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.pack-title {
+  font-size: 15px;
+  font-weight: var(--lark-w-semibold);
+  color: var(--lark-fg-white);
+}
+.pack-title-sub {
+  font-size: 11px;
+  color: var(--lark-fg-quiet);
+  letter-spacing: 0.04em;
+}
+
+.pack-count {
+  font-size: 11px;
+  color: var(--lark-fg-soft);
+  background: rgba(255,255,255,0.06);
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.pack-body {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pack-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.20);
+  border: 1px solid rgba(255,255,255,0.04);
+  font-size: 13px;
+  color: var(--lark-fg-white);
+  line-height: 1.4;
+}
+
+.pack-item-check {
+  width: 16px; height: 16px;
+  border-radius: 4px;
+  border: 1.5px solid rgba(255,255,255,0.30);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all .15s var(--lark-ease);
+}
+.pack-item-check.checked {
+  background: var(--lark-blue);
+  border-color: var(--lark-blue);
+}
+
+.pack-item-text {
+  flex: 1;
+  font-weight: var(--lark-w-medium);
+}
+
+.pack-item-text .ghost { color: var(--lark-fg-quiet); font-weight: 400; }
+.pack-item-text .hl { color: var(--lark-cyan); }
+
+.pack-item-tag {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+.pack-item-tag.urgent { color: var(--lark-orange); background: rgba(254,127,0,0.10); }
+.pack-item-tag.auto { color: var(--lark-teal); background: rgba(51,214,192,0.10); }
+.pack-item-tag.new { color: var(--lark-cyan); background: rgba(36,195,255,0.10); }
+
+/* Rep chips */
+.ba-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 4px 0;
+}
+.ba-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 10px;
+  background: rgba(159,111,241,0.10);
+  border: 1px solid rgba(159,111,241,0.25);
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--lark-fg-white);
+}
+.ba-chip-avatar {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #9F6FF1, #5C3FFB);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: var(--lark-w-semibold);
+  color: white;
+}
+
+/* ---------- Approval footer ---------- */
+
+.approve-bar {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 28px;
+  background: linear-gradient(180deg, rgba(4,6,15,0.0) 0%, rgba(4,6,15,0.92) 35%);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin-top: auto;
+}
+
+.approve-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.approve-meta-block {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.approve-meta-l { font-size: 11px; color: var(--lark-fg-quiet); letter-spacing: 0.04em; }
+.approve-meta-v { font-size: 14px; color: var(--lark-fg-white); font-weight: var(--lark-w-medium); }
+
+.approve-status {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px;
+  background: rgba(254,127,0,0.10);
+  border: 1px solid rgba(254,127,0,0.35);
+  color: var(--lark-orange);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: var(--lark-w-semibold);
+}
+
+.approve-spacer { flex: 1; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: var(--lark-w-semibold);
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all .15s var(--lark-ease);
+  font-family: var(--lark-font-sans);
+  letter-spacing: 0.02em;
+}
+.btn:active { transform: scale(0.98); }
+
+.btn-secondary {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.10);
+  color: var(--lark-fg-white);
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.10); }
+
+.btn-primary {
+  background: var(--lark-blue);
+  color: white;
+  box-shadow: 0 0 0 1px rgba(60,127,255,0.20), 0 0 24px rgba(60,127,255,0.30);
+}
+.btn-primary:hover { background: var(--lark-blue-500); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--lark-fg-soft);
+  border-color: rgba(255,255,255,0.10);
+}
+.btn-ghost:hover { color: var(--lark-fg-white); }
+
+/* ---------- Scrollbars ---------- */
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.16); }
+
+/* ---------- Modal / Drawer ---------- */
+
+.modal-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(6px);
+  z-index: 200;
+  display: flex; align-items: center; justify-content: center;
+  animation: fadeIn .2s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.modal {
+  width: 560px;
+  background: linear-gradient(180deg, #0A1230 0%, #060B22 100%);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+
+.modal-title { font-size: 22px; font-weight: var(--lark-w-semibold); color: var(--lark-fg-white); margin: 0 0 8px; }
+.modal-sub { font-size: 14px; color: var(--lark-fg-soft); margin: 0 0 18px; }
+
+.modal-summary {
+  background: rgba(0,0,0,0.30);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 14px;
+  display: flex; flex-direction: column; gap: 8px;
+  font-size: 13px;
+}
+.modal-summary-row { display: flex; justify-content: space-between; }
+.modal-summary-row .lbl { color: var(--lark-fg-quiet); }
+.modal-summary-row .val { color: var(--lark-fg-white); font-weight: var(--lark-w-medium); }
+
+.modal-actions { display: flex; gap: 10px; margin-top: 18px; justify-content: flex-end; }
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(51,214,192,0.15);
+  border: 1px solid rgba(51,214,192,0.40);
+  color: var(--lark-fg-white);
+  padding: 14px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: var(--lark-w-medium);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: toastIn .25s var(--lark-ease-out);
+}
+@keyframes toastIn { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }
+
+.toast-icon {
+  width: 22px; height: 22px;
+  background: var(--lark-teal);
+  color: #04060F;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: var(--lark-w-bold);
+}
+
+/* timeline post-approval */
+.timeline {
+  margin-top: 18px;
+  padding: 16px;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(51,214,192,0.20);
+  border-radius: 10px;
+}
+.timeline-head { font-size: 13px; font-weight: var(--lark-w-semibold); margin-bottom: 10px; color: var(--lark-teal); letter-spacing: 0.04em; }
+.timeline-row { display: flex; gap: 10px; padding: 6px 0; font-size: 12px; color: var(--lark-fg-soft); }
+.timeline-time { color: var(--lark-fg-quiet); font-variant-numeric: tabular-nums; width: 60px; flex-shrink: 0; }
+.timeline-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--lark-teal); margin-top: 5px; flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(51,214,192,0.20);
+}
+
+/* ---------- Store floor plan ---------- */
+
+.floor-card {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin-bottom: 16px;
+}
+
+.section-head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 16px;
+  gap: 14px;
+}
+
+.section-head-l {
+  display: flex; flex-direction: column; gap: 4px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: var(--lark-w-semibold);
+  color: var(--lark-fg-white);
+}
+
+.section-sub {
+  font-size: 12px;
+  color: var(--lark-fg-quiet);
+  letter-spacing: 0.04em;
+}
+
+.section-head-r {
+  display: flex; gap: 6px; align-items: center;
+}
+
+.floor-toggle {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.floor-toggle button {
+  padding: 6px 12px;
+  font-size: 12px;
+  background: transparent;
+  border: 0;
+  color: var(--lark-fg-quiet);
+  cursor: pointer;
+  font-family: inherit;
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+.floor-toggle button:last-child { border-right: 0; }
+.floor-toggle button.active {
+  background: rgba(60,127,255,0.20);
+  color: var(--lark-fg-white);
+}
+
+.floor-svg-wrap {
+  position: relative;
+  background: linear-gradient(180deg, #060B22 0%, #03050E 100%);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.floor-svg { width: 100%; display: block; }
+
+.floor-legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--lark-fg-quiet);
+}
+
+.floor-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+
+.legend-marker {
+  width: 14px; height: 14px;
+  border-radius: 4px;
+}
+
+.legend-marker.update { background: rgba(60,127,255,0.30); border: 1px solid var(--lark-blue); }
+.legend-marker.new { background: rgba(254,127,0,0.25); border: 1px solid var(--lark-orange); }
+.legend-marker.boost { background: rgba(51,214,192,0.25); border: 1px solid var(--lark-teal); }
+.legend-marker.heat { background: linear-gradient(180deg, rgba(254,127,0,0.5), rgba(60,127,255,0.5)); }
+
+/* ---------- Rep schedule grid ---------- */
+
+.ba-grid-card {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin-bottom: 16px;
+}
+
+.ba-grid {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 4px 12px;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.ba-grid-head {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--lark-fg-quiet);
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+.ba-hours {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap: 2px;
+  font-size: 10px;
+  color: var(--lark-fg-quiet);
+  font-variant-numeric: tabular-nums;
+}
+
+.ba-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px dashed rgba(255,255,255,0.06);
+}
+.ba-row:last-child { border-bottom: 0; }
+
+.ba-row-name {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--lark-fg-white);
+  font-weight: var(--lark-w-medium);
+}
+
+.ba-row-name .lvl {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(159,111,241,0.15);
+  color: var(--lark-violet);
+  letter-spacing: 0.04em;
+}
+
+.ba-shift-track {
+  position: relative;
+  height: 22px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+}
+.ba-shift-track::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: calc(100% / 13) 100%;
+  pointer-events: none;
+  border-radius: 4px;
+}
+
+.ba-shift {
+  position: absolute;
+  top: 3px; bottom: 3px;
+  border-radius: 3px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px;
+  font-weight: var(--lark-w-semibold);
+  color: var(--lark-fg-white);
+  letter-spacing: 0.03em;
+  z-index: 1;
+}
+.ba-shift.before {
+  background: rgba(255,255,255,0.08);
+  border: 1px dashed rgba(255,255,255,0.20);
+  color: var(--lark-fg-quiet);
+}
+.ba-shift.after-hot {
+  background: linear-gradient(90deg, rgba(254,127,0,0.7), rgba(254,127,0,0.5));
+  border: 1px solid var(--lark-orange);
+  box-shadow: 0 0 12px rgba(254,127,0,0.30);
+}
+.ba-shift.after-normal {
+  background: rgba(60,127,255,0.4);
+  border: 1px solid rgba(60,127,255,0.6);
+}
+
+.ba-legend {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--lark-fg-quiet);
+}
+
+/* ---------- Brief hero banner ---------- */
+
+.brief-banner {
+  position: relative;
+  margin: 0;
+  padding: 26px 32px;
+  background:
+    radial-gradient(80% 100% at 100% 0%, rgba(254,127,0,0.10) 0%, transparent 60%),
+    linear-gradient(135deg, rgba(60,127,255,0.10) 0%, rgba(92,63,251,0.04) 50%, rgba(0,0,0,0) 100%),
+    rgba(255,255,255,0.025);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+}
+
+.brief-banner::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--lark-orange), var(--lark-blue));
+}
+
+.brief-l { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+
+.brief-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brief-title {
+  font-size: 26px;
+  font-weight: var(--lark-w-semibold);
+  color: var(--lark-fg-white);
+  line-height: 1.25;
+  margin: 0;
+  letter-spacing: 0.005em;
+}
+
+.brief-title .hl-warm { color: var(--lark-orange); }
+.brief-title .hl-cool { color: var(--lark-cyan); }
+
+.brief-meta {
+  display: flex;
+  gap: 18px;
+  font-size: 12px;
+  color: var(--lark-fg-quiet);
+}
+.brief-meta b { color: var(--lark-fg-white); font-weight: var(--lark-w-medium); }
+
+.brief-r {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 0;
+  padding-left: 8px;
+}
+
+.brief-metric {
+  padding: 0 22px;
+  border-left: 1px solid rgba(255,255,255,0.10);
+  display: flex; flex-direction: column; gap: 2px;
+}
+.brief-metric:first-child { border-left: 0; }
+
+.brief-metric-l { font-size: 11px; color: var(--lark-fg-quiet); letter-spacing: 0.05em; }
+.brief-metric-v { display: flex; align-items: baseline; gap: 4px; }
+.brief-metric-num { font-size: 26px; font-weight: var(--lark-w-bold); color: var(--lark-fg-white); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.brief-metric-unit { font-size: 12px; color: var(--lark-fg-soft); }
+.brief-metric-delta { font-size: 11px; font-weight: var(--lark-w-semibold); }
+.brief-metric-delta.up { color: var(--lark-teal); }
+
+/* ---------- Center scroll area ---------- */
+
+.col-center {
+  padding: 16px 24px 28px;
+  overflow-y: auto;
+}
+
+/* Forecast strip - inline now */
+.forecast-mini-card {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin-bottom: 16px;
+}
+
+/* Action callout floats over floor plan */
+.callout {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background: rgba(4,6,15,0.85);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(60,127,255,0.40);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: var(--lark-w-medium);
+  color: var(--lark-fg-white);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 4;
+}
+.callout.warm { border-color: rgba(254,127,0,0.50); }
+.callout.cool { border-color: rgba(51,214,192,0.50); }
+.callout-num {
+  display: inline-flex; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--lark-blue); color: white; font-size: 10px;
+  align-items: center; justify-content: center;
+  font-weight: var(--lark-w-bold);
+}
+.callout.warm .callout-num { background: var(--lark-orange); }
+.callout.cool .callout-num { background: var(--lark-teal); }
+
+/* ============================================================
+   REVIEW & SEDIMENT PAGE
+   ============================================================ */
+
+.review-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.review-banner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 32px;
+  padding: 26px 32px;
+  background:
+    radial-gradient(80% 100% at 0% 0%, rgba(36,195,255,0.10) 0%, transparent 60%),
+    rgba(255,255,255,0.025);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+}
+.review-banner::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--lark-cyan), var(--lark-teal));
+}
+
+.review-body {
+  display: grid;
+  grid-template-columns: 360px 1fr 400px;
+  gap: 0;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ---------- Case list (left) ---------- */
+.review-cases {
+  padding: 22px 22px 28px;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.case-card {
+  padding: 16px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .15s var(--lark-ease);
+}
+.case-card:hover { border-color: rgba(255,255,255,0.16); background: rgba(255,255,255,0.04); }
+.case-card.active {
+  border-color: rgba(60,127,255,0.50);
+  background: linear-gradient(180deg, rgba(60,127,255,0.10), rgba(60,127,255,0.02));
+  box-shadow: 0 0 0 1px rgba(60,127,255,0.10), 0 0 18px rgba(60,127,255,0.10);
+}
+
+/* ---------- Case detail (center) ---------- */
+.review-detail-wrap {
+  padding: 26px 32px;
+  overflow-y: auto;
+}
+
+.case-detail {}
+
+.detail-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 18px;
+  border-left: 1px solid rgba(255,255,255,0.06);
+}
+.detail-metric:first-child { border-left: 0; padding-left: 0; }
+
+.detail-metric-l {
+  font-size: 11px; color: var(--lark-fg-quiet); letter-spacing: 0.05em;
+}
+.detail-metric-v {
+  display: flex; align-items: baseline; gap: 4px;
+  font-size: 26px; font-weight: 700; color: var(--lark-fg-white);
+  font-variant-numeric: tabular-nums; letter-spacing: -0.01em;
+}
+.detail-metric-v .u { font-size: 12px; color: var(--lark-fg-soft); font-weight: 500; }
+
+.learn-row {
+  display: grid;
+  grid-template-columns: 76px 1fr auto;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 8px;
+}
+
+.learn-tag {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 1px solid;
+  text-align: center;
+}
+
+.learn-text {
+  font-size: 13px;
+  color: var(--lark-fg-white);
+  line-height: 1.5;
+}
+
+.learn-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--lark-teal);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+/* ---------- Knowledge sediment (right) ---------- */
+.review-sediment {
+  padding: 22px 22px 28px;
+  border-left: 1px solid rgba(255,255,255,0.06);
+  background: rgba(0,0,0,0.20);
+  overflow-y: auto;
+}
+
+.nugget {
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+}
+
+  </style>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- ===== tweaks-panel.jsx ===== -->
+  <script type="text/babel" data-presets="react">
+
+// tweaks-panel.jsx
+// Reusable Tweaks shell + form-control helpers.
+//
+// Owns the host protocol (listens for __activate_edit_mode / __deactivate_edit_mode,
+// posts __edit_mode_available / __edit_mode_set_keys / __edit_mode_dismissed) so
+// individual prototypes don't re-roll it. Ships a consistent set of controls so you
+// don't hand-draw <input type="range">, segmented radios, steppers, etc.
+//
+// Usage (in an HTML file that loads React + Babel):
+//
+//   const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+//     "primaryColor": "#D97757",
+//     "palette": ["#D97757", "#29261b", "#f6f4ef"],
+//     "fontSize": 16,
+//     "density": "regular",
+//     "dark": false
+//   }/*EDITMODE-END*/;
+//
+//   function App() {
+//     const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+//     return (
+//       <div style={{ fontSize: t.fontSize, color: t.primaryColor }}>
+//         Hello
+//         <TweaksPanel>
+//           <TweakSection label="Typography" />
+//           <TweakSlider label="Font size" value={t.fontSize} min={10} max={32} unit="px"
+//                        onChange={(v) => setTweak('fontSize', v)} />
+//           <TweakRadio  label="Density" value={t.density}
+//                        options={['compact', 'regular', 'comfy']}
+//                        onChange={(v) => setTweak('density', v)} />
+//           <TweakSection label="Theme" />
+//           <TweakColor  label="Primary" value={t.primaryColor}
+//                        options={['#D97757', '#2A6FDB', '#1F8A5B', '#7A5AE0']}
+//                        onChange={(v) => setTweak('primaryColor', v)} />
+//           <TweakColor  label="Palette" value={t.palette}
+//                        options={[['#D97757', '#29261b', '#f6f4ef'],
+//                                  ['#475569', '#0f172a', '#f1f5f9']]}
+//                        onChange={(v) => setTweak('palette', v)} />
+//           <TweakToggle label="Dark mode" value={t.dark}
+//                        onChange={(v) => setTweak('dark', v)} />
+//         </TweaksPanel>
+//       </div>
+//     );
+//   }
+//
+// ─────────────────────────────────────────────────────────────────────────────
+
+const __TWEAKS_STYLE = `
+  .twk-panel{position:fixed;right:16px;bottom:16px;z-index:2147483646;width:280px;
+    max-height:calc(100vh - 32px);display:flex;flex-direction:column;
+    transform:scale(var(--dc-inv-zoom,1));transform-origin:bottom right;
+    background:rgba(250,249,247,.78);color:#29261b;
+    -webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
+    border:.5px solid rgba(255,255,255,.6);border-radius:14px;
+    box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 12px 40px rgba(0,0,0,.18);
+    font:11.5px/1.4 ui-sans-serif,system-ui,-apple-system,sans-serif;overflow:hidden}
+  .twk-hd{display:flex;align-items:center;justify-content:space-between;
+    padding:10px 8px 10px 14px;cursor:move;user-select:none}
+  .twk-hd b{font-size:12px;font-weight:600;letter-spacing:.01em}
+  .twk-x{appearance:none;border:0;background:transparent;color:rgba(41,38,27,.55);
+    width:22px;height:22px;border-radius:6px;cursor:default;font-size:13px;line-height:1}
+  .twk-x:hover{background:rgba(0,0,0,.06);color:#29261b}
+  .twk-body{padding:2px 14px 14px;display:flex;flex-direction:column;gap:10px;
+    overflow-y:auto;overflow-x:hidden;min-height:0;
+    scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.15) transparent}
+  .twk-body::-webkit-scrollbar{width:8px}
+  .twk-body::-webkit-scrollbar-track{background:transparent;margin:2px}
+  .twk-body::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:4px;
+    border:2px solid transparent;background-clip:content-box}
+  .twk-body::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.25);
+    border:2px solid transparent;background-clip:content-box}
+  .twk-row{display:flex;flex-direction:column;gap:5px}
+  .twk-row-h{flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
+  .twk-lbl{display:flex;justify-content:space-between;align-items:baseline;
+    color:rgba(41,38,27,.72)}
+  .twk-lbl>span:first-child{font-weight:500}
+  .twk-val{color:rgba(41,38,27,.5);font-variant-numeric:tabular-nums}
+
+  .twk-sect{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:rgba(41,38,27,.45);padding:10px 0 0}
+  .twk-sect:first-child{padding-top:0}
+
+  .twk-field{appearance:none;box-sizing:border-box;width:100%;min-width:0;height:26px;padding:0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;
+    background:rgba(255,255,255,.6);color:inherit;font:inherit;outline:none}
+  .twk-field:focus{border-color:rgba(0,0,0,.25);background:rgba(255,255,255,.85)}
+  select.twk-field{padding-right:22px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='rgba(0,0,0,.5)' d='M0 0h10L5 6z'/></svg>");
+    background-repeat:no-repeat;background-position:right 8px center}
+
+  .twk-slider{appearance:none;-webkit-appearance:none;width:100%;height:4px;margin:6px 0;
+    border-radius:999px;background:rgba(0,0,0,.12);outline:none}
+  .twk-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
+    width:14px;height:14px;border-radius:50%;background:#fff;
+    border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+  .twk-slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;
+    background:#fff;border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+
+  .twk-seg{position:relative;display:flex;padding:2px;border-radius:8px;
+    background:rgba(0,0,0,.06);user-select:none}
+  .twk-seg-thumb{position:absolute;top:2px;bottom:2px;border-radius:6px;
+    background:rgba(255,255,255,.9);box-shadow:0 1px 2px rgba(0,0,0,.12);
+    transition:left .15s cubic-bezier(.3,.7,.4,1),width .15s}
+  .twk-seg.dragging .twk-seg-thumb{transition:none}
+  .twk-seg button{appearance:none;position:relative;z-index:1;flex:1;border:0;
+    background:transparent;color:inherit;font:inherit;font-weight:500;min-height:22px;
+    border-radius:6px;cursor:default;padding:4px 6px;line-height:1.2;
+    overflow-wrap:anywhere}
+
+  .twk-toggle{position:relative;width:32px;height:18px;border:0;border-radius:999px;
+    background:rgba(0,0,0,.15);transition:background .15s;cursor:default;padding:0}
+  .twk-toggle[data-on="1"]{background:#34c759}
+  .twk-toggle i{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;
+    background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
+  .twk-toggle[data-on="1"] i{transform:translateX(14px)}
+
+  .twk-num{display:flex;align-items:center;box-sizing:border-box;min-width:0;height:26px;padding:0 0 0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;background:rgba(255,255,255,.6)}
+  .twk-num-lbl{font-weight:500;color:rgba(41,38,27,.6);cursor:ew-resize;
+    user-select:none;padding-right:8px}
+  .twk-num input{flex:1;min-width:0;height:100%;border:0;background:transparent;
+    font:inherit;font-variant-numeric:tabular-nums;text-align:right;padding:0 8px 0 0;
+    outline:none;color:inherit;-moz-appearance:textfield}
+  .twk-num input::-webkit-inner-spin-button,.twk-num input::-webkit-outer-spin-button{
+    -webkit-appearance:none;margin:0}
+  .twk-num-unit{padding-right:8px;color:rgba(41,38,27,.45)}
+
+  .twk-btn{appearance:none;height:26px;padding:0 12px;border:0;border-radius:7px;
+    background:rgba(0,0,0,.78);color:#fff;font:inherit;font-weight:500;cursor:default}
+  .twk-btn:hover{background:rgba(0,0,0,.88)}
+  .twk-btn.secondary{background:rgba(0,0,0,.06);color:inherit}
+  .twk-btn.secondary:hover{background:rgba(0,0,0,.1)}
+
+  .twk-swatch{appearance:none;-webkit-appearance:none;width:56px;height:22px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:6px;padding:0;cursor:default;
+    background:transparent;flex-shrink:0}
+  .twk-swatch::-webkit-color-swatch-wrapper{padding:0}
+  .twk-swatch::-webkit-color-swatch{border:0;border-radius:5.5px}
+  .twk-swatch::-moz-color-swatch{border:0;border-radius:5.5px}
+
+  .twk-chips{display:flex;gap:6px}
+  .twk-chip{position:relative;appearance:none;flex:1;min-width:0;height:46px;
+    padding:0;border:0;border-radius:6px;overflow:hidden;cursor:default;
+    box-shadow:0 0 0 .5px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.06);
+    transition:transform .12s cubic-bezier(.3,.7,.4,1),box-shadow .12s}
+  .twk-chip:hover{transform:translateY(-1px);
+    box-shadow:0 0 0 .5px rgba(0,0,0,.18),0 4px 10px rgba(0,0,0,.12)}
+  .twk-chip[data-on="1"]{box-shadow:0 0 0 1.5px rgba(0,0,0,.85),
+    0 2px 6px rgba(0,0,0,.15)}
+  .twk-chip>span{position:absolute;top:0;bottom:0;right:0;width:34%;
+    display:flex;flex-direction:column;box-shadow:-1px 0 0 rgba(0,0,0,.1)}
+  .twk-chip>span>i{flex:1;box-shadow:0 -1px 0 rgba(0,0,0,.1)}
+  .twk-chip>span>i:first-child{box-shadow:none}
+  .twk-chip svg{position:absolute;top:6px;left:6px;width:13px;height:13px;
+    filter:drop-shadow(0 1px 1px rgba(0,0,0,.3))}
+`;
+
+// ── useTweaks ───────────────────────────────────────────────────────────────
+// Single source of truth for tweak values. setTweak persists via the host
+// (__edit_mode_set_keys → host rewrites the EDITMODE block on disk).
+function useTweaks(defaults) {
+  const [values, setValues] = React.useState(defaults);
+  // Accepts either setTweak('key', value) or setTweak({ key: value, ... }) so a
+  // useState-style call doesn't write a "[object Object]" key into the persisted
+  // JSON block.
+  const setTweak = React.useCallback((keyOrEdits, val) => {
+    const edits = typeof keyOrEdits === 'object' && keyOrEdits !== null
+      ? keyOrEdits : { [keyOrEdits]: val };
+    setValues((prev) => ({ ...prev, ...edits }));
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*');
+    // Same-window signal so in-page listeners (deck-stage rail thumbnails)
+    // can react — the parent message only reaches the host, not peers.
+    window.dispatchEvent(new CustomEvent('tweakchange', { detail: edits }));
+  }, []);
+  return [values, setTweak];
+}
+
+// ── TweaksPanel ─────────────────────────────────────────────────────────────
+// Floating shell. Registers the protocol listener BEFORE announcing
+// availability — if the announce ran first, the host's activate could land
+// before our handler exists and the toolbar toggle would silently no-op.
+// The close button posts __edit_mode_dismissed so the host's toolbar toggle
+// flips off in lockstep; the host echoes __deactivate_edit_mode back which
+// is what actually hides the panel.
+function TweaksPanel({ title = 'Tweaks', noDeckControls = false, children }) {
+  const [open, setOpen] = React.useState(false);
+  const dragRef = React.useRef(null);
+  // Auto-inject a rail toggle when a <deck-stage> is on the page. The
+  // toggle drives the deck's per-viewer _railVisible via window message;
+  // state is mirrored from the same localStorage key the deck reads so
+  // the control reflects reality across reloads. The mechanism is the
+  // message — authors who want custom placement can post it directly
+  // and pass noDeckControls to suppress this one.
+  const hasDeckStage = React.useMemo(
+    () => typeof document !== 'undefined' && !!document.querySelector('deck-stage'),
+    [],
+  );
+  // deck-stage enables its rail in connectedCallback, but this panel can
+  // mount before that element has upgraded. The initial read catches the
+  // common case; the listener covers mounting first. (Older deck-stage.js
+  // copies still wait for the host's __omelette_rail_enabled postMessage —
+  // same listener handles those.)
+  const [railEnabled, setRailEnabled] = React.useState(
+    () => hasDeckStage && !!document.querySelector('deck-stage')?._railEnabled,
+  );
+  React.useEffect(() => {
+    if (!hasDeckStage || railEnabled) return undefined;
+    const onMsg = (e) => {
+      if (e.data && e.data.type === '__omelette_rail_enabled') setRailEnabled(true);
+    };
+    window.addEventListener('message', onMsg);
+    return () => window.removeEventListener('message', onMsg);
+  }, [hasDeckStage, railEnabled]);
+  const [railVisible, setRailVisible] = React.useState(() => {
+    try { return localStorage.getItem('deck-stage.railVisible') !== '0'; } catch (e) { return true; }
+  });
+  const toggleRail = (on) => {
+    setRailVisible(on);
+    window.postMessage({ type: '__deck_rail_visible', on }, '*');
+  };
+  const offsetRef = React.useRef({ x: 16, y: 16 });
+  const PAD = 16;
+
+  const clampToViewport = React.useCallback(() => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const w = panel.offsetWidth, h = panel.offsetHeight;
+    const maxRight = Math.max(PAD, window.innerWidth - w - PAD);
+    const maxBottom = Math.max(PAD, window.innerHeight - h - PAD);
+    offsetRef.current = {
+      x: Math.min(maxRight, Math.max(PAD, offsetRef.current.x)),
+      y: Math.min(maxBottom, Math.max(PAD, offsetRef.current.y)),
+    };
+    panel.style.right = offsetRef.current.x + 'px';
+    panel.style.bottom = offsetRef.current.y + 'px';
+  }, []);
+
+  React.useEffect(() => {
+    if (!open) return;
+    clampToViewport();
+    if (typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', clampToViewport);
+      return () => window.removeEventListener('resize', clampToViewport);
+    }
+    const ro = new ResizeObserver(clampToViewport);
+    ro.observe(document.documentElement);
+    return () => ro.disconnect();
+  }, [open, clampToViewport]);
+
+  React.useEffect(() => {
+    const onMsg = (e) => {
+      const t = e?.data?.type;
+      if (t === '__activate_edit_mode') setOpen(true);
+      else if (t === '__deactivate_edit_mode') setOpen(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+
+  const dismiss = () => {
+    setOpen(false);
+    window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+  };
+
+  const onDragStart = (e) => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const r = panel.getBoundingClientRect();
+    const sx = e.clientX, sy = e.clientY;
+    const startRight = window.innerWidth - r.right;
+    const startBottom = window.innerHeight - r.bottom;
+    const move = (ev) => {
+      offsetRef.current = {
+        x: startRight - (ev.clientX - sx),
+        y: startBottom - (ev.clientY - sy),
+      };
+      clampToViewport();
+    };
+    const up = () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseup', up);
+    };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', up);
+  };
+
+  if (!open) return null;
+  return (
+    <>
+      <style>{__TWEAKS_STYLE}</style>
+      <div ref={dragRef} className="twk-panel" data-noncommentable=""
+           style={{ right: offsetRef.current.x, bottom: offsetRef.current.y }}>
+        <div className="twk-hd" onMouseDown={onDragStart}>
+          <b>{title}</b>
+          <button className="twk-x" aria-label="Close tweaks"
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onClick={dismiss}>✕</button>
+        </div>
+        <div className="twk-body">
+          {children}
+          {hasDeckStage && railEnabled && !noDeckControls && (
+            <TweakSection label="Deck">
+              <TweakToggle label="Thumbnail rail" value={railVisible} onChange={toggleRail} />
+            </TweakSection>
+          )}
+        </div>
+      </div>
+    </>
+  );
+}
+
+// ── Layout helpers ──────────────────────────────────────────────────────────
+
+function TweakSection({ label, children }) {
+  return (
+    <>
+      <div className="twk-sect">{label}</div>
+      {children}
+    </>
+  );
+}
+
+function TweakRow({ label, value, children, inline = false }) {
+  return (
+    <div className={inline ? 'twk-row twk-row-h' : 'twk-row'}>
+      <div className="twk-lbl">
+        <span>{label}</span>
+        {value != null && <span className="twk-val">{value}</span>}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+// ── Controls ────────────────────────────────────────────────────────────────
+
+function TweakSlider({ label, value, min = 0, max = 100, step = 1, unit = '', onChange }) {
+  return (
+    <TweakRow label={label} value={`${value}${unit}`}>
+      <input type="range" className="twk-slider" min={min} max={max} step={step}
+             value={value} onChange={(e) => onChange(Number(e.target.value))} />
+    </TweakRow>
+  );
+}
+
+function TweakToggle({ label, value, onChange }) {
+  return (
+    <div className="twk-row twk-row-h">
+      <div className="twk-lbl"><span>{label}</span></div>
+      <button type="button" className="twk-toggle" data-on={value ? '1' : '0'}
+              role="switch" aria-checked={!!value}
+              onClick={() => onChange(!value)}><i /></button>
+    </div>
+  );
+}
+
+function TweakRadio({ label, value, options, onChange }) {
+  const trackRef = React.useRef(null);
+  const [dragging, setDragging] = React.useState(false);
+  // The active value is read by pointer-move handlers attached for the lifetime
+  // of a drag — ref it so a stale closure doesn't fire onChange for every move.
+  const valueRef = React.useRef(value);
+  valueRef.current = value;
+
+  // Segments wrap mid-word once per-segment width runs out. The track is
+  // ~248px (280 panel − 28 body pad − 4 seg pad), each button loses 12px
+  // to its own padding, and 11.5px system-ui averages ~6.3px/char — so 2
+  // options fit ~16 chars each, 3 fit ~10. Past that (or >3 options), fall
+  // back to a dropdown rather than wrap.
+  const labelLen = (o) => String(typeof o === 'object' ? o.label : o).length;
+  const maxLen = options.reduce((m, o) => Math.max(m, labelLen(o)), 0);
+  const fitsAsSegments = maxLen <= ({ 2: 16, 3: 10 }[options.length] ?? 0);
+  if (!fitsAsSegments) {
+    // <select> emits strings — map back to the original option value so the
+    // fallback stays type-preserving (numbers, booleans) like the segment path.
+    const resolve = (s) => {
+      const m = options.find((o) => String(typeof o === 'object' ? o.value : o) === s);
+      return m === undefined ? s : typeof m === 'object' ? m.value : m;
+    };
+    return <TweakSelect label={label} value={value} options={options}
+                        onChange={(s) => onChange(resolve(s))} />;
+  }
+  const opts = options.map((o) => (typeof o === 'object' ? o : { value: o, label: o }));
+  const idx = Math.max(0, opts.findIndex((o) => o.value === value));
+  const n = opts.length;
+
+  const segAt = (clientX) => {
+    const r = trackRef.current.getBoundingClientRect();
+    const inner = r.width - 4;
+    const i = Math.floor(((clientX - r.left - 2) / inner) * n);
+    return opts[Math.max(0, Math.min(n - 1, i))].value;
+  };
+
+  const onPointerDown = (e) => {
+    setDragging(true);
+    const v0 = segAt(e.clientX);
+    if (v0 !== valueRef.current) onChange(v0);
+    const move = (ev) => {
+      if (!trackRef.current) return;
+      const v = segAt(ev.clientX);
+      if (v !== valueRef.current) onChange(v);
+    };
+    const up = () => {
+      setDragging(false);
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+
+  return (
+    <TweakRow label={label}>
+      <div ref={trackRef} role="radiogroup" onPointerDown={onPointerDown}
+           className={dragging ? 'twk-seg dragging' : 'twk-seg'}>
+        <div className="twk-seg-thumb"
+             style={{ left: `calc(2px + ${idx} * (100% - 4px) / ${n})`,
+                      width: `calc((100% - 4px) / ${n})` }} />
+        {opts.map((o) => (
+          <button key={o.value} type="button" role="radio" aria-checked={o.value === value}>
+            {o.label}
+          </button>
+        ))}
+      </div>
+    </TweakRow>
+  );
+}
+
+function TweakSelect({ label, value, options, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <select className="twk-field" value={value} onChange={(e) => onChange(e.target.value)}>
+        {options.map((o) => {
+          const v = typeof o === 'object' ? o.value : o;
+          const l = typeof o === 'object' ? o.label : o;
+          return <option key={v} value={v}>{l}</option>;
+        })}
+      </select>
+    </TweakRow>
+  );
+}
+
+function TweakText({ label, value, placeholder, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <input className="twk-field" type="text" value={value} placeholder={placeholder}
+             onChange={(e) => onChange(e.target.value)} />
+    </TweakRow>
+  );
+}
+
+function TweakNumber({ label, value, min, max, step = 1, unit = '', onChange }) {
+  const clamp = (n) => {
+    if (min != null && n < min) return min;
+    if (max != null && n > max) return max;
+    return n;
+  };
+  const startRef = React.useRef({ x: 0, val: 0 });
+  const onScrubStart = (e) => {
+    e.preventDefault();
+    startRef.current = { x: e.clientX, val: value };
+    const decimals = (String(step).split('.')[1] || '').length;
+    const move = (ev) => {
+      const dx = ev.clientX - startRef.current.x;
+      const raw = startRef.current.val + dx * step;
+      const snapped = Math.round(raw / step) * step;
+      onChange(clamp(Number(snapped.toFixed(decimals))));
+    };
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+  return (
+    <div className="twk-num">
+      <span className="twk-num-lbl" onPointerDown={onScrubStart}>{label}</span>
+      <input type="number" value={value} min={min} max={max} step={step}
+             onChange={(e) => onChange(clamp(Number(e.target.value)))} />
+      {unit && <span className="twk-num-unit">{unit}</span>}
+    </div>
+  );
+}
+
+// Relative-luminance contrast pick — checkmarks drawn over a swatch need to
+// read on both #111 and #fafafa without per-option configuration. Hex input
+// only (#rgb / #rrggbb); named or rgb()/hsl() colors fall through to "light".
+function __twkIsLight(hex) {
+  const h = String(hex).replace('#', '');
+  const x = h.length === 3 ? h.replace(/./g, (c) => c + c) : h.padEnd(6, '0');
+  const n = parseInt(x.slice(0, 6), 16);
+  if (Number.isNaN(n)) return true;
+  const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+  return r * 299 + g * 587 + b * 114 > 148000;
+}
+
+const __TwkCheck = ({ light }) => (
+  <svg viewBox="0 0 14 14" aria-hidden="true">
+    <path d="M3 7.2 5.8 10 11 4.2" fill="none" strokeWidth="2.2"
+          strokeLinecap="round" strokeLinejoin="round"
+          stroke={light ? 'rgba(0,0,0,.78)' : '#fff'} />
+  </svg>
+);
+
+// TweakColor — curated color/palette picker. Each option is either a single
+// hex string or an array of 1-5 hex strings; the card adapts — a lone color
+// renders solid, a palette renders colors[0] as the hero (left ~2/3) with the
+// rest stacked in a sharp column on the right. onChange emits the
+// option in the shape it was passed (string stays string, array stays array).
+// Without options it falls back to the native color input for back-compat.
+function TweakColor({ label, value, options, onChange }) {
+  if (!options || !options.length) {
+    return (
+      <div className="twk-row twk-row-h">
+        <div className="twk-lbl"><span>{label}</span></div>
+        <input type="color" className="twk-swatch" value={value}
+               onChange={(e) => onChange(e.target.value)} />
+      </div>
+    );
+  }
+  // Native <input type=color> emits lowercase hex per the HTML spec, so
+  // compare case-insensitively. String() guards JSON.stringify(undefined),
+  // which returns the primitive undefined (no .toLowerCase).
+  const key = (o) => String(JSON.stringify(o)).toLowerCase();
+  const cur = key(value);
+  return (
+    <TweakRow label={label}>
+      <div className="twk-chips" role="radiogroup">
+        {options.map((o, i) => {
+          const colors = Array.isArray(o) ? o : [o];
+          const [hero, ...rest] = colors;
+          const sup = rest.slice(0, 4);
+          const on = key(o) === cur;
+          return (
+            <button key={i} type="button" className="twk-chip" role="radio"
+                    aria-checked={on} data-on={on ? '1' : '0'}
+                    aria-label={colors.join(', ')} title={colors.join(' · ')}
+                    style={{ background: hero }}
+                    onClick={() => onChange(o)}>
+              {sup.length > 0 && (
+                <span>
+                  {sup.map((c, j) => <i key={j} style={{ background: c }} />)}
+                </span>
+              )}
+              {on && <__TwkCheck light={__twkIsLight(hero)} />}
+            </button>
+          );
+        })}
+      </div>
+    </TweakRow>
+  );
+}
+
+function TweakButton({ label, onClick, secondary = false }) {
+  return (
+    <button type="button" className={secondary ? 'twk-btn secondary' : 'twk-btn'}
+            onClick={onClick}>{label}</button>
+  );
+}
+
+Object.assign(window, {
+  useTweaks, TweaksPanel, TweakSection, TweakRow,
+  TweakSlider, TweakToggle, TweakRadio, TweakSelect,
+  TweakText, TweakNumber, TweakColor, TweakButton,
+});
+
+  </script>
+  <!-- ===== icons.jsx ===== -->
+  <script type="text/babel" data-presets="react">
+/* Small Lucide-style inline SVGs as React components */
+/* eslint-disable */
+
+const Icon = ({ children, size = 16, stroke = 1.6, ...rest }) => (
+  <svg
+    width={size} height={size} viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" strokeWidth={stroke}
+    strokeLinecap="round" strokeLinejoin="round"
+    {...rest}
+  >
+    {children}
+  </svg>
+);
+
+const IPlane = (p) => <Icon {...p}><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></Icon>;
+const IBuilding = (p) => <Icon {...p}><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></Icon>;
+const IGlobe = (p) => <Icon {...p}><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></Icon>;
+const IDatabase = (p) => <Icon {...p}><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></Icon>;
+const IRss = (p) => <Icon {...p}><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></Icon>;
+const IShieldCheck = (p) => <Icon {...p}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></Icon>;
+const IUsers = (p) => <Icon {...p}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></Icon>;
+const IPackage = (p) => <Icon {...p}><path d="M16.5 9.4 7.55 4.24M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.27 6.96 8.73 5.05 8.73-5.05M12 22V12"/></Icon>;
+const ILayoutGrid = (p) => <Icon {...p}><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></Icon>;
+const IUserCheck = (p) => <Icon {...p}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m16 11 2 2 4-4"/></Icon>;
+const IMegaphone = (p) => <Icon {...p}><path d="M3 11v3a4 4 0 0 0 4 4h.39a3 3 0 0 0 2.4 1.2L21 21V3l-11.21 1.8A3 3 0 0 0 7.39 7H7a4 4 0 0 0-4 4z"/></Icon>;
+const IZap = (p) => <Icon {...p}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></Icon>;
+const IBell = (p) => <Icon {...p}><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></Icon>;
+const ICheck = (p) => <Icon {...p}><path d="m5 12 5 5L20 7"/></Icon>;
+const IClock = (p) => <Icon {...p}><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></Icon>;
+const IMapPin = (p) => <Icon {...p}><path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></Icon>;
+const ITrendingUp = (p) => <Icon {...p}><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></Icon>;
+const IChevronDown = (p) => <Icon {...p}><polyline points="6 9 12 15 18 9"/></Icon>;
+const IPause = (p) => <Icon {...p}><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></Icon>;
+const IPlay = (p) => <Icon {...p}><polygon points="5 3 19 12 5 21 5 3"/></Icon>;
+const ISparkles = (p) => <Icon {...p}><path d="m12 3-1.9 5.8L4 10l6.1 1.2L12 17l1.9-5.8L20 10l-6.1-1.2zM5 3v4M3 5h4M19 17v4M17 19h4"/></Icon>;
+const IFileText = (p) => <Icon {...p}><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></Icon>;
+const IRefreshCw = (p) => <Icon {...p}><path d="M3 12a9 9 0 0 1 15.4-6.36L21 8"/><path d="M21 3v5h-5M21 12a9 9 0 0 1-15.4 6.36L3 16"/><path d="M3 21v-5h5"/></Icon>;
+
+Object.assign(window, {
+  Icon, IPlane, IBuilding, IGlobe, IDatabase, IRss, IShieldCheck,
+  IUsers, IPackage, ILayoutGrid, IUserCheck, IMegaphone, IZap, IBell,
+  ICheck, IClock, IMapPin, ITrendingUp, IChevronDown, IPause, IPlay,
+  ISparkles, IFileText, IRefreshCw
+});
+
+  </script>
+  <!-- ===== scenarios.jsx ===== -->
+  <script type="text/babel" data-presets="react">
+/* Scenarios for the Super Operator demo */
+/* eslint-disable */
+
+const SCENARIOS = {
+  korea: {
+    country: "龙虾夜宵",
+    countryEn: "Lobster Night",
+    accent: "#3C7FFF",
+    store: "青岛登州路啤酒街",
+    storeEn: "Dengzhou Road Beer Street",
+    storeShort: "A 类餐饮终端群",
+    confidence: 92,
+    synthTitle: (
+      <>未来 <span className="hl-warm">72 小时</span> 龙虾季夜宵桌数上行 · 预估带动 <span className="hl-warm">18,000</span> 桌即饮需求</>
+    ),
+    synthSub: "本地生活平台显示龙虾套餐预订持续升温，竞品已在 3 条夜宵街加码买赠。建议立刻启动餐饮终端应对包，锁定纯生与白啤冰镇排面。",
+    metrics: [
+      { label: "预估新增桌数", num: "18,000", unit: "桌", delta: "+64%", dir: "up", sub: "vs 上周同期" },
+      { label: "预估动销机会", num: "¥6.8M", unit: "", delta: "+82%", dir: "up", sub: "保守估算" },
+      { label: "执行窗口", num: "72", unit: "h", delta: "5/29 18:00 起", dir: "neutral", sub: "周末高峰" },
+      { label: "影响终端", num: "72", unit: "店", delta: "A 类", dir: "neutral", sub: "啤酒街 / 台东" },
+    ],
+    sources: [
+      { src: "美团 / 抖音团购", label: "龙虾套餐预订 +64%", icon: "globe" },
+      { src: "业务代表巡店", label: "A 类餐饮冰柜库存低于 3 天", icon: "database" },
+      { src: "经销商进销存", label: "纯生 500ml 周转加快 31%", icon: "building" },
+      { src: "竞品价盘监测", label: "买 5 赠 1 活动扩散", icon: "shield" },
+      { src: "天气公开数据", label: "周末最高温 31℃", icon: "rss" },
+    ],
+    forecast: [
+      { day: "5/29", weekday: "周五", val: 4200, pct: 56, note: "晚市预订集中" },
+      { day: "5/30", weekday: "周六", val: 6800, pct: 90, note: "龙虾节主峰" },
+      { day: "5/31", weekday: "周日", val: 5200, pct: 70, note: "家庭聚餐" },
+      { day: "6/01", weekday: "周一", val: 1800, pct: 24, note: "尾段补货" },
+    ],
+    flow: {
+      sources: [
+        { label: "登州路", val: 8200, color: "#3C7FFF" },
+        { label: "台东夜市", val: 5600, color: "#24C3FF" },
+        { label: "奥帆商圈", val: 4200, color: "#5C3FFB" },
+      ],
+      to: { label: "青啤餐饮终端", val: 18000 },
+    },
+    sku: [
+      { name: "青岛纯生 500ml · 龙虾套餐主推", tag: "urgent", note: "Top20 门店库存 < 3 天" },
+      { name: "青岛白啤 500ml · 年轻客群加购", tag: "auto", note: "已生成补货建议 1,200 箱" },
+      { name: "经典 1903 罐装 · 外摆冰桶组合", tag: "new", note: "适合夜宵街外摆" },
+      { name: "无醇啤酒 · 司机客群备选", tag: null, note: "小批量铺货测试" },
+    ],
+    display: [
+      { name: "A 类门店冰柜第一排切换为纯生 / 白啤", tag: "urgent" },
+      { name: "龙虾套餐桌贴与冰桶贴已生成", tag: "auto" },
+      { name: "吧台增加 1903 罐装可视陈列", tag: null },
+      { name: "竞品买赠门店拉起排面防守任务", tag: "new" },
+    ],
+    bas: [
+      { name: "小李", level: "餐饮渠道", years: 6 },
+      { name: "小王", level: "夜场渠道", years: 5 },
+      { name: "小赵", level: "经销协同", years: 4 },
+      { name: "小陈", level: "陈列督导", years: 3 },
+    ],
+    baActions: [
+      { name: "周五 16 点前完成 Top20 门店补货确认", tag: "auto" },
+      { name: "业务代表巡店路线已按热度重排", tag: "auto" },
+      { name: "建议经销商追加 2 台临时冰柜", tag: null },
+    ],
+    content: [
+      { name: "龙虾季门店海报 3 版", tag: "auto" },
+      { name: "服务员推荐话术：纯生配龙虾", tag: "new" },
+      { name: "社媒短文案：周末夜宵地图", tag: "new" },
+      { name: "飞书群战报模板 · 已生成", tag: "auto" },
+    ],
+  },
+
+  thailand: {
+    country: "商超冰饮",
+    countryEn: "Chilled Retail",
+    store: "杭州湖滨商圈",
+    storeShort: "商超便利终端群",
+    confidence: 87,
+    synthTitle: (
+      <>未来 <span className="hl-warm">5 天</span> 高温拉动冰饮需求 · 预估影响 <span className="hl-warm">186</span> 家商超便利</>
+    ),
+    synthSub: "气象高温预警叠加商超周末促销档期，冰柜排面进入抢位窗口。建议前置锁定纯生、经典罐装和小瓶装组合。",
+    metrics: [
+      { label: "影响终端", num: "186", unit: "店", delta: "+31%", dir: "up", sub: "高温区门店" },
+      { label: "预估动销机会", num: "¥5.2M", unit: "", delta: "+74%", dir: "up", sub: "保守估算" },
+      { label: "执行窗口", num: "120", unit: "h", delta: "5/29 起", dir: "neutral", sub: "高温窗口" },
+      { label: "冰柜资源", num: "312", unit: "台", delta: "待锁位", dir: "neutral", sub: "商超 / 便利" },
+    ],
+    sources: [
+      { src: "天气公开数据", label: "最高温上探 34℃", icon: "rss" },
+      { src: "商超 DM", label: "啤酒促销档期提前", icon: "building" },
+      { src: "经销商进销存", label: "罐装周转 +28%", icon: "database" },
+      { src: "业务代表照片", label: "竞品占用端架 17 处", icon: "shield" },
+      { src: "门店 POS 摘要", label: "冰饮客单提升", icon: "globe" },
+    ],
+    forecast: [
+      { day: "5/29", weekday: "周五", val: 980, pct: 42, note: "备货启动" },
+      { day: "5/30", weekday: "周六", val: 1620, pct: 70, note: "高温主峰" },
+      { day: "5/31", weekday: "周日", val: 1480, pct: 64, note: "家庭囤货" },
+      { day: "6/01", weekday: "周一", val: 760, pct: 32, note: "补货复盘" },
+    ],
+    flow: { sources: [
+      { label: "湖滨商圈", val: 76, color: "#3C7FFF" },
+      { label: "城西社区", val: 58, color: "#24C3FF" },
+      { label: "滨江便利", val: 52, color: "#5C3FFB" },
+    ], to: { label: "青啤商超终端", val: 186 } },
+    sku: [
+      { name: "经典罐装 330ml · 端架主推", tag: "urgent", note: "当前端架占比不足" },
+      { name: "纯生 500ml · 冰柜第一排", tag: "auto", note: "已生成补货 900 箱" },
+      { name: "白啤 500ml · 年轻客群组合", tag: "new", note: "建议与烧烤零食联动" },
+    ],
+    display: [
+      { name: "冰柜第一排锁定青啤 3 个 SKU", tag: "urgent" },
+      { name: "商超端架海报与价签已生成", tag: "auto" },
+      { name: "竞品端架门店生成替换谈判清单", tag: "new" },
+    ],
+    bas: [
+      { name: "小沈", level: "现代渠道", years: 7 },
+      { name: "小周", level: "便利系统", years: 4 },
+      { name: "小吴", level: "陈列督导", years: 3 },
+    ],
+    baActions: [
+      { name: "Top60 门店今日完成冰柜照片回传", tag: "auto" },
+      { name: "经销商补货线路按缺货风险重排", tag: "auto" },
+      { name: "建议追加周末临促 8 人", tag: null },
+    ],
+    content: [
+      { name: "高温冰饮海报 2 版", tag: "auto" },
+      { name: "便利店收银台话术", tag: "new" },
+      { name: "飞书督办日报模板", tag: "auto" },
+    ],
+  },
+
+  russia: {
+    country: "价盘防守",
+    countryEn: "Price Defense",
+    store: "南京烧烤连锁渠道",
+    storeShort: "A 类餐饮门店",
+    confidence: 84,
+    synthTitle: (
+      <>未来 <span className="hl-warm">7 天</span> 竞品买赠加码 · 需守住 <span className="hl-warm">52</span> 家 A 类烧烤门店排面</>
+    ),
+    synthSub: "巡店照片和经销商反馈显示竞品在重点烧烤店推买赠活动，部分门店提出换排面。建议启动费用审批、陈列督办与价盘稳定组合动作。",
+    metrics: [
+      { label: "风险门店", num: "52", unit: "店", delta: "+18%", dir: "up", sub: "A 类烧烤" },
+      { label: "防守价值", num: "¥4.2M", unit: "", delta: "+46%", dir: "up", sub: "月销影响" },
+      { label: "审批窗口", num: "48", unit: "h", delta: "需加急", dir: "neutral", sub: "费用政策" },
+      { label: "经销商", num: "6", unit: "家", delta: "协同", dir: "neutral", sub: "南京区域" },
+    ],
+    sources: [
+      { src: "巡店照片识别", label: "竞品买赠露出 23 处", icon: "shield" },
+      { src: "经销商反馈", label: "Top20 门店提排面诉求", icon: "database" },
+      { src: "商超 / 餐饮价盘", label: "低价链接扩散", icon: "globe" },
+      { src: "历史动销", label: "烧烤渠道纯生贡献高", icon: "building" },
+      { src: "费用审批流", label: "剩余额度可覆盖 3 档政策", icon: "rss" },
+    ],
+    forecast: [
+      { day: "5/29", weekday: "周五", val: 18, pct: 35, note: "Top20 核查" },
+      { day: "5/30", weekday: "周六", val: 52, pct: 90, note: "全量门店回传" },
+      { day: "5/31", weekday: "周日", val: 39, pct: 67, note: "费用审批" },
+      { day: "6/01", weekday: "周一", val: 21, pct: 36, note: "复盘沉淀" },
+    ],
+    flow: { sources: [
+      { label: "新街口", val: 18, color: "#3C7FFF" },
+      { label: "江宁", val: 16, color: "#24C3FF" },
+      { label: "河西", val: 18, color: "#5C3FFB" },
+    ], to: { label: "青啤防守门店", val: 52 } },
+    sku: [
+      { name: "纯生 500ml · 核心排面防守", tag: "urgent", note: "Top20 门店优先" },
+      { name: "经典 1903 · 买赠替代组合", tag: "auto", note: "已生成 3 档政策建议" },
+      { name: "白啤 · 差异化推荐", tag: "new", note: "避开价格战" },
+    ],
+    display: [
+      { name: "门店排面照片 24 小时回传", tag: "urgent" },
+      { name: "费用政策审批单已生成", tag: "auto" },
+      { name: "经销商沟通纪要自动分派", tag: "auto" },
+    ],
+    bas: [
+      { name: "小赵", level: "餐饮渠道", years: 8 },
+      { name: "小韩", level: "价盘治理", years: 5 },
+      { name: "小刘", level: "经销协同", years: 4 },
+    ],
+    baActions: [
+      { name: "Top20 门店由资深代表当日复访", tag: "auto" },
+      { name: "价盘异常链接分派区县经理核实", tag: "auto" },
+      { name: "建议费用审批走加急通道", tag: null },
+    ],
+    content: [
+      { name: "烧烤门店老板沟通话术", tag: "new" },
+      { name: "排面防守承诺书模板", tag: "auto" },
+      { name: "价盘异常日报", tag: "auto" },
+    ],
+  },
+};
+
+window.SCENARIOS = SCENARIOS;
+
+  </script>
+  <!-- ===== operator.jsx ===== -->
+  <script type="text/babel" data-presets="react">
+/* Operator center column — Brief banner + terminal plan + rep schedule + forecast */
+/* eslint-disable */
+
+function BriefBanner({ S, executed }) {
+  return (
+    <div className="brief-banner">
+      <div className="brief-l">
+        <div className="brief-head">
+          <span className="synth-badge">
+            <ISparkles size={12} stroke={2} />
+            AI 应对包 · 已生成
+          </span>
+          <span className="synth-time">2026 / 05 / 15  ·  09:32</span>
+          <span className="synth-conf">
+            置信度 <span className="synth-conf-val">{S.confidence}%</span>
+          </span>
+        </div>
+        <h1 className="brief-title">{S.synthTitle}</h1>
+        <div className="brief-meta">
+          <span>门店 · <b>{S.store} · {S.storeShort}</b></span>
+          <span>执行窗口 · <b>5/16 14:00 — 5/20 23:00</b></span>
+          <span>融合信源 · <b>{S.sources.length} 路</b></span>
+          <span>预计 ROI · <b style={{ color: "var(--lark-teal)" }}>+82% 动销</b></span>
+        </div>
+      </div>
+      <div className="brief-r">
+        {S.metrics.map((m, i) => (
+          <div key={i} className="brief-metric">
+            <span className="brief-metric-l">{m.label}</span>
+            <span className="brief-metric-v">
+              <span className="brief-metric-num">{m.num}</span>
+              {m.unit && <span className="brief-metric-unit">{m.unit}</span>}
+            </span>
+            {m.dir === "up" ? (
+              <span className="brief-metric-delta up">▲ {m.delta}</span>
+            ) : (
+              <span className="brief-metric-delta" style={{ color: "var(--lark-fg-quiet)" }}>{m.delta}</span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Floor Plan ---------- */
+
+const FLOOR_DATA = {
+  "1F": {
+    label: "餐饮 · 夜宵街区",
+    sub: "龙虾 · 烧烤 · 小酒馆 — 即饮主战场",
+    zones: [
+      { id: "a", label: "吧台主冰柜", x: 60, y: 100, w: 160, h: 90, action: "切换纯生白啤", type: "warm", num: 1 },
+      { id: "b", label: "纯生 / 白啤", x: 240, y: 80, w: 130, h: 80, action: "冰桶增配", type: "cool", num: 2 },
+      { id: "c", label: "经典 1903", x: 240, y: 175, w: 130, h: 75, action: "上外摆位", type: "cool", num: 3 },
+      { id: "d", label: "包间区", x: 390, y: 90, w: 120, h: 110, action: "—", type: null },
+      { id: "e", label: "散台区", x: 530, y: 90, w: 110, h: 110, action: "—", type: null },
+      { id: "f", label: "外摆 · 唤醒位", x: 60, y: 210, w: 160, h: 80, action: "增加桌贴", type: "warm", num: 4 },
+      { id: "g", label: "服务员推荐", x: 390, y: 215, w: 250, h: 75, action: "业务代表驻店", type: "warm", num: 5 },
+    ],
+    // heatmap blobs (夜宵热度)
+    heat: [
+      { x: 140, y: 145, r: 60 },
+      { x: 305, y: 130, r: 50 },
+      { x: 305, y: 215, r: 40 },
+      { x: 480, y: 245, r: 60 },
+    ],
+  },
+  "2F": {
+    label: "商超 · 冰柜端架",
+    sub: "高温 · 冰饮 · 家庭囤货",
+    zones: [
+      { id: "a", label: "冰柜区", x: 60, y: 100, w: 200, h: 110, action: "—", type: null },
+      { id: "b", label: "端架堆头", x: 280, y: 90, w: 160, h: 100, action: "—", type: null },
+      { id: "c", label: "收银台", x: 460, y: 100, w: 180, h: 110, action: "—", type: null },
+      { id: "d", label: "低热度门店", x: 60, y: 230, w: 580, h: 60, action: "动销风险低 · 暂不调整", type: null },
+    ],
+    heat: [
+      { x: 160, y: 155, r: 30 },
+      { x: 360, y: 140, r: 25 },
+    ],
+  },
+};
+
+function FloorPlan({ floor, setFloor }) {
+  const data = FLOOR_DATA[floor];
+  return (
+    <div className="floor-card">
+      <div className="section-head">
+        <div className="section-head-l">
+          <div className="section-title">终端操盘视图 · {data.label}</div>
+          <div className="section-sub">{data.sub} · 红色标记 = 待执行 · 蓝色 = 已自动应用</div>
+        </div>
+        <div className="section-head-r">
+          <div className="floor-toggle">
+            <button className={floor === "1F" ? "active" : ""} onClick={() => setFloor("1F")}>餐饮夜宵</button>
+            <button className={floor === "2F" ? "active" : ""} onClick={() => setFloor("2F")}>商超冰柜</button>
+          </div>
+        </div>
+      </div>
+
+      <div className="floor-svg-wrap">
+        <svg className="floor-svg" viewBox="0 0 700 320" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <radialGradient id="heat-grad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#FE7F00" stopOpacity="0.6" />
+              <stop offset="50%" stopColor="#FE7F00" stopOpacity="0.18" />
+              <stop offset="100%" stopColor="#FE7F00" stopOpacity="0" />
+            </radialGradient>
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.025)" strokeWidth="1" />
+            </pattern>
+          </defs>
+
+          {/* grid bg */}
+          <rect width="700" height="320" fill="url(#grid)" />
+
+          {/* outer store border */}
+          <rect x="30" y="50" width="640" height="260" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.10)" />
+
+          {/* main aisle */}
+          <rect x="30" y="195" width="640" height="2" fill="rgba(255,255,255,0.06)" />
+          <text x="40" y="45" fill="rgba(255,255,255,0.40)" fontSize="11" fontFamily="Inter,sans-serif" letterSpacing="0.16em">STORE LAYOUT · {data.label.toUpperCase()}</text>
+          <text x="660" y="45" textAnchor="end" fill="rgba(255,255,255,0.30)" fontSize="10" fontFamily="Inter,sans-serif">N ↑</text>
+
+          {/* zones */}
+          {data.zones.map(z => {
+            const isAction = !!z.type;
+            const stroke = z.type === "warm" ? "#FE7F00" : z.type === "cool" ? "#33D6C0" : "rgba(255,255,255,0.18)";
+            const fill = z.type === "warm" ? "rgba(254,127,0,0.10)" : z.type === "cool" ? "rgba(51,214,192,0.08)" : "rgba(255,255,255,0.025)";
+            return (
+              <g key={z.id}>
+                <rect x={z.x} y={z.y} width={z.w} height={z.h} rx="4"
+                      fill={fill} stroke={stroke} strokeWidth={isAction ? 1.5 : 1}
+                      strokeDasharray={isAction ? "0" : "0"} />
+                {isAction && (
+                  <circle cx={z.x + 12} cy={z.y + 12} r="9"
+                          fill={z.type === "warm" ? "#FE7F00" : "#33D6C0"} />
+                )}
+                {isAction && (
+                  <text x={z.x + 12} y={z.y + 16} textAnchor="middle"
+                        fill="#0a0a0a" fontSize="11" fontWeight="700"
+                        fontFamily="Inter,sans-serif">{z.num}</text>
+                )}
+                <text x={z.x + 12 + (isAction ? 18 : 0)} y={z.y + 18}
+                      fill="rgba(255,255,255,0.85)" fontSize="12" fontWeight="500">{z.label}</text>
+                {isAction && (
+                  <text x={z.x + 12} y={z.y + z.h - 12}
+                        fill={z.type === "warm" ? "#FE7F00" : "#33D6C0"}
+                        fontSize="10.5" fontWeight="500">→ {z.action}</text>
+                )}
+              </g>
+            );
+          })}
+
+          {/* heat blobs */}
+          {data.heat.map((h, i) => (
+            <circle key={i} cx={h.x} cy={h.y} r={h.r} fill="url(#heat-grad)" />
+          ))}
+
+          {/* entrance */}
+          <g>
+            <path d="M 350 310 L 360 310 L 360 318 L 350 318 Z" fill="rgba(255,255,255,0.30)" />
+            <text x="355" y="305" textAnchor="middle" fill="rgba(255,255,255,0.55)" fontSize="9">入口</text>
+          </g>
+        </svg>
+      </div>
+
+      <div className="floor-legend">
+        <span className="floor-legend-item"><span className="legend-marker new"></span>急 · 切换 / 重置</span>
+        <span className="floor-legend-item"><span className="legend-marker boost"></span>已自动 · 唤醒上位</span>
+        <span className="floor-legend-item"><span className="legend-marker heat"></span>夜宵动销热区（历史画像）</span>
+        <span style={{ marginLeft: "auto", color: "var(--lark-fg-quiet)" }}>共 {data.zones.filter(z => z.type).length} 处需操盘</span>
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Rep Schedule ---------- */
+
+const REP_SCHEDULE = [
+  // before: { start, end (in 9..21 hours), area: "B" (B区其他) | "K" (餐饮夜宵) }
+  // after: ...
+  { name: "小金", level: "餐饮渠道", area: "餐饮",
+    before: [{ s: 1, e: 7, area: "其他", label: "其他终端" }],
+    after:  [{ s: 0, e: 5, area: "餐饮夜宵", label: "餐饮夜宵 · 主推位" }, { s: 5, e: 8, area: "餐饮夜宵", label: "1F" }] },
+  { name: "小朴", level: "餐饮渠道", area: "餐饮",
+    before: [{ s: 2, e: 9, area: "其他", label: "其他" }],
+    after:  [{ s: 1, e: 7, area: "餐饮夜宵", label: "1F · 试用台" }] },
+  { name: "小李", level: "C2", area: "餐饮",
+    before: [{ s: 0, e: 5, area: "其他", label: "其他" }],
+    after:  [{ s: 4, e: 11, area: "餐饮夜宵", label: "1F · 纯生/白啤" }] },
+  { name: "小陈", level: "B2", area: "餐饮",
+    before: [{ s: 5, e: 10, area: "其他", label: "其他" }],
+    after:  [{ s: 5, e: 11, area: "餐饮夜宵", label: "1F · 香化" }] },
+  { name: "小张", level: "—", area: "经销协同",
+    before: [{ s: 0, e: 8, area: "餐饮夜宵", label: "1F" }],
+    after:  [{ s: 0, e: 4, area: "餐饮夜宵", label: "1F" }, { s: 6, e: 10, area: "其他", label: "其他终端" }] },
+  { name: "小王", level: "—", area: "经销协同",
+    before: [{ s: 2, e: 10, area: "餐饮夜宵", label: "1F" }],
+    after:  [{ s: 2, e: 6, area: "餐饮夜宵", label: "1F" }, { s: 8, e: 12, area: "其他", label: "其他" }] },
+];
+
+function ShiftBar({ shift, idx }) {
+  const isHot = shift.area === "餐饮夜宵";
+  return (
+    <div
+      className={`ba-shift ${idx === 0 ? "before" : (isHot ? "after-hot" : "after-normal")}`}
+      style={{
+        left: `calc(${(shift.s / 13) * 100}% + 2px)`,
+        width: `calc(${((shift.e - shift.s) / 13) * 100}% - 4px)`,
+      }}
+    >
+      {shift.label}
+    </div>
+  );
+}
+
+function RepScheduleCard() {
+  const hours = Array.from({ length: 13 }, (_, i) => 9 + i); // 9..21
+  return (
+    <div className="ba-grid-card">
+      <div className="section-head">
+        <div className="section-head-l">
+          <div className="section-title">业务代表排班 · 调整前 / 后</div>
+          <div className="section-sub">4 位业务代表自动重排至餐饮夜宵重点终端 · 经销商协同补位</div>
+        </div>
+        <div className="section-head-r" style={{ fontSize: 12, color: "var(--lark-fg-quiet)" }}>
+          5/16（周五）· 09:00 — 22:00
+        </div>
+      </div>
+
+      <div className="ba-grid-head">
+        <span>人员 · 角色</span>
+        <div className="ba-hours">
+          {hours.map(h => <span key={h}>{h}时</span>)}
+        </div>
+      </div>
+
+      {REP_SCHEDULE.map((b, i) => (
+        <React.Fragment key={i}>
+          <div className="ba-row" style={{ borderBottom: 0, paddingBottom: 0 }}>
+            <div className="ba-row-name">
+              <span>{b.name}</span>
+              <span className="lvl" style={ b.area === "经销协同" ? { background: "rgba(255,255,255,0.08)", color: "var(--lark-fg-quiet)" } : null }>
+                {b.level}
+              </span>
+            </div>
+            <div className="ba-shift-track">
+              {b.before.map((sh, j) => <ShiftBar key={j} shift={sh} idx={0} />)}
+            </div>
+          </div>
+          <div className="ba-row">
+            <div style={{ paddingLeft: 12, fontSize: 11, color: "var(--lark-fg-quiet)", letterSpacing: "0.04em" }}>↳ 调整后</div>
+            <div className="ba-shift-track">
+              {b.after.map((sh, j) => <ShiftBar key={j} shift={sh} idx={j + 1} />)}
+            </div>
+          </div>
+        </React.Fragment>
+      ))}
+
+      <div className="ba-legend">
+        <span><span style={{ display: "inline-block", width: 12, height: 12, background: "rgba(255,255,255,0.08)", border: "1px dashed rgba(255,255,255,0.20)", verticalAlign: "middle", marginRight: 6 }}></span>调整前</span>
+        <span><span style={{ display: "inline-block", width: 12, height: 12, background: "linear-gradient(90deg, rgba(254,127,0,0.7), rgba(254,127,0,0.5))", border: "1px solid var(--lark-orange)", verticalAlign: "middle", marginRight: 6 }}></span>餐饮夜宵 · 重点终端</span>
+        <span><span style={{ display: "inline-block", width: 12, height: 12, background: "rgba(60,127,255,0.4)", border: "1px solid rgba(60,127,255,0.6)", verticalAlign: "middle", marginRight: 6 }}></span>其他终端域 / 补位</span>
+        <span style={{ marginLeft: "auto", color: "var(--lark-fg-soft)" }}>重点终端覆盖时长：<b style={{ color: "var(--lark-teal)" }}>+34h</b> · 已飞书通知</span>
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Forecast ---------- */
+
+function ForecastCard({ S }) {
+  return (
+    <div className="forecast-mini-card">
+      <div className="section-head">
+        <div className="section-head-l">
+          <div className="section-title">逐日动销预测 · 多源融合</div>
+          <div className="section-sub">本地生活 + 巡店 + 经销商进销存 + 历史动销 · 滚动更新</div>
+        </div>
+        <div className="section-head-r" style={{ fontSize: 12, color: "var(--lark-fg-quiet)" }}>
+          预测窗口 5 日
+        </div>
+      </div>
+
+      <div className="forecast">
+        {S.forecast.map((f, i) => (
+          <div key={i} className="forecast-row">
+            <div>
+              <div className="forecast-day">{f.day}</div>
+              <div className="forecast-day-sub">{f.weekday}</div>
+            </div>
+            <div className="forecast-bar-track">
+              <div className="forecast-bar" style={{ width: `${f.pct}%` }}></div>
+            </div>
+            <div className="forecast-num">{f.val.toLocaleString()}</div>
+            <div className="forecast-source">{f.note}</div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ marginTop: 14, paddingTop: 12, borderTop: "1px dashed rgba(255,255,255,0.06)", display: "flex", flexWrap: "wrap", gap: 8 }}>
+        <span style={{ fontSize: 11, color: "var(--lark-fg-quiet)", letterSpacing: "0.10em", textTransform: "uppercase", alignSelf: "center", marginRight: 4 }}>融合信源</span>
+        {S.sources.map((s, i) => (
+          <span key={i} className="source-chip">
+            <span className="source-chip-dot"></span>
+            <span style={{ color: "var(--lark-fg-white)", fontWeight: 500 }}>{s.src}</span>
+            <span style={{ color: "var(--lark-fg-quiet)" }}>· {s.label}</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function OperatorCenter({ S, executed, timeline }) {
+  const [floor, setFloor] = useState("1F");
+  return (
+    <main className="col col-center">
+      <FloorPlan floor={floor} setFloor={setFloor} />
+      <RepScheduleCard />
+      <ForecastCard S={S} />
+
+      {executed && (
+        <div className="timeline">
+          <div className="timeline-head">▌执行回路 · 已自动触发</div>
+          {timeline.map((t, i) => (
+            <div key={i} className="timeline-row">
+              <span className="timeline-time">{t.time}</span>
+              <span className="timeline-dot"></span>
+              <span>{t.text}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </main>
+  );
+}
+
+window.BriefBanner = BriefBanner;
+window.OperatorCenter = OperatorCenter;
+
+  </script>
+  <!-- ===== response.jsx ===== -->
+  <script type="text/babel" data-presets="react">
+/* Right column — Operator (操盘员) response package */
+/* eslint-disable */
+
+function PackItem({ name, tag, note, checked, onToggle }) {
+  return (
+    <div className="pack-item">
+      <span
+        className={`pack-item-check ${checked ? "checked" : ""}`}
+        onClick={onToggle}
+        role="checkbox"
+        aria-checked={checked}
+      >
+        {checked && <ICheck size={11} stroke={3} />}
+      </span>
+      <div className="pack-item-text">
+        {name}
+        {note && <div style={{ fontSize: 11, color: "var(--lark-fg-quiet)", marginTop: 3, fontWeight: 400 }}>{note}</div>}
+      </div>
+      {tag && (
+        <span className={`pack-item-tag ${tag}`}>
+          {tag === "urgent" ? "急" : tag === "auto" ? "已自动" : "新增"}
+        </span>
+      )}
+    </div>
+  );
+}
+
+function PackCard({ icon: Ico, accent, title, sub, count, children }) {
+  return (
+    <div className="pack-card">
+      <div className="pack-head">
+        <div className={`pack-icon ${accent}`}>
+          <Ico size={18} stroke={1.8} />
+        </div>
+        <div className="pack-title-wrap">
+          <div className="pack-title">{title}</div>
+          <div className="pack-title-sub">{sub}</div>
+        </div>
+        <span className="pack-count">{count}</span>
+      </div>
+      <div className="pack-body">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function ResponseColumn({ S, checks, setChecks }) {
+  const toggle = (k) => setChecks(prev => ({ ...prev, [k]: !prev[k] }));
+
+  return (
+    <aside className="col col-response">
+      <div className="col-header">
+        <div className="col-header-l">
+          <div>
+            <div className="col-eyebrow">Module · Operator</div>
+            <div className="col-title">超级操盘员 · 应对包</div>
+          </div>
+        </div>
+        <span className="role-pill operator"><span className="pill-dot"></span>待店长审批</span>
+      </div>
+
+      <div style={{ padding: "0 22px 8px", fontSize: 13, color: "var(--lark-fg-soft)", lineHeight: 1.6 }}>
+        AI 已基于「{S.country}应对包」生成 <span style={{ color: "var(--lark-cyan)", fontWeight: 600 }}>{S.sku.length + S.display.length + S.baActions.length + S.content.length} 项</span> 具体动作，<span style={{ color: "var(--lark-teal)" }}>{Object.values(checks).filter(Boolean).length} 项</span> 已选中待执行
+      </div>
+
+      <div className="response-list">
+
+        <PackCard
+          icon={IPackage}
+          accent="sku"
+          title="备货组合调整"
+          sub={`核心 SKU · 库存核查 · ${S.sku.length} 项建议`}
+          count={`${S.sku.length}`}
+        >
+          {S.sku.map((it, i) => (
+            <PackItem
+              key={`sku-${i}`}
+              name={it.name}
+              tag={it.tag}
+              note={it.note}
+              checked={!!checks[`sku-${i}`]}
+              onToggle={() => toggle(`sku-${i}`)}
+            />
+          ))}
+        </PackCard>
+
+        <PackCard
+          icon={ILayoutGrid}
+          accent="display"
+          title="陈列 / 物料调整"
+          sub={`堆头 · 价签 · 试用台 · ${S.display.length} 项建议`}
+          count={`${S.display.length}`}
+        >
+          {S.display.map((it, i) => (
+            <PackItem
+              key={`disp-${i}`}
+              name={it.name}
+              tag={it.tag}
+              checked={!!checks[`disp-${i}`]}
+              onToggle={() => toggle(`disp-${i}`)}
+            />
+          ))}
+        </PackCard>
+
+        <PackCard
+          icon={IUserCheck}
+          accent="ba"
+          title="业务代表调度 · 话术包"
+          sub={`对应业务代表 ${S.bas.length} 人 · 路线 + 督办`}
+          count={`${S.baActions.length}`}
+        >
+          <div className="ba-chips">
+            {S.bas.map((b, i) => (
+              <span key={i} className="ba-chip">
+                <span className="ba-chip-avatar">{b.name.slice(-1)}</span>
+                <span style={{ fontWeight: 500 }}>{b.name}</span>
+                <span style={{ color: "var(--lark-fg-quiet)", fontSize: 11 }}>{b.level} · {b.years}y</span>
+              </span>
+            ))}
+          </div>
+          {S.baActions.map((it, i) => (
+            <PackItem
+              key={`ba-${i}`}
+              name={it.name}
+              tag={it.tag}
+              checked={!!checks[`ba-${i}`]}
+              onToggle={() => toggle(`ba-${i}`)}
+            />
+          ))}
+        </PackCard>
+
+        <PackCard
+          icon={IMegaphone}
+          accent="content"
+          title="配套物料 / 内容"
+          sub={`门店海报 · 话术 · 战报 · ${S.content.length} 项建议`}
+          count={`${S.content.length}`}
+        >
+          {S.content.map((it, i) => (
+            <PackItem
+              key={`ct-${i}`}
+              name={it.name}
+              tag={it.tag}
+              checked={!!checks[`ct-${i}`]}
+              onToggle={() => toggle(`ct-${i}`)}
+            />
+          ))}
+        </PackCard>
+
+        <div style={{ marginTop: 4, padding: "12px 14px", borderRadius: 10, background: "rgba(36,195,255,0.05)", border: "1px solid rgba(36,195,255,0.20)", display: "flex", alignItems: "center", gap: 10, fontSize: 12, color: "var(--lark-fg-soft)" }}>
+          <IClock size={14} />
+          <span>落地 48 小时后 AI 自动复盘：销量命中率 · 主推 SKU 动销 · 终端执行率 · 沉淀至下一次</span>
+        </div>
+      </div>
+    </aside>
+  );
+}
+
+window.ResponseColumn = ResponseColumn;
+
+  </script>
+  <!-- ===== review.jsx ===== -->
+  <script type="text/babel" data-presets="react">
+/* 复盘沉淀 — Review & Sediment page */
+/* eslint-disable */
+
+const REVIEW_SUMMARY = {
+  total: 12,
+  hitRate: 87.3,
+  gmvLift: 76,
+  knowledge: 243,
+};
+
+const REVIEW_CASES = [
+  {
+    id: "k-may01",
+    title: "龙虾夜宵应对 · 5/1 — 5/4",
+    store: "青岛登州路",
+    status: "done",
+    statusLabel: "已复盘",
+    hitPct: 103,
+    gmvLift: 89,
+    gmvLiftExpected: 82,
+    predicted: 3800,
+    actual: 3924,
+    spentH: 96,
+    skus: 14,
+    summary: "免签政策窗口·五一假期叠加。Whoo / 雪花秀双组合主推，整体跑赢预期。",
+    learnings: [
+      { tag: "信号优", text: "「本地生活热榜」信号 4 月底起就出现，但被列为 mid。下次应升 high。" },
+      { tag: "SKU 优", text: "Whoo 后秘贴礼盒在团客中转化高于预期 22%，应自动加大主推权重。" },
+      { tag: "无效", text: "B 区灯光色温 3000K 调整对 动销 影响 < 3%，下次可省略。" },
+      { tag: "新知识", text: "30s 餐饮广播稿转化比 60s 版本高 1.4×，已沉淀为默认模板。" },
+    ],
+    sources: [
+      { name: "本地生活平台", acc: 98 },
+      { name: "业务代表巡店", acc: 96 },
+      { name: "经销商进销存", acc: 91 },
+      { name: "本地生活热榜", acc: 84 },
+      { name: "青啤终端档案", acc: 99 },
+    ],
+  },
+  {
+    id: "t-apr12",
+    title: "商超冰饮应对 · 4/12 — 4/16",
+    store: "青岛登州路",
+    status: "done",
+    statusLabel: "已复盘",
+    hitPct: 94,
+    gmvLift: 68,
+    gmvLiftExpected: 74,
+    predicted: 2900,
+    actual: 2726,
+    spentH: 120,
+    skus: 11,
+    summary: "BKK 直飞复航首周。彩妆品类爆发，但戴森体验台未达预期。",
+    learnings: [
+      { tag: "偏差", text: "商超客对戴森的预期偏高，实际成交集中在 1,500 价位以下的香化。" },
+      { tag: "SKU 优", text: "迪奥 999 + 兰蔻小黑瓶组合贡献 41% 动销，已自动写入商超客模板。" },
+      { tag: "新知识", text: "社区团购 帖热度与到店间隔约 9-14 天，下次可前置触发。" },
+    ],
+    sources: [
+      { name: "本地生活平台", acc: 99 },
+      { name: "业务代表巡店", acc: 95 },
+      { name: "经销商进销存", acc: 88 },
+      { name: "社区团购 论坛", acc: 79 },
+      { name: "青啤终端档案", acc: 98 },
+    ],
+  },
+  {
+    id: "r-mar08",
+    title: "价盘防守应对 · 3/8 — 3/14",
+    store: "青岛登州路",
+    status: "done",
+    statusLabel: "已复盘",
+    hitPct: 91,
+    gmvLift: 132,
+    gmvLiftExpected: 128,
+    predicted: 2100,
+    actual: 1916,
+    spentH: 168,
+    skus: 9,
+    summary: "首批俄籍 VIP 包机抵达。腕表 + 干邑超预期，珠宝偏弱。",
+    learnings: [
+      { tag: "SKU 优", text: "卡地亚蓝气球 36mm 是价盘风险门店新偏好（去年同期为 41mm），已写入价盘风险门店模板。" },
+      { tag: "新知识", text: "价盘风险门店平均决策时长 4.2× 夜宵客，代表沟通节奏需稳、店老板复访频次高。" },
+      { tag: "信号优", text: "巡店照片 信源对预测贡献度仅 11%，可降权或与 Telegram 合并。" },
+    ],
+    sources: [
+      { name: "本地生活平台", acc: 97 },
+      { name: "业务代表巡店", acc: 92 },
+      { name: "经销商进销存", acc: 87 },
+      { name: "巡店照片 社交", acc: 71 },
+      { name: "青啤终端档案", acc: 99 },
+    ],
+  },
+  {
+    id: "k-feb20",
+    title: "龙虾夜宵应对 · 2/20 — 2/24",
+    store: "青岛登州路",
+    status: "done",
+    statusLabel: "已复盘",
+    hitPct: 82,
+    gmvLift: 58,
+    gmvLiftExpected: 78,
+    predicted: 4200,
+    actual: 3444,
+    spentH: 120,
+    skus: 13,
+    summary: "首次试点。整体跑通但信号源接入不全，实际到店低于预测。",
+    learnings: [
+      { tag: "偏差", text: "未接入 本地生活 信源，导致团客取消未被识别，预测高估 18%。" },
+      { tag: "新知识", text: "夜宵客春节后两周为低谷，模型需考虑节假日衰减系数。" },
+    ],
+    sources: [
+      { name: "本地生活平台", acc: 96 },
+      { name: "业务代表巡店", acc: 88 },
+      { name: "经销商进销存", acc: 81 },
+      { name: "青啤终端档案", acc: 98 },
+    ],
+  },
+];
+
+const KNOWLEDGE_NUGGETS = [
+  { cat: "SKU", icon: "package", text: "Whoo 后秘贴礼盒 · 夜宵客团客转化系数 1.22×", confidence: 96, hits: 7 },
+  { cat: "SKU", icon: "package", text: "迪奥 999 + 兰蔻小黑瓶 · 商超客组合优先级最高", confidence: 91, hits: 3 },
+  { cat: "代表", icon: "user", text: "重点终端代表覆盖每 +1h ≈ 动销 +¥18K", confidence: 88, hits: 9 },
+  { cat: "陈列", icon: "grid", text: "B 区灯光色温调整对 动销 影响 < 3% · 可省略", confidence: 82, hits: 4 },
+  { cat: "物料", icon: "speaker", text: "30s 餐饮广播稿转化 > 60s 版本 1.4×", confidence: 94, hits: 6 },
+  { cat: "信号", icon: "rss", text: "本地生活热榜 → 到店 · 平均提前 12 天", confidence: 87, hits: 5 },
+  { cat: "信号", icon: "rss", text: "社区团购 帖热度 → 商超客到店 · 9—14 天间隔", confidence: 79, hits: 2 },
+  { cat: "客群", icon: "users", text: "价盘风险门店决策时长 ≈ 4.2× 夜宵客 · 代表复访节奏需放缓", confidence: 92, hits: 5 },
+];
+
+const SOURCE_ACCURACY = [
+  { name: "本地生活平台 · 餐饮热榜", acc: 97.8, n: 12 },
+  { name: "青啤终端档案 · 历史画像", acc: 98.4, n: 12 },
+  { name: "业务代表巡店", acc: 93.2, n: 12 },
+  { name: "携程 / 飞猪 B 端", acc: 88.7, n: 11 },
+  { name: "龙虾夜宵热榜", acc: 84.5, n: 6 },
+  { name: "社区团购 商超冰饮论坛", acc: 79.1, n: 3 },
+  { name: "巡店照片 / 价盘防守社交", acc: 71.3, n: 4 },
+  { name: "微博 / 小红书 舆情", acc: 76.8, n: 9 },
+];
+
+function StatusPill({ status, label }) {
+  const map = {
+    done: { c: "var(--lark-teal)", b: "rgba(51,214,192,0.10)", bd: "rgba(51,214,192,0.30)" },
+    live: { c: "var(--lark-orange)", b: "rgba(254,127,0,0.10)", bd: "rgba(254,127,0,0.30)" },
+  };
+  const s = map[status] || map.done;
+  return (
+    <span style={{
+      display: "inline-flex", alignItems: "center", gap: 6,
+      padding: "3px 9px", borderRadius: 999,
+      background: s.b, border: `1px solid ${s.bd}`, color: s.c,
+      fontSize: 11, fontWeight: 600, letterSpacing: "0.04em"
+    }}>
+      <span style={{ width: 6, height: 6, borderRadius: "50%", background: s.c }}></span>
+      {label}
+    </span>
+  );
+}
+
+function CaseCard({ c, active, onClick }) {
+  return (
+    <div
+      className={`case-card ${active ? "active" : ""}`}
+      onClick={onClick}
+    >
+      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+        <StatusPill status={c.status} label={c.statusLabel} />
+        <span style={{ fontSize: 11, color: "var(--lark-fg-quiet)" }}>{c.store}</span>
+      </div>
+      <div style={{ fontSize: 15, fontWeight: 600, color: "var(--lark-fg-white)", marginBottom: 8, lineHeight: 1.35 }}>
+        {c.title}
+      </div>
+      <div style={{ fontSize: 12, color: "var(--lark-fg-soft)", lineHeight: 1.5, marginBottom: 12 }}>
+        {c.summary}
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, paddingTop: 12, borderTop: "1px dashed rgba(255,255,255,0.06)" }}>
+        <div>
+          <div style={{ fontSize: 10, color: "var(--lark-fg-quiet)", letterSpacing: "0.04em" }}>命中率</div>
+          <div style={{ fontSize: 16, fontWeight: 700, color: c.hitPct >= 95 ? "var(--lark-teal)" : c.hitPct >= 85 ? "var(--lark-fg-white)" : "var(--lark-orange)", fontVariantNumeric: "tabular-nums" }}>{c.hitPct}%</div>
+        </div>
+        <div>
+          <div style={{ fontSize: 10, color: "var(--lark-fg-quiet)", letterSpacing: "0.04em" }}>动销 提升</div>
+          <div style={{ fontSize: 16, fontWeight: 700, color: "var(--lark-fg-white)", fontVariantNumeric: "tabular-nums" }}>
+            +{c.gmvLift}<span style={{ fontSize: 11, color: "var(--lark-fg-soft)" }}>%</span>
+          </div>
+        </div>
+        <div>
+          <div style={{ fontSize: 10, color: "var(--lark-fg-quiet)", letterSpacing: "0.04em" }}>沉淀</div>
+          <div style={{ fontSize: 16, fontWeight: 700, color: "var(--lark-cyan)", fontVariantNumeric: "tabular-nums" }}>
+            {c.learnings.length}<span style={{ fontSize: 11, color: "var(--lark-fg-soft)" }}> 条</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CaseDetail({ c }) {
+  const learnColor = (tag) => {
+    if (tag === "SKU 优" || tag === "信号优") return "var(--lark-teal)";
+    if (tag === "偏差" || tag === "无效") return "var(--lark-orange)";
+    if (tag === "新知识") return "var(--lark-cyan)";
+    return "var(--lark-fg-soft)";
+  };
+
+  return (
+    <div className="case-detail">
+      <div style={{ display: "flex", alignItems: "flex-start", gap: 16, paddingBottom: 22, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+        <div style={{ flex: 1 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+            <StatusPill status={c.status} label={c.statusLabel} />
+            <span style={{ fontSize: 13, color: "var(--lark-fg-quiet)" }}>{c.store}</span>
+          </div>
+          <h2 style={{ fontSize: 24, fontWeight: 600, color: "var(--lark-fg-white)", margin: "0 0 6px", letterSpacing: "0.005em" }}>{c.title}</h2>
+          <div style={{ fontSize: 13, color: "var(--lark-fg-soft)", lineHeight: 1.55 }}>{c.summary}</div>
+        </div>
+        <button className="btn btn-secondary" style={{ padding: "8px 14px", fontSize: 13 }}>
+          <IFileText size={13} />
+          导出报告
+        </button>
+      </div>
+
+      {/* metrics row */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 0, marginTop: 18, padding: "16px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+        <div className="detail-metric">
+          <div className="detail-metric-l">预测到店</div>
+          <div className="detail-metric-v">{c.predicted.toLocaleString()}<span className="u">人</span></div>
+        </div>
+        <div className="detail-metric">
+          <div className="detail-metric-l">实际到店</div>
+          <div className="detail-metric-v">{c.actual.toLocaleString()}<span className="u">人</span></div>
+        </div>
+        <div className="detail-metric">
+          <div className="detail-metric-l">命中率</div>
+          <div className="detail-metric-v" style={{ color: c.hitPct >= 95 ? "var(--lark-teal)" : "var(--lark-fg-white)" }}>{c.hitPct}<span className="u">%</span></div>
+        </div>
+        <div className="detail-metric">
+          <div className="detail-metric-l">实际 动销 提升</div>
+          <div className="detail-metric-v" style={{ color: "var(--lark-teal)" }}>+{c.gmvLift}<span className="u">%</span></div>
+          <div style={{ fontSize: 10, color: "var(--lark-fg-quiet)", marginTop: 2 }}>预期 +{c.gmvLiftExpected}%</div>
+        </div>
+        <div className="detail-metric">
+          <div className="detail-metric-l">沉淀知识</div>
+          <div className="detail-metric-v" style={{ color: "var(--lark-cyan)" }}>{c.learnings.length}<span className="u">条</span></div>
+        </div>
+      </div>
+
+      {/* learnings */}
+      <div style={{ marginTop: 20 }}>
+        <div className="section-title" style={{ marginBottom: 12, fontSize: 16 }}>AI 沉淀 · 学习要点</div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          {c.learnings.map((l, i) => (
+            <div key={i} className="learn-row">
+              <span className="learn-tag" style={{ color: learnColor(l.tag), borderColor: `${learnColor(l.tag)}66`, background: `${learnColor(l.tag)}1a` }}>
+                {l.tag}
+              </span>
+              <span className="learn-text">{l.text}</span>
+              <span className="learn-status">
+                <ICheck size={12} stroke={2.4} />
+                已写入模板
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* sources */}
+      <div style={{ marginTop: 22 }}>
+        <div className="section-title" style={{ marginBottom: 12, fontSize: 16 }}>信源准确率 · 本次</div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+          {c.sources.map((s, i) => (
+            <div key={i} style={{ display: "grid", gridTemplateColumns: "200px 1fr 60px", alignItems: "center", gap: 12, fontSize: 13, padding: "4px 0" }}>
+              <span style={{ color: "var(--lark-fg-white)", fontWeight: 500 }}>{s.name}</span>
+              <div style={{ height: 6, background: "rgba(255,255,255,0.05)", borderRadius: 3, position: "relative" }}>
+                <div style={{
+                  position: "absolute", left: 0, top: 0, bottom: 0,
+                  width: `${s.acc}%`,
+                  background: s.acc > 92 ? "linear-gradient(90deg, var(--lark-teal), var(--lark-cyan))"
+                            : s.acc > 80 ? "linear-gradient(90deg, var(--lark-blue), var(--lark-cyan))"
+                            : "linear-gradient(90deg, var(--lark-orange), var(--lark-warning))",
+                  borderRadius: 3
+                }}></div>
+              </div>
+              <span style={{ textAlign: "right", fontSize: 13, fontWeight: 600, color: "var(--lark-fg-white)", fontVariantNumeric: "tabular-nums" }}>{s.acc}%</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function KnowledgeNugget({ k }) {
+  return (
+    <div className="nugget">
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
+        <span style={{ fontSize: 10, padding: "2px 6px", borderRadius: 4, background: "rgba(36,195,255,0.12)", color: "var(--lark-cyan)", letterSpacing: "0.04em", fontWeight: 600 }}>{k.cat}</span>
+        <span style={{ fontSize: 10, color: "var(--lark-fg-quiet)" }}>命中 {k.hits} 次</span>
+      </div>
+      <div style={{ fontSize: 13, color: "var(--lark-fg-white)", fontWeight: 500, lineHeight: 1.4, marginBottom: 8 }}>
+        {k.text}
+      </div>
+      <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 11, color: "var(--lark-fg-quiet)" }}>
+        <span>置信度</span>
+        <div style={{ flex: 1, height: 4, background: "rgba(255,255,255,0.06)", borderRadius: 2 }}>
+          <div style={{ width: `${k.confidence}%`, height: "100%", background: "var(--lark-teal)", borderRadius: 2 }}></div>
+        </div>
+        <span style={{ color: "var(--lark-teal)", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{k.confidence}%</span>
+      </div>
+    </div>
+  );
+}
+
+function ReviewPage() {
+  const [selected, setSelected] = useState(REVIEW_CASES[0].id);
+  const cur = REVIEW_CASES.find(c => c.id === selected);
+
+  return (
+    <div className="review-page">
+      {/* Summary banner */}
+      <div className="review-banner">
+        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+          <span className="col-eyebrow">Module · Review & Sediment</span>
+          <h1 style={{ fontSize: 28, fontWeight: 600, color: "var(--lark-fg-white)", margin: 0, letterSpacing: "0.005em" }}>
+            复盘沉淀 · AI 学习库
+          </h1>
+          <span style={{ fontSize: 13, color: "var(--lark-fg-soft)" }}>每一次操盘的结果回写入知识库，下一次更准、更快、更省人。</span>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, auto)", gap: 0 }}>
+          <div className="brief-metric">
+            <span className="brief-metric-l">累计应对场景</span>
+            <span className="brief-metric-v"><span className="brief-metric-num">{REVIEW_SUMMARY.total}</span><span className="brief-metric-unit">次</span></span>
+            <span className="brief-metric-delta up">▲ 4 vs 上季</span>
+          </div>
+          <div className="brief-metric">
+            <span className="brief-metric-l">平均预测命中率</span>
+            <span className="brief-metric-v"><span className="brief-metric-num">{REVIEW_SUMMARY.hitRate}</span><span className="brief-metric-unit">%</span></span>
+            <span className="brief-metric-delta up">▲ +5.2pts</span>
+          </div>
+          <div className="brief-metric">
+            <span className="brief-metric-l">平均 动销 提升</span>
+            <span className="brief-metric-v"><span className="brief-metric-num">+{REVIEW_SUMMARY.gmvLift}</span><span className="brief-metric-unit">%</span></span>
+            <span className="brief-metric-delta up">▲ +18pts</span>
+          </div>
+          <div className="brief-metric">
+            <span className="brief-metric-l">沉淀知识点</span>
+            <span className="brief-metric-v"><span className="brief-metric-num">{REVIEW_SUMMARY.knowledge}</span><span className="brief-metric-unit">条</span></span>
+            <span className="brief-metric-delta up">▲ +18 本月</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="review-body">
+        {/* Left: case list */}
+        <aside className="review-cases">
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
+            <div className="section-title" style={{ fontSize: 16 }}>历次应对 · 案例库</div>
+            <span style={{ fontSize: 11, color: "var(--lark-fg-quiet)" }}>{REVIEW_CASES.length} 例 · 最近 90 天</span>
+          </div>
+          {REVIEW_CASES.map(c => (
+            <CaseCard key={c.id} c={c} active={c.id === selected} onClick={() => setSelected(c.id)} />
+          ))}
+        </aside>
+
+        {/* Center: case detail */}
+        <main className="review-detail-wrap">
+          <CaseDetail c={cur} />
+        </main>
+
+        {/* Right: knowledge sediment */}
+        <aside className="review-sediment">
+          <div className="section-title" style={{ fontSize: 16, marginBottom: 6 }}>知识沉淀 · TOP 命中</div>
+          <div style={{ fontSize: 11, color: "var(--lark-fg-quiet)", marginBottom: 14 }}>跨场景验证有效的规则，会自动写入下一次操盘模板</div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 22 }}>
+            {KNOWLEDGE_NUGGETS.map((k, i) => <KnowledgeNugget key={i} k={k} />)}
+          </div>
+
+          <div className="section-title" style={{ fontSize: 16, marginBottom: 6 }}>信源准确率 · 历史</div>
+          <div style={{ fontSize: 11, color: "var(--lark-fg-quiet)", marginBottom: 14 }}>每次复盘都会回写信源权重</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            {SOURCE_ACCURACY.map((s, i) => (
+              <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 80px 50px", alignItems: "center", gap: 8, fontSize: 12, padding: "4px 0" }}>
+                <span style={{ color: "var(--lark-fg-white)", fontWeight: 500, fontSize: 12 }}>{s.name}</span>
+                <div style={{ height: 5, background: "rgba(255,255,255,0.05)", borderRadius: 3 }}>
+                  <div style={{
+                    width: `${s.acc}%`, height: "100%",
+                    background: s.acc > 92 ? "var(--lark-teal)" : s.acc > 80 ? "var(--lark-blue)" : "var(--lark-orange)",
+                    borderRadius: 3
+                  }}></div>
+                </div>
+                <span style={{ textAlign: "right", color: "var(--lark-fg-white)", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{s.acc}%</span>
+              </div>
+            ))}
+          </div>
+        </aside>
+      </div>
+    </div>
+  );
+}
+
+window.ReviewPage = ReviewPage;
+
+  </script>
+  <!-- ===== app.jsx ===== -->
+  <script type="text/babel" data-presets="react">
+/* Main app shell */
+/* eslint-disable */
+
+const { useState, useEffect, useMemo, useRef } = React;
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "scenario": "korea",
+  "showSubBar": true,
+  "compactSignals": false,
+  "showSpeakerHints": false
+}/*EDITMODE-END*/;
+
+function useClock() {
+  const [t, setT] = useState(() => new Date());
+  useEffect(() => {
+    const id = setInterval(() => setT(new Date()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  const pad = n => String(n).padStart(2, "0");
+  return `2026-05-15  ${pad(t.getHours())}:${pad(t.getMinutes())}:${pad(t.getSeconds())}`;
+}
+
+function Topbar() {
+  const clock = useClock();
+  return (
+    <div className="topbar">
+      <div className="brand">
+        <div className="brand-logo" style={{display:"flex",alignItems:"center",justifyContent:"center",fontWeight:800,color:"#0A63C7",fontSize:14}}>青啤</div>
+        <div className="brand-text">
+          <span className="brand-name-zh">青岛啤酒</span>
+          <span className="brand-name-en">Tsingtao Brewery</span>
+        </div>
+      </div>
+
+      <div className="product-title">
+        <span className="product-title-zh">超级操作员控制台</span>
+        <span className="product-title-tag">TSINGTAO · AI Operator</span>
+      </div>
+
+      <div className="topbar-spacer"></div>
+
+      <div className="topbar-meta">
+        <span className="live-pulse">
+          <span className="live-dot"></span>
+          实时信号 · 接入 12 路
+        </span>
+        <span className="topbar-clock">{clock}</span>
+        <span className="topbar-user">
+          <span className="topbar-avatar">范</span>
+          <span>李海峰 · 青岛啤酒</span>
+          <IChevronDown size={14} stroke={2} />
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function SubBar({ S, tab, setTab }) {
+  const tabs = [
+    { k: "ops", label: "终端操盘", badge: 4 },
+    { k: "review", label: "复盘沉淀" },
+    { k: "library", label: "知识库" },
+    { k: "logs", label: "执行日志" },
+  ];
+  return (
+    <div className="subbar">
+      {tabs.map(t => (
+        <span
+          key={t.k}
+          className={`subbar-tab ${tab === t.k ? "active" : ""}`}
+          onClick={() => setTab(t.k)}
+        >
+          {t.label}
+          {t.badge && <span className="tab-badge">{t.badge}</span>}
+          {t.dot && <span className="tab-dot"></span>}
+        </span>
+      ))}
+
+      <div className="subbar-store">
+        <span style={{ color: "var(--lark-fg-quiet)" }}>当前场景</span>
+        <span className="subbar-store-chip">
+          <IMapPin size={12} />
+          {S.store} · {S.storeShort}
+          <IChevronDown size={12} stroke={2} />
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function ConfirmModal({ S, checks, onClose, onConfirm }) {
+  const counts = useMemo(() => {
+    let sku = 0, disp = 0, ba = 0, ct = 0;
+    Object.entries(checks).forEach(([k, v]) => {
+      if (!v) return;
+      if (k.startsWith("sku-")) sku++;
+      else if (k.startsWith("disp-")) disp++;
+      else if (k.startsWith("ba-")) ba++;
+      else if (k.startsWith("ct-")) ct++;
+    });
+    return { sku, disp, ba, ct, total: sku + disp + ba + ct };
+  }, [checks]);
+
+  return (
+    <div className="modal-backdrop" onClick={onClose}>
+      <div className="modal" onClick={e => e.stopPropagation()}>
+        <h2 className="modal-title">飞书审批 · 一键下发</h2>
+        <p className="modal-sub">将向 {S.store} 店长 <b style={{ color: "var(--lark-fg-white)" }}>李海涛</b> 发起飞书审批，通过后各动作自动分发至对应责任人。</p>
+
+        <div className="modal-summary">
+          <div className="modal-summary-row"><span className="lbl">客群目标</span><span className="val">{S.country}客群 · 未来 72h 预估 {S.metrics[0].num} 人</span></div>
+          <div className="modal-summary-row"><span className="lbl">选品调整</span><span className="val">{counts.sku} 项</span></div>
+          <div className="modal-summary-row"><span className="lbl">陈列 / 物料</span><span className="val">{counts.disp} 项</span></div>
+          <div className="modal-summary-row"><span className="lbl">代表调度</span><span className="val">{counts.ba} 项</span></div>
+          <div className="modal-summary-row"><span className="lbl">内容 / 落地页</span><span className="val">{counts.ct} 项</span></div>
+          <div className="modal-summary-row" style={{ paddingTop: 8, borderTop: "1px dashed rgba(255,255,255,0.10)", marginTop: 4 }}>
+            <span className="lbl">合计动作</span>
+            <span className="val" style={{ color: "var(--lark-teal)", fontSize: 16 }}>{counts.total} 项 · 落地后 48h 自动复盘</span>
+          </div>
+        </div>
+
+        <div className="modal-actions">
+          <button className="btn btn-ghost" onClick={onClose}>取消</button>
+          <button className="btn btn-primary" onClick={onConfirm}>
+            <ICheck size={14} stroke={2.4} />
+            下发到飞书审批
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ApproveBar({ S, checks, onSubmit, executed }) {
+  const total = Object.values(checks).filter(Boolean).length;
+  return (
+    <div className="approve-bar">
+      <div className="approve-meta">
+        <div className="approve-meta-block">
+          <span className="approve-meta-l">应对场景</span>
+          <span className="approve-meta-v">{S.country}客群 · 72h 应对包</span>
+        </div>
+        <div className="approve-meta-block">
+          <span className="approve-meta-l">选中动作</span>
+          <span className="approve-meta-v">{total} 项</span>
+        </div>
+        <div className="approve-meta-block">
+          <span className="approve-meta-l">预计执行窗口</span>
+          <span className="approve-meta-v">5/16 14:00 — 5/20 23:00</span>
+        </div>
+      </div>
+
+      <div className="approve-spacer"></div>
+
+      {executed ? (
+        <span className="approve-status" style={{ background: "rgba(51,214,192,0.10)", borderColor: "rgba(51,214,192,0.35)", color: "var(--lark-teal)" }}>
+          <ICheck size={14} stroke={2.4} />
+          已审批 · 执行中
+        </span>
+      ) : (
+        <span className="approve-status">
+          <IClock size={14} />
+          待店长审批
+        </span>
+      )}
+
+      <button className="btn btn-secondary">
+        <IFileText size={14} />
+        导出 PDF 简报
+      </button>
+      <button className="btn btn-secondary">
+        <IRefreshCw size={14} />
+        重新生成
+      </button>
+      <button className="btn btn-primary" onClick={onSubmit} disabled={executed} style={executed ? { opacity: 0.4, cursor: "default" } : {}}>
+        <IZap size={14} stroke={2.4} />
+        一键下发 · 飞书审批
+      </button>
+    </div>
+  );
+}
+
+function buildDefaultChecks(S) {
+  const c = {};
+  S.sku.forEach((it, i) => { if (it.tag === "urgent" || it.tag === "auto") c[`sku-${i}`] = true; });
+  S.display.forEach((it, i) => { if (it.tag === "urgent" || it.tag === "auto") c[`disp-${i}`] = true; });
+  S.baActions.forEach((it, i) => { if (it.tag === "auto") c[`ba-${i}`] = true; });
+  S.content.forEach((it, i) => { if (it.tag === "auto" || it.tag === "new") c[`ct-${i}`] = true; });
+  return c;
+}
+
+function App() {
+  const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const S = SCENARIOS[tweaks.scenario] || SCENARIOS.korea;
+
+  const [tab, setTab] = useState("ops");
+  const [checks, setChecks] = useState(() => buildDefaultChecks(S));
+  const [showModal, setShowModal] = useState(false);
+  const [executed, setExecuted] = useState(false);
+  const [toast, setToast] = useState(null);
+  const [timeline, setTimeline] = useState([]);
+
+  // Reset on scenario change
+  useEffect(() => {
+    setChecks(buildDefaultChecks(S));
+    setExecuted(false);
+    setTimeline([]);
+  }, [tweaks.scenario]);
+
+  const onConfirm = () => {
+    setShowModal(false);
+    setExecuted(true);
+    setToast(`已下发 ${Object.values(checks).filter(Boolean).length} 项动作 · 店长李海涛飞书审批已通过`);
+    // Animate timeline rows
+    const steps = [
+      { time: "09:33", text: "飞书审批 · 店长李海涛 · 已通过 ✓" },
+      { time: "09:34", text: `选品组合同步至 ERP · 主推 SKU 已切换至${S.country}精选` },
+      { time: "09:36", text: "陈列方案推送至 1F 店务组 · 韩文价签打印任务已派" },
+      { time: "09:38", text: `${S.bas.length} 位业务代表收到话术包 + 路线调整通知` },
+      { time: "09:42", text: "小红书 / 社媒内容已进入审核排期 · 预计 11:00 发布" },
+      { time: "09:45", text: "AI 复盘机制已就位 · 48h 后自动产出对比报告" },
+    ];
+    let i = 0;
+    const id = setInterval(() => {
+      setTimeline(t => [...t, steps[i]]);
+      i++;
+      if (i >= steps.length) clearInterval(id);
+    }, 400);
+    setTimeout(() => setToast(null), 4200);
+  };
+
+  return (
+    <div className="app-shell">
+      <Topbar />
+      {tweaks.showSubBar && <SubBar S={S} tab={tab} setTab={setTab} />}
+
+      {tab === "ops" && (
+        <>
+          <BriefBanner S={S} executed={executed} />
+          <div className="main">
+            <OperatorCenter S={S} executed={executed} timeline={timeline} />
+            <ResponseColumn S={S} checks={checks} setChecks={setChecks} />
+          </div>
+          <ApproveBar S={S} checks={checks} onSubmit={() => setShowModal(true)} executed={executed} />
+        </>
+      )}
+
+      {tab === "review" && <ReviewPage />}
+
+      {tab === "library" && <StubPage title="知识库" sub="跨场景共享的终端画像、价盘规则、陈列标准、话术模板。" />}
+      {tab === "logs" && <StubPage title="执行日志" sub="每一次下发的动作及其执行链路、责任人、状态。" />}
+
+      {showModal && (
+        <ConfirmModal
+          S={S}
+          checks={checks}
+          onClose={() => setShowModal(false)}
+          onConfirm={onConfirm}
+        />
+      )}
+
+      {toast && (
+        <div className="toast">
+          <span className="toast-icon"><ICheck size={12} stroke={3.2} /></span>
+          {toast}
+        </div>
+      )}
+
+      <Tweaks tweaks={tweaks} setTweak={setTweak} />
+    </div>
+  );
+}
+
+function StubPage({ title, sub }) {
+  return (
+    <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 12, padding: 80, color: "var(--lark-fg-quiet)" }}>
+      <div style={{ fontSize: 32, color: "var(--lark-fg-white)", fontWeight: 600 }}>{title}</div>
+      <div style={{ fontSize: 14 }}>{sub}</div>
+      <div style={{ marginTop: 16, padding: "8px 14px", border: "1px dashed rgba(255,255,255,0.20)", borderRadius: 6, fontSize: 12, letterSpacing: "0.06em" }}>暂为占位 · 下一版本启用</div>
+    </div>
+  );
+}
+
+function Tweaks({ tweaks, setTweak }) {
+  return (
+    <TweaksPanel title="Tweaks">
+      <TweakSection label="应对场景">
+        <TweakRadio
+          label="场景"
+          value={tweaks.scenario}
+          onChange={v => setTweak("scenario", v)}
+          options={[
+            { value: "korea", label: "龙虾夜宵" },
+            { value: "thailand", label: "商超冰饮" },
+            { value: "russia", label: "价盘防守" },
+          ]}
+        />
+      </TweakSection>
+      <TweakSection label="界面">
+        <TweakToggle label="显示子导航栏" value={tweaks.showSubBar} onChange={v => setTweak("showSubBar", v)} />
+      </TweakSection>
+    </TweaksPanel>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
+  </script>
+</body>
+</html>
