@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="fs-language" content="zh-only">
+  <meta name="fs-deck-mode" content="inline">
+  <title>企业知识管理运营仪表盘</title>
+  <style>
+    :root {
+      --fs-bg: #080C18;
+      --fs-panel: rgba(16, 28, 56, 0.74);
+      --fs-panel-2: rgba(13, 22, 44, 0.86);
+      --fs-line: rgba(255, 255, 255, 0.12);
+      --fs-line-blue: rgba(60, 127, 255, 0.36);
+      --fs-blue: #3C7FFF;
+      --fs-blue-2: #64A4FF;
+      --fs-teal: #33D6C0;
+      --fs-green: #21CC77;
+      --fs-orange: #FE7F00;
+      --fs-red: #F54A45;
+      --fs-violet: #9F6FF1;
+      --fs-white: #FFFFFF;
+      --fs-muted: rgba(255, 255, 255, 0.76);
+      --fs-font-cjk: "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
+      --fs-grad-keyline: linear-gradient(90deg, var(--fs-blue), var(--fs-teal));
+      --fs-asset-logo: linear-gradient(135deg, rgba(60,127,255,0.38), rgba(51,214,192,0.20));
+      --c: var(--fs-blue);
+      --v: 0;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; background: #050814; font-family: var(--fs-font-cjk); color: var(--fs-white); }
+    body { overflow: hidden; }
+    .deck { width: 100vw; height: 100vh; background: #050814; position: relative; }
+    .slide-frame {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 1920px;
+      height: 1080px;
+      margin: -540px 0 0 -960px;
+      transform-origin: center center;
+      contain: layout paint size;
+    }
+    .slide-frame .slide { will-change: transform; transform: translateZ(0); }
+    .slide {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 78% 8%, rgba(60, 127, 255, 0.32), transparent 34%),
+        radial-gradient(circle at 18% 86%, rgba(51, 214, 192, 0.18), transparent 32%),
+        linear-gradient(135deg, #071128 0%, #08162F 42%, #071022 100%);
+    }
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.72), transparent 74%);
+      pointer-events: none;
+    }
+    .wordmark {
+      position: absolute;
+      right: 64px;
+      top: 42px;
+      width: 142px;
+      height: 42px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      color: #FFFFFF;
+      font: 700 22px/1 var(--fs-font-cjk);
+      letter-spacing: 0;
+      background: linear-gradient(135deg, rgba(60,127,255,0.38), rgba(51,214,192,0.20));
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+    .slide .wordmark {
+      background: var(--fs-asset-logo);
+    }
+    .slide[data-layout="content-3up"] .grid { align-content: center; }
+    .slide[data-layout="content-2col"] .grid { align-content: center; }
+    .slide[data-layout="content-2col"] .stage { align-content: center; }
+    .slide[data-layout="agenda"] .toc { align-content: center; }
+    .slide[data-layout="stats"] .grid { align-content: center; }
+    .slide[data-layout="big-stat"] .stage { align-content: center; }
+    .slide[data-layout="quote"] .stack { align-content: center; }
+    .slide[data-layout="process"] .flow { align-content: center; }
+    .slide[data-layout="pipeline"] .stage { flex: 1; }
+    .page {
+      position: absolute;
+      inset: 34px 44px 34px 44px;
+      display: grid;
+      grid-template-rows: 78px 136px 1fr;
+      gap: 16px;
+      z-index: 1;
+    }
+    .topbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      padding-right: 180px;
+    }
+    .title-block h1 {
+      margin: 0;
+      font: 760 36px/1.18 var(--fs-font-cjk);
+      letter-spacing: 0;
+    }
+    .title-block p {
+      margin: 10px 0 0;
+      color: var(--fs-muted);
+      font: 500 18px/1.4 var(--fs-font-cjk);
+    }
+    .filters {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 6px;
+    }
+    .filter-pill {
+      min-height: 40px;
+      padding: 0 18px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #FFFFFF;
+      font: 600 16px/1 var(--fs-font-cjk);
+      background: rgba(60, 127, 255, 0.13);
+      border: 1px solid rgba(100, 164, 255, 0.30);
+    }
+    .filter-pill svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; fill: none; }
+
+    .overview {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .kpi-card {
+      position: relative;
+      min-width: 0;
+      border-radius: 8px;
+      padding: 14px 18px 14px;
+      background: linear-gradient(180deg, rgba(22, 40, 82, 0.92), rgba(12, 22, 48, 0.84));
+      border: 1px solid rgba(255,255,255,0.13);
+      overflow: hidden;
+    }
+    .kpi-card:nth-child(2) { animation-delay: 80ms; }
+    .kpi-card:nth-child(3) { animation-delay: 160ms; }
+    .kpi-card:nth-child(4) { animation-delay: 240ms; }
+    .kpi-card:nth-child(5) { animation-delay: 320ms; }
+    .kpi-card:nth-child(6) { animation-delay: 400ms; }
+    .kpi-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--fs-blue), var(--fs-teal));
+    }
+    .kpi-name {
+      color: rgba(255,255,255,0.80);
+      font: 600 16px/1.2 var(--fs-font-cjk);
+      white-space: nowrap;
+    }
+    .kpi-value {
+      margin-top: 12px;
+      font: 760 34px/1 var(--fs-font-cjk);
+      letter-spacing: 0;
+    }
+    .kpi-value small {
+      font-size: 21px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.94);
+      margin-left: 3px;
+    }
+    .delta {
+      margin-top: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--fs-green);
+      font: 700 16px/1 var(--fs-font-cjk);
+    }
+    .delta.is-down { color: var(--fs-green); }
+    .delta.is-risk { color: var(--fs-orange); }
+    .delta svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2.3; fill: none; }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 0.93fr 1.07fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 14px;
+      min-height: 0;
+    }
+    .panel {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      border-radius: 8px;
+      padding: 16px;
+      background: linear-gradient(180deg, var(--fs-panel), var(--fs-panel-2));
+      border: 1px solid rgba(255,255,255,0.13);
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 10px;
+      overflow: hidden;
+    }
+    .panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 8px;
+      box-shadow: 0 0 0 1px rgba(60,127,255,0.12) inset;
+      pointer-events: none;
+    }
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 30px;
+    }
+    .panel-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font: 760 21px/1.2 var(--fs-font-cjk);
+      letter-spacing: 0;
+    }
+    .panel-title i {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      background: var(--fs-blue);
+      box-shadow: 0 0 0 5px rgba(60,127,255,0.16);
+    }
+    .panel-note {
+      color: rgba(255,255,255,0.72);
+      font: 500 16px/1.2 var(--fs-font-cjk);
+    }
+    .panel-body { min-height: 0; display: grid; gap: 12px; }
+
+    .asset-build .panel-body {
+      grid-template-columns: 220px 1fr;
+      gap: 14px;
+    }
+    .mini-kpis {
+      display: grid;
+      gap: 12px;
+    }
+    .mini-card {
+      border-radius: 8px;
+      padding: 14px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: grid;
+      gap: 12px;
+    }
+    .mini-label { color: rgba(255,255,255,0.78); font: 600 16px/1.2 var(--fs-font-cjk); }
+    .mini-value { font: 760 31px/1 var(--fs-font-cjk); }
+    .bar-map {
+      border-radius: 8px;
+      padding: 12px 16px;
+      background: rgba(6, 12, 28, 0.45);
+      border: 1px solid rgba(255,255,255,0.09);
+      display: grid;
+      gap: 8px;
+      align-content: center;
+    }
+    .chart-title { display: flex; justify-content: space-between; align-items: center; font: 700 18px/1.2 var(--fs-font-cjk); }
+    .chart-title span:last-child { color: var(--fs-muted); font-weight: 500; }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 72px 1fr 54px;
+      gap: 12px;
+      align-items: center;
+      font: 600 16px/1.2 var(--fs-font-cjk);
+    }
+    .bar-track {
+      height: 13px;
+      border-radius: 99px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+    .bar-fill {
+      display: block;
+      height: 100%;
+      width: calc(var(--v) * 1%);
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--fs-blue), var(--fs-teal));
+      transform-origin: left center;
+      animation: grow-x 1100ms ease both;
+    }
+    .bar-value { color: rgba(255,255,255,0.86); text-align: right; }
+
+    .asset-consume .panel-body {
+      grid-template-columns: 0.88fr 1.12fr;
+      grid-template-rows: 74px 1fr 70px;
+    }
+    .consume-kpis {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .compact-kpi {
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 8px;
+    }
+    .compact-kpi .name { color: rgba(255,255,255,0.78); font: 600 16px/1.2 var(--fs-font-cjk); }
+    .compact-kpi .val { font: 760 26px/1 var(--fs-font-cjk); }
+    .compact-kpi .delta { margin-top: 0; font-size: 16px; }
+    .consume-left {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 14px;
+    }
+    .donut-card, .trend-card, .rank-card, .small-dist {
+      border-radius: 8px;
+      background: rgba(6, 12, 28, 0.45);
+      border: 1px solid rgba(255,255,255,0.09);
+      min-width: 0;
+      min-height: 0;
+    }
+    .donut-card {
+      padding: 12px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+    }
+    .donut {
+      width: 116px;
+      height: 116px;
+      border-radius: 50%;
+      background: conic-gradient(var(--fs-blue) 0 38%, var(--fs-teal) 38% 72%, var(--fs-violet) 72% 90%, var(--fs-orange) 90% 100%);
+      position: relative;
+      animation: donut-turn 1400ms ease both;
+    }
+    .donut::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 50%;
+      background: #0B1832;
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+    .donut-center {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      z-index: 1;
+      font: 760 26px/1.05 var(--fs-font-cjk);
+    }
+    .legend { display: grid; gap: 8px; align-content: center; }
+    .legend-item {
+      display: grid;
+      grid-template-columns: 12px 1fr auto;
+      gap: 8px;
+      align-items: center;
+      color: rgba(255,255,255,0.88);
+      font: 600 16px/1.2 var(--fs-font-cjk);
+    }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
+    .rank-card {
+      padding: 11px 13px;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 5px;
+    }
+    .rank-list { display: grid; gap: 3px; min-height: 0; }
+    .rank-row {
+      display: grid;
+      grid-template-columns: 24px 1fr auto;
+      gap: 8px;
+      align-items: center;
+      font: 600 16px/1.05 var(--fs-font-cjk);
+    }
+    .rank-no {
+      width: 22px;
+      height: 22px;
+      border-radius: 7px;
+      display: grid;
+      place-items: center;
+      background: rgba(60,127,255,0.18);
+      color: #FFFFFF;
+      font-size: 16px;
+    }
+    .rank-val { color: var(--fs-teal); }
+    .trend-card {
+      grid-column: 1 / -1;
+      grid-row: 3;
+      padding: 6px 12px;
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 12px;
+      align-items: center;
+      overflow: hidden;
+    }
+    .line-chart {
+      width: 100%;
+      height: 48px;
+      overflow: hidden;
+    }
+    .line-chart path.line {
+      fill: none;
+      stroke: var(--fs-orange);
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 620;
+      stroke-dashoffset: 620;
+      animation: draw-line 1600ms ease forwards;
+    }
+    .line-chart path.area { fill: rgba(254,127,0,0.12); }
+    .line-chart circle { fill: var(--fs-orange); }
+    .dist-bars { display: grid; gap: 4px; }
+    .dist-bars .bar-row { grid-template-columns: 74px 1fr 42px; }
+
+    .ops .panel-body {
+      grid-template-columns: 0.92fr 1.08fr;
+      grid-template-rows: 74px 1fr 66px;
+    }
+    .ops-kpis {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .dual-trend {
+      grid-column: 1 / -1;
+      border-radius: 8px;
+      padding: 10px 16px;
+      background: rgba(6, 12, 28, 0.45);
+      border: 1px solid rgba(255,255,255,0.09);
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 14px;
+      align-items: center;
+    }
+    .dual-trend svg { width: 100%; height: 76px; }
+    .dual-trend .solve { stroke: var(--fs-green); }
+    .dual-trend .time { stroke: var(--fs-blue-2); }
+    .dual-trend path { fill: none; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 680; stroke-dashoffset: 680; animation: draw-line 1500ms ease forwards; }
+    .dual-legend { display: grid; gap: 12px; font: 600 16px/1.2 var(--fs-font-cjk); }
+    .progress-card, .speed-card {
+      border-radius: 8px;
+      padding: 10px 16px;
+      background: rgba(6, 12, 28, 0.45);
+      border: 1px solid rgba(255,255,255,0.09);
+    }
+    .progress-card { display: grid; gap: 12px; align-content: center; }
+    .progress-top { display: flex; justify-content: space-between; align-items: center; font: 700 18px/1.2 var(--fs-font-cjk); }
+    .progress-value { color: var(--fs-teal); font: 760 26px/1 var(--fs-font-cjk); }
+    .progress-track { height: 10px; border-radius: 999px; background: rgba(255,255,255,0.09); overflow: hidden; }
+    .progress-fill { height: 100%; width: 72%; background: linear-gradient(90deg, var(--fs-blue), var(--fs-teal)); border-radius: inherit; animation: grow-x 1100ms ease both; transform-origin: left center; }
+    .speed-card { display: grid; grid-template-columns: 1fr auto; align-items: center; }
+    .speed-card .label { color: rgba(255,255,255,0.78); font: 700 18px/1.2 var(--fs-font-cjk); }
+    .speed-card .value { font: 760 30px/1 var(--fs-font-cjk); color: #FFFFFF; }
+    .speed-card .value small { font-size: 20px; }
+
+    .health .panel-body {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 82px 1fr;
+    }
+    .health-kpis {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .board {
+      border-radius: 8px;
+      padding: 12px 14px;
+      background: rgba(6, 12, 28, 0.45);
+      border: 1px solid rgba(255,255,255,0.09);
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 7px;
+      min-height: 0;
+    }
+    .board-title { font: 760 18px/1.2 var(--fs-font-cjk); }
+    .dept-row {
+      display: grid;
+      grid-template-columns: 24px 72px 1fr 42px;
+      gap: 10px;
+      align-items: center;
+      font: 600 16px/1.2 var(--fs-font-cjk);
+      min-width: 0;
+    }
+    .dept-medal {
+      width: 24px;
+      height: 24px;
+      border-radius: 7px;
+      display: grid;
+      place-items: center;
+      background: rgba(60,127,255,0.18);
+    }
+    .dept-track { height: 10px; background: rgba(255,255,255,0.09); border-radius: 999px; overflow: hidden; }
+    .dept-fill { display: block; height: 100%; width: calc(var(--v) * 1%); border-radius: inherit; background: linear-gradient(90deg, var(--fs-blue), var(--fs-teal)); animation: grow-x 1100ms ease both; transform-origin: left center; }
+    .status-green { color: var(--fs-green); }
+    .status-orange { color: var(--fs-orange); }
+    .status-red { color: var(--fs-red); }
+    .status-blue { color: var(--fs-blue-2); }
+
+    .deck-progress {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 4px;
+      z-index: 20;
+      background: rgba(255,255,255,0.08);
+    }
+    .deck-progress span {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: var(--fs-grad-keyline);
+    }
+    .deck-controls {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 21;
+      opacity: 0.88;
+    }
+    .deck-controls.is-idle {
+      opacity: 0;
+    }
+    .ctl {
+      width: 34px;
+      height: 34px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.20);
+      background: rgba(8,12,24,0.68);
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      font: 700 16px/1 var(--fs-font-cjk);
+    }
+    .page-no {
+      height: 34px;
+      padding: 0 13px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.20);
+      background: rgba(8,12,24,0.68);
+      display: inline-flex;
+      align-items: center;
+      font: 700 16px/1 var(--fs-font-cjk);
+    }
+
+    @keyframes card-in {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes grow-x {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+    @keyframes draw-line {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes donut-turn {
+      from { transform: rotate(-36deg); opacity: 0; }
+      to { transform: rotate(0deg); opacity: 1; }
+    }
+
+    @media (max-aspect-ratio: 16/9) {
+      body { overflow: auto; }
+      .deck { width: 100%; height: auto; min-height: 100vh; }
+      .slide-frame {
+        position: relative;
+        left: auto;
+        top: auto;
+        margin: 0 auto;
+        transform-origin: top left;
+      }
+      .deck-controls, .deck-progress { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck" data-mode="present">
+    <div class="slide-frame is-current">
+      <div class="slide" data-layout="raw" data-screen-label="01 企业知识管理运营仪表盘" data-slide-key="knowledge-management-dashboard">
+        <div class="wordmark" data-text-id="slide-01.wordmark">飞书</div>
+        <main class="page">
+          <section class="topbar">
+            <div class="title-block">
+              <h1 data-text-id="slide-01.title">企业知识管理运营仪表盘</h1>
+              <p data-text-id="slide-01.subtitle">管理层快速查看知识资产建设、资产消费、运营闭环与体系健康度</p>
+            </div>
+            <div class="filters" aria-label="时间筛选">
+              <span class="filter-pill" data-text-id="slide-01.filter.period">
+                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
+                2026 年 5 月
+              </span>
+              <span class="filter-pill" data-text-id="slide-01.filter.scope">
+                <svg viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+                全集团
+              </span>
+            </div>
+          </section>
+
+          <section class="overview" aria-label="核心总览 KPI">
+            <article class="kpi-card">
+              <div class="kpi-name" data-text-id="slide-01.kpi.assets-count.name">资产盘点数</div>
+              <div class="kpi-value" data-text-id="slide-01.kpi.assets-count.value">1,286<small>项</small></div>
+              <div class="delta" data-text-id="slide-01.kpi.assets-count.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>环比 +18.6%</div>
+            </article>
+            <article class="kpi-card">
+              <div class="kpi-name" data-text-id="slide-01.kpi.online-assets.name">已上线知识资产数</div>
+              <div class="kpi-value" data-text-id="slide-01.kpi.online-assets.value">842<small>项</small></div>
+              <div class="delta" data-text-id="slide-01.kpi.online-assets.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>环比 +22.1%</div>
+            </article>
+            <article class="kpi-card">
+              <div class="kpi-name" data-text-id="slide-01.kpi.ai-consumable.name">AI 可消费资产占比</div>
+              <div class="kpi-value" data-text-id="slide-01.kpi.ai-consumable.value">76.4<small>%</small></div>
+              <div class="delta" data-text-id="slide-01.kpi.ai-consumable.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>环比 +9.2%</div>
+            </article>
+            <article class="kpi-card">
+              <div class="kpi-name" data-text-id="slide-01.kpi.reuse.name">知识复用率</div>
+              <div class="kpi-value" data-text-id="slide-01.kpi.reuse.value">48.7<small>%</small></div>
+              <div class="delta" data-text-id="slide-01.kpi.reuse.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>环比 +6.8%</div>
+            </article>
+            <article class="kpi-card">
+              <div class="kpi-name" data-text-id="slide-01.kpi.solve-rate.name">问题解决率</div>
+              <div class="kpi-value" data-text-id="slide-01.kpi.solve-rate.value">87.3<small>%</small></div>
+              <div class="delta" data-text-id="slide-01.kpi.solve-rate.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>环比 +11.4%</div>
+            </article>
+            <article class="kpi-card">
+              <div class="kpi-name" data-text-id="slide-01.kpi.quality.name">质量标准达成率</div>
+              <div class="kpi-value" data-text-id="slide-01.kpi.quality.value">91.2<small>%</small></div>
+              <div class="delta" data-text-id="slide-01.kpi.quality.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>环比 +5.6%</div>
+            </article>
+          </section>
+
+          <section class="main-grid">
+            <article class="panel asset-build">
+              <div class="panel-head">
+                <h2 class="panel-title" data-text-id="slide-01.section.build.title"><i></i>资产建设</h2>
+                <span class="panel-note" data-text-id="slide-01.section.build.note">知识资产沉淀进展</span>
+              </div>
+              <div class="panel-body">
+                <div class="mini-kpis">
+                  <div class="mini-card">
+                    <span class="mini-label" data-text-id="slide-01.build.inventory.name">资产盘点数</span>
+                    <span class="mini-value" data-text-id="slide-01.build.inventory.value">1,286</span>
+                    <span class="delta" data-text-id="slide-01.build.inventory.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>环比 +18.6%</span>
+                  </div>
+                  <div class="mini-card">
+                    <span class="mini-label" data-text-id="slide-01.build.online.name">已上线知识资产数</span>
+                    <span class="mini-value" data-text-id="slide-01.build.online.value">842</span>
+                    <span class="delta" data-text-id="slide-01.build.online.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>环比 +22.1%</span>
+                  </div>
+                </div>
+                <div class="bar-map">
+                  <div class="chart-title"><span data-text-id="slide-01.build.dept.title">知识资产部门分布</span><span data-text-id="slide-01.build.dept.unit">单位：项</span></div>
+                  <div class="bar-row"><span data-text-id="slide-01.build.dept.01.name">运营</span><span class="bar-track"><i class="bar-fill" style="--v:100"></i></span><span class="bar-value" data-text-id="slide-01.build.dept.01.value">286</span></div>
+                  <div class="bar-row"><span data-text-id="slide-01.build.dept.02.name">销售</span><span class="bar-track"><i class="bar-fill" style="--v:83"></i></span><span class="bar-value" data-text-id="slide-01.build.dept.02.value">238</span></div>
+                  <div class="bar-row"><span data-text-id="slide-01.build.dept.03.name">产品</span><span class="bar-track"><i class="bar-fill" style="--v:59"></i></span><span class="bar-value" data-text-id="slide-01.build.dept.03.value">168</span></div>
+                  <div class="bar-row"><span data-text-id="slide-01.build.dept.04.name">客服</span><span class="bar-track"><i class="bar-fill" style="--v:50"></i></span><span class="bar-value" data-text-id="slide-01.build.dept.04.value">142</span></div>
+                  <div class="bar-row"><span data-text-id="slide-01.build.dept.05.name">人力</span><span class="bar-track"><i class="bar-fill" style="--v:38"></i></span><span class="bar-value" data-text-id="slide-01.build.dept.05.value">108</span></div>
+                  <div class="bar-row"><span data-text-id="slide-01.build.dept.06.name">财务</span><span class="bar-track"><i class="bar-fill" style="--v:34"></i></span><span class="bar-value" data-text-id="slide-01.build.dept.06.value">96</span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel asset-consume">
+              <div class="panel-head">
+                <h2 class="panel-title" data-text-id="slide-01.section.consume.title"><i></i>资产消费</h2>
+                <span class="panel-note" data-text-id="slide-01.section.consume.note">知识是否被人和 AI 真正用起来</span>
+              </div>
+              <div class="panel-body">
+                <div class="consume-kpis">
+                  <div class="compact-kpi"><div><span class="name" data-text-id="slide-01.consume.ai.name">AI 可消费资产占比</span><div class="val" data-text-id="slide-01.consume.ai.value">76.4%</div></div><span class="delta" data-text-id="slide-01.consume.ai.delta">+9.2%</span></div>
+                  <div class="compact-kpi"><div><span class="name" data-text-id="slide-01.consume.reuse.name">知识复用率</span><div class="val" data-text-id="slide-01.consume.reuse.value">48.7%</div></div><span class="delta" data-text-id="slide-01.consume.reuse.delta">+6.8%</span></div>
+                  <div class="compact-kpi"><div><span class="name" data-text-id="slide-01.consume.recall.name">知识召回率</span><div class="val" data-text-id="slide-01.consume.recall.value">82.6%</div></div><span class="delta" data-text-id="slide-01.consume.recall.delta">+7.1%</span></div>
+                </div>
+                <div class="consume-left">
+                  <div class="donut-card">
+                    <div class="donut"><div class="donut-center" data-text-id="slide-01.consume.donut.center">消费<br>分布</div></div>
+                  </div>
+                  <div class="legend">
+                    <div class="legend-item"><i class="legend-dot" style="--c:var(--fs-blue)"></i><span data-text-id="slide-01.consume.legend.01.name">员工检索</span><b data-text-id="slide-01.consume.legend.01.value">38%</b></div>
+                    <div class="legend-item"><i class="legend-dot" style="--c:var(--fs-teal)"></i><span data-text-id="slide-01.consume.legend.02.name">AI 问答</span><b data-text-id="slide-01.consume.legend.02.value">34%</b></div>
+                    <div class="legend-item"><i class="legend-dot" style="--c:var(--fs-violet)"></i><span data-text-id="slide-01.consume.legend.03.name">工作流引用</span><b data-text-id="slide-01.consume.legend.03.value">18%</b></div>
+                    <div class="legend-item"><i class="legend-dot" style="--c:var(--fs-orange)"></i><span data-text-id="slide-01.consume.legend.04.name">培训学习</span><b data-text-id="slide-01.consume.legend.04.value">10%</b></div>
+                  </div>
+                </div>
+                <div class="rank-card">
+                  <div class="chart-title"><span data-text-id="slide-01.consume.top.title">高频消费知识资产清单</span><span data-text-id="slide-01.consume.top.unit">次</span></div>
+                  <div class="rank-list">
+                    <div class="rank-row"><span class="rank-no">1</span><span data-text-id="slide-01.consume.top.01.name">销售话术库</span><b class="rank-val" data-text-id="slide-01.consume.top.01.value">16,420</b></div>
+                    <div class="rank-row"><span class="rank-no">2</span><span data-text-id="slide-01.consume.top.02.name">客服 FAQ</span><b class="rank-val" data-text-id="slide-01.consume.top.02.value">12,880</b></div>
+                    <div class="rank-row"><span class="rank-no">3</span><span data-text-id="slide-01.consume.top.03.name">产品功能手册</span><b class="rank-val" data-text-id="slide-01.consume.top.03.value">9,640</b></div>
+                    <div class="rank-row"><span class="rank-no">4</span><span data-text-id="slide-01.consume.top.04.name">交付 SOP</span><b class="rank-val" data-text-id="slide-01.consume.top.04.value">8,210</b></div>
+                  </div>
+                </div>
+                <div class="trend-card">
+                  <div>
+                    <div class="chart-title"><span data-text-id="slide-01.consume.missing.title">知识缺失比率趋势</span><span class="status-green" data-text-id="slide-01.consume.missing.state">持续下降</span></div>
+                    <svg class="line-chart" viewBox="0 0 520 78" aria-label="知识缺失比率趋势">
+                      <path class="area" d="M8,22 C80,28 122,34 174,36 C246,42 276,50 330,53 C390,57 438,58 512,63 L512,78 L8,78 Z"/>
+                      <path class="line" d="M8,22 C80,28 122,34 174,36 C246,42 276,50 330,53 C390,57 438,58 512,63"/>
+                      <circle cx="8" cy="22" r="5"/><circle cx="174" cy="36" r="5"/><circle cx="330" cy="53" r="5"/><circle cx="512" cy="63" r="5"/>
+                    </svg>
+                  </div>
+                  <div class="dist-bars">
+                    <div class="chart-title"><span data-text-id="slide-01.consume.dist.title">高频消费知识资产分布</span></div>
+                    <div class="bar-row"><span data-text-id="slide-01.consume.dist.01.name">客服</span><span class="bar-track"><i class="bar-fill" style="--v:100"></i></span><span class="bar-value" data-text-id="slide-01.consume.dist.01.value">31%</span></div>
+                    <div class="bar-row"><span data-text-id="slide-01.consume.dist.02.name">销售</span><span class="bar-track"><i class="bar-fill" style="--v:87"></i></span><span class="bar-value" data-text-id="slide-01.consume.dist.02.value">27%</span></div>
+                    <div class="bar-row"><span data-text-id="slide-01.consume.dist.03.name">产品</span><span class="bar-track"><i class="bar-fill" style="--v:58"></i></span><span class="bar-value" data-text-id="slide-01.consume.dist.03.value">18%</span></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel ops">
+              <div class="panel-head">
+                <h2 class="panel-title" data-text-id="slide-01.section.ops.title"><i></i>资产运营</h2>
+                <span class="panel-note" data-text-id="slide-01.section.ops.note">发布后是否持续有效、好用、有反馈闭环</span>
+              </div>
+              <div class="panel-body">
+                <div class="ops-kpis">
+                  <div class="compact-kpi"><div><span class="name" data-text-id="slide-01.ops.satisfaction.name">用户满意度</span><div class="val" data-text-id="slide-01.ops.satisfaction.value">4.6/5</div></div><span class="delta" data-text-id="slide-01.ops.satisfaction.delta">+0.3</span></div>
+                  <div class="compact-kpi"><div><span class="name" data-text-id="slide-01.ops.feedback.name">反馈问题数</span><div class="val" data-text-id="slide-01.ops.feedback.value">126</div></div><span class="delta is-down" data-text-id="slide-01.ops.feedback.delta">-14.2%</span></div>
+                  <div class="compact-kpi"><div><span class="name" data-text-id="slide-01.ops.solve.name">问题解决率</span><div class="val" data-text-id="slide-01.ops.solve.value">87.3%</div></div><span class="delta" data-text-id="slide-01.ops.solve.delta">+11.4%</span></div>
+                  <div class="compact-kpi"><div><span class="name" data-text-id="slide-01.ops.time.name">平均解决时长</span><div class="val" data-text-id="slide-01.ops.time.value">18.6h</div></div><span class="delta is-down" data-text-id="slide-01.ops.time.delta">-22.5%</span></div>
+                </div>
+                <div class="dual-trend">
+                  <svg viewBox="0 0 620 116" aria-label="问题解决率和平均解决时长变化">
+                    <path class="solve" d="M16,84 C92,76 134,62 202,56 C280,48 352,38 430,30 C506,24 560,20 604,16"/>
+                    <path class="time" d="M16,26 C88,32 152,42 220,48 C300,58 360,68 438,74 C504,82 558,88 604,94"/>
+                  </svg>
+                  <div class="dual-legend">
+                    <span data-text-id="slide-01.ops.trend.solve"><i class="legend-dot" style="--c:var(--fs-green)"></i>问题解决率变化</span>
+                    <span data-text-id="slide-01.ops.trend.time"><i class="legend-dot" style="--c:var(--fs-blue-2)"></i>平均解决时长变化</span>
+                  </div>
+                </div>
+                <div class="progress-card">
+                  <div class="progress-top"><span data-text-id="slide-01.ops.fill-rate.name">知识补齐率</span><b class="progress-value" data-text-id="slide-01.ops.fill-rate.value">72%</b></div>
+                  <div class="progress-track"><span class="progress-fill"></span></div>
+                </div>
+                <div class="speed-card">
+                  <div>
+                    <div class="label" data-text-id="slide-01.ops.fill-speed.name">知识补齐速度</div>
+                    <span class="delta" data-text-id="slide-01.ops.fill-speed.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>环比 +19.5%</span>
+                  </div>
+                  <div class="value" data-text-id="slide-01.ops.fill-speed.value">38<small>条/周</small></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel health">
+              <div class="panel-head">
+                <h2 class="panel-title" data-text-id="slide-01.section.health.title"><i></i>体系健康度</h2>
+                <span class="panel-note" data-text-id="slide-01.section.health.note">知识管理体系是否真正运转起来</span>
+              </div>
+              <div class="panel-body">
+                <div class="health-kpis">
+                  <div class="compact-kpi"><div><span class="name" data-text-id="slide-01.health.register.name">知识资产登记率</span><div class="val" data-text-id="slide-01.health.register.value">93.5%</div></div><span class="delta" data-text-id="slide-01.health.register.delta">+4.2%</span></div>
+                  <div class="compact-kpi"><div><span class="name" data-text-id="slide-01.health.quality.name">知识资产质量标准达成率</span><div class="val" data-text-id="slide-01.health.quality.value">91.2%</div></div><span class="delta" data-text-id="slide-01.health.quality.delta">+5.6%</span></div>
+                  <div class="compact-kpi"><div><span class="name" data-text-id="slide-01.health.training.name">培训参与率</span><div class="val" data-text-id="slide-01.health.training.value">86.8%</div></div><span class="delta" data-text-id="slide-01.health.training.delta">+8.4%</span></div>
+                </div>
+                <div class="board">
+                  <div class="board-title" data-text-id="slide-01.health.asset-rank.title">知识资产贡献榜单：部门</div>
+                  <div class="rank-list">
+                    <div class="dept-row"><span class="dept-medal">1</span><span data-text-id="slide-01.health.asset-rank.01.name">运营</span><span class="dept-track"><i class="dept-fill" style="--v:100"></i></span><b data-text-id="slide-01.health.asset-rank.01.value">286</b></div>
+                    <div class="dept-row"><span class="dept-medal">2</span><span data-text-id="slide-01.health.asset-rank.02.name">销售</span><span class="dept-track"><i class="dept-fill" style="--v:83"></i></span><b data-text-id="slide-01.health.asset-rank.02.value">238</b></div>
+                    <div class="dept-row"><span class="dept-medal">3</span><span data-text-id="slide-01.health.asset-rank.03.name">产品</span><span class="dept-track"><i class="dept-fill" style="--v:59"></i></span><b data-text-id="slide-01.health.asset-rank.03.value">168</b></div>
+                    <div class="dept-row"><span class="dept-medal">4</span><span data-text-id="slide-01.health.asset-rank.04.name">客服</span><span class="dept-track"><i class="dept-fill" style="--v:50"></i></span><b data-text-id="slide-01.health.asset-rank.04.value">142</b></div>
+                  </div>
+                </div>
+                <div class="board">
+                  <div class="board-title" data-text-id="slide-01.health.kb-rank.title">知识库贡献榜单：部门</div>
+                  <div class="rank-list">
+                    <div class="dept-row"><span class="dept-medal">1</span><span data-text-id="slide-01.health.kb-rank.01.name">客服</span><span class="dept-track"><i class="dept-fill" style="--v:100"></i></span><b data-text-id="slide-01.health.kb-rank.01.value">218</b></div>
+                    <div class="dept-row"><span class="dept-medal">2</span><span data-text-id="slide-01.health.kb-rank.02.name">销售</span><span class="dept-track"><i class="dept-fill" style="--v:86"></i></span><b data-text-id="slide-01.health.kb-rank.02.value">188</b></div>
+                    <div class="dept-row"><span class="dept-medal">3</span><span data-text-id="slide-01.health.kb-rank.03.name">产品</span><span class="dept-track"><i class="dept-fill" style="--v:73"></i></span><b data-text-id="slide-01.health.kb-rank.03.value">159</b></div>
+                    <div class="dept-row"><span class="dept-medal">4</span><span data-text-id="slide-01.health.kb-rank.04.name">运营</span><span class="dept-track"><i class="dept-fill" style="--v:66"></i></span><b data-text-id="slide-01.health.kb-rank.04.value">144</b></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+  </div>
+  <div class="deck-progress"><span></span></div>
+  <div class="deck-controls" aria-label="演示控制">
+    <button class="ctl prev" type="button" aria-label="上一页">‹</button>
+    <span class="page-no">1 / 1</span>
+    <button class="ctl next" type="button" aria-label="下一页">›</button>
+    <button class="ctl fs" type="button" aria-label="全屏">□</button>
+  </div>
+  <script>
+    (function () {
+      var frame = document.querySelector('.slide-frame');
+      function fit() {
+        var scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+        if (window.matchMedia('(max-aspect-ratio: 16/9)').matches) {
+          scale = window.innerWidth / 1920;
+          frame.style.transform = 'scale(' + scale + ')';
+          frame.style.height = 1080 + 'px';
+          frame.style.marginBottom = (1080 * scale - 1080) + 'px';
+          return;
+        }
+        frame.style.transform = 'scale(' + scale + ')';
+        frame.style.height = '1080px';
+        frame.style.marginBottom = '0';
+      }
+      window.addEventListener('resize', fit);
+      var idleTimer = null;
+      function markActive() {
+        document.querySelector('.deck-controls').classList.remove('is-idle');
+        window.clearTimeout(idleTimer);
+        idleTimer = window.setTimeout(function () {
+          document.querySelector('.deck-controls').classList.add('is-idle');
+        }, 2500);
+      }
+      window.addEventListener('mousemove', markActive);
+      window.addEventListener('keydown', markActive);
+      window.addEventListener('click', markActive);
+      document.querySelector('.ctl.fs').addEventListener('click', function () {
+        if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen();
+        } else if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      });
+      document.addEventListener('fullscreenchange', fit);
+      fit();
+      markActive();
+    })();
+  </script>
+</body>
+</html>
