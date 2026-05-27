@@ -907,8 +907,14 @@
 
     .ops .panel-body {
       grid-template-columns: 1fr;
-      grid-template-rows: repeat(2, minmax(0, 1fr));
+      grid-template-rows: 62px repeat(2, minmax(0, 1fr));
       gap: 10px;
+    }
+    .ops-summary {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
     }
     .ops-section {
       min-height: 0;
@@ -959,12 +965,9 @@
       font-size: 11px;
     }
     .page {
-      grid-template-rows: 72px 136px minmax(0, 1fr);
+      grid-template-rows: 72px minmax(0, 1fr);
     }
-    .overview {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
+    .overview { display: none; }
     .overview-group {
       min-width: 0;
       min-height: 0;
@@ -1021,6 +1024,9 @@
     .overview .delta svg {
       width: 13px;
       height: 13px;
+    }
+    .asset-consume .consume-kpis {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .deck-progress {
@@ -1128,54 +1134,6 @@
             </div>
           </section>
 
-          <section class="overview" aria-label="核心总览 KPI">
-            <div class="overview-group">
-              <div class="overview-heading"><i></i><span data-text-id="slide-01.kpi.group.build">资产建设</span></div>
-              <div class="overview-cards">
-                <article class="kpi-card">
-                  <div class="kpi-name" data-text-id="slide-01.kpi.assets-count.name">资产盘点数</div>
-                  <div class="kpi-value" data-text-id="slide-01.kpi.assets-count.value">1,286<small>项</small></div>
-                  <div class="delta" data-text-id="slide-01.kpi.assets-count.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>环比 +18.6%</div>
-                </article>
-                <article class="kpi-card">
-                  <div class="kpi-name" data-text-id="slide-01.kpi.online-assets.name">已上线知识资产数</div>
-                  <div class="kpi-value" data-text-id="slide-01.kpi.online-assets.value">842<small>项</small></div>
-                  <div class="delta" data-text-id="slide-01.kpi.online-assets.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>环比 +22.1%</div>
-                </article>
-              </div>
-            </div>
-            <div class="overview-group">
-              <div class="overview-heading"><i></i><span data-text-id="slide-01.kpi.group.consume">资产消费</span></div>
-              <div class="overview-cards">
-                <article class="kpi-card">
-                  <div class="kpi-name" data-text-id="slide-01.kpi.ai-consumable.name">AI 可消费资产占比</div>
-                  <div class="kpi-value" data-text-id="slide-01.kpi.ai-consumable.value">76.4<small>%</small></div>
-                  <div class="delta" data-text-id="slide-01.kpi.ai-consumable.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>环比 +9.2%</div>
-                </article>
-                <article class="kpi-card">
-                  <div class="kpi-name" data-text-id="slide-01.kpi.reuse.name">知识复用率</div>
-                  <div class="kpi-value" data-text-id="slide-01.kpi.reuse.value">48.7<small>%</small></div>
-                  <div class="delta" data-text-id="slide-01.kpi.reuse.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>环比 +6.8%</div>
-                </article>
-              </div>
-            </div>
-            <div class="overview-group">
-              <div class="overview-heading"><i></i><span data-text-id="slide-01.kpi.group.ops">资产运营</span></div>
-              <div class="overview-cards">
-                <article class="kpi-card">
-                  <div class="kpi-name" data-text-id="slide-01.kpi.solve-rate.name">问题解决率</div>
-                  <div class="kpi-value" data-text-id="slide-01.kpi.solve-rate.value">87.3<small>%</small></div>
-                  <div class="delta" data-text-id="slide-01.kpi.solve-rate.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>环比 +11.4%</div>
-                </article>
-                <article class="kpi-card">
-                  <div class="kpi-name" data-text-id="slide-01.kpi.quality.name">质量标准达成率</div>
-                  <div class="kpi-value" data-text-id="slide-01.kpi.quality.value">91.2<small>%</small></div>
-                  <div class="delta" data-text-id="slide-01.kpi.quality.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>环比 +5.6%</div>
-                </article>
-              </div>
-            </div>
-          </section>
-
           <section class="main-grid">
             <article class="panel asset-build">
               <div class="panel-head">
@@ -1235,6 +1193,7 @@
               </div>
               <div class="panel-body">
                 <div class="consume-kpis">
+                  <div class="metric-card"><div><span class="name" data-text-id="slide-01.consume.ai.name">AI 可消费资产占比</span><div class="val" data-text-id="slide-01.consume.ai.value">76.4%</div></div><span class="delta" data-text-id="slide-01.consume.ai.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+9.2%</span></div>
                   <div class="metric-card"><div><span class="name" data-text-id="slide-01.consume.reuse.name">知识复用率</span><div class="val" data-text-id="slide-01.consume.reuse.value">48.7%</div></div><span class="delta" data-text-id="slide-01.consume.reuse.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+6.8%</span></div>
                   <div class="metric-card"><div><span class="name" data-text-id="slide-01.consume.qa.name">问答准确率</span><div class="val" data-text-id="slide-01.consume.qa.value">86.9%</div></div><span class="delta" data-text-id="slide-01.consume.qa.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+5.2%</span></div>
                 </div>
@@ -1284,6 +1243,10 @@
                 <span class="panel-note" data-text-id="slide-01.section.ops.note">发布后是否持续有效、好用、有反馈闭环</span>
               </div>
               <div class="panel-body">
+                <div class="ops-summary">
+                  <div class="metric-card"><div><span class="name" data-text-id="slide-01.ops.solve-rate.name">问题解决率</span><div class="val" data-text-id="slide-01.ops.solve-rate.value">87.3%</div></div><span class="delta" data-text-id="slide-01.ops.solve-rate.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+11.4%</span></div>
+                  <div class="metric-card"><div><span class="name" data-text-id="slide-01.ops.quality-standard.name">质量标准达成率</span><div class="val" data-text-id="slide-01.ops.quality-standard.value">91.2%</div></div><span class="delta" data-text-id="slide-01.ops.quality-standard.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+5.6%</span></div>
+                </div>
                 <div class="ops-section">
                   <div class="section-chip" data-text-id="slide-01.ops.incident.title">incident <span>好用度与问题闭环</span></div>
                   <div class="metric-row">
