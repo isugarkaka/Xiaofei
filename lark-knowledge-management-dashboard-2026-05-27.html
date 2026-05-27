@@ -536,6 +536,200 @@
     .status-red { color: var(--fs-red); }
     .status-blue { color: var(--fs-blue-2); }
 
+    /* Layout v2: three operating modules in one row, health as a full-width footer. */
+    .page {
+      inset: 28px 44px 32px 44px;
+      grid-template-rows: 72px 124px minmax(0, 1fr);
+      gap: 12px;
+    }
+    .title-block h1 { font-size: 34px; }
+    .title-block p { margin-top: 8px; font-size: 16px; }
+    .filter-pill { min-height: 36px; padding: 0 16px; font-size: 15px; }
+    .overview { gap: 12px; }
+    .kpi-card { padding: 12px 16px; }
+    .kpi-name { font-size: 15px; }
+    .kpi-value { margin-top: 10px; font-size: 32px; }
+    .kpi-value small { font-size: 18px; }
+    .delta { margin-top: 10px; font-size: 14px; }
+
+    .main-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-rows: minmax(0, 1fr) 306px;
+      gap: 14px;
+    }
+    .health { grid-column: 1 / -1; }
+    .panel {
+      padding: 14px;
+      gap: 8px;
+    }
+    .panel-head {
+      min-height: 28px;
+      gap: 10px;
+    }
+    .panel-title { font-size: 20px; gap: 9px; }
+    .panel-note { font-size: 14px; white-space: nowrap; }
+    .panel-body { gap: 10px; }
+
+    .asset-build .panel-body {
+      grid-template-columns: 170px minmax(0, 1fr);
+      gap: 10px;
+    }
+    .mini-kpis { gap: 10px; }
+    .mini-card {
+      padding: 12px;
+      gap: 8px;
+    }
+    .mini-label { font-size: 14px; }
+    .mini-value { font-size: 28px; }
+    .bar-map {
+      padding: 10px 12px;
+      gap: 7px;
+    }
+    .chart-title { font-size: 16px; }
+    .bar-row {
+      grid-template-columns: 46px minmax(0, 1fr) 36px;
+      gap: 8px;
+      font-size: 14px;
+      line-height: 1.15;
+    }
+    .bar-track { height: 10px; }
+
+    .asset-consume .panel-body {
+      grid-template-columns: 170px minmax(0, 1fr);
+      grid-template-rows: 64px minmax(0, 1fr) 72px;
+      gap: 10px;
+    }
+    .consume-kpis { gap: 8px; }
+    .compact-kpi {
+      padding: 8px 10px;
+      gap: 4px;
+    }
+    .compact-kpi .name { font-size: 14px; }
+    .compact-kpi .val { font-size: 23px; margin-top: 2px; }
+    .compact-kpi .delta { font-size: 14px; }
+    .consume-left {
+      grid-column: 1;
+      grid-row: 2;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: 110px minmax(0, 1fr);
+      gap: 8px;
+    }
+    .donut-card { padding: 8px; }
+    .donut { width: 98px; height: 98px; }
+    .donut::after { inset: 16px; }
+    .donut-center { font-size: 22px; }
+    .legend { grid-template-columns: 1fr; gap: 5px; }
+    .legend-item {
+      grid-template-columns: 10px 1fr auto;
+      gap: 6px;
+      font-size: 14px;
+      line-height: 1.1;
+    }
+    .legend-dot { width: 8px; height: 8px; }
+    .asset-consume .rank-card {
+      grid-column: 2;
+      grid-row: 2;
+      padding: 8px 10px;
+      gap: 4px;
+    }
+    .asset-consume .rank-list { gap: 2px; }
+    .asset-consume .rank-row {
+      grid-template-columns: 18px 1fr auto;
+      gap: 6px;
+      font-size: 14px;
+      line-height: 1;
+    }
+    .asset-consume .rank-no {
+      width: 18px;
+      height: 18px;
+      border-radius: 6px;
+      font-size: 12px;
+    }
+    .trend-card {
+      grid-column: 1 / -1;
+      grid-row: 3;
+      grid-template-columns: minmax(0, 1fr) 238px;
+      gap: 10px;
+      padding: 6px 10px;
+    }
+    .line-chart { height: 38px; }
+    .dist-bars { gap: 2px; }
+    .dist-bars .bar-row {
+      grid-template-columns: 42px minmax(0, 1fr) 32px;
+      font-size: 13px;
+      gap: 6px;
+    }
+
+    .ops .panel-body {
+      grid-template-columns: 0.94fr 1.06fr;
+      grid-template-rows: minmax(0, 1fr) 62px;
+      gap: 10px;
+    }
+    .ops-kpis {
+      grid-column: 1;
+      grid-row: 1;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .ops .compact-kpi {
+      grid-template-columns: 1fr auto;
+      align-content: center;
+    }
+    .ops .compact-kpi .name { font-size: 14px; }
+    .ops .compact-kpi .val { font-size: 22px; }
+    .dual-trend {
+      grid-column: 2;
+      grid-row: 1;
+      grid-template-columns: 1fr;
+      grid-template-rows: minmax(0, 1fr) auto;
+      padding: 8px 12px;
+      gap: 6px;
+      align-items: stretch;
+    }
+    .dual-trend svg { height: 130px; }
+    .dual-legend {
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      font-size: 14px;
+    }
+    .progress-card {
+      grid-column: 1;
+      grid-row: 2;
+      gap: 8px;
+    }
+    .speed-card {
+      grid-column: 2;
+      grid-row: 2;
+    }
+    .progress-top { font-size: 16px; }
+    .progress-value { font-size: 24px; }
+    .speed-card .label { font-size: 16px; }
+
+    .health .panel-body {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: 58px minmax(0, 1fr);
+      gap: 10px 14px;
+    }
+    .health-kpis {
+      grid-column: 1 / -1;
+      gap: 10px;
+    }
+    .board { padding: 9px 12px; gap: 5px; }
+    .board-title { font-size: 16px; }
+    .dept-row {
+      grid-template-columns: 22px 64px minmax(0, 1fr) 40px;
+      gap: 8px;
+      font-size: 14px;
+    }
+    .dept-medal {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+    .dept-track { height: 9px; }
+
     .deck-progress {
       position: fixed;
       left: 0;
