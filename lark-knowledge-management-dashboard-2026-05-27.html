@@ -805,7 +805,15 @@
       line-height: 1.1;
     }
     .asset-build .bar-track,
-    .asset-consume .bar-track { height: 8px; }
+    .asset-consume .bar-track { height: 12px; }
+    .asset-build .bar-fill,
+    .asset-consume .bar-fill {
+      background: linear-gradient(90deg, var(--fs-blue) 0%, var(--fs-blue-2) 42%, var(--fs-teal) 100%);
+    }
+    .asset-build .rank-list,
+    .asset-consume .chart-box .rank-list {
+      align-content: space-evenly;
+    }
     .chart-title {
       min-width: 0;
       gap: 8px;
@@ -842,6 +850,37 @@
     .multi-line .s2 { stroke: var(--fs-teal); }
     .multi-line .s3 { stroke: var(--fs-orange); }
     .multi-line .s4 { stroke: var(--fs-green); }
+    .funnel-chart {
+      width: 100%;
+      height: 100%;
+      min-height: 92px;
+    }
+    .funnel-chart .funnel-seg {
+      stroke: rgba(255,255,255,0.16);
+      stroke-width: 1;
+      filter: none;
+      animation: funnel-in 700ms ease both;
+      transform-origin: center;
+    }
+    .funnel-chart .funnel-seg:nth-of-type(2) { animation-delay: 90ms; }
+    .funnel-chart .funnel-seg:nth-of-type(3) { animation-delay: 180ms; }
+    .funnel-chart text {
+      fill: #FFFFFF;
+      font-family: var(--fs-font-cjk);
+      font-weight: 760;
+      font-size: 15px;
+    }
+    .funnel-chart .funnel-value {
+      fill: rgba(255,255,255,0.92);
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .funnel-caption {
+      display: flex;
+      justify-content: space-between;
+      color: rgba(255,255,255,0.70);
+      font: 600 11px/1 var(--fs-font-cjk);
+    }
     .series-legend {
       display: flex;
       flex-wrap: wrap;
@@ -1096,6 +1135,10 @@
       from { transform: rotate(-36deg); opacity: 0; }
       to { transform: rotate(0deg); opacity: 1; }
     }
+    @keyframes funnel-in {
+      from { opacity: 0; transform: scaleX(0.86); }
+      to { opacity: 1; transform: scaleX(1); }
+    }
 
     @media (max-aspect-ratio: 16/9) {
       body { overflow: auto; }
@@ -1169,17 +1212,35 @@
                     <div></div>
                   </div>
                   <div class="chart-box">
-                    <div class="chart-title"><span data-text-id="slide-01.build.funnel.title">知识资产漏斗趋势</span><span data-text-id="slide-01.build.funnel.unit">数量</span></div>
-                    <svg class="multi-line" viewBox="0 0 360 150" aria-label="知识资产漏斗趋势">
-                      <path class="grid" d="M22,28 H344 M22,66 H344 M22,104 H344 M22,132 H344"/>
-                      <path class="s1" d="M24,110 C72,100 112,86 160,78 C214,66 260,54 336,38"/>
-                      <path class="s2" d="M24,126 C76,116 120,104 164,96 C214,84 266,73 336,58"/>
-                      <path class="s3" d="M24,136 C76,128 118,120 164,112 C214,100 266,92 336,76"/>
+                    <div class="chart-title"><span data-text-id="slide-01.build.funnel.title">知识资产漏斗</span><span data-text-id="slide-01.build.funnel.unit">转化</span></div>
+                    <svg class="funnel-chart" viewBox="0 0 360 150" aria-label="知识资产漏斗">
+                      <defs>
+                        <linearGradient id="funnelA" x1="42" y1="0" x2="318" y2="0" gradientUnits="userSpaceOnUse">
+                          <stop offset="0" stop-color="#3C7FFF"/>
+                          <stop offset="1" stop-color="#33D6C0"/>
+                        </linearGradient>
+                        <linearGradient id="funnelB" x1="78" y1="0" x2="282" y2="0" gradientUnits="userSpaceOnUse">
+                          <stop offset="0" stop-color="#337CFF"/>
+                          <stop offset="1" stop-color="#28C8B6"/>
+                        </linearGradient>
+                        <linearGradient id="funnelC" x1="112" y1="0" x2="248" y2="0" gradientUnits="userSpaceOnUse">
+                          <stop offset="0" stop-color="#FE7F00"/>
+                          <stop offset="1" stop-color="#33D6C0"/>
+                        </linearGradient>
+                      </defs>
+                      <path class="funnel-seg" fill="url(#funnelA)" d="M36,18 H324 L292,56 H68 Z"/>
+                      <path class="funnel-seg" fill="url(#funnelB)" d="M72,62 H288 L258,100 H102 Z"/>
+                      <path class="funnel-seg" fill="url(#funnelC)" d="M108,106 H252 L226,138 H134 Z"/>
+                      <text x="180" y="42" text-anchor="middle" data-text-id="slide-01.build.funnel.stage.inventory">已盘点资产</text>
+                      <text class="funnel-value" x="302" y="42" text-anchor="end" data-text-id="slide-01.build.funnel.value.inventory">1,286</text>
+                      <text x="180" y="86" text-anchor="middle" data-text-id="slide-01.build.funnel.stage.online">已上线资产</text>
+                      <text class="funnel-value" x="268" y="86" text-anchor="end" data-text-id="slide-01.build.funnel.value.online">842</text>
+                      <text x="180" y="128" text-anchor="middle" data-text-id="slide-01.build.funnel.stage.quality">高质量资产</text>
+                      <text class="funnel-value" x="230" y="128" text-anchor="end" data-text-id="slide-01.build.funnel.value.quality">516</text>
                     </svg>
-                    <div class="series-legend">
-                      <span data-text-id="slide-01.build.funnel.legend.inventory"><i class="legend-line" style="--c:var(--fs-blue)"></i>已盘点</span>
-                      <span data-text-id="slide-01.build.funnel.legend.online"><i class="legend-line" style="--c:var(--fs-teal)"></i>已上线</span>
-                      <span data-text-id="slide-01.build.funnel.legend.quality"><i class="legend-line" style="--c:var(--fs-orange)"></i>高质量</span>
+                    <div class="funnel-caption">
+                      <span data-text-id="slide-01.build.funnel.caption.online">上线转化 65%</span>
+                      <span data-text-id="slide-01.build.funnel.caption.quality">高质量占比 40%</span>
                     </div>
                   </div>
                 </div>
