@@ -144,44 +144,6 @@ r4.cap: 销量前 30 的新能源汽车品牌  其中有 6 成在用飞书
 r5.cap: 中国头部消费电子企业,其中超过 5 成在用飞书
 footnote: * 其中部分客户非全员使用
 
-## slide-09 (content-2col) — 09 万店时代
-title: 飞书赋能酒饮快消的「万店万策」
-b1.count: 13000+
-b1.brand: 百胜中国
-b1.hq: 总部使用
-b1.date: 2021.12
-b2.count: 7000+
-b2.brand: 霸王茶姬
-b2.date: 2022.05
-b3.count: 10000+
-b3.brand: 塔斯汀
-b3.date: 2022.07
-b4.count: 8700+
-b4.brand: 沪上阿姨
-b4.hq: 总部使用
-b4.date: 2022.08
-b5.count: 38000+
-b5.brand: 美宜佳
-b5.date: 2023.02
-b6.count: 7900+
-b6.brand: 茶百道
-b6.date: 2023.06
-b7.count: 2000+
-b7.brand: 奈雪的茶
-b7.date: 2024.08
-b8.count: 6000+
-b8.brand: 名创优品
-b8.date: 2024.09
-b9.count: 53000+
-b9.brand: 蜜雪冰城
-b9.hq: 总部使用
-b9.date: 2025.01
-b10.count: 8000+
-b10.brand: 益禾堂
-b10.date: 2025.06
-b11.count: 3800+
-b11.brand: 屈臣氏
-b11.date: 2025.11
 
 ## slide-10 (content-3up) — 10 四大方向
 title: 飞书致力于成为企业 AI 转型的最佳伙伴
