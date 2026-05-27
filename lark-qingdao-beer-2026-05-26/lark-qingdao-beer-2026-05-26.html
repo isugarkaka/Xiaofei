@@ -1137,11 +1137,11 @@
       background: linear-gradient(90deg, rgba(255,255,255,0.30), rgba(255,255,255,0.05));
     }
 [data-page="11"] .slide .dir-sub {
-      font: 700 22px/1.4 var(--fs-font-cjk);
+      font: 700 24px/1.35 var(--fs-font-cjk);
       color: #fff;
     }
 [data-page="11"] .slide .dir-desc {
-      font: 500 22px/1.5 var(--fs-font-cjk);
+      font: 500 26px/1.42 var(--fs-font-cjk);
       color: #fff;
       margin-top: auto;
     }
@@ -7851,437 +7851,7 @@
 </div>
       </div>
     </div>
-<div class="slide-frame">
-      <div class="slide" data-layout="content-2col" data-accent="orange" data-decor="orange-spark" data-screen-label="17 稽核现状 · 线性串行 6 个月" data-slide-key="audit-current-6m">
-        <div class="wordmark">飞书</div>
-<style>
-.slide[data-slide-key="audit-current-6m"][data-layout="content-2col"] .header .title-zh .num { color: #FE7F00; font-weight: 900; }
-.slide[data-slide-key="audit-current-6m"][data-layout="content-2col"] .stage {
-  position: absolute; top: 200px; left: 73px; right: 73px; bottom: 30px;
-  display: flex; flex-direction: column; gap: 16px;
-  justify-content: flex-start;
-}
-.slide[data-slide-key="audit-current-6m"] .hdr {
-  display: flex;
-}
-.slide[data-slide-key="audit-current-6m"] .hdr-l { display: flex; flex-direction: column; gap: 6px; }
-.slide[data-slide-key="audit-current-6m"] .eyebrow {
-  font: 700 18px/1 var(--fs-font-cjk); letter-spacing: 0.20em;
-  color: #FE7F00; /* allow:typescale */
-}
-.slide[data-slide-key="audit-current-6m"] .ttl {
-  font: 800 48px/1.25 var(--fs-font-cjk); color: #fff; margin: 0; letter-spacing: -0.01em;
-}
-.slide[data-slide-key="audit-current-6m"] .ttl .num {
-  color: #FE7F00; font-weight: 900; margin: 0 2px;
-}
-.slide[data-slide-key="audit-current-6m"] .hdr-r {
-  font: 500 16px/1.5 var(--fs-font-cjk); color: rgba(255,255,255,0.65);
-  text-align: right; /* allow:typescale */ /* allow:white-opacity */
-}
 
-/* timeline */
-.slide[data-slide-key="audit-current-6m"] .timeline-zone {
-  position: relative; padding: 16px 18px;
-  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10);
-  border-radius: 12px; flex-shrink: 0;
-}
-.slide[data-slide-key="audit-current-6m"] .month-axis {
-  display: grid; grid-template-columns: repeat(6, 1fr);
-  border-bottom: 2px solid rgba(255,255,255,0.30); padding-bottom: 6px; margin-bottom: 10px;
-}
-.slide[data-slide-key="audit-current-6m"] .month-axis .m {
-  text-align: center; font: 700 20px/1 var(--fs-font-cjk); color: rgba(255,255,255,0.75);
-  border-right: 1px dashed rgba(255,255,255,0.15);
-  /* allow:typescale */ /* allow:white-opacity */
-}
-.slide[data-slide-key="audit-current-6m"] .month-axis .m:last-child { border-right: none; }
-.slide[data-slide-key="audit-current-6m"] .month-axis .m.dim { color: rgba(255,255,255,0.30); }
-.slide[data-slide-key="audit-current-6m"] .stages-row {
-  display: flex; gap: 4px; height: 56px; margin-bottom: 10px;
-}
-.slide[data-slide-key="audit-current-6m"] .stage-cell {
-  padding: 8px 12px; color: #fff; border-radius: 6px;
-  display: flex; flex-direction: column; justify-content: center; gap: 2px;
-}
-.slide[data-slide-key="audit-current-6m"] .stage-cell .s-tag {
-  font: 700 14px/1 var(--fs-font-latin); letter-spacing: 0.10em; opacity: 0.85;
-  /* allow:typescale */
-}
-.slide[data-slide-key="audit-current-6m"] .stage-cell .s-name {
-  font: 800 22px/1.15 var(--fs-font-cjk);
-  /* allow:typescale */
-}
-.slide[data-slide-key="audit-current-6m"] .stage-cell.is-blue   { background: linear-gradient(90deg,#3C7FFF,#5BA1FF); }
-.slide[data-slide-key="audit-current-6m"] .stage-cell.is-violet { background: linear-gradient(90deg,#9B59B6,#B891F5); }
-.slide[data-slide-key="audit-current-6m"] .stage-cell.is-orange { background: linear-gradient(90deg,#E67E22,#FE7F00); }
-.slide[data-slide-key="audit-current-6m"] .stage-cell.is-red    { background: linear-gradient(90deg,#E74C3C,#FF6B5C); }
-.slide[data-slide-key="audit-current-6m"] .stage-cell.savings   {
-  background: repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0 6px, rgba(255,255,255,0.0) 6px 12px);
-  border: 1px dashed rgba(255,255,255,0.20); color: #FE7F00;
-  align-items: center; justify-content: center; text-align: center;
-}
-.slide[data-slide-key="audit-current-6m"] .stage-cell.savings .save-text {
-  font: 800 16px/1.2 var(--fs-font-cjk); /* allow:typescale */
-}
-
-.slide[data-slide-key="audit-current-6m"] .substages-row {
-  display: flex; gap: 4px; height: 220px;
-}
-.slide[data-slide-key="audit-current-6m"] .sub-cell {
-  padding: 14px 16px; border-radius: 4px;
-  background: rgba(255,255,255,0.04);
-  font: 600 24px/1.45 var(--fs-font-cjk); color: rgba(255,255,255,0.92);
-  /* allow:typescale */ /* allow:white-opacity */
-}
-.slide[data-slide-key="audit-current-6m"] .sub-cell.bt-blue   { border-top: 3px solid #3C7FFF; }
-.slide[data-slide-key="audit-current-6m"] .sub-cell.bt-violet { border-top: 3px solid #B891F5; }
-.slide[data-slide-key="audit-current-6m"] .sub-cell.bt-orange { border-top: 3px solid #FE7F00; }
-.slide[data-slide-key="audit-current-6m"] .sub-cell.bt-red    { border-top: 3px solid #FF6B5C; }
-.slide[data-slide-key="audit-current-6m"] .sub-cell .bad {
-  display: inline-block;
-  font: 800 28px/1.25 var(--fs-font-cjk); color: #FF8A75;
-  background: rgba(254,127,0,0.18); border-left: 4px solid #FF8A75;
-  padding: 4px 10px; border-radius: 0 5px 5px 0; margin: 4px 0;
-}
-.slide[data-slide-key="audit-current-6m"] .sub-cell .ai-tag {
-  display: inline-block; padding: 3px 8px; border-radius: 4px;
-  background: rgba(60,127,255,0.20); color: #6FA3FF;
-  font: 700 16px/1.3 var(--fs-font-cjk); margin: 1px 0;
-  /* allow:typescale */
-}
-.slide[data-slide-key="audit-current-6m"] .sub-cell .ghost { color: rgba(255,255,255,0.40); /* allow:white-opacity */ }
-.slide[data-slide-key="audit-current-6m"] .sub-cell .arrow { color: rgba(255,255,255,0.45); /* allow:white-opacity */ }
-
-/* risk markers + decision window bar */
-.slide[data-slide-key="audit-current-6m"] .risk-row {
-  margin-top: 14px; position: relative; height: 32px;
-}
-.slide[data-slide-key="audit-current-6m"] .risk-row .risk-dot {
-  position: absolute; width: 14px; height: 14px; border-radius: 50%;
-  background: #FE7F00; border: 2px solid #11141C;
-  box-shadow: 0 0 0 2px #FE7F00; top: 4px;
-}
-.slide[data-slide-key="audit-current-6m"] .risk-row .risk-label {
-  position: absolute; font: 800 18px/1 var(--fs-font-cjk); color: #FE7F00; top: 5px;
-  /* allow:typescale */
-}
-.slide[data-slide-key="audit-current-6m"] .risk-row .seen-dot {
-  position: absolute; width: 14px; height: 14px; border-radius: 50%;
-  background: #FE7F00; border: 2px solid #11141C;
-  box-shadow: 0 0 0 2px #FE7F00; top: 4px;
-}
-.slide[data-slide-key="audit-current-6m"] .risk-row .seen-label {
-  position: absolute; font: 800 18px/1 var(--fs-font-cjk); color: #FE7F00; top: 5px;
-  /* allow:typescale */
-}
-.slide[data-slide-key="audit-current-6m"] .window-bar {
-  position: relative; height: 22px; margin: 12px 0 0;
-  border-top: 1px solid #FE7F00; border-bottom: 1px solid #FE7F00;
-}
-.slide[data-slide-key="audit-current-6m"] .window-bar .label {
-  position: absolute; left: 50%; top: -10px; transform: translateX(-50%);
-  background: #FE7F00; color: #062828;
-  padding: 4px 14px; font: 800 16px/1 var(--fs-font-cjk); letter-spacing: 0.04em;
-  border-radius: 3px;
-  /* allow:typescale */
-}
-
-/* bottom chip row */
-.slide[data-slide-key="audit-current-6m"] .chip-row { display: grid; gap: 10px; flex: 0 0 auto; }
-.slide[data-slide-key="audit-current-6m"] .chip {
-  padding: 18px 20px;
-  background: rgba(8,12,24,0.55); border: 1px solid rgba(255,255,255,0.12);
-  border-top: 3px solid #FE7F00;
-  border-radius: 8px;
-  display: flex; flex-direction: column; gap: 8px; min-width: 0;
-}
-.slide[data-slide-key="audit-current-6m"] .chip .c-tag {
-  font: 800 16px/1 var(--fs-font-cjk); letter-spacing: 0.12em; color: #FE7F00;
-  /* allow:typescale */
-}
-.slide[data-slide-key="audit-current-6m"] .chip .c-title {
-  font: 800 24px/1.2 var(--fs-font-cjk); color: #fff;
-  /* allow:typescale */
-}
-.slide[data-slide-key="audit-current-6m"] .chip .c-body {
-  font: 500 18px/1.5 var(--fs-font-cjk); color: rgba(255,255,255,0.78);
-  /* allow:typescale */ /* allow:white-opacity */
-}
-.slide[data-slide-key="audit-current-6m"] .chip .c-body .strike {
-  text-decoration: line-through; color: rgba(255,255,255,0.40);
-  /* allow:white-opacity */
-}
-.slide[data-slide-key="audit-current-6m"] .chip.is-dark {
-  background: #0a1020; border-top: 3px solid #FFD770;
-}
-.slide[data-slide-key="audit-current-6m"] .chip.is-dark .c-tag { color: #FFD770; letter-spacing: 0.16em; }
-.slide[data-slide-key="audit-current-6m"] .chip.is-dark .c-body { color: rgba(255,255,255,0.85); }
-.slide[data-slide-key="audit-current-6m"] .chip.is-dark .c-body .gold { color: #FFD770; font-weight: 700; }
-
-.slide[data-slide-key="audit-current-6m"] .footnote {
-  font: 500 14px/1.4 var(--fs-font-cjk); color: rgba(255,255,255,0.50);
-  border-top: 1px solid rgba(255,255,255,0.10); padding-top: 8px;
-  /* allow:typescale */ /* allow:white-opacity */
-}
-
-.slide[data-slide-key="audit-current-6m"] .window-banner {
-  display: flex; align-items: center; gap: 14px; margin-top: 18px; height: 48px;
-}
-.slide[data-slide-key="audit-current-6m"] .window-banner .left,
-.slide[data-slide-key="audit-current-6m"] .window-banner .right {
-  display: flex; align-items: center; gap: 10px; flex-shrink: 0;
-  font: 800 18px/1.2 var(--fs-font-cjk); /* allow:typescale */
-}
-.slide[data-slide-key="audit-current-6m"] .window-banner .left { color: #FE7F00; }
-.slide[data-slide-key="audit-current-6m"] .window-banner .right { color: rgba(255,255,255,0.85); }
-.slide[data-slide-key="audit-current-6m"] .window-banner .dot {
-  width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
-}
-.slide[data-slide-key="audit-current-6m"] .window-banner .risk-dot {
-  background: #FE7F00; box-shadow: 0 0 0 3px rgba(254,127,0,0.30);
-}
-.slide[data-slide-key="audit-current-6m"] .window-banner .seen-dot {
-  background: #fff; box-shadow: 0 0 0 3px rgba(255,255,255,0.25);
-}
-.slide[data-slide-key="audit-current-6m"] .window-banner .bar {
-  flex: 1; height: 38px; position: relative;
-  background: linear-gradient(90deg, rgba(254,127,0,0.18) 0%, rgba(254,127,0,0.45) 50%, rgba(254,127,0,0.18) 100%);
-  border: 1.5px solid rgba(254,127,0,0.55); border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-}
-.slide[data-slide-key="audit-current-6m"] .window-banner .bar::before,
-.slide[data-slide-key="audit-current-6m"] .window-banner .bar::after {
-  content: ''; position: absolute; top: 50%; transform: translateY(-50%);
-  width: 0; height: 0; border-top: 7px solid transparent; border-bottom: 7px solid transparent;
-}
-.slide[data-slide-key="audit-current-6m"] .window-banner .bar::before {
-  left: 0; border-right: 10px solid rgba(254,127,0,0.55);
-}
-.slide[data-slide-key="audit-current-6m"] .window-banner .bar::after {
-  right: 0; border-left: 10px solid rgba(254,127,0,0.55);
-}
-.slide[data-slide-key="audit-current-6m"] .window-banner .bar-label {
-  font: 800 22px/1 var(--fs-font-cjk); color: #fff; letter-spacing: 0.04em;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.30);
-  /* allow:typescale */
-}
-
-/* === slide 23 · 4-6 月延后动画 (15s loop) === */
-.slide[data-slide-key="audit-current-6m"] .window-banner .bar {
-  overflow: hidden; position: relative;
-}
-/* fill bar — 12s 渐进推 0→100% 模拟时间流逝 */
-.slide[data-slide-key="audit-current-6m"] .window-banner .bar::before {
-  content: ''; position: absolute; inset: 0; z-index: 0;
-  background: linear-gradient(90deg,
-    rgba(254,127,0,0.55) 0%,
-    rgba(254,127,0,0.85) 50%,
-    rgba(254,127,0,0.55) 100%);
-  transform: translateX(-100%);
-  animation: anim-bar-fill 15s infinite both;
-}
-@keyframes anim-bar-fill {
-  0%   { transform: translateX(-100%); }
-  10%  { transform: translateX(-100%); }
-  75%  { transform: translateX(0); }
-  100% { transform: translateX(0); }
-}
-.slide[data-slide-key="audit-current-6m"] .window-banner .bar-label,
-.slide[data-slide-key="audit-current-6m"] .window-banner .bar::after {
-  position: relative; z-index: 2;
-}
-
-/* risk dot — early pulse (0-2s) + stay */
-@keyframes anim-risk-pulse {
-  0%   { box-shadow: 0 0 0 3px rgba(254,127,0,0.30); transform: scale(1); }
-  4%   { box-shadow: 0 0 0 14px rgba(254,127,0,0); transform: scale(1.4); }
-  10%  { box-shadow: 0 0 0 3px rgba(254,127,0,0.30); transform: scale(1); }
-  100% { box-shadow: 0 0 0 3px rgba(254,127,0,0.45); transform: scale(1); }
-}
-.slide[data-slide-key="audit-current-6m"] .window-banner .risk-dot {
-  animation: anim-risk-pulse 15s infinite both;
-}
-
-/* seen dot — late pulse (10-13s) */
-@keyframes anim-seen-pulse {
-  0%, 60% { box-shadow: 0 0 0 3px rgba(255,255,255,0.10); transform: scale(0.9); opacity: 0.5; }
-  66%     { box-shadow: 0 0 0 3px rgba(255,255,255,0.30); transform: scale(1); opacity: 1; }
-  72%     { box-shadow: 0 0 0 16px rgba(255,255,255,0); transform: scale(1.5); opacity: 1; }
-  78%, 100% { box-shadow: 0 0 0 3px rgba(255,255,255,0.50); transform: scale(1); opacity: 1; }
-}
-.slide[data-slide-key="audit-current-6m"] .window-banner .seen-dot {
-  animation: anim-seen-pulse 15s infinite both;
-}
-
-/* seen label — fade in late */
-@keyframes anim-seen-label {
-  0%, 60%   { opacity: 0.35; }
-  68%, 100% { opacity: 1; }
-}
-.slide[data-slide-key="audit-current-6m"] .window-banner .right {
-  animation: anim-seen-label 15s infinite both;
-}
-
-/* bar label — late glow */
-@keyframes anim-label-glow {
-  0%, 75% { text-shadow: 0 1px 2px rgba(0,0,0,0.30); transform: scale(1); }
-  82%     { text-shadow: 0 0 18px rgba(254,127,0,0.90), 0 1px 2px rgba(0,0,0,0.30); transform: scale(1.06); }
-  95%, 100% { text-shadow: 0 1px 2px rgba(0,0,0,0.30); transform: scale(1); }
-}
-.slide[data-slide-key="audit-current-6m"] .window-banner .bar-label {
-  animation: anim-label-glow 15s infinite both;
-  transform-origin: center;
-}
-
-
-
-/* hover pause */
-.slide[data-slide-key="audit-current-6m"] .timeline-zone:hover *,
-.slide[data-slide-key="audit-current-6m"] .window-banner:hover * {
-  animation-play-state: paused !important;
-}
-
-/* === 时间流逝 — 4 stage 顺序亮起 (15s loop) === */
-@keyframes anim-stage-1-lit {
-  0%, 5%   { opacity: 0.25; }
-  11%, 100% { opacity: 1; }
-}
-@keyframes anim-stage-2-lit {
-  0%, 12%  { opacity: 0.25; }
-  19%, 100% { opacity: 1; }
-}
-@keyframes anim-stage-3-lit {
-  0%, 32%  { opacity: 0.25; }
-  40%, 100% { opacity: 1; }
-}
-@keyframes anim-stage-4-lit {
-  0%, 64%  { opacity: 0.25; }
-  72%, 100% { opacity: 1; }
-}
-/* both top stage-cell strip + bottom sub-cell get the same phase fade */
-.slide[data-slide-key="audit-current-6m"] .stage-cell.is-blue,
-.slide[data-slide-key="audit-current-6m"] .sub-cell.bt-blue {
-  animation: anim-stage-1-lit 15s infinite both;
-}
-.slide[data-slide-key="audit-current-6m"] .stage-cell.is-violet,
-.slide[data-slide-key="audit-current-6m"] .sub-cell.bt-violet {
-  animation: anim-stage-2-lit 15s infinite both;
-}
-.slide[data-slide-key="audit-current-6m"] .stage-cell.is-orange,
-.slide[data-slide-key="audit-current-6m"] .sub-cell.bt-orange {
-  animation: anim-stage-3-lit 15s infinite both;
-}
-.slide[data-slide-key="audit-current-6m"] .stage-cell.is-red,
-.slide[data-slide-key="audit-current-6m"] .sub-cell.bt-red {
-  animation: anim-stage-4-lit 15s infinite both;
-}
-
-/* month axis — 同步顺序高亮 */
-@keyframes anim-month-1 { 0%, 5%   { color: rgba(255,255,255,0.30); } 11%, 100% { color: #fff; } }
-@keyframes anim-month-2 { 0%, 12%  { color: rgba(255,255,255,0.30); } 19%, 100% { color: #fff; } }
-@keyframes anim-month-3 { 0%, 25%  { color: rgba(255,255,255,0.30); } 32%, 100% { color: #fff; } }
-@keyframes anim-month-4 { 0%, 42%  { color: rgba(255,255,255,0.30); } 49%, 100% { color: #fff; } }
-@keyframes anim-month-5 { 0%, 55%  { color: rgba(255,255,255,0.30); } 62%, 100% { color: #fff; } }
-@keyframes anim-month-6 { 0%, 64%  { color: rgba(255,255,255,0.30); } 72%, 100% { color: #fff; } }
-.slide[data-slide-key="audit-current-6m"] .month-axis .m:nth-child(1) { animation: anim-month-1 15s infinite both; }
-.slide[data-slide-key="audit-current-6m"] .month-axis .m:nth-child(2) { animation: anim-month-2 15s infinite both; }
-.slide[data-slide-key="audit-current-6m"] .month-axis .m:nth-child(3) { animation: anim-month-3 15s infinite both; }
-.slide[data-slide-key="audit-current-6m"] .month-axis .m:nth-child(4) { animation: anim-month-4 15s infinite both; }
-.slide[data-slide-key="audit-current-6m"] .month-axis .m:nth-child(5) { animation: anim-month-5 15s infinite both; }
-.slide[data-slide-key="audit-current-6m"] .month-axis .m:nth-child(6) { animation: anim-month-6 15s infinite both; }
-
-/* timeline-zone hover pause (already set, extend to month axis) */
-.slide[data-slide-key="audit-current-6m"] .timeline-zone:hover * { animation-play-state: paused !important; }
-
-.slide[data-slide-key="audit-current-6m"] .middle {
-  flex: 1; min-height: 0;
-  display: flex; flex-direction: column; gap: 24px;
-  justify-content: center;
-}
-</style>
-<div class="wordmark"></div>
-<div class="header"><h2 class="title-zh" data-text-id="slide-71.title">稽核项目线性串行，问题从发现到决策周期长</h2></div>
-<div class="stage" data-allow-typescale="audit-3p" data-allow-body-floor="audit-3p">
-<div class="middle">
-<div class="timeline-zone">
-<div class="month-axis"><div class="m">M1</div><div class="m">M2</div><div class="m">M3</div><div class="m">M4</div><div class="m">M5</div><div class="m">M6</div></div>
-<div class="stages-row">
-<div class="stage-cell is-blue"   style="flex:1"><div class="s-tag">STAGE 1</div><div class="s-name">稽核计划</div></div>
-<div class="stage-cell is-violet" style="flex:1.5"><div class="s-tag">STAGE 2</div><div class="s-name">现场工作 · 1-2 月</div></div>
-<div class="stage-cell is-orange" style="flex:1.8"><div class="s-tag">STAGE 3</div><div class="s-name">案头报告 · 1-3 月</div></div>
-<div class="stage-cell is-red"    style="flex:1.2"><div class="s-tag">STAGE 4</div><div class="s-name">追踪整改</div></div>
-</div>
-<div class="substages-row">
-<div class="sub-cell bt-blue"   style="flex:1">立项 · 风险评估<br>方案 · 程式<br>勤前报告<br>外勤通知</div>
-<div class="sub-cell bt-violet" style="flex:1.5">全国十几个工厂<br><span class="bad">手写底稿</span><br><span class="bad">每日 Excel 日报</span><br>建议书初稿</div>
-<div class="sub-cell bt-orange" style="flex:1.8"><span class="bad">逐条比对几十份日报</span><br><span class="bad">资深员工逐字打磨</span><br>专项报告 · CAE 复核<br>多项目合并 → 董事会</div>
-<div class="sub-cell bt-red"    style="flex:1.2">OA 改善单<br>责任部门整改<br>复核改善情况<br>结案</div>
-</div>
-<div class="window-banner">
-<div class="left"><div class="dot risk-dot"></div><span>Q4 风险实际发生</span></div>
-<div class="bar"><span class="bar-label">决策窗口延迟 4-6 个月</span></div>
-<div class="right"><span>董事长才看到(次年 Q1)</span><div class="dot seen-dot"></div></div>
-</div>
-</div>
-
-<div class="chip-row" style="grid-template-columns: repeat(5, 1fr);">
-<div class="chip"><span class="c-tag">痛点 ①</span><span class="c-title">信息滞后</span><span class="c-body">风险→董事长 4-6 月,战略调整窗口已错过</span></div>
-<div class="chip"><span class="c-tag">痛点 ②</span><span class="c-title">全靠人写</span><span class="c-body">底稿/日报/建议书/报告 四层堆叠,通宵加班</span></div>
-<div class="chip"><span class="c-tag">痛点 ③</span><span class="c-title">经验难传</span><span class="c-body">老员工判断力长在脑子里,新人看不出问题</span></div>
-<div class="chip"><span class="c-tag">痛点 ④</span><span class="c-title">制度繁杂</span><span class="c-body">数百份制度版本难对齐,可能依据过期版本判断</span></div>
-<div class="chip"><span class="c-tag">痛点 ⑤</span><span class="c-title">颗粒度粗</span><span class="c-body">以专项报告为单位,中间发现的问题只能攒着</span></div>
-</div>
-</div>
-</div>
-<script>
-(function(){
-  if (window.__fsAnimRestartAudit) return;
-  window.__fsAnimRestartAudit = true;
-  var KEYS = ["audit-current-6m","audit-ai-patch-3m","audit-flow-rebuild-weekly"];
-  function restartAnimations(slideEl){
-    var all = slideEl.querySelectorAll("*");
-    all.forEach(function(el){
-      var cs = window.getComputedStyle(el);
-      if (cs.animationName && cs.animationName !== "none"){
-        var prev = el.style.animation;
-        el.style.animation = "none";
-        // force reflow so the change registers before re-enabling
-        void el.offsetHeight;
-        el.style.animation = prev || "";
-      }
-    });
-  }
-  function setup(){
-    KEYS.forEach(function(key){
-      var slide = document.querySelector('.slide[data-slide-key="'+key+'"]');
-      if (!slide) return;
-      var frame = slide.closest(".slide-frame");
-      if (!frame) return;
-      // observe is-current toggle on the slide-frame wrapper
-      var obs = new MutationObserver(function(muts){
-        for (var i=0; i<muts.length; i++){
-          var m = muts[i];
-          if (m.attributeName === "class" && frame.classList.contains("is-current")){
-            restartAnimations(slide);
-            return;
-          }
-        }
-      });
-      obs.observe(frame, { attributes: true, attributeFilter: ["class"] });
-      // also restart on initial load if this frame is already current
-      if (frame.classList.contains("is-current")) restartAnimations(slide);
-    });
-  }
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", setup);
-  } else {
-    setup();
-  }
-})();
-</script>
-      </div>
-    </div>
 <div class="slide-frame">
       <div class="slide" data-layout="content-2col" data-accent="blue" data-decor="blue-glow" data-screen-label="18 AI 打补丁 · 压缩到 3 个月" data-slide-key="audit-ai-patch-3m">
         <div class="wordmark">飞书</div>
@@ -9008,6 +8578,658 @@
       </div>
     </div>
 
+<div class="slide-frame">
+      <div class="slide" data-layout="content-2col" data-accent="teal" data-decor="blue-glow" data-screen-label="17 NPD-0541 试产 · AI 督办员 demo" data-slide-key="kangshifu-npd-0541-scene">
+        <div class="wordmark">飞书</div>
+<style>
+.slide[data-slide-key="kangshifu-npd-0541-scene"][data-layout="content-2col"] .header { display: none; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"][data-layout="content-2col"] .stage {
+  position: absolute; top: 61px; left: 73px; right: 73px; bottom: 30px;
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  column-gap: 36px;
+  align-items: center;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .narrative { display: flex; flex-direction: column; gap: 18px; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .eyebrow {
+  font: 700 16px/1 var(--fs-font-cjk); letter-spacing: 0.16em; color: var(--fs-teal);
+  /* allow:typescale */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .ttl {
+  font: 900 48px/1.1 var(--fs-font-cjk); color: #fff; margin: 0; letter-spacing: -0.015em;
+  /* allow:typescale */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .ttl .accent { color: var(--fs-teal); }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .ctx {
+  font: 500 24px/1.5 var(--fs-font-cjk); color: #fff; margin: 0;
+  /* allow:typescale */ /* allow:white-opacity */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .ctx .hl { color: var(--fs-teal); font-weight: 700; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .steps {
+  display: flex; flex-direction: column; gap: 12px;
+  border-left: 2px solid rgba(51,214,192,0.40); padding-left: 16px;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .step { display: flex; gap: 12px; align-items: baseline; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .step .n {
+  font: 800 24px/1 var(--fs-font-latin); color: var(--fs-teal); min-width: 32px;
+  /* allow:typescale */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .step .t {
+  font: 700 24px/1.3 var(--fs-font-cjk); color: #fff;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .step .t .sub {
+  display: block; font: 500 24px/1.4 var(--fs-font-cjk); color: rgba(255,255,255,0.85);
+  /* allow:typescale */ /* allow:white-opacity */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .hover-note {
+  font: 500 16px/1.3 var(--fs-font-cjk); color: rgba(255,255,255,0.40);
+  /* allow:typescale */ /* allow:white-opacity */
+}
+
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .demo-zone {
+  display: grid; grid-template-columns: 340px 1fr; column-gap: 36px;
+  align-items: center; position: relative;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .flow-svg {
+  position: absolute; inset: 0; pointer-events: none; z-index: 2; width: 100%; height: 100%;
+}
+
+/* PHONE BASE */
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .phone {
+  background: #11141C; border-radius: 32px; position: relative;
+  overflow: hidden; display: flex; flex-direction: column;
+  font-family: var(--fs-font-cjk);
+  box-shadow: 0 0 0 6px #1a1d2a, 0 0 0 7px rgba(255,255,255,0.05);
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .phone::before {
+  content: ''; position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+  width: 84px; height: 18px; background: #050810; border-radius: 0 0 12px 12px; z-index: 10;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .phone.is-super {
+  width: 340px; height: 660px;
+  box-shadow: 0 0 0 6px #1a1d2a, 0 0 0 9px rgba(51,214,192,0.55);
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .phone.is-supplier {
+  width: 100%; height: 480px; border-radius: 20px;
+  box-shadow: 0 0 0 5px #1a1d2a;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .phone.is-supplier::before {
+  width: 52px; height: 12px; top: 5px;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .ph-status {
+  height: 30px; padding: 0 16px;
+  display: flex; align-items: center; justify-content: space-between;
+  font: 700 13px/1 -apple-system, var(--fs-font-cjk); color: rgba(255,255,255,0.85);
+  background: #11141C; /* allow:typescale */ /* allow:white-opacity */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .phone.is-supplier .ph-status {
+  height: 22px; padding: 0 12px; font-size: 11px;
+  /* allow:typescale */ /* allow:white-opacity */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .ph-bar {
+  padding: 10px 14px;
+  background: rgba(60,127,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; gap: 10px;
+  font: 700 16px/1 var(--fs-font-cjk); color: #fff; /* allow:typescale */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .phone.is-supplier .ph-bar {
+  padding: 7px 10px; font-size: 13px; gap: 7px; /* allow:typescale */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .ph-ai {
+  width: 26px; height: 26px; border-radius: 50%;
+  background-size: cover; background-position: center;
+  box-shadow: 0 0 0 1.5px rgba(51,214,192,0.60); flex-shrink: 0;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .phone.is-supplier .ph-ai { width: 20px; height: 20px; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .ph-body { flex: 1; overflow: hidden; position: relative; }
+
+/* SUPER PHONE PANELS */
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel {
+  position: absolute; inset: 0; padding: 14px 16px;
+  display: flex; flex-direction: column; gap: 12px; opacity: 0;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .role-tag {
+  display: inline-block; padding: 4px 10px; border-radius: 5px;
+  background: rgba(51,214,192,0.20); color: var(--fs-teal);
+  font: 800 14px/1 var(--fs-font-cjk); letter-spacing: 0.12em;
+  align-self: flex-start; /* allow:typescale */
+}
+
+/* Phase 1 — dispatch (with avatars) */
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-1 .pc-title {
+  font: 800 18px/1.3 var(--fs-font-cjk); color: #fff; /* allow:typescale */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-1 .dispatch-list {
+  background: rgba(60,127,255,0.10); border: 1px solid rgba(60,127,255,0.30);
+  border-radius: 10px; padding: 10px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-1 .dl-item {
+  display: flex; align-items: center; gap: 8px;
+  font: 600 14px/1 var(--fs-font-cjk); color: rgba(255,255,255,0.88);
+  /* allow:typescale */ /* allow:white-opacity */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-1 .dl-av {
+  width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+  background-size: cover; background-position: center;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-1 .dl-name { flex: 1; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-1 .dl-region {
+  font: 600 12px/1 var(--fs-font-cjk); color: rgba(255,255,255,0.55);
+  padding: 2px 6px; border-radius: 3px; background: rgba(255,255,255,0.06);
+  /* allow:typescale */ /* allow:white-opacity */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-1 .dispatch-btn {
+  padding: 11px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--fs-teal), #2EBFA8);
+  color: #062828; text-align: center;
+  font: 800 17px/1 var(--fs-font-cjk); /* allow:typescale */
+}
+
+/* Phase 2-3 — status (transcript instead of "voice 32s") */
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-2 .p2-head {
+  font: 800 18px/1.3 var(--fs-font-cjk); color: #fff; /* allow:typescale */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-2 .p2-sub {
+  font: 500 15px/1 var(--fs-font-cjk); color: rgba(255,255,255,0.65);
+  /* allow:typescale */ /* allow:white-opacity */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .status-list {
+  display: flex; flex-direction: column; gap: 9px;
+  background: rgba(255,255,255,0.04); border-radius: 10px; padding: 11px;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-row {
+  display: flex; align-items: flex-start; gap: 8px;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-icon {
+  width: 20px; height: 20px; display: grid; place-items: center; border-radius: 4px;
+  font: 800 13px/1 var(--fs-font-cjk); flex-shrink: 0; margin-top: 1px;
+  /* allow:typescale */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-meta {
+  flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-name {
+  font: 700 14px/1.2 var(--fs-font-cjk); color: #fff; /* allow:typescale */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-desc {
+  font: 500 12px/1.3 var(--fs-font-cjk); color: rgba(255,255,255,0.78);
+  /* allow:typescale */ /* allow:white-opacity */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-desc .ai-tag {
+  display: inline-block; padding: 1px 5px; border-radius: 3px;
+  background: rgba(159,111,241,0.25); color: #B891F5;
+  font: 800 10px/1 var(--fs-font-cjk); margin-right: 4px;
+  /* allow:typescale */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-icon.is-text   { background: rgba(60,127,255,0.30); color: #6FA3FF; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-icon.is-voice  { background: rgba(159,111,241,0.30); color: #B891F5; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-icon.is-file   { background: rgba(51,214,192,0.30); color: var(--fs-teal); }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-icon.is-pending { background: rgba(254,127,0,0.30); color: #FFB070; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-row.is-pending .st-name { color: rgba(255,255,255,0.55); /* allow:white-opacity */ }
+
+/* Phase 4 */
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .ai-scan {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(51,214,192,0.10); border: 1px solid rgba(51,214,192,0.30);
+  border-radius: 10px; padding: 11px;
+  font: 700 15px/1.3 var(--fs-font-cjk); color: var(--fs-teal); /* allow:typescale */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .ai-scan svg { width: 20px; height: 20px; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .summary-card {
+  background: rgba(255,255,255,0.04); border-radius: 10px; padding: 11px;
+  display: flex; flex-direction: column; gap: 7px;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .sm-rate {
+  font: 800 22px/1.1 var(--fs-font-cjk); color: var(--fs-teal); /* allow:typescale */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .sm-meta {
+  font: 500 14px/1.4 var(--fs-font-cjk); color: rgba(255,255,255,0.78);
+  /* allow:typescale */ /* allow:white-opacity */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .alert-card {
+  background: rgba(254,127,0,0.14); border: 1px solid rgba(254,127,0,0.40);
+  border-left: 4px solid var(--fs-orange); border-radius: 10px; padding: 11px;
+  display: flex; flex-direction: column; gap: 7px;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .a-head {
+  display: flex; align-items: center; gap: 8px;
+  font: 800 17px/1.2 var(--fs-font-cjk); color: var(--fs-orange); /* allow:typescale */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .a-head svg { width: 18px; height: 18px; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .a-text {
+  font: 600 14px/1.4 var(--fs-font-cjk); color: #fff; /* allow:typescale */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .a-readers {
+  display: flex; gap: 9px;
+  font: 600 13px/1 var(--fs-font-cjk); color: rgba(255,255,255,0.65);
+  /* allow:typescale */ /* allow:white-opacity */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .a-readers span::before { content: '✓ '; color: var(--fs-teal); }
+
+/* MINI WRAP (phone-tag + phone) */
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+  position: relative; z-index: 1;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini-wrap {
+  display: flex; flex-direction: column; gap: 8px; align-items: stretch;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .phone-tag {
+  text-align: center;
+  font: 700 24px/1.3 var(--fs-font-cjk); color: #fff;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .phone-tag .region {
+  display: block; font: 500 16px/1.3 var(--fs-font-cjk); color: rgba(255,255,255,0.65);
+  margin-top: 4px;
+  /* allow:white-opacity — secondary label muted chrome */
+}
+
+/* MINI CHAT (双头像左右对话) */
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .chat {
+  padding: 10px 10px; display: flex; flex-direction: column; gap: 8px; height: 100%;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .msg-in {
+  display: flex; align-items: flex-start; gap: 6px;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .msg-out {
+  display: flex; align-items: flex-start; gap: 6px;
+  justify-content: flex-end;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .chat-av {
+  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+  background-size: cover; background-position: center;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .chat-av.super-av {
+  box-shadow: 0 0 0 1.5px rgba(51,214,192,0.50);
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .bubble {
+  padding: 7px 9px;
+  font: 600 13px/1.35 var(--fs-font-cjk); color: #fff;
+  max-width: 75%; /* allow:typescale */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .bubble.bubble-in {
+  background: rgba(255,255,255,0.10);
+  border-radius: 4px 12px 12px 12px;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .bubble.bubble-out {
+  border-radius: 12px 4px 12px 12px;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .bubble.bubble-out.text {
+  background: rgba(51,214,192,0.30);
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .bubble.bubble-out.btn-ack {
+  background: linear-gradient(135deg, #FFB400, #FFD770); color: #5C3A00;
+}
+
+/* voice — bundle: voice bubble + ai transcript */
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle {
+  display: flex; flex-direction: column; gap: 4px; align-items: flex-end; max-width: 78%;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .voice-row {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(159,111,241,0.30); border-radius: 12px 4px 12px 12px;
+  padding: 7px 10px;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .wave {
+  display: flex; align-items: center; gap: 2px; height: 14px;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .wave i {
+  width: 2px; background: #fff; border-radius: 1px; animation: wave-bar 0.9s infinite;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .wave i:nth-child(1) { height: 5px;  animation-delay: 0.0s; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .wave i:nth-child(2) { height: 9px;  animation-delay: 0.1s; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .wave i:nth-child(3) { height: 12px; animation-delay: 0.2s; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .wave i:nth-child(4) { height: 7px;  animation-delay: 0.3s; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .wave i:nth-child(5) { height: 10px; animation-delay: 0.4s; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .wave i:nth-child(6) { height: 4px;  animation-delay: 0.5s; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .dur {
+  font: 700 11px/1 var(--fs-font-cjk); color: #fff; /* allow:typescale */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .transcript {
+  background: rgba(159,111,241,0.16);
+  border: 1px dashed rgba(159,111,241,0.45);
+  border-radius: 6px; padding: 5px 8px;
+  font: 600 12px/1.35 var(--fs-font-cjk); color: rgba(255,255,255,0.92);
+  /* allow:typescale */ /* allow:white-opacity */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .transcript::before {
+  content: 'AI 转写 · ';
+  font-weight: 800; color: #B891F5;
+  letter-spacing: 0.04em;
+}
+
+@keyframes wave-bar { 0%, 100% { transform: scaleY(0.5); } 50% { transform: scaleY(1.2); } }
+
+/* file card as bubble-out */
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .file-bubble {
+  background: rgba(255,255,255,0.10); border: 1px solid rgba(51,214,192,0.40);
+  border-radius: 12px 4px 12px 12px;
+  padding: 7px 9px;
+  display: flex; align-items: center; gap: 7px; max-width: 78%;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .file-bubble .f-icon {
+  width: 24px; height: 28px; flex-shrink: 0;
+  background: var(--fs-teal); border-radius: 3px;
+  display: grid; place-items: center;
+  font: 800 11px/1 var(--fs-font-cjk); color: #062828; /* allow:typescale */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .file-bubble .f-meta {
+  display: flex; flex-direction: column; gap: 2px;
+  font: 700 12px/1.2 var(--fs-font-cjk); color: #fff; /* allow:typescale */
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .file-bubble .f-meta .sz {
+  font-weight: 500; color: rgba(255,255,255,0.55);
+  /* allow:typescale */ /* allow:white-opacity */
+}
+
+/* typing */
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .typing-row {
+  display: flex; align-items: center; gap: 6px;
+  justify-content: flex-end;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .typing {
+  display: flex; align-items: center; gap: 4px;
+  padding: 7px 11px;
+  background: rgba(255,255,255,0.10);
+  border-radius: 12px 4px 12px 12px;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .typing i {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgba(255,255,255,0.55); animation: typing-dot 1.0s infinite;
+}
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .typing i:nth-child(2) { animation-delay: 0.2s; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .typing i:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typing-dot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-2px); opacity: 1; }
+}
+/* out-slot — typing & reply stack in same slot at bottom */
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .out-slot {
+  flex: 1; position: relative; min-height: 52px;
+}
+/* default (m1/m3/m4): reply pinned to top — 紧贴 incoming */
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .out-slot .typing-row,
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .out-slot .msg-out {
+  position: absolute; right: 0; top: 0; left: 0;
+  display: flex; justify-content: flex-end; align-items: flex-start;
+}
+
+
+/* ANIMATIONS (15s loop) */
+@keyframes panel-1-show {
+  0% { opacity: 0; transform: translateX(-12px); }
+  4% { opacity: 1; transform: translateX(0); }
+  20% { opacity: 1; }
+  24% { opacity: 0; transform: translateX(12px); }
+  100% { opacity: 0; }
+}
+@keyframes panel-2-show {
+  0%, 18% { opacity: 0; transform: translateX(-12px); }
+  24% { opacity: 1; transform: translateX(0); }
+  70% { opacity: 1; }
+  74% { opacity: 0; transform: translateX(12px); }
+  100% { opacity: 0; }
+}
+@keyframes panel-3-show {
+  0%, 70% { opacity: 0; transform: translateX(-12px); }
+  76% { opacity: 1; transform: translateX(0); }
+  100% { opacity: 1; }
+}
+@keyframes st-row-1 { 0%, 44%  { opacity: 0.35; } 48%, 100% { opacity: 1; } }
+@keyframes st-row-2 { 0%, 52%  { opacity: 0.35; } 56%, 100% { opacity: 1; } }
+@keyframes st-row-3 { 0%, 60%  { opacity: 0.35; } 64%, 100% { opacity: 1; } }
+@keyframes st-row-4 { 0%, 100% { opacity: 0.35; } }
+
+@keyframes mini-in { 0%, 22% { opacity: 0; transform: translateY(8px); } 28%, 100% { opacity: 1; transform: translateY(0); } }
+@keyframes mini-typing-1 { 0%, 40% { opacity: 0; } 44%, 46% { opacity: 1; } 48%, 100% { opacity: 0; } }
+@keyframes mini-typing-2 { 0%, 48% { opacity: 0; } 52%, 54% { opacity: 1; } 56%, 100% { opacity: 0; } }
+@keyframes mini-typing-3 { 0%, 56% { opacity: 0; } 60%, 62% { opacity: 1; } 64%, 100% { opacity: 0; } }
+@keyframes mini-typing-pending { 0%, 40% { opacity: 0; } 44%, 100% { opacity: 1; } }
+@keyframes mini-reply-1 { 0%, 46% { opacity: 0; transform: translateY(6px); } 50%, 100% { opacity: 1; transform: translateY(0); } }
+@keyframes mini-reply-2 { 0%, 54% { opacity: 0; transform: translateY(6px); } 58%, 100% { opacity: 1; transform: translateY(0); } }
+@keyframes mini-reply-3 { 0%, 62% { opacity: 0; transform: translateY(6px); } 66%, 100% { opacity: 1; transform: translateY(0); } }
+
+@keyframes arrow-out { 0%, 8% { opacity: 0; } 14%, 20% { opacity: 0.85; } 26%, 100% { opacity: 0; } }
+@keyframes arrow-in  { 0%, 66% { opacity: 0; } 72%, 78% { opacity: 0.85; } 82%, 100% { opacity: 0; } }
+
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-1 { animation: panel-1-show 15s infinite both; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-2 { animation: panel-2-show 15s infinite both; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 { animation: panel-3-show 15s infinite both; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-row.r1 { animation: st-row-1 15s infinite both; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-row.r2 { animation: st-row-2 15s infinite both; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-row.r3 { animation: st-row-3 15s infinite both; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-row.r4 { animation: st-row-4 15s infinite both; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .msg-in { animation: mini-in 15s infinite both; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini.m1 .typing-row { animation: mini-typing-1 15s infinite both; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini.m2 .typing-row { animation: mini-typing-2 15s infinite both; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini.m3 .typing-row { animation: mini-typing-3 15s infinite both; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini.m4 .typing-row { animation: mini-typing-pending 15s infinite both; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini.m1 .msg-out { animation: mini-reply-1 15s infinite both; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini.m2 .msg-out { animation: mini-reply-2 15s infinite both; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini.m3 .msg-out { animation: mini-reply-3 15s infinite both; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .arrow-out { animation: arrow-out 15s infinite both; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .arrow-in  { animation: arrow-in  15s infinite both; }
+
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .demo-zone:hover * { animation-play-state: paused !important; }
+
+.slide[data-slide-key="kangshifu-npd-0541-scene"] 
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-reply .voice-bundle { display: flex; flex-direction: column; gap: 6px; align-items: stretch; max-width: 78%; margin-left: auto; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-line { display: flex; align-items: center; gap: 6px; justify-content: flex-end; }
+.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-reply .transcript { align-self: stretch; margin-right: 34px; /* leave room aligned w/ avatar gap */ }
+</style><div class="wordmark"></div>
+<div class="header"></div>
+<div class="stage">
+
+<div class="narrative">
+<h2 class="ttl" data-text-id="slide-102.title">AI 督办员 ·<br><span class="accent">批量派发 + 多型回复 + 自动汇总</span></h2>
+<p class="ctx" data-text-id="slide-102.ctx">CEO 拍板新产品 · <span class="hl">8/5 天津厂试产</span>。 督办员一键 broadcast,4 家供应商以各自方式回复:</p>
+<div class="steps">
+<div class="step"><span class="n">①</span><span class="t">派发<span class="sub">AI 督办员一键 @ 4 家供应商</span></span></div>
+<div class="step"><span class="n">②</span><span class="t">接收<span class="sub">飞书消息直推 4 位负责人手机</span></span></div>
+<div class="step"><span class="n">③</span><span class="t">多型回复<span class="sub">打字 · 语音 · 文件 · 未响应</span></span></div>
+<div class="step"><span class="n">④</span><span class="t">AI 汇总 + 风险预警<span class="sub">同一手机 · 自动归纳 + 推送责任人</span></span></div>
+</div>
+<p class="hover-note" data-allow-body-floor="demo-hint">动画 15s 自动循环 · 鼠标悬停暂停</p>
+</div>
+
+<div class="demo-zone" data-allow-typescale="phone-mock" data-allow-body-floor="phone-mock">
+<svg class="flow-svg" viewBox="0 0 1240 580" preserveAspectRatio="none">
+<defs>
+<marker id="arr-teal" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M0 0 L8 4 L0 8 Z" fill="rgba(51,214,192,0.85)"/>
+</marker>
+<marker id="arr-orange" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M0 0 L8 4 L0 8 Z" fill="rgba(254,127,0,0.85)"/>
+</marker>
+</defs>
+<g class="arrow-out" stroke="rgba(51,214,192,0.85)" stroke-width="2" fill="none" stroke-dasharray="6 5">
+<path d="M310 290 Q480 130 510 220" marker-end="url(#arr-teal)"/>
+<path d="M310 290 Q500 200 720 230" marker-end="url(#arr-teal)"/>
+<path d="M310 290 Q500 380 940 250" marker-end="url(#arr-teal)"/>
+<path d="M310 290 Q500 460 1140 280" marker-end="url(#arr-teal)"/>
+</g>
+<g class="arrow-in" stroke="rgba(254,127,0,0.85)" stroke-width="2" fill="none" stroke-dasharray="6 5">
+<path d="M510 380 Q420 460 310 350" marker-end="url(#arr-orange)"/>
+<path d="M720 380 Q500 480 310 360" marker-end="url(#arr-orange)"/>
+<path d="M940 380 Q600 500 310 370" marker-end="url(#arr-orange)"/>
+</g>
+</svg>
+
+<div class="phone is-super super">
+<div class="ph-status"><span>14:32</span><span>5G ●●</span></div>
+<div class="ph-bar">
+<div class="ph-ai" style="background-image:url('assets/shared/digital_employee_avatars_50/01_east_asian_woman_white_shirt.png')"></div>
+<span>AI 督办员 · 林秋</span>
+</div>
+<div class="ph-body">
+<div class="panel panel-1">
+<span class="role-tag">派发任务</span>
+<div class="pc-title">NPD-0541 物料齐套确认</div>
+<div class="dispatch-list">
+<div class="dl-item"><div class="dl-av" style="background-image:url('assets/shared/digital_employee_avatars_50/11_east_asian_man_business_casual.png')"></div><span class="dl-name">面粉 · 王经理</span><span class="dl-region">河北</span></div>
+<div class="dl-item"><div class="dl-av" style="background-image:url('assets/shared/digital_employee_avatars_50/08_east_asian_man_glasses_sweater.png')"></div><span class="dl-name">棕油 · 李总</span><span class="dl-region">广东</span></div>
+<div class="dl-item"><div class="dl-av" style="background-image:url('assets/shared/digital_employee_avatars_50/14_east_asian_woman_short_bob_vest.png')"></div><span class="dl-name">调料 · 张总</span><span class="dl-region">江苏</span></div>
+<div class="dl-item"><div class="dl-av" style="background-image:url('assets/shared/digital_employee_avatars_50/15_southeast_asian_woman_scarf.png')"></div><span class="dl-name">包材 · 陈经理</span><span class="dl-region">浙江</span></div>
+</div>
+<div class="dispatch-btn">一键派发 → 4 家</div>
+</div>
+<div class="panel panel-2">
+<span class="role-tag">回复中</span>
+<div class="p2-head">4 家供应商已收到</div>
+<div class="p2-sub">截止 7/28 · 等待回复中</div>
+<div class="status-list">
+<div class="st-row r1"><span class="st-icon is-text">字</span><div class="st-meta"><span class="st-name">面粉 王经理</span><span class="st-desc">确认 8/5 发货 · 已排产</span></div></div>
+<div class="st-row r2"><span class="st-icon is-voice">声</span><div class="st-meta"><span class="st-name">棕油 李总</span><span class="st-desc"><span class="ai-tag">AI 转写</span>8/5 可发货 · 量减 20% · 申请延 1 天</span></div></div>
+<div class="st-row r3"><span class="st-icon is-file">件</span><div class="st-meta"><span class="st-name">调料 张总</span><span class="st-desc">已上传 发货确认书.pdf</span></div></div>
+<div class="st-row r4 is-pending"><span class="st-icon is-pending">等</span><div class="st-meta"><span class="st-name">包材 陈经理</span><span class="st-desc">未响应</span></div></div>
+</div>
+</div>
+<div class="panel panel-3">
+<span class="role-tag">AI 汇总</span>
+<div class="ai-scan">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg>
+<span>AI 已扫描 4 条回复 · 自动归纳</span>
+</div>
+<div class="summary-card">
+<div class="sm-rate">物料齐套率 3/4 = 75%</div>
+<div class="sm-meta">3 家确认发货 · 棕油延 1 天 · 包材陈经理未响应</div>
+</div>
+<div class="alert-card">
+<div class="a-head">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L22 20 L2 20 Z"/><line x1="12" y1="10" x2="12" y2="14"/><circle cx="12" cy="17.5" r="0.5" fill="currentColor"/></svg>
+<span>风险预警</span>
+</div>
+<div class="a-text">8/5 试产可能延期 · 建议拨通陈经理 / 启用备份包材 Y</div>
+<div class="a-readers"><span>采购</span><span>工艺</span><span>工厂</span></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="mini-row">
+<div class="mini-wrap">
+<div class="phone-tag">面粉 · 王经理<span class="region">河北 · 一级供应商</span></div>
+<div class="phone is-supplier mini m1">
+<div class="ph-status"><span>14:33</span><span>···</span></div>
+<div class="ph-bar"><div class="ph-ai" style="background-image:url('assets/shared/digital_employee_avatars_50/01_east_asian_woman_white_shirt.png')"></div><span>AI 督办员 · 林秋</span></div>
+<div class="ph-body">
+<div class="chat">
+<div class="msg-in">
+<div class="chat-av super-av" style="background-image:url('assets/shared/digital_employee_avatars_50/01_east_asian_woman_white_shirt.png')"></div>
+<div class="bubble bubble-in">@你 物料确认 · 8/5 发货可行性 · 截止 7/28</div>
+</div>
+<div class="out-slot">
+<div class="typing-row">
+<div class="typing"><i></i><i></i><i></i></div>
+<div class="chat-av" style="background-image:url('assets/shared/digital_employee_avatars_50/11_east_asian_man_business_casual.png')"></div>
+</div>
+<div class="msg-out">
+<div class="bubble bubble-out text">确认 8/5 发货 · 已排产</div>
+<div class="chat-av" style="background-image:url('assets/shared/digital_employee_avatars_50/11_east_asian_man_business_casual.png')"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mini-wrap">
+<div class="phone-tag">棕油 · 李总<span class="region">广东 · 战略合作</span></div>
+<div class="phone is-supplier mini m2">
+<div class="ph-status"><span>14:33</span><span>···</span></div>
+<div class="ph-bar"><div class="ph-ai" style="background-image:url('assets/shared/digital_employee_avatars_50/01_east_asian_woman_white_shirt.png')"></div><span>AI 督办员 · 林秋</span></div>
+<div class="ph-body">
+<div class="chat">
+<div class="msg-in">
+<div class="chat-av super-av" style="background-image:url('assets/shared/digital_employee_avatars_50/01_east_asian_woman_white_shirt.png')"></div>
+<div class="bubble bubble-in">@你 物料确认 · 8/5 发货可行性 · 截止 7/28</div>
+</div>
+<div class="out-slot">
+<div class="typing-row">
+<div class="typing"><i></i><i></i><i></i></div>
+<div class="chat-av" style="background-image:url('assets/shared/digital_employee_avatars_50/08_east_asian_man_glasses_sweater.png')"></div>
+</div>
+<div class="msg-out voice-reply">
+<div class="voice-bundle">
+<div class="voice-line">
+<div class="voice-row">
+<div class="wave"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<span class="dur">0:32</span>
+</div>
+<div class="chat-av" style="background-image:url('assets/shared/digital_employee_avatars_50/08_east_asian_man_glasses_sweater.png')"></div>
+</div>
+<div class="transcript">确认 8/5 发货 · 量减 20% · 申请延 1 天</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mini-wrap">
+<div class="phone-tag">调料 · 张总<span class="region">江苏 · 常年供货</span></div>
+<div class="phone is-supplier mini m3">
+<div class="ph-status"><span>14:33</span><span>···</span></div>
+<div class="ph-bar"><div class="ph-ai" style="background-image:url('assets/shared/digital_employee_avatars_50/01_east_asian_woman_white_shirt.png')"></div><span>AI 督办员 · 林秋</span></div>
+<div class="ph-body">
+<div class="chat">
+<div class="msg-in">
+<div class="chat-av super-av" style="background-image:url('assets/shared/digital_employee_avatars_50/01_east_asian_woman_white_shirt.png')"></div>
+<div class="bubble bubble-in">@你 物料确认 · 8/5 发货可行性 · 截止 7/28</div>
+</div>
+<div class="out-slot">
+<div class="typing-row">
+<div class="typing"><i></i><i></i><i></i></div>
+<div class="chat-av" style="background-image:url('assets/shared/digital_employee_avatars_50/14_east_asian_woman_short_bob_vest.png')"></div>
+</div>
+<div class="msg-out">
+<div class="file-bubble">
+<span class="f-icon">PDF</span>
+<div class="f-meta">发货确认书.pdf<span class="sz">186 KB</span></div>
+</div>
+<div class="chat-av" style="background-image:url('assets/shared/digital_employee_avatars_50/14_east_asian_woman_short_bob_vest.png')"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mini-wrap">
+<div class="phone-tag">包材 · 陈经理<span class="region">浙江 · 未响应</span></div>
+<div class="phone is-supplier mini m4">
+<div class="ph-status"><span>14:37</span><span>···</span></div>
+<div class="ph-bar"><div class="ph-ai" style="background-image:url('assets/shared/digital_employee_avatars_50/01_east_asian_woman_white_shirt.png')"></div><span>AI 督办员 · 林秋</span></div>
+<div class="ph-body">
+<div class="chat">
+<div class="msg-in">
+<div class="chat-av super-av" style="background-image:url('assets/shared/digital_employee_avatars_50/01_east_asian_woman_white_shirt.png')"></div>
+<div class="bubble bubble-in">@你 物料确认 · 8/5 发货可行性 · 截止 7/28</div>
+</div>
+<div class="out-slot">
+<div class="typing-row">
+<div class="typing"><i></i><i></i><i></i></div>
+<div class="chat-av" style="background-image:url('assets/shared/digital_employee_avatars_50/15_southeast_asian_woman_scarf.png')"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+      </div>
+    </div>
+
 <div class="slide-frame" data-page="16">
       <div class="slide" data-layout="section" data-screen-label="16 Section 02" data-slide-key="section-2-divider">
         <div class="wordmark is-mono"></div>
@@ -9016,7 +9238,565 @@
         <p class="lede" data-text-id="slide-16.lede">企业知识沉淀、经验萃取、知识复用</p>
       </div>
     </div>
-        <div class="slide-frame">
+        
+<style data-inserted-slide-styles="knowledge-management-pages">
+.slide[data-slide-key="knowledge-iceberg"][data-layout="content-2col"] .stage {
+  display: block;
+  padding: 0;
+}
+.slide[data-slide-key="knowledge-iceberg"] .iceberg-canvas {
+  position: relative;
+  width: 100%;
+  height: 820px;
+  overflow: hidden;
+  border-radius: 22px;
+  background-image: url('input/冰山.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.slide[data-slide-key="knowledge-iceberg"] .iceberg-canvas::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,10,30,0.55) 0%, rgba(0,10,30,0) 28%, rgba(0,10,30,0) 72%, rgba(0,10,30,0.55) 100%), linear-gradient(180deg, rgba(0,10,30,0.45) 0%, rgba(0,10,30,0) 22%, rgba(0,10,30,0) 60%, rgba(0,10,30,0.50) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+.slide[data-slide-key="knowledge-iceberg"] .above,
+.slide[data-slide-key="knowledge-iceberg"] .below {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  z-index: 5;
+}
+.slide[data-slide-key="knowledge-iceberg"] .above {
+  top: 0;
+  height: 28%;
+  align-items: center;
+  padding: 0 64px;
+}
+.slide[data-slide-key="knowledge-iceberg"] .below {
+  bottom: 0;
+  height: 72%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0 64px 36px;
+}
+.slide[data-slide-key="knowledge-iceberg"] .hero-block {
+  max-width: 520px;
+}
+.slide[data-slide-key="knowledge-iceberg"] .hero-pct {
+  display: inline-block;
+  font: 800 100px/1 var(--fs-font-latin);
+  color: #fff;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.55);
+}
+.slide[data-slide-key="knowledge-iceberg"] .below .hero-pct {
+  color: #6FE0FF;
+  text-shadow: 0 0 32px rgba(120,200,255,0.55);
+}
+.slide[data-slide-key="knowledge-iceberg"] .hero-name {
+  display: block;
+  padding-top: 6px;
+  font: 800 48px/1.2 var(--fs-font-cjk);
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.50);
+}
+.slide[data-slide-key="knowledge-iceberg"] .hero-tag {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 6px 16px;
+  background: rgba(0,0,0,0.40);
+  border: 1px solid rgba(255,255,255,0.45);
+  border-radius: 999px;
+  font: 600 20px/1 var(--fs-font-cjk);
+  color: #fff;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(4px);
+}
+.slide[data-slide-key="knowledge-iceberg"] .below .hero-tag {
+  background: rgba(60,127,255,0.40);
+  border-color: rgba(120,200,255,0.85);
+}
+.slide[data-slide-key="knowledge-iceberg"] .body-note {
+  max-width: 500px;
+  margin: 14px 0 0;
+  font: 600 24px/1.5 var(--fs-font-cjk);
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.55);
+}
+.slide[data-slide-key="knowledge-iceberg"] .body-note b,
+.slide[data-slide-key="knowledge-iceberg"] .pt b {
+  color: #FFD66E;
+  font-weight: 800;
+}
+.slide[data-slide-key="knowledge-iceberg"] .points {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 520px;
+  padding-top: 12px;
+}
+.slide[data-slide-key="knowledge-iceberg"] .pt {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font: 600 20px/1.45 var(--fs-font-cjk);
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.55);
+}
+.slide[data-slide-key="knowledge-iceberg"] .pt .dot {
+  flex: 0 0 8px;
+  width: 8px;
+  height: 8px;
+  margin-top: 11px;
+  border-radius: 50%;
+  background: #6FE0FF;
+}
+.slide[data-slide-key="store-manager-display-instinct"][data-layout="content-2col"] .stage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  padding-top: 4px;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .pic-twin {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  align-items: center;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .pic-cell,
+.slide[data-slide-key="store-manager-display-instinct"] .demo-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .pic-pill,
+.slide[data-slide-key="store-manager-display-instinct"] .demo-pill {
+  align-self: center;
+  max-width: 92%;
+  padding: 10px 24px;
+  border-radius: 999px;
+  font: 700 22px/1.3 var(--fs-font-cjk);
+  color: #fff;
+  text-align: center;
+  letter-spacing: 0.005em;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .pic-pill {
+  background: rgba(60,127,255,0.20);
+  border: 1px solid rgba(60,127,255,0.55);
+}
+.slide[data-slide-key="store-manager-display-instinct"] .demo-pill {
+  background: rgba(51,214,192,0.20);
+  border: 1px solid rgba(51,214,192,0.55);
+}
+.slide[data-slide-key="store-manager-display-instinct"] .pic-frame {
+  width: 100%;
+  flex: 1;
+  min-height: 720px;
+  background-image: url('input/18页知识管理1.png');
+  background-position: center top;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .fs-phone {
+  position: relative;
+  width: 380px;
+  height: 720px;
+  background: #f6f6f6;
+  border-radius: 46px;
+  box-shadow: 0 0 0 10px #11141c, 0 0 0 11px #2c3142, inset 0 0 0 1px rgba(0,0,0,0.04);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", var(--fs-font-cjk);
+  color: #1a1d24;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .fs-phone::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 32px;
+  background: #11141c;
+  border-radius: 18px;
+  z-index: 20;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .ph-status {
+  flex: 0 0 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px 0;
+  font: 700 14px/1 var(--fs-font-cjk);
+  color: #1a1d24;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .ph-status .right,
+.slide[data-slide-key="store-manager-display-instinct"] .ph-chat-inner,
+.slide[data-slide-key="store-manager-display-instinct"] .fix-list {
+  display: flex;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .ph-status .right {
+  gap: 5px;
+  align-items: center;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .ph-status svg {
+  display: block;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .ph-bar {
+  flex: 0 0 52px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: #f6f6f6;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .back,
+.slide[data-slide-key="store-manager-display-instinct"] .more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1d24;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .back {
+  font-size: 22px;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .nav-title {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font: 700 18px/1 var(--fs-font-cjk);
+  color: #1a1d24;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .robot-tag {
+  padding: 2px 6px;
+  background: #FFE7B0;
+  border-radius: 4px;
+  font: 600 14px/1 var(--fs-font-cjk);
+  color: #B87600;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .more {
+  width: 28px;
+  height: 28px;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .ph-tabs {
+  flex: 0 0 42px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 18px;
+  background: #f6f6f6;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.slide[data-slide-key="store-manager-display-instinct"] .tab {
+  position: relative;
+  padding: 10px 0;
+  font: 500 14px/1 var(--fs-font-cjk);
+  color: #66707d;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .tab.is-active {
+  color: #1a1d24;
+  font-weight: 700;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .tab.is-active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 3px;
+  background: #3370FF;
+  border-radius: 2px;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .ph-divider {
+  flex: 0 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #f6f6f6;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .ph-divider .line {
+  flex: 1;
+  max-width: 80px;
+  height: 1px;
+  background: rgba(0,0,0,0.08);
+}
+.slide[data-slide-key="store-manager-display-instinct"] .ph-divider .label {
+  font: 500 14px/1 var(--fs-font-cjk);
+  color: #99a1ad;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .ph-chat {
+  flex: 1;
+  padding: 4px 14px 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #f6f6f6;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .ph-chat-inner,
+.slide[data-slide-key="store-manager-display-instinct"] .fix-list {
+  flex-direction: column;
+  gap: 12px;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .msg {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  opacity: 1;
+  transform: translateY(0);
+}
+.slide[data-slide-key="store-manager-display-instinct"] .msg.is-user {
+  flex-direction: row-reverse;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .msg.is-bot .avatar {
+  background: linear-gradient(135deg, #6FA8FF 0%, #3370FF 100%);
+  font: 800 14px/1 var(--fs-font-cjk);
+  letter-spacing: -0.06em;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .msg.is-user .avatar {
+  background: linear-gradient(135deg, #FFB870 0%, #FF8A30 100%);
+  font: 700 14px/1 var(--fs-font-cjk);
+}
+.slide[data-slide-key="store-manager-display-instinct"] .bubble {
+  max-width: 240px;
+  padding: 10px 14px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.04);
+  border-radius: 4px 14px 14px 14px;
+  font: 400 14px/1.55 var(--fs-font-cjk);
+  color: #1a1d24;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .msg.is-user .bubble {
+  background: #DCEDFF;
+  border-color: rgba(51,112,255,0.10);
+  border-radius: 14px 4px 14px 14px;
+  color: #0A2A66;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .bubble .lead {
+  display: block;
+  padding-bottom: 4px;
+  font: 700 18px/1 var(--fs-font-cjk);
+  color: #1a1d24;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .bubble b {
+  color: #3370FF;
+  font-weight: 700;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .msg.is-typing .bubble {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 14px 16px;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .msg.is-typing .bubble span {
+  width: 6px;
+  height: 6px;
+  background: #99a1ad;
+  border-radius: 50%;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .fix-list {
+  align-self: stretch;
+  gap: 6px;
+  padding: 8px 10px;
+  margin-top: 4px;
+  background: rgba(254,127,0,0.10);
+  border: 1px solid rgba(254,127,0,0.42);
+  border-radius: 8px;
+  opacity: 1;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .fix-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 10px;
+  background: #fff;
+  border: 1px solid #FFE0B0;
+  border-radius: 6px;
+  font: 500 14px/1.45 var(--fs-font-cjk);
+  color: #1a1d24;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .fix-item .num {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FE7F00;
+  border-radius: 50%;
+  color: #fff;
+  font: 800 14px/1 var(--fs-font-cjk);
+}
+.slide[data-slide-key="store-manager-display-instinct"] .ph-input {
+  flex: 0 0 50px;
+  display: grid;
+  grid-template-columns: 1fr 36px;
+  gap: 10px;
+  padding: 6px 14px 8px;
+  background: #f6f6f6;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+.slide[data-slide-key="store-manager-display-instinct"] .field {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 12px;
+  font: 500 14px/1 var(--fs-font-cjk);
+  color: #99a1ad;
+}
+.slide[data-slide-key="store-manager-display-instinct"] .send {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #3370FF;
+  border-radius: 12px;
+  color: #fff;
+  font: 700 18px/1 var(--fs-font-cjk);
+}
+</style>
+<div class="slide-frame">
+      <div class="slide" data-page="17" data-layout="content-2col" data-accent="blue" data-decor="blue-glow" data-screen-label="17 知识冰山" data-slide-key="knowledge-iceberg">
+        <div class="wordmark"></div>
+        <div class="header"><h2 class="title-zh" data-text-id="slide-17.title">为什么隐形经验值得投入资源萃取</h2></div>
+        <div class="stage">
+          <div class="iceberg-canvas">
+            <!-- 上 · 20% 显性 -->
+            <div class="above">
+              <div class="hero-block">
+                <span class="hero-pct" data-text-id="slide-17.above.pct">20%</span>
+                <span class="hero-tag" data-text-id="slide-17.above.tag">显性 · 浮在水面</span>
+                <p class="body-note" data-text-id="slide-17.above.note">基础制度、SOP、手册、文档说明、标准记录 — 在线化、可视化并不难。</p>
+              </div>
+            </div>
+            <!-- 下 · 80% 隐性 -->
+            <div class="below">
+              <div class="hero-block">
+                <span class="hero-pct" data-text-id="slide-17.below.pct">80%</span>
+                <span class="hero-name" data-text-id="slide-17.below.name">隐性知识资产</span>
+                <span class="hero-tag" data-text-id="slide-17.below.tag">藏在水面之下 · 难复制</span>
+                <p class="body-note" data-text-id="slide-17.below.note">老专家做事的<b>肌肉记忆、直觉与判断</b> — 重要,却很少被企业开发出来。</p>
+                <div class="points">
+                  <span class="pt"><span class="dot"></span><span data-text-id="slide-17.below.pt-1"><b>肌肉记忆</b> · 习惯成自然的工作动作</span></span>
+                  <span class="pt"><span class="dot"></span><span data-text-id="slide-17.below.pt-2"><b>直觉判断</b> · 不靠 SOP 也能拍板的能力</span></span>
+                  <span class="pt"><span class="dot"></span><span data-text-id="slide-17.below.pt-3"><b>经验调度</b> · 意外情境第一时间做对反应</span></span>
+                  <span class="pt"><span class="dot"></span><span data-text-id="slide-17.below.pt-4"><b>人脉与默契</b> · 跨部门协作中的潜规则</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<div class="slide-frame">
+      <div class="slide" data-page="18" data-layout="content-2col" data-accent="blue" data-screen-label="18 店长陈列直觉" data-slide-key="store-manager-display-instinct">
+        <div class="wordmark"></div>
+        <div class="header"><h2 class="title-zh" data-text-id="slide-18.title">用 AI 复制金牌店长的陈列直觉</h2></div>
+        <div class="stage">
+          <div class="pic-twin">
+
+            <!-- LEFT · 痛点 pill + 门店实拍 -->
+            <div class="pic-cell">
+              <span class="pic-pill" data-text-id="slide-18.l.pill">AI 视觉洞察 / 门店实拍反馈</span>
+              <div class="pic-frame" role="img" aria-label="门店实拍现场"></div>
+            </div>
+
+            <!-- RIGHT · 门店运营助手 AI chat demo -->
+            <div class="demo-cell">
+              <span class="demo-pill" data-text-id="slide-18.r.pill">门店运营助手 · 紧急调整建议</span>
+
+              <div class="phone fs-phone" role="img" aria-label="门店运营助手 AI 对话演示">
+                <div class="ph-status">
+                  <span>10:18</span>
+                  <span class="right">
+                    <svg viewBox="0 0 18 12" width="18" height="12" fill="currentColor"><circle cx="3" cy="9" r="1.5"></circle><circle cx="8" cy="9" r="1.5"></circle><circle cx="13" cy="9" r="1.5"></circle></svg>
+                    <svg viewBox="0 0 16 12" width="16" height="12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="0.5"></rect><rect x="4" y="6" width="3" height="6" rx="0.5"></rect><rect x="8" y="3" width="3" height="9" rx="0.5"></rect><rect x="12" y="0" width="3" height="12" rx="0.5"></rect></svg>
+                    <svg viewBox="0 0 22 12" width="22" height="12" fill="none" stroke="currentColor" stroke-width="1"><rect x="0.5" y="2.5" width="18" height="7" rx="1.2"></rect><rect x="2" y="4" width="13" height="4" rx="0.6" fill="currentColor"></rect><rect x="19" y="4" width="2" height="4" rx="0.6" fill="currentColor"></rect></svg>
+                    <span style="font-size: 16px; font-weight: 600; line-height: 1; padding-left: 2px;">电源</span>
+                  </span>
+                </div>
+                <div class="ph-bar">
+                  <span class="back">‹</span>
+                  <span class="nav-title">门店运营助手 <span class="robot-tag">机器人</span></span>
+                  <span class="more"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><circle cx="5" cy="12" r="2"></circle><circle cx="12" cy="12" r="2"></circle><circle cx="19" cy="12" r="2"></circle></svg></span>
+                </div>
+                <div class="ph-tabs">
+                  <span class="tab is-active">消息</span>
+                  <span class="tab">陈列规范</span>
+                </div>
+                <div class="ph-divider"><span class="line"></span><span class="label">新话题</span><span class="line"></span></div>
+                <div class="ph-chat">
+                  <div class="ph-chat-inner">
+
+                    <div class="msg is-bot welcome">
+                      <span class="avatar">运营</span>
+                      <div class="bubble">
+                        <span class="lead" data-text-id="slide-18.chat.welcome.lead">你好,我是「门店运营助手」</span>
+                        <span data-text-id="slide-18.chat.welcome.body">把现场陈列照发给我,我比对金牌店长的陈列规范,给你紧急调整项。</span>
+                      </div>
+                    </div>
+
+                    <div class="msg is-user m1">
+                      <span class="avatar">员工</span>
+                      <div class="bubble" data-text-id="slide-18.chat.q1">[图片] 今早门口客流偏弱,过路客都走过去了 — 有什么金牌店长的 quick win?</div>
+                    </div>
+
+                    <div class="msg is-bot is-typing typing">
+                      <span class="avatar">运营</span>
+                      <div class="bubble"><span></span><span></span><span></span></div>
+                    </div>
+
+                    <div class="msg is-bot m2">
+                      <span class="avatar">运营</span>
+                      <div class="bubble">
+                        <span class="lead" data-text-id="slide-18.chat.a2.lead">参考金牌店长 <b>3 个引流小招</b></span>
+                        <span data-text-id="slide-18.chat.a2.body">投入低 / 当日见效:</span>
+                        <div class="fix-list">
+                          <span class="fix-item"><span class="num">1</span><span data-text-id="slide-18.chat.a2.f1">出餐口/烤炉旁加一台小电风扇,把烤香味往门口方向吹 — 老店长实测过路客流 <b>+18%</b></span></span>
+                          <span class="fix-item"><span class="num">2</span><span data-text-id="slide-18.chat.a2.f2">试吃台从中场往门口前移 1 米,做"人气感",路人从外面就看得到</span></span>
+                          <span class="fix-item"><span class="num">3</span><span data-text-id="slide-18.chat.a2.f3">玻璃门贴当日热销 SKU 海报(贴在视线高度 1.5 m),把进店决策从"看不到"变成"看一眼"</span></span>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="ph-input">
+                  <span class="field" data-text-id="slide-18.input">问问门店运营助手</span>
+                  <span class="send">↑</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="slide-frame">
       <div class="slide" data-layout="content-2col" data-accent="blue" data-screen-label="22 青啤终端陈列直觉 · AI 复制" data-slide-key="qingdao-terminal-display-instinct">
         <div class="wordmark">飞书</div>
 <style>
@@ -10709,82 +11489,7 @@
       </div>
     </div>
 <div class="slide-frame">
-      <div class="slide" data-layout="iframe-embed" data-accent="blue" data-decor="blue-glow" data-screen-label="08 口味雷达 · 选品平台" data-slide-key="taste-radar-demo">
-        <div class="wordmark">飞书</div>
-<style>
-.slide[data-slide-key="taste-radar-demo"] .header {
-  position: absolute;
-  top: 62px; left: 96px; right: 96px;
-  z-index: 3;
-}
-.slide[data-slide-key="taste-radar-demo"] .header .title-zh {
-  margin: 0;
-  font: 800 42px/1.18 var(--fs-font-cjk);
-  color: #fff;
-  white-space: normal;
-  overflow: visible;
-  text-overflow: clip;
-  letter-spacing: -0.01em;
-}
-.slide[data-slide-key="taste-radar-demo"] .stage {
-  position: absolute;
-  left: 96px; right: 96px;
-  top: 148px; bottom: 66px;
-  padding: 0;
-  display: block;
-}
-.slide[data-slide-key="taste-radar-demo"] .iframe-wrap {
-  position: relative;
-  width: 100%; height: 100%;
-  overflow: hidden;
-  border-radius: 18px;
-  border: 1px solid rgba(60,127,255,0.32);
-  background: #050814;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.28), inset 0 0 0 1px rgba(255,255,255,0.04);
-}
-.slide[data-slide-key="taste-radar-demo"] iframe {
-  width: 100% !important;
-  height: 100% !important;
-  display: block;
-  border: 0;
-  background: #050814;
-  transform: none !important;
-  transform-origin: top left;
-}
-.slide[data-slide-key="taste-radar-demo"] .iframe-hint {
-  position: absolute;
-  right: 18px; bottom: 14px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 13px;
-  border-radius: 999px;
-  background: rgba(5,8,20,0.76);
-  border: 1px solid rgba(255,255,255,0.16);
-  color: rgba(255,255,255,0.78);
-  font: 600 16px/1 var(--fs-font-cjk);
-  backdrop-filter: blur(10px);
-}
-.slide[data-slide-key="taste-radar-demo"] .iframe-hint .dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--fs-teal);
-  box-shadow: 0 0 0 4px rgba(51,214,192,0.16);
-}
-</style>
-        <div class="header">
-          <h2 class="title-zh" data-text-id="slide-93.title">口味雷达 TasteRadar · 全网口味信号智能选品平台</h2>
-        </div>
-        <div class="stage">
-          <div class="iframe-wrap">
-            <iframe src="prototypes/taste-radar.html" loading="lazy" title="口味雷达 · 趋势大盘 / 风味 DNA / 选品建议 / 跨品类迁移"></iframe>
-            <div class="iframe-hint"><span class="dot"></span><span>侧栏可切换 4 视图 · 鼠标 hover 看动效</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-<div class="slide-frame">
-      <div class="slide" data-layout="content-3up" data-accent="blue" data-decor="blue-glow" data-screen-label="09 冰红茶 · 5 个剧本" data-slide-key="ice-tea-5scripts">
+      <div class="slide" data-layout="content-3up" data-accent="blue" data-decor="blue-glow" data-screen-label="09 青岛啤酒 · 5 个剧本" data-slide-key="ice-tea-5scripts">
         <div class="wordmark">飞书</div>
 <style>.slide[data-slide-key='ice-tea-5scripts'] .header{padding-bottom:0}.slide[data-slide-key='ice-tea-5scripts'] .header .title-zh{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.05;letter-spacing:-0.02em;font-weight:900}.slide[data-slide-key='ice-tea-5scripts'] .intro-line{font:500 28px/1.4 var(--fs-font-cjk);color:#fff;opacity:0.88;text-align:center;max-width:1200px;margin:0 auto}.slide[data-slide-key='ice-tea-5scripts'] .header .pre-eyebrow{font:600 16px/1.2 var(--fs-font-latin);color:#fff;opacity:0.50;letter-spacing:0.32em;text-transform:uppercase;margin-bottom:10px; }.slide[data-slide-key='ice-tea-5scripts'] .stage{position:absolute;top:200px;left:48px;right:48px;bottom:36px;padding:0;display:flex;flex-direction:column;gap:28px;justify-content:center;align-items:stretch}.slide[data-slide-key='ice-tea-5scripts'] .scripts-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;width:100%;align-items:stretch}.slide[data-slide-key='ice-tea-5scripts'] .script-card{position:relative;display:flex;flex-direction:column;gap:14px;padding:24px 18px 18px;border-radius:18px;border:1px solid rgba(255,255,255,0.10);background:rgba(255,255,255,0.04);min-width:0;overflow:hidden}.slide[data-slide-key='ice-tea-5scripts'] .top-bar{position:absolute;top:0;left:0;right:0;height:4px}.slide[data-slide-key='ice-tea-5scripts'] .is-orange .top-bar{background:var(--fs-orange)}.slide[data-slide-key='ice-tea-5scripts'] .is-teal .top-bar{background:var(--fs-teal)}.slide[data-slide-key='ice-tea-5scripts'] .is-purple .top-bar{background:var(--fs-purple)}.slide[data-slide-key='ice-tea-5scripts'] .is-blue .top-bar{background:var(--fs-blue)}.slide[data-slide-key='ice-tea-5scripts'] .is-violet .top-bar{background:var(--fs-violet)}.slide[data-slide-key='ice-tea-5scripts'] .card-top{display:flex;justify-content:space-between;align-items:flex-start}.slide[data-slide-key='ice-tea-5scripts'] .icon-shell{width:64px;height:64px;border-radius:14px;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.04);display:grid;place-items:center}.slide[data-slide-key='ice-tea-5scripts'] .icon-shell svg{width:40px;height:40px}.slide[data-slide-key='ice-tea-5scripts'] .is-orange .icon-shell{color:var(--fs-orange)}.slide[data-slide-key='ice-tea-5scripts'] .is-teal .icon-shell{color:var(--fs-teal)}.slide[data-slide-key='ice-tea-5scripts'] .is-purple .icon-shell{color:var(--fs-purple)}.slide[data-slide-key='ice-tea-5scripts'] .is-blue .icon-shell{color:var(--fs-blue)}.slide[data-slide-key='ice-tea-5scripts'] .is-violet .icon-shell{color:var(--fs-violet)}.slide[data-slide-key='ice-tea-5scripts'] .avatar{width:64px;height:64px;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.20);background:rgba(255,255,255,0.05)}.slide[data-slide-key='ice-tea-5scripts'] .is-orange .avatar{border-color:rgba(254,127,0,0.45)}.slide[data-slide-key='ice-tea-5scripts'] .is-teal .avatar{border-color:rgba(51,214,192,0.45)}.slide[data-slide-key='ice-tea-5scripts'] .is-purple .avatar{border-color:rgba(159,111,241,0.45)}.slide[data-slide-key='ice-tea-5scripts'] .is-blue .avatar{border-color:rgba(60,127,255,0.45)}.slide[data-slide-key='ice-tea-5scripts'] .is-violet .avatar{border-color:rgba(123,90,209,0.45)}.slide[data-slide-key='ice-tea-5scripts'] .avatar img{width:100%;height:100%;object-fit:cover;display:block}.slide[data-slide-key='ice-tea-5scripts'] .scene-block{display:flex;flex-direction:column;gap:6px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.10)}.slide[data-slide-key='ice-tea-5scripts'] .card-num{font:700 16px/1 var(--fs-font-latin);color:#fff;opacity:0.40;letter-spacing:0.28em;text-transform:uppercase; }.slide[data-slide-key='ice-tea-5scripts'] .scene{font:900 28px/1.1 var(--fs-font-cjk);color:#fff;letter-spacing:-0.01em;margin:0}.slide[data-slide-key='ice-tea-5scripts'] .meta-row{display:flex;flex-direction:column;gap:10px}.slide[data-slide-key='ice-tea-5scripts'] .meta-label{font:700 16px/1 var(--fs-font-cjk);color:#fff;opacity:0.42;letter-spacing:0.20em;text-transform:uppercase;margin-bottom:4px; }.slide[data-slide-key='ice-tea-5scripts'] .meta-value{font:500 24px/1.5 var(--fs-font-cjk);color:#fff;opacity:0.82; }.slide[data-slide-key='ice-tea-5scripts'] .spec-pill{display:inline-flex;padding:5px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.20);background:rgba(255,255,255,0.06);font:600 16px/1.2 var(--fs-font-cjk);color:#fff;opacity:0.88;letter-spacing:0.02em; }.slide[data-slide-key='ice-tea-5scripts'] .quote-zone{position:relative;flex:1;display:flex;flex-direction:column;justify-content:center;padding:24px 16px 20px;border-radius:18px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05)}.slide[data-slide-key='ice-tea-5scripts'] .is-orange .quote-zone{background:linear-gradient(180deg,rgba(254,127,0,0.10),rgba(254,127,0,0.02));border-color:rgba(254,127,0,0.30)}.slide[data-slide-key='ice-tea-5scripts'] .is-teal .quote-zone{background:linear-gradient(180deg,rgba(51,214,192,0.10),rgba(51,214,192,0.02));border-color:rgba(51,214,192,0.30)}.slide[data-slide-key='ice-tea-5scripts'] .is-purple .quote-zone{background:linear-gradient(180deg,rgba(159,111,241,0.10),rgba(159,111,241,0.02));border-color:rgba(159,111,241,0.30)}.slide[data-slide-key='ice-tea-5scripts'] .is-blue .quote-zone{background:linear-gradient(180deg,rgba(60,127,255,0.10),rgba(60,127,255,0.02));border-color:rgba(60,127,255,0.30)}.slide[data-slide-key='ice-tea-5scripts'] .is-violet .quote-zone{background:linear-gradient(180deg,rgba(123,90,209,0.10),rgba(123,90,209,0.02));border-color:rgba(123,90,209,0.30)}.slide[data-slide-key='ice-tea-5scripts'] .q-open,.slide[data-slide-key='ice-tea-5scripts'] .q-close{position:absolute;font:italic 900 48px/0.6 Georgia,'Times New Roman',serif;color:rgba(255,255,255,0.18);pointer-events:none}.slide[data-slide-key='ice-tea-5scripts'] .q-open{top:10px;left:8px}.slide[data-slide-key='ice-tea-5scripts'] .q-close{bottom:30px;right:8px}.slide[data-slide-key='ice-tea-5scripts'] .is-orange .q-open,.slide[data-slide-key='ice-tea-5scripts'] .is-orange .q-close{color:rgba(254,127,0,0.42)}.slide[data-slide-key='ice-tea-5scripts'] .is-teal .q-open,.slide[data-slide-key='ice-tea-5scripts'] .is-teal .q-close{color:rgba(51,214,192,0.45)}.slide[data-slide-key='ice-tea-5scripts'] .is-purple .q-open,.slide[data-slide-key='ice-tea-5scripts'] .is-purple .q-close{color:rgba(159,111,241,0.45)}.slide[data-slide-key='ice-tea-5scripts'] .is-blue .q-open,.slide[data-slide-key='ice-tea-5scripts'] .is-blue .q-close{color:rgba(60,127,255,0.45)}.slide[data-slide-key='ice-tea-5scripts'] .is-violet .q-open,.slide[data-slide-key='ice-tea-5scripts'] .is-violet .q-close{color:rgba(123,90,209,0.48)}.slide[data-slide-key='ice-tea-5scripts'] .slogan{font:900 28px/1.18 var(--fs-font-cjk);color:#fff;letter-spacing:-0.015em;margin:0 8px;padding:0;position:relative;z-index:1}.slide[data-slide-key='ice-tea-5scripts'] .hook{margin:14px 8px 0;padding-top:12px;border-top:1px solid rgba(255,255,255,0.12);font:italic 500 24px/1.4 var(--fs-font-cjk);color:#fff;opacity:0.72; }.slide[data-slide-key='ice-tea-5scripts'] .carrier{margin-top:auto;padding-top:14px;border-top:1px dashed rgba(255,255,255,0.18)}.slide[data-slide-key='ice-tea-5scripts'] .carrier-text{font:500 24px/1.4 var(--fs-font-cjk);color:#fff;opacity:0.60; }
 .slide[data-slide-key='ice-tea-5scripts'] .header .title-zh{opacity:0;animation:it5-fade-down 0.7s 0.2s ease-out forwards}
@@ -10811,7 +11516,7 @@
 @keyframes it5-fade-in{0%{opacity:0}100%{opacity:0.88}}
 @keyframes it5-card-in{0%{opacity:0;transform:translateY(28px)}100%{opacity:1;transform:translateY(0)}}
 @keyframes it5-icon-pop{0%{opacity:0;transform:scale(0.4) rotate(-10deg)}70%{opacity:1;transform:scale(1.15) rotate(0)}100%{opacity:1;transform:scale(1)}}
-@keyframes it5-bar-grow{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}</style><div class="header"><h2 class="title-zh" data-text-id="slide-94.title">内容营销 — 从品类营销到基于人群的场景营销</h2></div><div class="stage"><p class="intro-line" data-text-id="slide-94.subtitle">它被固化成「大瓶解渴的茶饮料」。但在 5 个不同人群眼里,它其实是 5 个完全不同的东西。</p><div class="scripts-grid"><article class="script-card is-orange"><div class="top-bar"></div><div class="card-top">  <div class="icon-shell"><svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 22L78 74"/><path d="M24 18L30 24"/><path d="M66 70L72 76"/><path d="M26 30c-7 0-12 5-12 11s5 11 12 11c5 0 9-3 11-7"/><path d="M42 34c-8 0-14 6-14 14s6 14 14 14c7 0 12-4 14-10"/><path d="M58 38c-8 0-14 6-14 14s6 14 14 14 14-6 14-14-6-14-14-14Z"/></svg></div>  <div class="avatar"><img src="input/iced-tea-cognition-h5/src/assets/avatar-bbq-man.png" alt=""></div></div><div class="scene-block">  <div class="card-num eyebrow">剧本 01</div>  <h3 class="scene">烧烤夜宵</h3></div><div class="meta-row">  <div class="meta-item"><div class="meta-label eyebrow">人群标签</div><div class="meta-value">25-35 岁男性 · 三四线城市</div></div>  <div class="meta-item"><div class="meta-label eyebrow">产品规格</div><span class="spec-pill pill">1L 装</span></div></div><div class="quote-zone">  <span class="q-open">"</span>  <blockquote class="slogan">撸串没冰红茶,等于火锅没毛肚</blockquote>  <span class="q-close">"</span>  <div class="hook">社交仪式感</div></div><div class="carrier">  <div class="meta-label eyebrow">内容载体</div>  <div class="carrier-text">抖音本地探店、夜市达人</div></div></article><article class="script-card is-teal"><div class="top-bar"></div><div class="card-top">  <div class="icon-shell"><svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="48" cy="48" r="30"/><path d="M48 18c8 7 14 18 14 30s-6 23-14 30"/><path d="M48 18c-8 7-14 18-14 30s6 23 14 30"/><path d="M18 48h60"/></svg></div>  <div class="avatar"><img src="input/iced-tea-cognition-h5/src/assets/avatar-sports-youth.png" alt=""></div></div><div class="scene-block">  <div class="card-num eyebrow">剧本 02</div>  <h3 class="scene">运动补水</h3></div><div class="meta-row">  <div class="meta-item"><div class="meta-label eyebrow">人群标签</div><div class="meta-value">18-25 岁 · 篮球/骑行/健身入门</div></div>  <div class="meta-item"><div class="meta-label eyebrow">产品规格</div><span class="spec-pill pill">500ml 随行装</span></div></div><div class="quote-zone">  <span class="q-open">"</span>  <blockquote class="slogan">出汗之后第一口的痛快</blockquote>  <span class="q-close">"</span>  <div class="hook">功能替代 · 对标功能饮料但更日常</div></div><div class="carrier">  <div class="meta-label eyebrow">内容载体</div>  <div class="carrier-text">小红书运动博主、B 站 UP 主</div></div></article><article class="script-card is-purple"><div class="top-bar"></div><div class="card-top">  <div class="icon-shell"><svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 24h24c8 0 14 6 14 14v34H32c-8 0-14 0-14 0V24Z"/><path d="M78 24H54c-8 0-14 6-14 14v34h24c8 0 14 0 14 0V24Z"/><path d="M48 38v34"/></svg></div>  <div class="avatar"><img src="input/iced-tea-cognition-h5/src/assets/avatar-campus-nostalgia.png" alt=""></div></div><div class="scene-block">  <div class="card-num eyebrow">剧本 03</div>  <h3 class="scene">校园怀旧</h3></div><div class="meta-row">  <div class="meta-item"><div class="meta-label eyebrow">人群标签</div><div class="meta-value">28-38 岁职场人</div></div>  <div class="meta-item"><div class="meta-label eyebrow">产品规格</div><span class="spec-pill pill">经典 PET 瓶</span></div></div><div class="quote-zone">  <span class="q-open">"</span>  <blockquote class="slogan">高三晚自习偷喝的那瓶</blockquote>  <span class="q-close">"</span>  <div class="hook">集体记忆唤起</div></div><div class="carrier">  <div class="meta-label eyebrow">内容载体</div>  <div class="carrier-text">微博怀旧话题、公众号长图文</div></div></article><article class="script-card is-blue"><div class="top-bar"></div><div class="card-top">  <div class="icon-shell"><svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="24" y="24" width="48" height="32" rx="4"/><path d="M14 66h68l-5 10H19l-5-10Z"/><path d="M40 72h16"/></svg></div>  <div class="avatar"><img src="input/iced-tea-cognition-h5/src/assets/avatar-overtime-whitecollar.png" alt=""></div></div><div class="scene-block">  <div class="card-num eyebrow">剧本 04</div>  <h3 class="scene">加班自救</h3></div><div class="meta-row">  <div class="meta-item"><div class="meta-label eyebrow">人群标签</div><div class="meta-value">一线城市白领 · 22-30 岁</div></div>  <div class="meta-item"><div class="meta-label eyebrow">产品规格</div><span class="spec-pill pill">便利店冰柜装</span></div></div><div class="quote-zone">  <span class="q-open">"</span>  <blockquote class="slogan">甜一口,再战两小时</blockquote>  <span class="q-close">"</span>  <div class="hook">反精致 · 反健康焦虑</div></div><div class="carrier">  <div class="meta-label eyebrow">内容载体</div>  <div class="carrier-text">小红书加班话题、办公室短视频</div></div></article><article class="script-card is-violet"><div class="top-bar"></div><div class="card-top">  <div class="icon-shell"><svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M48 12v10"/><path d="M36 22h24"/><path d="M30 30c0-6 8-10 18-10s18 4 18 10"/><path d="M30 30v16c0 18 11 28 18 28s18-10 18-28V30"/><path d="M34 38h28"/><path d="M34 50h28"/><path d="M48 74v10"/><path d="M42 84h12"/></svg></div>  <div class="avatar"><img src="input/iced-tea-cognition-h5/src/assets/avatar-family-buyer.png" alt=""></div></div><div class="scene-block">  <div class="card-num eyebrow">剧本 05</div>  <h3 class="scene">春节家庭聚餐</h3></div><div class="meta-row">  <div class="meta-item"><div class="meta-label eyebrow">人群标签</div><div class="meta-value">30-50 岁家庭采购者 · 下沉市场为主</div></div>  <div class="meta-item"><div class="meta-label eyebrow">产品规格</div><span class="spec-pill pill">整箱装</span></div></div><div class="quote-zone">  <span class="q-open">"</span>  <blockquote class="slogan">一家人吃饭就该有的味道</blockquote>  <span class="q-close">"</span>  <div class="hook">国民属性 · 团圆仪式</div></div><div class="carrier">  <div class="meta-label eyebrow">内容载体</div>  <div class="carrier-text">拼多多/抖音直播、社区团购</div></div></article></div></div>
+@keyframes it5-bar-grow{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}</style><div class="header"><h2 class="title-zh" data-text-id="slide-94.title">内容营销 — 从产品卖点到基于人群的啤酒场景营销</h2></div><div class="stage"><p class="intro-line" data-text-id="slide-94.subtitle">它不只是「一瓶啤酒」。在 5 个不同人群眼里,青岛啤酒对应的是 5 个完全不同的消费时刻。</p><div class="scripts-grid"><article class="script-card is-orange"><div class="top-bar"></div><div class="card-top">  <div class="icon-shell"><svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 22L78 74"/><path d="M24 18L30 24"/><path d="M66 70L72 76"/><path d="M26 30c-7 0-12 5-12 11s5 11 12 11c5 0 9-3 11-7"/><path d="M42 34c-8 0-14 6-14 14s6 14 14 14c7 0 12-4 14-10"/><path d="M58 38c-8 0-14 6-14 14s6 14 14 14 14-6 14-14-6-14-14-14Z"/></svg></div>  <div class="avatar"><img src="input/iced-tea-cognition-h5/src/assets/avatar-bbq-man.png" alt=""></div></div><div class="scene-block">  <div class="card-num eyebrow">剧本 01</div>  <h3 class="scene">夜宵小龙虾</h3></div><div class="meta-row">  <div class="meta-item"><div class="meta-label eyebrow">人群标签</div><div class="meta-value">25-40 岁夜宵人群 · 城市烟火街区</div></div>  <div class="meta-item"><div class="meta-label eyebrow">产品规格</div><span class="spec-pill pill">500ml 冰镇装</span></div></div><div class="quote-zone">  <span class="q-open">"</span>  <blockquote class="slogan">龙虾上桌,第一口必须够冰</blockquote>  <span class="q-close">"</span>  <div class="hook">开瓶仪式 · 烟火气氛</div></div><div class="carrier">  <div class="meta-label eyebrow">内容载体</div>  <div class="carrier-text">抖音夜宵探店、同城达人</div></div></article><article class="script-card is-teal"><div class="top-bar"></div><div class="card-top">  <div class="icon-shell"><svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="48" cy="48" r="30"/><path d="M48 18c8 7 14 18 14 30s-6 23-14 30"/><path d="M48 18c-8 7-14 18-14 30s6 23 14 30"/><path d="M18 48h60"/></svg></div>  <div class="avatar"><img src="input/iced-tea-cognition-h5/src/assets/avatar-sports-youth.png" alt=""></div></div><div class="scene-block">  <div class="card-num eyebrow">剧本 02</div>  <h3 class="scene">球赛观赛</h3></div><div class="meta-row">  <div class="meta-item"><div class="meta-label eyebrow">人群标签</div><div class="meta-value">18-35 岁球迷 · 大学生/年轻白领</div></div>  <div class="meta-item"><div class="meta-label eyebrow">产品规格</div><span class="spec-pill pill">听装/小瓶组合</span></div></div><div class="quote-zone">  <span class="q-open">"</span>  <blockquote class="slogan">进球那一刻,杯子要碰响</blockquote>  <span class="q-close">"</span>  <div class="hook">情绪共振 · 观赛陪伴</div></div><div class="carrier">  <div class="meta-label eyebrow">内容载体</div>  <div class="carrier-text">B 站球评、抖音观赛搭子</div></div></article><article class="script-card is-purple"><div class="top-bar"></div><div class="card-top">  <div class="icon-shell"><svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 24h24c8 0 14 6 14 14v34H32c-8 0-14 0-14 0V24Z"/><path d="M78 24H54c-8 0-14 6-14 14v34h24c8 0 14 0 14 0V24Z"/><path d="M48 38v34"/></svg></div>  <div class="avatar"><img src="input/iced-tea-cognition-h5/src/assets/avatar-campus-nostalgia.png" alt=""></div></div><div class="scene-block">  <div class="card-num eyebrow">剧本 03</div>  <h3 class="scene">海边露营</h3></div><div class="meta-row">  <div class="meta-item"><div class="meta-label eyebrow">人群标签</div><div class="meta-value">22-38 岁年轻出游人群</div></div>  <div class="meta-item"><div class="meta-label eyebrow">产品规格</div><span class="spec-pill pill">青岛纯生/白啤</span></div></div><div class="quote-zone">  <span class="q-open">"</span>  <blockquote class="slogan">海风一吹,冰啤酒才算到位</blockquote>  <span class="q-close">"</span>  <div class="hook">产地心智 · 城市记忆</div></div><div class="carrier">  <div class="meta-label eyebrow">内容载体</div>  <div class="carrier-text">小红书露营攻略、城市旅行短视频</div></div></article><article class="script-card is-blue"><div class="top-bar"></div><div class="card-top">  <div class="icon-shell"><svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="24" y="24" width="48" height="32" rx="4"/><path d="M14 66h68l-5 10H19l-5-10Z"/><path d="M40 72h16"/></svg></div>  <div class="avatar"><img src="input/iced-tea-cognition-h5/src/assets/avatar-overtime-whitecollar.png" alt=""></div></div><div class="scene-block">  <div class="card-num eyebrow">剧本 04</div>  <h3 class="scene">商务宴请</h3></div><div class="meta-row">  <div class="meta-item"><div class="meta-label eyebrow">人群标签</div><div class="meta-value">30-45 岁渠道老板/客户经理</div></div>  <div class="meta-item"><div class="meta-label eyebrow">产品规格</div><span class="spec-pill pill">经典瓶装/高端系列</span></div></div><div class="quote-zone">  <span class="q-open">"</span>  <blockquote class="slogan">先敬一杯,把生意聊热</blockquote>  <span class="q-close">"</span>  <div class="hook">信任破冰 · 桌面社交</div></div><div class="carrier">  <div class="meta-label eyebrow">内容载体</div>  <div class="carrier-text">商务宴请短视频、渠道朋友圈</div></div></article><article class="script-card is-violet"><div class="top-bar"></div><div class="card-top">  <div class="icon-shell"><svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M48 12v10"/><path d="M36 22h24"/><path d="M30 30c0-6 8-10 18-10s18 4 18 10"/><path d="M30 30v16c0 18 11 28 18 28s18-10 18-28V30"/><path d="M34 38h28"/><path d="M34 50h28"/><path d="M48 74v10"/><path d="M42 84h12"/></svg></div>  <div class="avatar"><img src="input/iced-tea-cognition-h5/src/assets/avatar-family-buyer.png" alt=""></div></div><div class="scene-block">  <div class="card-num eyebrow">剧本 05</div>  <h3 class="scene">家庭聚餐囤货</h3></div><div class="meta-row">  <div class="meta-item"><div class="meta-label eyebrow">人群标签</div><div class="meta-value">30-55 岁家庭采购者 · 节庆聚餐</div></div>  <div class="meta-item"><div class="meta-label eyebrow">产品规格</div><span class="spec-pill pill">整箱装/罐装组合</span></div></div><div class="quote-zone">  <span class="q-open">"</span>  <blockquote class="slogan">家宴桌上那箱青岛,年味才完整</blockquote>  <span class="q-close">"</span>  <div class="hook">团圆仪式 · 品牌信任</div></div><div class="carrier">  <div class="meta-label eyebrow">内容载体</div>  <div class="carrier-text">商超陈列、社区团购、抖音直播</div></div></article></div></div>
       
       </div>
     </div>
@@ -11332,657 +12037,6 @@
 <div class="l1" data-text-id="slide-101.closing.l1">下任务的依然是人 · 做判断的依然是人 · 拍板的依然是人</div>
 <div class="l2" data-text-id="slide-101.closing.l2">AI 不替代任何人的判断,只接管"信息流动"这一件事</div>
 </div>
-</div>
-      </div>
-    </div>
-<div class="slide-frame">
-      <div class="slide" data-layout="content-2col" data-accent="teal" data-decor="blue-glow" data-screen-label="17 NPD-0541 试产 · AI 督办员 demo" data-slide-key="kangshifu-npd-0541-scene">
-        <div class="wordmark">飞书</div>
-<style>
-.slide[data-slide-key="kangshifu-npd-0541-scene"][data-layout="content-2col"] .header { display: none; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"][data-layout="content-2col"] .stage {
-  position: absolute; top: 61px; left: 73px; right: 73px; bottom: 30px;
-  display: grid;
-  grid-template-columns: 460px 1fr;
-  column-gap: 36px;
-  align-items: center;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .narrative { display: flex; flex-direction: column; gap: 18px; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .eyebrow {
-  font: 700 16px/1 var(--fs-font-cjk); letter-spacing: 0.16em; color: var(--fs-teal);
-  /* allow:typescale */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .ttl {
-  font: 900 48px/1.1 var(--fs-font-cjk); color: #fff; margin: 0; letter-spacing: -0.015em;
-  /* allow:typescale */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .ttl .accent { color: var(--fs-teal); }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .ctx {
-  font: 500 24px/1.5 var(--fs-font-cjk); color: #fff; margin: 0;
-  /* allow:typescale */ /* allow:white-opacity */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .ctx .hl { color: var(--fs-teal); font-weight: 700; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .steps {
-  display: flex; flex-direction: column; gap: 12px;
-  border-left: 2px solid rgba(51,214,192,0.40); padding-left: 16px;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .step { display: flex; gap: 12px; align-items: baseline; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .step .n {
-  font: 800 24px/1 var(--fs-font-latin); color: var(--fs-teal); min-width: 32px;
-  /* allow:typescale */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .step .t {
-  font: 700 24px/1.3 var(--fs-font-cjk); color: #fff;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .step .t .sub {
-  display: block; font: 500 24px/1.4 var(--fs-font-cjk); color: rgba(255,255,255,0.85);
-  /* allow:typescale */ /* allow:white-opacity */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .hover-note {
-  font: 500 16px/1.3 var(--fs-font-cjk); color: rgba(255,255,255,0.40);
-  /* allow:typescale */ /* allow:white-opacity */
-}
-
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .demo-zone {
-  display: grid; grid-template-columns: 340px 1fr; column-gap: 36px;
-  align-items: center; position: relative;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .flow-svg {
-  position: absolute; inset: 0; pointer-events: none; z-index: 2; width: 100%; height: 100%;
-}
-
-/* PHONE BASE */
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .phone {
-  background: #11141C; border-radius: 32px; position: relative;
-  overflow: hidden; display: flex; flex-direction: column;
-  font-family: var(--fs-font-cjk);
-  box-shadow: 0 0 0 6px #1a1d2a, 0 0 0 7px rgba(255,255,255,0.05);
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .phone::before {
-  content: ''; position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
-  width: 84px; height: 18px; background: #050810; border-radius: 0 0 12px 12px; z-index: 10;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .phone.is-super {
-  width: 340px; height: 660px;
-  box-shadow: 0 0 0 6px #1a1d2a, 0 0 0 9px rgba(51,214,192,0.55);
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .phone.is-supplier {
-  width: 100%; height: 480px; border-radius: 20px;
-  box-shadow: 0 0 0 5px #1a1d2a;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .phone.is-supplier::before {
-  width: 52px; height: 12px; top: 5px;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .ph-status {
-  height: 30px; padding: 0 16px;
-  display: flex; align-items: center; justify-content: space-between;
-  font: 700 13px/1 -apple-system, var(--fs-font-cjk); color: rgba(255,255,255,0.85);
-  background: #11141C; /* allow:typescale */ /* allow:white-opacity */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .phone.is-supplier .ph-status {
-  height: 22px; padding: 0 12px; font-size: 11px;
-  /* allow:typescale */ /* allow:white-opacity */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .ph-bar {
-  padding: 10px 14px;
-  background: rgba(60,127,255,0.08);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  display: flex; align-items: center; gap: 10px;
-  font: 700 16px/1 var(--fs-font-cjk); color: #fff; /* allow:typescale */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .phone.is-supplier .ph-bar {
-  padding: 7px 10px; font-size: 13px; gap: 7px; /* allow:typescale */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .ph-ai {
-  width: 26px; height: 26px; border-radius: 50%;
-  background-size: cover; background-position: center;
-  box-shadow: 0 0 0 1.5px rgba(51,214,192,0.60); flex-shrink: 0;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .phone.is-supplier .ph-ai { width: 20px; height: 20px; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .ph-body { flex: 1; overflow: hidden; position: relative; }
-
-/* SUPER PHONE PANELS */
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel {
-  position: absolute; inset: 0; padding: 14px 16px;
-  display: flex; flex-direction: column; gap: 12px; opacity: 0;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .role-tag {
-  display: inline-block; padding: 4px 10px; border-radius: 5px;
-  background: rgba(51,214,192,0.20); color: var(--fs-teal);
-  font: 800 14px/1 var(--fs-font-cjk); letter-spacing: 0.12em;
-  align-self: flex-start; /* allow:typescale */
-}
-
-/* Phase 1 — dispatch (with avatars) */
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-1 .pc-title {
-  font: 800 18px/1.3 var(--fs-font-cjk); color: #fff; /* allow:typescale */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-1 .dispatch-list {
-  background: rgba(60,127,255,0.10); border: 1px solid rgba(60,127,255,0.30);
-  border-radius: 10px; padding: 10px;
-  display: flex; flex-direction: column; gap: 8px;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-1 .dl-item {
-  display: flex; align-items: center; gap: 8px;
-  font: 600 14px/1 var(--fs-font-cjk); color: rgba(255,255,255,0.88);
-  /* allow:typescale */ /* allow:white-opacity */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-1 .dl-av {
-  width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
-  background-size: cover; background-position: center;
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-1 .dl-name { flex: 1; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-1 .dl-region {
-  font: 600 12px/1 var(--fs-font-cjk); color: rgba(255,255,255,0.55);
-  padding: 2px 6px; border-radius: 3px; background: rgba(255,255,255,0.06);
-  /* allow:typescale */ /* allow:white-opacity */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-1 .dispatch-btn {
-  padding: 11px; border-radius: 10px;
-  background: linear-gradient(135deg, var(--fs-teal), #2EBFA8);
-  color: #062828; text-align: center;
-  font: 800 17px/1 var(--fs-font-cjk); /* allow:typescale */
-}
-
-/* Phase 2-3 — status (transcript instead of "voice 32s") */
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-2 .p2-head {
-  font: 800 18px/1.3 var(--fs-font-cjk); color: #fff; /* allow:typescale */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-2 .p2-sub {
-  font: 500 15px/1 var(--fs-font-cjk); color: rgba(255,255,255,0.65);
-  /* allow:typescale */ /* allow:white-opacity */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .status-list {
-  display: flex; flex-direction: column; gap: 9px;
-  background: rgba(255,255,255,0.04); border-radius: 10px; padding: 11px;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-row {
-  display: flex; align-items: flex-start; gap: 8px;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-icon {
-  width: 20px; height: 20px; display: grid; place-items: center; border-radius: 4px;
-  font: 800 13px/1 var(--fs-font-cjk); flex-shrink: 0; margin-top: 1px;
-  /* allow:typescale */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-meta {
-  flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-name {
-  font: 700 14px/1.2 var(--fs-font-cjk); color: #fff; /* allow:typescale */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-desc {
-  font: 500 12px/1.3 var(--fs-font-cjk); color: rgba(255,255,255,0.78);
-  /* allow:typescale */ /* allow:white-opacity */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-desc .ai-tag {
-  display: inline-block; padding: 1px 5px; border-radius: 3px;
-  background: rgba(159,111,241,0.25); color: #B891F5;
-  font: 800 10px/1 var(--fs-font-cjk); margin-right: 4px;
-  /* allow:typescale */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-icon.is-text   { background: rgba(60,127,255,0.30); color: #6FA3FF; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-icon.is-voice  { background: rgba(159,111,241,0.30); color: #B891F5; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-icon.is-file   { background: rgba(51,214,192,0.30); color: var(--fs-teal); }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-icon.is-pending { background: rgba(254,127,0,0.30); color: #FFB070; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-row.is-pending .st-name { color: rgba(255,255,255,0.55); /* allow:white-opacity */ }
-
-/* Phase 4 */
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .ai-scan {
-  display: flex; align-items: center; gap: 10px;
-  background: rgba(51,214,192,0.10); border: 1px solid rgba(51,214,192,0.30);
-  border-radius: 10px; padding: 11px;
-  font: 700 15px/1.3 var(--fs-font-cjk); color: var(--fs-teal); /* allow:typescale */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .ai-scan svg { width: 20px; height: 20px; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .summary-card {
-  background: rgba(255,255,255,0.04); border-radius: 10px; padding: 11px;
-  display: flex; flex-direction: column; gap: 7px;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .sm-rate {
-  font: 800 22px/1.1 var(--fs-font-cjk); color: var(--fs-teal); /* allow:typescale */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .sm-meta {
-  font: 500 14px/1.4 var(--fs-font-cjk); color: rgba(255,255,255,0.78);
-  /* allow:typescale */ /* allow:white-opacity */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .alert-card {
-  background: rgba(254,127,0,0.14); border: 1px solid rgba(254,127,0,0.40);
-  border-left: 4px solid var(--fs-orange); border-radius: 10px; padding: 11px;
-  display: flex; flex-direction: column; gap: 7px;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .a-head {
-  display: flex; align-items: center; gap: 8px;
-  font: 800 17px/1.2 var(--fs-font-cjk); color: var(--fs-orange); /* allow:typescale */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .a-head svg { width: 18px; height: 18px; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .a-text {
-  font: 600 14px/1.4 var(--fs-font-cjk); color: #fff; /* allow:typescale */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .a-readers {
-  display: flex; gap: 9px;
-  font: 600 13px/1 var(--fs-font-cjk); color: rgba(255,255,255,0.65);
-  /* allow:typescale */ /* allow:white-opacity */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 .a-readers span::before { content: '✓ '; color: var(--fs-teal); }
-
-/* MINI WRAP (phone-tag + phone) */
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini-row {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
-  position: relative; z-index: 1;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini-wrap {
-  display: flex; flex-direction: column; gap: 8px; align-items: stretch;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .phone-tag {
-  text-align: center;
-  font: 700 24px/1.3 var(--fs-font-cjk); color: #fff;
-  padding: 8px 12px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 8px;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .phone-tag .region {
-  display: block; font: 500 16px/1.3 var(--fs-font-cjk); color: rgba(255,255,255,0.65);
-  margin-top: 4px;
-  /* allow:white-opacity — secondary label muted chrome */
-}
-
-/* MINI CHAT (双头像左右对话) */
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .chat {
-  padding: 10px 10px; display: flex; flex-direction: column; gap: 8px; height: 100%;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .msg-in {
-  display: flex; align-items: flex-start; gap: 6px;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .msg-out {
-  display: flex; align-items: flex-start; gap: 6px;
-  justify-content: flex-end;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .chat-av {
-  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
-  background-size: cover; background-position: center;
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .chat-av.super-av {
-  box-shadow: 0 0 0 1.5px rgba(51,214,192,0.50);
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .bubble {
-  padding: 7px 9px;
-  font: 600 13px/1.35 var(--fs-font-cjk); color: #fff;
-  max-width: 75%; /* allow:typescale */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .bubble.bubble-in {
-  background: rgba(255,255,255,0.10);
-  border-radius: 4px 12px 12px 12px;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .bubble.bubble-out {
-  border-radius: 12px 4px 12px 12px;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .bubble.bubble-out.text {
-  background: rgba(51,214,192,0.30);
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .bubble.bubble-out.btn-ack {
-  background: linear-gradient(135deg, #FFB400, #FFD770); color: #5C3A00;
-}
-
-/* voice — bundle: voice bubble + ai transcript */
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle {
-  display: flex; flex-direction: column; gap: 4px; align-items: flex-end; max-width: 78%;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .voice-row {
-  display: flex; align-items: center; gap: 6px;
-  background: rgba(159,111,241,0.30); border-radius: 12px 4px 12px 12px;
-  padding: 7px 10px;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .wave {
-  display: flex; align-items: center; gap: 2px; height: 14px;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .wave i {
-  width: 2px; background: #fff; border-radius: 1px; animation: wave-bar 0.9s infinite;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .wave i:nth-child(1) { height: 5px;  animation-delay: 0.0s; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .wave i:nth-child(2) { height: 9px;  animation-delay: 0.1s; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .wave i:nth-child(3) { height: 12px; animation-delay: 0.2s; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .wave i:nth-child(4) { height: 7px;  animation-delay: 0.3s; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .wave i:nth-child(5) { height: 10px; animation-delay: 0.4s; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .wave i:nth-child(6) { height: 4px;  animation-delay: 0.5s; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .dur {
-  font: 700 11px/1 var(--fs-font-cjk); color: #fff; /* allow:typescale */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .transcript {
-  background: rgba(159,111,241,0.16);
-  border: 1px dashed rgba(159,111,241,0.45);
-  border-radius: 6px; padding: 5px 8px;
-  font: 600 12px/1.35 var(--fs-font-cjk); color: rgba(255,255,255,0.92);
-  /* allow:typescale */ /* allow:white-opacity */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-bundle .transcript::before {
-  content: 'AI 转写 · ';
-  font-weight: 800; color: #B891F5;
-  letter-spacing: 0.04em;
-}
-
-@keyframes wave-bar { 0%, 100% { transform: scaleY(0.5); } 50% { transform: scaleY(1.2); } }
-
-/* file card as bubble-out */
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .file-bubble {
-  background: rgba(255,255,255,0.10); border: 1px solid rgba(51,214,192,0.40);
-  border-radius: 12px 4px 12px 12px;
-  padding: 7px 9px;
-  display: flex; align-items: center; gap: 7px; max-width: 78%;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .file-bubble .f-icon {
-  width: 24px; height: 28px; flex-shrink: 0;
-  background: var(--fs-teal); border-radius: 3px;
-  display: grid; place-items: center;
-  font: 800 11px/1 var(--fs-font-cjk); color: #062828; /* allow:typescale */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .file-bubble .f-meta {
-  display: flex; flex-direction: column; gap: 2px;
-  font: 700 12px/1.2 var(--fs-font-cjk); color: #fff; /* allow:typescale */
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .file-bubble .f-meta .sz {
-  font-weight: 500; color: rgba(255,255,255,0.55);
-  /* allow:typescale */ /* allow:white-opacity */
-}
-
-/* typing */
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .typing-row {
-  display: flex; align-items: center; gap: 6px;
-  justify-content: flex-end;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .typing {
-  display: flex; align-items: center; gap: 4px;
-  padding: 7px 11px;
-  background: rgba(255,255,255,0.10);
-  border-radius: 12px 4px 12px 12px;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .typing i {
-  width: 5px; height: 5px; border-radius: 50%;
-  background: rgba(255,255,255,0.55); animation: typing-dot 1.0s infinite;
-}
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .typing i:nth-child(2) { animation-delay: 0.2s; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .typing i:nth-child(3) { animation-delay: 0.4s; }
-@keyframes typing-dot {
-  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-  30% { transform: translateY(-2px); opacity: 1; }
-}
-/* out-slot — typing & reply stack in same slot at bottom */
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .out-slot {
-  flex: 1; position: relative; min-height: 52px;
-}
-/* default (m1/m3/m4): reply pinned to top — 紧贴 incoming */
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .out-slot .typing-row,
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .out-slot .msg-out {
-  position: absolute; right: 0; top: 0; left: 0;
-  display: flex; justify-content: flex-end; align-items: flex-start;
-}
-
-
-/* ANIMATIONS (15s loop) */
-@keyframes panel-1-show {
-  0% { opacity: 0; transform: translateX(-12px); }
-  4% { opacity: 1; transform: translateX(0); }
-  20% { opacity: 1; }
-  24% { opacity: 0; transform: translateX(12px); }
-  100% { opacity: 0; }
-}
-@keyframes panel-2-show {
-  0%, 18% { opacity: 0; transform: translateX(-12px); }
-  24% { opacity: 1; transform: translateX(0); }
-  70% { opacity: 1; }
-  74% { opacity: 0; transform: translateX(12px); }
-  100% { opacity: 0; }
-}
-@keyframes panel-3-show {
-  0%, 70% { opacity: 0; transform: translateX(-12px); }
-  76% { opacity: 1; transform: translateX(0); }
-  100% { opacity: 1; }
-}
-@keyframes st-row-1 { 0%, 44%  { opacity: 0.35; } 48%, 100% { opacity: 1; } }
-@keyframes st-row-2 { 0%, 52%  { opacity: 0.35; } 56%, 100% { opacity: 1; } }
-@keyframes st-row-3 { 0%, 60%  { opacity: 0.35; } 64%, 100% { opacity: 1; } }
-@keyframes st-row-4 { 0%, 100% { opacity: 0.35; } }
-
-@keyframes mini-in { 0%, 22% { opacity: 0; transform: translateY(8px); } 28%, 100% { opacity: 1; transform: translateY(0); } }
-@keyframes mini-typing-1 { 0%, 40% { opacity: 0; } 44%, 46% { opacity: 1; } 48%, 100% { opacity: 0; } }
-@keyframes mini-typing-2 { 0%, 48% { opacity: 0; } 52%, 54% { opacity: 1; } 56%, 100% { opacity: 0; } }
-@keyframes mini-typing-3 { 0%, 56% { opacity: 0; } 60%, 62% { opacity: 1; } 64%, 100% { opacity: 0; } }
-@keyframes mini-typing-pending { 0%, 40% { opacity: 0; } 44%, 100% { opacity: 1; } }
-@keyframes mini-reply-1 { 0%, 46% { opacity: 0; transform: translateY(6px); } 50%, 100% { opacity: 1; transform: translateY(0); } }
-@keyframes mini-reply-2 { 0%, 54% { opacity: 0; transform: translateY(6px); } 58%, 100% { opacity: 1; transform: translateY(0); } }
-@keyframes mini-reply-3 { 0%, 62% { opacity: 0; transform: translateY(6px); } 66%, 100% { opacity: 1; transform: translateY(0); } }
-
-@keyframes arrow-out { 0%, 8% { opacity: 0; } 14%, 20% { opacity: 0.85; } 26%, 100% { opacity: 0; } }
-@keyframes arrow-in  { 0%, 66% { opacity: 0; } 72%, 78% { opacity: 0.85; } 82%, 100% { opacity: 0; } }
-
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-1 { animation: panel-1-show 15s infinite both; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-2 { animation: panel-2-show 15s infinite both; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .panel-3 { animation: panel-3-show 15s infinite both; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-row.r1 { animation: st-row-1 15s infinite both; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-row.r2 { animation: st-row-2 15s infinite both; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-row.r3 { animation: st-row-3 15s infinite both; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .super .st-row.r4 { animation: st-row-4 15s infinite both; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .msg-in { animation: mini-in 15s infinite both; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini.m1 .typing-row { animation: mini-typing-1 15s infinite both; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini.m2 .typing-row { animation: mini-typing-2 15s infinite both; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini.m3 .typing-row { animation: mini-typing-3 15s infinite both; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini.m4 .typing-row { animation: mini-typing-pending 15s infinite both; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini.m1 .msg-out { animation: mini-reply-1 15s infinite both; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini.m2 .msg-out { animation: mini-reply-2 15s infinite both; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini.m3 .msg-out { animation: mini-reply-3 15s infinite both; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .arrow-out { animation: arrow-out 15s infinite both; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .arrow-in  { animation: arrow-in  15s infinite both; }
-
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .demo-zone:hover * { animation-play-state: paused !important; }
-
-.slide[data-slide-key="kangshifu-npd-0541-scene"] 
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-reply .voice-bundle { display: flex; flex-direction: column; gap: 6px; align-items: stretch; max-width: 78%; margin-left: auto; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-line { display: flex; align-items: center; gap: 6px; justify-content: flex-end; }
-.slide[data-slide-key="kangshifu-npd-0541-scene"] .mini .voice-reply .transcript { align-self: stretch; margin-right: 34px; /* leave room aligned w/ avatar gap */ }
-</style><div class="wordmark"></div>
-<div class="header"></div>
-<div class="stage">
-
-<div class="narrative">
-<h2 class="ttl" data-text-id="slide-102.title">AI 督办员 ·<br><span class="accent">批量派发 + 多型回复 + 自动汇总</span></h2>
-<p class="ctx" data-text-id="slide-102.ctx">CEO 拍板新产品 · <span class="hl">8/5 天津厂试产</span>。 督办员一键 broadcast,4 家供应商以各自方式回复:</p>
-<div class="steps">
-<div class="step"><span class="n">①</span><span class="t">派发<span class="sub">AI 督办员一键 @ 4 家供应商</span></span></div>
-<div class="step"><span class="n">②</span><span class="t">接收<span class="sub">飞书消息直推 4 位负责人手机</span></span></div>
-<div class="step"><span class="n">③</span><span class="t">多型回复<span class="sub">打字 · 语音 · 文件 · 未响应</span></span></div>
-<div class="step"><span class="n">④</span><span class="t">AI 汇总 + 风险预警<span class="sub">同一手机 · 自动归纳 + 推送责任人</span></span></div>
-</div>
-<p class="hover-note" data-allow-body-floor="demo-hint">动画 15s 自动循环 · 鼠标悬停暂停</p>
-</div>
-
-<div class="demo-zone" data-allow-typescale="phone-mock" data-allow-body-floor="phone-mock">
-<svg class="flow-svg" viewBox="0 0 1240 580" preserveAspectRatio="none">
-<defs>
-<marker id="arr-teal" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-<path d="M0 0 L8 4 L0 8 Z" fill="rgba(51,214,192,0.85)"/>
-</marker>
-<marker id="arr-orange" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-<path d="M0 0 L8 4 L0 8 Z" fill="rgba(254,127,0,0.85)"/>
-</marker>
-</defs>
-<g class="arrow-out" stroke="rgba(51,214,192,0.85)" stroke-width="2" fill="none" stroke-dasharray="6 5">
-<path d="M310 290 Q480 130 510 220" marker-end="url(#arr-teal)"/>
-<path d="M310 290 Q500 200 720 230" marker-end="url(#arr-teal)"/>
-<path d="M310 290 Q500 380 940 250" marker-end="url(#arr-teal)"/>
-<path d="M310 290 Q500 460 1140 280" marker-end="url(#arr-teal)"/>
-</g>
-<g class="arrow-in" stroke="rgba(254,127,0,0.85)" stroke-width="2" fill="none" stroke-dasharray="6 5">
-<path d="M510 380 Q420 460 310 350" marker-end="url(#arr-orange)"/>
-<path d="M720 380 Q500 480 310 360" marker-end="url(#arr-orange)"/>
-<path d="M940 380 Q600 500 310 370" marker-end="url(#arr-orange)"/>
-</g>
-</svg>
-
-<div class="phone is-super super">
-<div class="ph-status"><span>14:32</span><span>5G ●●</span></div>
-<div class="ph-bar">
-<div class="ph-ai" style="background-image:url('assets/shared/digital_employee_avatars_50/01_east_asian_woman_white_shirt.png')"></div>
-<span>AI 督办员 · 林秋</span>
-</div>
-<div class="ph-body">
-<div class="panel panel-1">
-<span class="role-tag">派发任务</span>
-<div class="pc-title">NPD-0541 物料齐套确认</div>
-<div class="dispatch-list">
-<div class="dl-item"><div class="dl-av" style="background-image:url('assets/shared/digital_employee_avatars_50/11_east_asian_man_business_casual.png')"></div><span class="dl-name">面粉 · 王经理</span><span class="dl-region">河北</span></div>
-<div class="dl-item"><div class="dl-av" style="background-image:url('assets/shared/digital_employee_avatars_50/08_east_asian_man_glasses_sweater.png')"></div><span class="dl-name">棕油 · 李总</span><span class="dl-region">广东</span></div>
-<div class="dl-item"><div class="dl-av" style="background-image:url('assets/shared/digital_employee_avatars_50/14_east_asian_woman_short_bob_vest.png')"></div><span class="dl-name">调料 · 张总</span><span class="dl-region">江苏</span></div>
-<div class="dl-item"><div class="dl-av" style="background-image:url('assets/shared/digital_employee_avatars_50/15_southeast_asian_woman_scarf.png')"></div><span class="dl-name">包材 · 陈经理</span><span class="dl-region">浙江</span></div>
-</div>
-<div class="dispatch-btn">一键派发 → 4 家</div>
-</div>
-<div class="panel panel-2">
-<span class="role-tag">回复中</span>
-<div class="p2-head">4 家供应商已收到</div>
-<div class="p2-sub">截止 7/28 · 等待回复中</div>
-<div class="status-list">
-<div class="st-row r1"><span class="st-icon is-text">字</span><div class="st-meta"><span class="st-name">面粉 王经理</span><span class="st-desc">确认 8/5 发货 · 已排产</span></div></div>
-<div class="st-row r2"><span class="st-icon is-voice">声</span><div class="st-meta"><span class="st-name">棕油 李总</span><span class="st-desc"><span class="ai-tag">AI 转写</span>8/5 可发货 · 量减 20% · 申请延 1 天</span></div></div>
-<div class="st-row r3"><span class="st-icon is-file">件</span><div class="st-meta"><span class="st-name">调料 张总</span><span class="st-desc">已上传 发货确认书.pdf</span></div></div>
-<div class="st-row r4 is-pending"><span class="st-icon is-pending">等</span><div class="st-meta"><span class="st-name">包材 陈经理</span><span class="st-desc">未响应</span></div></div>
-</div>
-</div>
-<div class="panel panel-3">
-<span class="role-tag">AI 汇总</span>
-<div class="ai-scan">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg>
-<span>AI 已扫描 4 条回复 · 自动归纳</span>
-</div>
-<div class="summary-card">
-<div class="sm-rate">物料齐套率 3/4 = 75%</div>
-<div class="sm-meta">3 家确认发货 · 棕油延 1 天 · 包材陈经理未响应</div>
-</div>
-<div class="alert-card">
-<div class="a-head">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L22 20 L2 20 Z"/><line x1="12" y1="10" x2="12" y2="14"/><circle cx="12" cy="17.5" r="0.5" fill="currentColor"/></svg>
-<span>风险预警</span>
-</div>
-<div class="a-text">8/5 试产可能延期 · 建议拨通陈经理 / 启用备份包材 Y</div>
-<div class="a-readers"><span>采购</span><span>工艺</span><span>工厂</span></div>
-</div>
-</div>
-</div>
-</div>
-
-<div class="mini-row">
-<div class="mini-wrap">
-<div class="phone-tag">面粉 · 王经理<span class="region">河北 · 一级供应商</span></div>
-<div class="phone is-supplier mini m1">
-<div class="ph-status"><span>14:33</span><span>···</span></div>
-<div class="ph-bar"><div class="ph-ai" style="background-image:url('assets/shared/digital_employee_avatars_50/01_east_asian_woman_white_shirt.png')"></div><span>AI 督办员 · 林秋</span></div>
-<div class="ph-body">
-<div class="chat">
-<div class="msg-in">
-<div class="chat-av super-av" style="background-image:url('assets/shared/digital_employee_avatars_50/01_east_asian_woman_white_shirt.png')"></div>
-<div class="bubble bubble-in">@你 物料确认 · 8/5 发货可行性 · 截止 7/28</div>
-</div>
-<div class="out-slot">
-<div class="typing-row">
-<div class="typing"><i></i><i></i><i></i></div>
-<div class="chat-av" style="background-image:url('assets/shared/digital_employee_avatars_50/11_east_asian_man_business_casual.png')"></div>
-</div>
-<div class="msg-out">
-<div class="bubble bubble-out text">确认 8/5 发货 · 已排产</div>
-<div class="chat-av" style="background-image:url('assets/shared/digital_employee_avatars_50/11_east_asian_man_business_casual.png')"></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="mini-wrap">
-<div class="phone-tag">棕油 · 李总<span class="region">广东 · 战略合作</span></div>
-<div class="phone is-supplier mini m2">
-<div class="ph-status"><span>14:33</span><span>···</span></div>
-<div class="ph-bar"><div class="ph-ai" style="background-image:url('assets/shared/digital_employee_avatars_50/01_east_asian_woman_white_shirt.png')"></div><span>AI 督办员 · 林秋</span></div>
-<div class="ph-body">
-<div class="chat">
-<div class="msg-in">
-<div class="chat-av super-av" style="background-image:url('assets/shared/digital_employee_avatars_50/01_east_asian_woman_white_shirt.png')"></div>
-<div class="bubble bubble-in">@你 物料确认 · 8/5 发货可行性 · 截止 7/28</div>
-</div>
-<div class="out-slot">
-<div class="typing-row">
-<div class="typing"><i></i><i></i><i></i></div>
-<div class="chat-av" style="background-image:url('assets/shared/digital_employee_avatars_50/08_east_asian_man_glasses_sweater.png')"></div>
-</div>
-<div class="msg-out voice-reply">
-<div class="voice-bundle">
-<div class="voice-line">
-<div class="voice-row">
-<div class="wave"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-<span class="dur">0:32</span>
-</div>
-<div class="chat-av" style="background-image:url('assets/shared/digital_employee_avatars_50/08_east_asian_man_glasses_sweater.png')"></div>
-</div>
-<div class="transcript">确认 8/5 发货 · 量减 20% · 申请延 1 天</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="mini-wrap">
-<div class="phone-tag">调料 · 张总<span class="region">江苏 · 常年供货</span></div>
-<div class="phone is-supplier mini m3">
-<div class="ph-status"><span>14:33</span><span>···</span></div>
-<div class="ph-bar"><div class="ph-ai" style="background-image:url('assets/shared/digital_employee_avatars_50/01_east_asian_woman_white_shirt.png')"></div><span>AI 督办员 · 林秋</span></div>
-<div class="ph-body">
-<div class="chat">
-<div class="msg-in">
-<div class="chat-av super-av" style="background-image:url('assets/shared/digital_employee_avatars_50/01_east_asian_woman_white_shirt.png')"></div>
-<div class="bubble bubble-in">@你 物料确认 · 8/5 发货可行性 · 截止 7/28</div>
-</div>
-<div class="out-slot">
-<div class="typing-row">
-<div class="typing"><i></i><i></i><i></i></div>
-<div class="chat-av" style="background-image:url('assets/shared/digital_employee_avatars_50/14_east_asian_woman_short_bob_vest.png')"></div>
-</div>
-<div class="msg-out">
-<div class="file-bubble">
-<span class="f-icon">PDF</span>
-<div class="f-meta">发货确认书.pdf<span class="sz">186 KB</span></div>
-</div>
-<div class="chat-av" style="background-image:url('assets/shared/digital_employee_avatars_50/14_east_asian_woman_short_bob_vest.png')"></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="mini-wrap">
-<div class="phone-tag">包材 · 陈经理<span class="region">浙江 · 未响应</span></div>
-<div class="phone is-supplier mini m4">
-<div class="ph-status"><span>14:37</span><span>···</span></div>
-<div class="ph-bar"><div class="ph-ai" style="background-image:url('assets/shared/digital_employee_avatars_50/01_east_asian_woman_white_shirt.png')"></div><span>AI 督办员 · 林秋</span></div>
-<div class="ph-body">
-<div class="chat">
-<div class="msg-in">
-<div class="chat-av super-av" style="background-image:url('assets/shared/digital_employee_avatars_50/01_east_asian_woman_white_shirt.png')"></div>
-<div class="bubble bubble-in">@你 物料确认 · 8/5 发货可行性 · 截止 7/28</div>
-</div>
-<div class="out-slot">
-<div class="typing-row">
-<div class="typing"><i></i><i></i><i></i></div>
-<div class="chat-av" style="background-image:url('assets/shared/digital_employee_avatars_50/15_southeast_asian_woman_scarf.png')"></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-
 </div>
       </div>
     </div>
@@ -12840,6 +12894,534 @@
 </div>
 
 
+
+<style data-inserted-slide-styles="case-feihe-ai-inspection">
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .stage { display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .meta-row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .ind-tag { padding: 8px 16px; border-radius: 8px; background: rgba(51,214,192,0.18); border: 1px solid rgba(51,214,192,0.45); color: #33D6C0; font: 700 24px/1.2 var(--fs-font-cjk); letter-spacing: 0.04em; white-space: nowrap; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .hook { flex: 1; min-width: 0; margin: 0; font: 500 24px/1.4 var(--fs-font-cjk); color: #fff; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .hook .accent { color: #33D6C0; font-weight: 700; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .kpi-strip-feihe { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .kpi-strip-feihe .kpi { padding: 16px 22px; border-radius: 14px; background: linear-gradient(180deg, rgba(51,214,192,0.18), rgba(51,214,192,0.04)); border: 1px solid rgba(51,214,192,0.30); border-left: 4px solid #33D6C0; display: flex; flex-direction: column; gap: 4px; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .kpi-strip-feihe .kpi.is-orange { background: linear-gradient(180deg, rgba(254,127,0,0.18), rgba(254,127,0,0.04)); border-color: rgba(254,127,0,0.30); border-left-color: #FE7F00; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .kpi-strip-feihe .kpi.is-violet { background: linear-gradient(180deg, rgba(159,111,241,0.18), rgba(159,111,241,0.04)); border-color: rgba(159,111,241,0.30); border-left-color: #9F6FF1; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .kpi-strip-feihe .v { font: 800 52px/1 var(--fs-font-cjk); color: #fff; letter-spacing: 0; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .kpi-strip-feihe .v .u { font: 700 24px/1 var(--fs-font-cjk); color: #fff; margin-left: 6px; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .kpi-strip-feihe .l { font: 700 24px/1.2 var(--fs-font-cjk); color: #fff; padding-top: 4px; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .kpi-strip-feihe .d { font: 500 24px/1.4 var(--fs-font-cjk); color: #fff; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .case-body { display: grid; grid-template-columns: 1fr 1.2fr; gap: 22px; align-items: stretch; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .col-text { display: flex; flex-direction: column; gap: 50px; min-width: 0; justify-content: center; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .col-text .row { display: flex; gap: 14px; align-items: flex-start; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .col-text .lbl { flex-shrink: 0; padding: 5px 14px; border-radius: 6px; font: 700 16px/1.2 var(--fs-font-cjk); color: #fff; min-width: 56px; text-align: center; align-self: flex-start; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .col-text .lbl.is-orange { background: #FE7F00; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .col-text .lbl.is-blue { background: #3C7FFF; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .col-text .lbl.is-teal { background: #33D6C0; color: #0a1418; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .col-text .lbl.is-violet { background: #9F6FF1; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .col-text .row p { margin: 0; font: 500 24px/1.35 var(--fs-font-cjk); color: #fff; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .col-text .row p strong { color: #33D6C0; font-weight: 700; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .col-visual { display: flex; align-items: stretch; min-height: 0; min-width: 0; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .case-img { flex: 1; width: 100%; min-height: 0; background-image: url('input/image_w1536_h864_飞鹤AI质检配图-卡通版.png'); background-position: center; background-size: cover; background-repeat: no-repeat; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .closing-strip { padding: 10px 22px; border-radius: 12px; background: linear-gradient(90deg, rgba(51,214,192,0.16), rgba(51,214,192,0.04)); border-left: 3px solid #33D6C0; font: 500 24px/1.35 var(--fs-font-cjk); color: #fff; }
+.slide[data-slide-key="case-feihe-ai-inspection"].case-slide .closing-strip strong { color: #33D6C0; font-weight: 800; letter-spacing: 0.01em; }
+</style>
+<div class="slide-frame">
+      <div class="slide case-slide" data-page="case-feihe-ai-inspection" data-layout="content-2col" data-accent="teal" data-decor="teal-glow" data-screen-label="36B 案例 飞鹤鹤巡 AI 巡检" data-slide-key="case-feihe-ai-inspection">
+        <div class="wordmark"></div>
+        <div class="header">
+          <h2 class="title-zh" data-text-id="slide-68.title">飞鹤鹤巡 · 重塑 AI 巡检 — 3 天上线,年节约 331 人天</h2>
+        </div>
+        <div class="stage">
+
+          <!-- 行业标签 + 钩子 -->
+          <div class="meta-row">
+            <span class="ind-tag" data-text-id="slide-68.industry">乳制品工厂 · EHS / 设备巡检 · 客户案例</span>
+            <p class="hook"><span data-text-id="slide-68.hook.lead">把厂区摄像头接进 </span><span class="accent" data-text-id="slide-68.hook.k1">aily</span><span data-text-id="slide-68.hook.mid">,给巡检装上 </span><span class="accent" data-text-id="slide-68.hook.k2">无人机的翅膀</span><span data-text-id="slide-68.hook.tail"> —— 巡检从「监测」走向「治理」</span></p>
+          </div>
+
+          <!-- 3 hero KPI · 突出价值 -->
+          <div class="kpi-strip-feihe">
+            <div class="kpi">
+              <div class="v"><span data-text-id="slide-68.kpi-01.v">5</span><span class="u" data-text-id="slide-68.kpi-01.u">×</span></div>
+              <div class="l" data-text-id="slide-68.kpi-01.l">单次巡检效率</div>
+              <div class="d" data-text-id="slide-68.kpi-01.d">45 分钟 → 8 分钟 · AI 识别 98% 准确</div>
+            </div>
+            <div class="kpi is-orange">
+              <div class="v"><span data-text-id="slide-68.kpi-02.v">331</span><span class="u" data-text-id="slide-68.kpi-02.u">人天</span></div>
+              <div class="l" data-text-id="slide-68.kpi-02.l">每年节约工时</div>
+              <div class="d" data-text-id="slide-68.kpi-02.d">≈ 2,651 小时 / 年 · 1 家工厂</div>
+            </div>
+            <div class="kpi is-violet">
+              <div class="v"><span data-text-id="slide-68.kpi-03.v">71.15</span><span class="u" data-text-id="slide-68.kpi-03.u">万元</span></div>
+              <div class="l" data-text-id="slide-68.kpi-03.l">软硬件采购节省</div>
+              <div class="d" data-text-id="slide-68.kpi-03.d">VS 海康威视方案 · 额外软件费节约 ≥ 2 万元 / 年</div>
+            </div>
+          </div>
+
+          <!-- 痛点 → 冲突 → 解法 → 价值 四节叙事 + 右侧单张大图(无框) -->
+          <div class="case-body">
+            <div class="col-text">
+              <div class="row">
+                <span class="lbl is-orange">痛点</span>
+                <p data-text-id="slide-68.arc.pain">厂区 <strong>36 个监控点位</strong>,人工盯屏盯不过来 · 纸质表单难追溯 · 设备维保固定周期带来成本浪费</p>
+              </div>
+              <div class="row">
+                <span class="lbl is-blue">冲突</span>
+                <p data-text-id="slide-68.arc.conflict">传统方案需 <strong>71 万+</strong> 硬件投入与长流程改造,而飞鹤要在 <strong>3 天内</strong>上线核心功能</p>
+              </div>
+              <div class="row">
+                <span class="lbl is-teal">解法</span>
+                <p data-text-id="slide-68.arc.solution">飞书 <strong>aily</strong>(摄像头接入·报警规则)+ <strong>Base</strong>(工单工作流·作业指导书)+ <strong>无人机</strong>(自动飞向问题点位)三层架构</p>
+              </div>
+              <div class="row">
+                <span class="lbl is-violet">价值</span>
+                <p data-text-id="slide-68.arc.value">巡检全过程留存 · 知识反哺数据分析 · 设备维保周期科学化 · <strong>全国 14 家兄弟工厂可一键打包复用</strong></p>
+              </div>
+            </div>
+
+            <div class="col-visual">
+              <div class="case-img" role="img" aria-label="飞鹤鹤巡 AI 质检场景示意 · 摄像头 aily 接入 + Base 工单流程 + 无人机现场巡检三层架构卡通版"></div>
+            </div>
+          </div>
+
+          <!-- 结尾呼应 · 回到「标准守护者」论点 -->
+          <div class="closing-strip" data-text-id="slide-68.closing">
+            <strong>从技术工具到管理生态</strong> · 飞鹤已经做到「标准可知 · 执行可见 · 风险可控」 —— 这正是 AI 作为<strong>「标准、质量、执行、安全的守护者」</strong>的真实样子
+          </div>
+
+        </div>
+      </div>
+    </div>
+<div class="slide-frame">
+      <div class="slide" data-layout="content-2col" data-accent="orange" data-decor="orange-spark" data-screen-label="17 稽核现状 · 线性串行 6 个月" data-slide-key="audit-current-6m">
+        <div class="wordmark">飞书</div>
+<style>
+.slide[data-slide-key="audit-current-6m"][data-layout="content-2col"] .header .title-zh .num { color: #FE7F00; font-weight: 900; }
+.slide[data-slide-key="audit-current-6m"][data-layout="content-2col"] .stage {
+  position: absolute; top: 200px; left: 73px; right: 73px; bottom: 30px;
+  display: flex; flex-direction: column; gap: 16px;
+  justify-content: flex-start;
+}
+.slide[data-slide-key="audit-current-6m"] .hdr {
+  display: flex;
+}
+.slide[data-slide-key="audit-current-6m"] .hdr-l { display: flex; flex-direction: column; gap: 6px; }
+.slide[data-slide-key="audit-current-6m"] .eyebrow {
+  font: 700 18px/1 var(--fs-font-cjk); letter-spacing: 0.20em;
+  color: #FE7F00; /* allow:typescale */
+}
+.slide[data-slide-key="audit-current-6m"] .ttl {
+  font: 800 48px/1.25 var(--fs-font-cjk); color: #fff; margin: 0; letter-spacing: -0.01em;
+}
+.slide[data-slide-key="audit-current-6m"] .ttl .num {
+  color: #FE7F00; font-weight: 900; margin: 0 2px;
+}
+.slide[data-slide-key="audit-current-6m"] .hdr-r {
+  font: 500 16px/1.5 var(--fs-font-cjk); color: rgba(255,255,255,0.65);
+  text-align: right; /* allow:typescale */ /* allow:white-opacity */
+}
+
+/* timeline */
+.slide[data-slide-key="audit-current-6m"] .timeline-zone {
+  position: relative; padding: 16px 18px;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 12px; flex-shrink: 0;
+}
+.slide[data-slide-key="audit-current-6m"] .month-axis {
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  border-bottom: 2px solid rgba(255,255,255,0.30); padding-bottom: 6px; margin-bottom: 10px;
+}
+.slide[data-slide-key="audit-current-6m"] .month-axis .m {
+  text-align: center; font: 700 20px/1 var(--fs-font-cjk); color: rgba(255,255,255,0.75);
+  border-right: 1px dashed rgba(255,255,255,0.15);
+  /* allow:typescale */ /* allow:white-opacity */
+}
+.slide[data-slide-key="audit-current-6m"] .month-axis .m:last-child { border-right: none; }
+.slide[data-slide-key="audit-current-6m"] .month-axis .m.dim { color: rgba(255,255,255,0.30); }
+.slide[data-slide-key="audit-current-6m"] .stages-row {
+  display: flex; gap: 4px; height: 56px; margin-bottom: 10px;
+}
+.slide[data-slide-key="audit-current-6m"] .stage-cell {
+  padding: 8px 12px; color: #fff; border-radius: 6px;
+  display: flex; flex-direction: column; justify-content: center; gap: 2px;
+}
+.slide[data-slide-key="audit-current-6m"] .stage-cell .s-tag {
+  font: 700 14px/1 var(--fs-font-latin); letter-spacing: 0.10em; opacity: 0.85;
+  /* allow:typescale */
+}
+.slide[data-slide-key="audit-current-6m"] .stage-cell .s-name {
+  font: 800 22px/1.15 var(--fs-font-cjk);
+  /* allow:typescale */
+}
+.slide[data-slide-key="audit-current-6m"] .stage-cell.is-blue   { background: linear-gradient(90deg,#3C7FFF,#5BA1FF); }
+.slide[data-slide-key="audit-current-6m"] .stage-cell.is-violet { background: linear-gradient(90deg,#9B59B6,#B891F5); }
+.slide[data-slide-key="audit-current-6m"] .stage-cell.is-orange { background: linear-gradient(90deg,#E67E22,#FE7F00); }
+.slide[data-slide-key="audit-current-6m"] .stage-cell.is-red    { background: linear-gradient(90deg,#E74C3C,#FF6B5C); }
+.slide[data-slide-key="audit-current-6m"] .stage-cell.savings   {
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0 6px, rgba(255,255,255,0.0) 6px 12px);
+  border: 1px dashed rgba(255,255,255,0.20); color: #FE7F00;
+  align-items: center; justify-content: center; text-align: center;
+}
+.slide[data-slide-key="audit-current-6m"] .stage-cell.savings .save-text {
+  font: 800 16px/1.2 var(--fs-font-cjk); /* allow:typescale */
+}
+
+.slide[data-slide-key="audit-current-6m"] .substages-row {
+  display: flex; gap: 4px; height: 220px;
+}
+.slide[data-slide-key="audit-current-6m"] .sub-cell {
+  padding: 14px 16px; border-radius: 4px;
+  background: rgba(255,255,255,0.04);
+  font: 600 24px/1.45 var(--fs-font-cjk); color: rgba(255,255,255,0.92);
+  /* allow:typescale */ /* allow:white-opacity */
+}
+.slide[data-slide-key="audit-current-6m"] .sub-cell.bt-blue   { border-top: 3px solid #3C7FFF; }
+.slide[data-slide-key="audit-current-6m"] .sub-cell.bt-violet { border-top: 3px solid #B891F5; }
+.slide[data-slide-key="audit-current-6m"] .sub-cell.bt-orange { border-top: 3px solid #FE7F00; }
+.slide[data-slide-key="audit-current-6m"] .sub-cell.bt-red    { border-top: 3px solid #FF6B5C; }
+.slide[data-slide-key="audit-current-6m"] .sub-cell .bad {
+  display: inline-block;
+  font: 800 28px/1.25 var(--fs-font-cjk); color: #FF8A75;
+  background: rgba(254,127,0,0.18); border-left: 4px solid #FF8A75;
+  padding: 4px 10px; border-radius: 0 5px 5px 0; margin: 4px 0;
+}
+.slide[data-slide-key="audit-current-6m"] .sub-cell .ai-tag {
+  display: inline-block; padding: 3px 8px; border-radius: 4px;
+  background: rgba(60,127,255,0.20); color: #6FA3FF;
+  font: 700 16px/1.3 var(--fs-font-cjk); margin: 1px 0;
+  /* allow:typescale */
+}
+.slide[data-slide-key="audit-current-6m"] .sub-cell .ghost { color: rgba(255,255,255,0.40); /* allow:white-opacity */ }
+.slide[data-slide-key="audit-current-6m"] .sub-cell .arrow { color: rgba(255,255,255,0.45); /* allow:white-opacity */ }
+
+/* risk markers + decision window bar */
+.slide[data-slide-key="audit-current-6m"] .risk-row {
+  margin-top: 14px; position: relative; height: 32px;
+}
+.slide[data-slide-key="audit-current-6m"] .risk-row .risk-dot {
+  position: absolute; width: 14px; height: 14px; border-radius: 50%;
+  background: #FE7F00; border: 2px solid #11141C;
+  box-shadow: 0 0 0 2px #FE7F00; top: 4px;
+}
+.slide[data-slide-key="audit-current-6m"] .risk-row .risk-label {
+  position: absolute; font: 800 18px/1 var(--fs-font-cjk); color: #FE7F00; top: 5px;
+  /* allow:typescale */
+}
+.slide[data-slide-key="audit-current-6m"] .risk-row .seen-dot {
+  position: absolute; width: 14px; height: 14px; border-radius: 50%;
+  background: #FE7F00; border: 2px solid #11141C;
+  box-shadow: 0 0 0 2px #FE7F00; top: 4px;
+}
+.slide[data-slide-key="audit-current-6m"] .risk-row .seen-label {
+  position: absolute; font: 800 18px/1 var(--fs-font-cjk); color: #FE7F00; top: 5px;
+  /* allow:typescale */
+}
+.slide[data-slide-key="audit-current-6m"] .window-bar {
+  position: relative; height: 22px; margin: 12px 0 0;
+  border-top: 1px solid #FE7F00; border-bottom: 1px solid #FE7F00;
+}
+.slide[data-slide-key="audit-current-6m"] .window-bar .label {
+  position: absolute; left: 50%; top: -10px; transform: translateX(-50%);
+  background: #FE7F00; color: #062828;
+  padding: 4px 14px; font: 800 16px/1 var(--fs-font-cjk); letter-spacing: 0.04em;
+  border-radius: 3px;
+  /* allow:typescale */
+}
+
+/* bottom chip row */
+.slide[data-slide-key="audit-current-6m"] .chip-row { display: grid; gap: 10px; flex: 0 0 auto; }
+.slide[data-slide-key="audit-current-6m"] .chip {
+  padding: 18px 20px;
+  background: rgba(8,12,24,0.55); border: 1px solid rgba(255,255,255,0.12);
+  border-top: 3px solid #FE7F00;
+  border-radius: 8px;
+  display: flex; flex-direction: column; gap: 8px; min-width: 0;
+}
+.slide[data-slide-key="audit-current-6m"] .chip .c-tag {
+  font: 800 16px/1 var(--fs-font-cjk); letter-spacing: 0.12em; color: #FE7F00;
+  /* allow:typescale */
+}
+.slide[data-slide-key="audit-current-6m"] .chip .c-title {
+  font: 800 24px/1.2 var(--fs-font-cjk); color: #fff;
+  /* allow:typescale */
+}
+.slide[data-slide-key="audit-current-6m"] .chip .c-body {
+  font: 500 18px/1.5 var(--fs-font-cjk); color: rgba(255,255,255,0.78);
+  /* allow:typescale */ /* allow:white-opacity */
+}
+.slide[data-slide-key="audit-current-6m"] .chip .c-body .strike {
+  text-decoration: line-through; color: rgba(255,255,255,0.40);
+  /* allow:white-opacity */
+}
+.slide[data-slide-key="audit-current-6m"] .chip.is-dark {
+  background: #0a1020; border-top: 3px solid #FFD770;
+}
+.slide[data-slide-key="audit-current-6m"] .chip.is-dark .c-tag { color: #FFD770; letter-spacing: 0.16em; }
+.slide[data-slide-key="audit-current-6m"] .chip.is-dark .c-body { color: rgba(255,255,255,0.85); }
+.slide[data-slide-key="audit-current-6m"] .chip.is-dark .c-body .gold { color: #FFD770; font-weight: 700; }
+
+.slide[data-slide-key="audit-current-6m"] .footnote {
+  font: 500 14px/1.4 var(--fs-font-cjk); color: rgba(255,255,255,0.50);
+  border-top: 1px solid rgba(255,255,255,0.10); padding-top: 8px;
+  /* allow:typescale */ /* allow:white-opacity */
+}
+
+.slide[data-slide-key="audit-current-6m"] .window-banner {
+  display: flex; align-items: center; gap: 14px; margin-top: 18px; height: 48px;
+}
+.slide[data-slide-key="audit-current-6m"] .window-banner .left,
+.slide[data-slide-key="audit-current-6m"] .window-banner .right {
+  display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+  font: 800 18px/1.2 var(--fs-font-cjk); /* allow:typescale */
+}
+.slide[data-slide-key="audit-current-6m"] .window-banner .left { color: #FE7F00; }
+.slide[data-slide-key="audit-current-6m"] .window-banner .right { color: rgba(255,255,255,0.85); }
+.slide[data-slide-key="audit-current-6m"] .window-banner .dot {
+  width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
+}
+.slide[data-slide-key="audit-current-6m"] .window-banner .risk-dot {
+  background: #FE7F00; box-shadow: 0 0 0 3px rgba(254,127,0,0.30);
+}
+.slide[data-slide-key="audit-current-6m"] .window-banner .seen-dot {
+  background: #fff; box-shadow: 0 0 0 3px rgba(255,255,255,0.25);
+}
+.slide[data-slide-key="audit-current-6m"] .window-banner .bar {
+  flex: 1; height: 38px; position: relative;
+  background: linear-gradient(90deg, rgba(254,127,0,0.18) 0%, rgba(254,127,0,0.45) 50%, rgba(254,127,0,0.18) 100%);
+  border: 1.5px solid rgba(254,127,0,0.55); border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+}
+.slide[data-slide-key="audit-current-6m"] .window-banner .bar::before,
+.slide[data-slide-key="audit-current-6m"] .window-banner .bar::after {
+  content: ''; position: absolute; top: 50%; transform: translateY(-50%);
+  width: 0; height: 0; border-top: 7px solid transparent; border-bottom: 7px solid transparent;
+}
+.slide[data-slide-key="audit-current-6m"] .window-banner .bar::before {
+  left: 0; border-right: 10px solid rgba(254,127,0,0.55);
+}
+.slide[data-slide-key="audit-current-6m"] .window-banner .bar::after {
+  right: 0; border-left: 10px solid rgba(254,127,0,0.55);
+}
+.slide[data-slide-key="audit-current-6m"] .window-banner .bar-label {
+  font: 800 22px/1 var(--fs-font-cjk); color: #fff; letter-spacing: 0.04em;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.30);
+  /* allow:typescale */
+}
+
+/* === slide 23 · 4-6 月延后动画 (15s loop) === */
+.slide[data-slide-key="audit-current-6m"] .window-banner .bar {
+  overflow: hidden; position: relative;
+}
+/* fill bar — 12s 渐进推 0→100% 模拟时间流逝 */
+.slide[data-slide-key="audit-current-6m"] .window-banner .bar::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(90deg,
+    rgba(254,127,0,0.55) 0%,
+    rgba(254,127,0,0.85) 50%,
+    rgba(254,127,0,0.55) 100%);
+  transform: translateX(-100%);
+  animation: anim-bar-fill 15s infinite both;
+}
+@keyframes anim-bar-fill {
+  0%   { transform: translateX(-100%); }
+  10%  { transform: translateX(-100%); }
+  75%  { transform: translateX(0); }
+  100% { transform: translateX(0); }
+}
+.slide[data-slide-key="audit-current-6m"] .window-banner .bar-label,
+.slide[data-slide-key="audit-current-6m"] .window-banner .bar::after {
+  position: relative; z-index: 2;
+}
+
+/* risk dot — early pulse (0-2s) + stay */
+@keyframes anim-risk-pulse {
+  0%   { box-shadow: 0 0 0 3px rgba(254,127,0,0.30); transform: scale(1); }
+  4%   { box-shadow: 0 0 0 14px rgba(254,127,0,0); transform: scale(1.4); }
+  10%  { box-shadow: 0 0 0 3px rgba(254,127,0,0.30); transform: scale(1); }
+  100% { box-shadow: 0 0 0 3px rgba(254,127,0,0.45); transform: scale(1); }
+}
+.slide[data-slide-key="audit-current-6m"] .window-banner .risk-dot {
+  animation: anim-risk-pulse 15s infinite both;
+}
+
+/* seen dot — late pulse (10-13s) */
+@keyframes anim-seen-pulse {
+  0%, 60% { box-shadow: 0 0 0 3px rgba(255,255,255,0.10); transform: scale(0.9); opacity: 0.5; }
+  66%     { box-shadow: 0 0 0 3px rgba(255,255,255,0.30); transform: scale(1); opacity: 1; }
+  72%     { box-shadow: 0 0 0 16px rgba(255,255,255,0); transform: scale(1.5); opacity: 1; }
+  78%, 100% { box-shadow: 0 0 0 3px rgba(255,255,255,0.50); transform: scale(1); opacity: 1; }
+}
+.slide[data-slide-key="audit-current-6m"] .window-banner .seen-dot {
+  animation: anim-seen-pulse 15s infinite both;
+}
+
+/* seen label — fade in late */
+@keyframes anim-seen-label {
+  0%, 60%   { opacity: 0.35; }
+  68%, 100% { opacity: 1; }
+}
+.slide[data-slide-key="audit-current-6m"] .window-banner .right {
+  animation: anim-seen-label 15s infinite both;
+}
+
+/* bar label — late glow */
+@keyframes anim-label-glow {
+  0%, 75% { text-shadow: 0 1px 2px rgba(0,0,0,0.30); transform: scale(1); }
+  82%     { text-shadow: 0 0 18px rgba(254,127,0,0.90), 0 1px 2px rgba(0,0,0,0.30); transform: scale(1.06); }
+  95%, 100% { text-shadow: 0 1px 2px rgba(0,0,0,0.30); transform: scale(1); }
+}
+.slide[data-slide-key="audit-current-6m"] .window-banner .bar-label {
+  animation: anim-label-glow 15s infinite both;
+  transform-origin: center;
+}
+
+
+
+/* hover pause */
+.slide[data-slide-key="audit-current-6m"] .timeline-zone:hover *,
+.slide[data-slide-key="audit-current-6m"] .window-banner:hover * {
+  animation-play-state: paused !important;
+}
+
+/* === 时间流逝 — 4 stage 顺序亮起 (15s loop) === */
+@keyframes anim-stage-1-lit {
+  0%, 5%   { opacity: 0.25; }
+  11%, 100% { opacity: 1; }
+}
+@keyframes anim-stage-2-lit {
+  0%, 12%  { opacity: 0.25; }
+  19%, 100% { opacity: 1; }
+}
+@keyframes anim-stage-3-lit {
+  0%, 32%  { opacity: 0.25; }
+  40%, 100% { opacity: 1; }
+}
+@keyframes anim-stage-4-lit {
+  0%, 64%  { opacity: 0.25; }
+  72%, 100% { opacity: 1; }
+}
+/* both top stage-cell strip + bottom sub-cell get the same phase fade */
+.slide[data-slide-key="audit-current-6m"] .stage-cell.is-blue,
+.slide[data-slide-key="audit-current-6m"] .sub-cell.bt-blue {
+  animation: anim-stage-1-lit 15s infinite both;
+}
+.slide[data-slide-key="audit-current-6m"] .stage-cell.is-violet,
+.slide[data-slide-key="audit-current-6m"] .sub-cell.bt-violet {
+  animation: anim-stage-2-lit 15s infinite both;
+}
+.slide[data-slide-key="audit-current-6m"] .stage-cell.is-orange,
+.slide[data-slide-key="audit-current-6m"] .sub-cell.bt-orange {
+  animation: anim-stage-3-lit 15s infinite both;
+}
+.slide[data-slide-key="audit-current-6m"] .stage-cell.is-red,
+.slide[data-slide-key="audit-current-6m"] .sub-cell.bt-red {
+  animation: anim-stage-4-lit 15s infinite both;
+}
+
+/* month axis — 同步顺序高亮 */
+@keyframes anim-month-1 { 0%, 5%   { color: rgba(255,255,255,0.30); } 11%, 100% { color: #fff; } }
+@keyframes anim-month-2 { 0%, 12%  { color: rgba(255,255,255,0.30); } 19%, 100% { color: #fff; } }
+@keyframes anim-month-3 { 0%, 25%  { color: rgba(255,255,255,0.30); } 32%, 100% { color: #fff; } }
+@keyframes anim-month-4 { 0%, 42%  { color: rgba(255,255,255,0.30); } 49%, 100% { color: #fff; } }
+@keyframes anim-month-5 { 0%, 55%  { color: rgba(255,255,255,0.30); } 62%, 100% { color: #fff; } }
+@keyframes anim-month-6 { 0%, 64%  { color: rgba(255,255,255,0.30); } 72%, 100% { color: #fff; } }
+.slide[data-slide-key="audit-current-6m"] .month-axis .m:nth-child(1) { animation: anim-month-1 15s infinite both; }
+.slide[data-slide-key="audit-current-6m"] .month-axis .m:nth-child(2) { animation: anim-month-2 15s infinite both; }
+.slide[data-slide-key="audit-current-6m"] .month-axis .m:nth-child(3) { animation: anim-month-3 15s infinite both; }
+.slide[data-slide-key="audit-current-6m"] .month-axis .m:nth-child(4) { animation: anim-month-4 15s infinite both; }
+.slide[data-slide-key="audit-current-6m"] .month-axis .m:nth-child(5) { animation: anim-month-5 15s infinite both; }
+.slide[data-slide-key="audit-current-6m"] .month-axis .m:nth-child(6) { animation: anim-month-6 15s infinite both; }
+
+/* timeline-zone hover pause (already set, extend to month axis) */
+.slide[data-slide-key="audit-current-6m"] .timeline-zone:hover * { animation-play-state: paused !important; }
+
+.slide[data-slide-key="audit-current-6m"] .middle {
+  flex: 1; min-height: 0;
+  display: flex; flex-direction: column; gap: 24px;
+  justify-content: center;
+}
+</style>
+<div class="wordmark"></div>
+<div class="header"><h2 class="title-zh" data-text-id="slide-71.title">稽核项目线性串行，问题从发现到决策周期长</h2></div>
+<div class="stage" data-allow-typescale="audit-3p" data-allow-body-floor="audit-3p">
+<div class="middle">
+<div class="timeline-zone">
+<div class="month-axis"><div class="m">M1</div><div class="m">M2</div><div class="m">M3</div><div class="m">M4</div><div class="m">M5</div><div class="m">M6</div></div>
+<div class="stages-row">
+<div class="stage-cell is-blue"   style="flex:1"><div class="s-tag">STAGE 1</div><div class="s-name">稽核计划</div></div>
+<div class="stage-cell is-violet" style="flex:1.5"><div class="s-tag">STAGE 2</div><div class="s-name">现场工作 · 1-2 月</div></div>
+<div class="stage-cell is-orange" style="flex:1.8"><div class="s-tag">STAGE 3</div><div class="s-name">案头报告 · 1-3 月</div></div>
+<div class="stage-cell is-red"    style="flex:1.2"><div class="s-tag">STAGE 4</div><div class="s-name">追踪整改</div></div>
+</div>
+<div class="substages-row">
+<div class="sub-cell bt-blue"   style="flex:1">立项 · 风险评估<br>方案 · 程式<br>勤前报告<br>外勤通知</div>
+<div class="sub-cell bt-violet" style="flex:1.5">全国十几个工厂<br><span class="bad">手写底稿</span><br><span class="bad">每日 Excel 日报</span><br>建议书初稿</div>
+<div class="sub-cell bt-orange" style="flex:1.8"><span class="bad">逐条比对几十份日报</span><br><span class="bad">资深员工逐字打磨</span><br>专项报告 · CAE 复核<br>多项目合并 → 董事会</div>
+<div class="sub-cell bt-red"    style="flex:1.2">OA 改善单<br>责任部门整改<br>复核改善情况<br>结案</div>
+</div>
+<div class="window-banner">
+<div class="left"><div class="dot risk-dot"></div><span>Q4 风险实际发生</span></div>
+<div class="bar"><span class="bar-label">决策窗口延迟 4-6 个月</span></div>
+<div class="right"><span>董事长才看到(次年 Q1)</span><div class="dot seen-dot"></div></div>
+</div>
+</div>
+
+<div class="chip-row" style="grid-template-columns: repeat(5, 1fr);">
+<div class="chip"><span class="c-tag">痛点 ①</span><span class="c-title">信息滞后</span><span class="c-body">风险→董事长 4-6 月,战略调整窗口已错过</span></div>
+<div class="chip"><span class="c-tag">痛点 ②</span><span class="c-title">全靠人写</span><span class="c-body">底稿/日报/建议书/报告 四层堆叠,通宵加班</span></div>
+<div class="chip"><span class="c-tag">痛点 ③</span><span class="c-title">经验难传</span><span class="c-body">老员工判断力长在脑子里,新人看不出问题</span></div>
+<div class="chip"><span class="c-tag">痛点 ④</span><span class="c-title">制度繁杂</span><span class="c-body">数百份制度版本难对齐,可能依据过期版本判断</span></div>
+<div class="chip"><span class="c-tag">痛点 ⑤</span><span class="c-title">颗粒度粗</span><span class="c-body">以专项报告为单位,中间发现的问题只能攒着</span></div>
+</div>
+</div>
+</div>
+<script>
+(function(){
+  if (window.__fsAnimRestartAudit) return;
+  window.__fsAnimRestartAudit = true;
+  var KEYS = ["audit-current-6m","audit-ai-patch-3m","audit-flow-rebuild-weekly"];
+  function restartAnimations(slideEl){
+    var all = slideEl.querySelectorAll("*");
+    all.forEach(function(el){
+      var cs = window.getComputedStyle(el);
+      if (cs.animationName && cs.animationName !== "none"){
+        var prev = el.style.animation;
+        el.style.animation = "none";
+        // force reflow so the change registers before re-enabling
+        void el.offsetHeight;
+        el.style.animation = prev || "";
+      }
+    });
+  }
+  function setup(){
+    KEYS.forEach(function(key){
+      var slide = document.querySelector('.slide[data-slide-key="'+key+'"]');
+      if (!slide) return;
+      var frame = slide.closest(".slide-frame");
+      if (!frame) return;
+      // observe is-current toggle on the slide-frame wrapper
+      var obs = new MutationObserver(function(muts){
+        for (var i=0; i<muts.length; i++){
+          var m = muts[i];
+          if (m.attributeName === "class" && frame.classList.contains("is-current")){
+            restartAnimations(slide);
+            return;
+          }
+        }
+      });
+      obs.observe(frame, { attributes: true, attributeFilter: ["class"] });
+      // also restart on initial load if this frame is already current
+      if (frame.classList.contains("is-current")) restartAnimations(slide);
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setup);
+  } else {
+    setup();
+  }
+})();
+</script>
+      </div>
+    </div>
 <div class="slide-frame" data-page="33">
       <div class="slide" data-layout="content-2col" data-accent="blue" data-screen-label="36 数字员工落地经验" data-slide-key="digital-employee-experience">
         <div class="wordmark"></div>
@@ -13983,139 +14565,6 @@
             <div class="cell"><div class="logo" style="background-image: url('assets/shared/clientlogo/胖东来.png'); background-size: contain; background-position: center"></div><div class="desc"><span class="case" data-text-id="slide-55.c34.case">AI + 顾客意见管理</span><div class="tools"><span class="tool">飞书多维表格</span></div></div></div>
             <!-- 原第 35 cell QR 已按用户要求删除 -->
 
-          </div>
-
-        </div>
-      </div>
-    </div>
-<div class="slide-frame" data-page="53">
-      <div class="slide" data-layout="content-2col" data-accent="blue" data-decor="blue-glow" data-screen-label="56 全球化合规" data-slide-key="global-compliance">
-        <div class="wordmark"></div>
-        <div class="header"><h2 class="title-zh" data-text-id="slide-56.title">优势 6:飞书是全球化办公合规的唯一选择</h2></div>
-        <div class="stage">
-
-          <!-- 副标题 -->
-          <div class="sub-bar">
-            <span class="h" data-text-id="slide-56.sub.h">全球统一平台:</span>
-            <span class="desc" data-text-id="slide-56.sub.desc">一套组织架构,员工数据分布式存储、多地理位置数据驻留 (MG, Multi-Geo Data Residency)</span>
-          </div>
-
-          <!-- 地图主区 -->
-          <div class="map-stage">
-            <!-- SVG 世界地图 (6 大洲 dot-pattern fill + 经纬辅助线 + 海洋发光层) -->
-            <svg class="world-svg" viewBox="0 0 200 100" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <!-- 大陆 dot pattern -->
-                <pattern id="dots" patternUnits="userSpaceOnUse" width="1.6" height="1.6">
-                  <circle cx="0.8" cy="0.8" r="0.38" fill="rgba(140,190,255,0.85)"/>
-                </pattern>
-                <!-- 浅 dot 备份 (海洋背景点点) -->
-                <pattern id="dots-bg" patternUnits="userSpaceOnUse" width="3" height="3">
-                  <circle cx="1.5" cy="1.5" r="0.18" fill="rgba(120,180,255,0.10)"/>
-                </pattern>
-                <!-- 飞书 → 海外 连线 gradient -->
-                <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="rgba(51,214,192,0.85)"/>
-                  <stop offset="100%" stop-color="rgba(120,180,255,0.55)"/>
-                </linearGradient>
-              </defs>
-
-              <!-- 海洋背景点点 -->
-              <rect width="200" height="100" fill="url(#dots-bg)"/>
-
-              <!-- 6 大洲 path 填 dot pattern -->
-              <g fill="url(#dots)">
-                <!-- North America -->
-                <path d="M 8,16 Q 14,12 28,12 L 42,15 Q 46,20 45,28 L 41,36 Q 36,40 32,36 L 28,42 Q 25,48 24,54 L 22,52 Q 16,48 12,40 Q 9,30 8,16 Z"/>
-                <!-- South America -->
-                <path d="M 30,54 L 38,56 Q 42,62 41,70 L 38,80 Q 34,88 30,84 L 28,76 Q 26,68 28,60 Z"/>
-                <!-- Europe -->
-                <path d="M 90,18 L 108,17 Q 113,22 110,28 L 102,32 L 94,30 Q 89,26 90,20 Z"/>
-                <!-- Africa -->
-                <path d="M 92,36 L 108,36 Q 116,44 116,56 L 110,68 L 102,76 Q 96,76 94,70 L 90,58 Q 89,46 92,38 Z"/>
-                <!-- Asia (大陆) -->
-                <path d="M 110,15 L 170,12 Q 178,18 176,28 L 170,36 Q 162,42 152,40 L 140,40 L 128,38 Q 118,34 114,28 L 112,22 Q 110,18 110,15 Z"/>
-                <!-- Southeast Asia / 印度尼西亚 -->
-                <path d="M 152,46 L 168,46 Q 172,50 170,54 L 162,56 Q 154,54 152,50 Z"/>
-                <!-- Oceania (Australia) -->
-                <path d="M 158,66 L 175,64 Q 180,70 178,76 L 168,80 Q 158,78 156,72 Z"/>
-              </g>
-
-              <!-- 飞书 → 海外 曲线连线 (3 条主航线: 美洲/欧洲/东南亚) -->
-              <g fill="none" stroke="url(#lineGrad)" stroke-width="0.8" stroke-dasharray="1.5 1.2" opacity="0.85">
-                <!-- 飞书 (134, 28) → 美洲 (22, 32) 经太平洋曲线 -->
-                <path d="M 134,28 Q 90,8 22,32"/>
-                <!-- 飞书 → 欧洲 (98, 22) -->
-                <path d="M 134,28 Q 116,16 98,22"/>
-                <!-- 飞书 → 东南亚 (160, 50) -->
-                <path d="M 134,28 Q 145,38 160,50"/>
-                <!-- 飞书 → 日本 (165, 28) -->
-                <path d="M 134,28 Q 148,22 165,28"/>
-              </g>
-            </svg>
-
-            <!-- 飞书 中心 pin (China) — petal + 飞书 wordmark for visual parity with Lark -->
-            <div class="lk-pin">
-              <img src="assets/lark-logo.png" alt="飞书">
-            </div>
-            <span class="lk-base-tag" data-text-id="slide-56.lk.base">企业租户基础数据 · <b>中国大陆</b></span>
-
-            <!-- Lark 海外 hub pin (overseas) — wider pill carrying full Lark wordmark -->
-            <div class="lk-pin is-oversea">
-              <img src="assets/lark-en-logo.png" alt="Lark">
-            </div>
-            <span class="lk-en-tag" data-text-id="slide-56.lk.en">企业租户基础数据 · <b>海外 (Lark)</b></span>
-
-            <!-- 5 海外 geo-pin (东南亚/日本/欧洲/北美/南美) -->
-            <div class="geo-pin" style="left: 80%; top: 56%;" title="东南亚"></div>
-            <div class="geo-pin" style="left: 82%; top: 30%;" title="日本"></div>
-            <div class="geo-pin" style="left: 49%; top: 24%;" title="欧洲"></div>
-            <div class="geo-pin" style="left: 11%; top: 30%;" title="北美"></div>
-            <div class="geo-pin" style="left: 17%; top: 70%;" title="南美"></div>
-
-            <!-- 中国 callout (在 飞书 pin 右上方) -->
-            <div class="callout is-china">
-              <span class="ct-h" data-text-id="slide-56.ct1.h">中国员工</span>
-              <div data-text-id="slide-56.ct1.b1"><b>客户端:</b> 飞书</div>
-              <div data-text-id="slide-56.ct1.b2"><b>员工数据:</b> 存储于中国</div>
-            </div>
-
-            <!-- 海外 callout (右上,跨美洲/欧洲/东南亚) -->
-            <div class="callout is-oversea">
-              <span class="ct-h" data-text-id="slide-56.ct2.h">海外员工 (美洲、欧洲、东南亚)</span>
-              <div data-text-id="slide-56.ct2.b1"><b>客户端:</b> 飞书海外版 Lark</div>
-              <div data-text-id="slide-56.ct2.b2"><b>员工数据:</b> 存储于日本 (欧盟白名单,与美国、东南亚有互信关系)</div>
-            </div>
-          </div>
-
-          <!-- 4 feature pill 横排 -->
-          <div class="feat-row">
-            <div class="feat-pill" data-text-id="slide-56.f1">全球布局的基础设施</div>
-            <div class="feat-pill" data-text-id="slide-56.f2">全球标准的法律基准</div>
-            <div class="feat-pill" data-text-id="slide-56.f3">监管认可的合规认证</div>
-            <div class="feat-pill" data-text-id="slide-56.f4">全球统一协作的用户体验</div>
-          </div>
-
-          <!-- 12 cert text pill (6 列 × 2 行) -->
-          <div class="cert-row">
-            <div class="cert"><span class="cert-mark is-bsi">bsi.</span><span class="cert-name">ISO/IEC 27001</span></div>
-            <div class="cert"><span class="cert-mark is-bsi">bsi.</span><span class="cert-name">ISO 27018</span></div>
-            <div class="cert"><span class="cert-mark is-bsi">bsi.</span><span class="cert-name">ISO/IEC 27701</span></div>
-            <div class="cert"><span class="cert-mark is-bsi">bsi.</span><span class="cert-name">ISO/IEC 27017</span></div>
-            <div class="cert"><span class="cert-mark is-aicpa">AICPA SOC</span><span class="cert-name">服务管控审计</span></div>
-            <div class="cert"><span class="cert-mark">DATA PROTECTION</span><span class="cert-name">ASSURED</span></div>
-            <div class="cert"><span class="cert-mark">Global GDPR</span><span class="cert-name">通用数据保护</span></div>
-            <div class="cert"><span class="cert-mark">Global PDP</span><span class="cert-name">个人数据保护</span></div>
-            <div class="cert"><span class="cert-mark">DPF</span><span class="cert-name">Data Privacy Framework</span></div>
-            <div class="cert"><span class="cert-mark is-trust">TRUSTe</span><span class="cert-name">隐私认证</span></div>
-            <div class="cert"><span class="cert-mark">DJCP</span><span class="cert-name">信息系统等级保护</span></div>
-            <div class="cert"><span class="cert-mark">TRUCS</span><span class="cert-name">可信云服务认证</span></div>
-          </div>
-
-          <!-- footnote -->
-          <div class="foot-note">
-            <p data-text-id="slide-56.foot1">员工数据,是指员工个人信息与员工生产的数据。员工个人信息包括姓名、邮箱、头像等数据,员工协作产生的内容数据,包括文档、消息、日历、日程、会议、邮件等。</p>
-            <p data-text-id="slide-56.foot2">租户数据,是指无法归属到具体员工,但与企业相关的数据,如组织架构、部门信息、审计日志等。</p>
           </div>
 
         </div>

@@ -175,9 +175,33 @@ lede: 给管理者减负,提高管理半径
 
 ## slide-16 (content-2col) — 16 构建管理分身 · 4 步飞轮
 
-## slide-17 (content-2col) — 17 稽核现状 · 线性串行 6 个月
+## slide-17 (content-2col) — 17 知识冰山
+title: 为什么隐形经验值得投入资源萃取
+above.pct: 20%
+above.tag: 显性 · 浮在水面
+above.note: 基础制度、SOP、手册、文档说明、标准记录 — 在线化、可视化并不难。
+below.pct: 80%
+below.name: 隐性知识资产
+below.tag: 藏在水面之下 · 难复制
+below.note: 老专家做事的<b>肌肉记忆、直觉与判断</b> — 重要,却很少被企业开发出来。
+below.pt-1: <b>肌肉记忆</b> · 习惯成自然的工作动作
+below.pt-2: <b>直觉判断</b> · 不靠 SOP 也能拍板的能力
+below.pt-3: <b>经验调度</b> · 意外情境第一时间做对反应
+below.pt-4: <b>人脉与默契</b> · 跨部门协作中的潜规则
 
-## slide-18 (content-2col) — 18 AI 打补丁 · 压缩到 3 个月
+## slide-18 (content-2col) — 18 店长陈列直觉
+title: 用 AI 复制金牌店长的陈列直觉
+l.pill: AI 视觉洞察 / 门店实拍反馈
+r.pill: 门店运营助手 · 紧急调整建议
+chat.welcome.lead: 你好,我是「门店运营助手」
+chat.welcome.body: 把现场陈列照发给我,我比对金牌店长的陈列规范,给你紧急调整项。
+chat.q1: [图片] 今早门口客流偏弱,过路客都走过去了 — 有什么金牌店长的 quick win?
+chat.a2.lead: 参考金牌店长 <b>3 个引流小招</b>
+chat.a2.body: 投入低 / 当日见效:
+chat.a2.f1: 出餐口/烤炉旁加一台小电风扇,把烤香味往门口方向吹 — 老店长实测过路客流 <b>+18%</b>
+chat.a2.f2: 试吃台从中场往门口前移 1 米,做"人气感",路人从外面就看得到
+chat.a2.f3: 玻璃门贴当日热销 SKU 海报(贴在视线高度 1.5 m),把进店决策从"看不到"变成"看一眼"
+input: 问问门店运营助手
 
 ## slide-19 (content-2col) — 19 流程重画 · 单点推送当周
 
@@ -219,9 +243,8 @@ action-03.inferred: 不是卖不动,是冷链补货跟不上。<span class="hl">
 
 ## slide-34 (content-3up) — 07 口味变化 · 三个案例
 
-## slide-35 (iframe-embed) — 08 口味雷达 · 选品平台
 
-## slide-36 (content-3up) — 09 冰红茶 · 5 个剧本
+## slide-36 (content-3up) — 09 青岛啤酒 · 5 个剧本
 
 ## slide-37 (content-2col) — 10 内容营销自动化 · Pipeline
 
@@ -248,6 +271,32 @@ action-03.inferred: 不是卖不动,是冷链补货跟不上。<span class="hl">
 ## slide-48 (content-2col) — 34 超级创作员
 
 ## slide-49 (content-2col) — 36 超级质检员 · 案例
+
+## slide-68 (content-2col) — 36B 飞鹤鹤巡 AI 巡检
+title: 飞鹤鹤巡 · 重塑 AI 巡检 — 3 天上线,年节约 331 人天
+industry: 乳制品工厂 · EHS / 设备巡检 · 客户案例
+hook.lead: 把厂区摄像头接进 
+hook.k1: aily
+hook.mid: ,给巡检装上 
+hook.k2: 无人机的翅膀
+hook.tail: —— 巡检从「监测」走向「治理」
+kpi-01.v: 5
+kpi-01.u: ×
+kpi-01.l: 单次巡检效率
+kpi-01.d: 45 分钟 → 8 分钟 · AI 识别 98% 准确
+kpi-02.v: 331
+kpi-02.u: 人天
+kpi-02.l: 每年节约工时
+kpi-02.d: ≈ 2,651 小时 / 年 · 1 家工厂
+kpi-03.v: 71.15
+kpi-03.u: 万元
+kpi-03.l: 软硬件采购节省
+kpi-03.d: VS 海康威视方案 · 额外软件费节约 ≥ 2 万元 / 年
+arc.pain: 厂区 36 个监控点位,人工盯屏盯不过来 · 纸质表单难追溯 · 设备维保固定周期带来成本浪费
+arc.conflict: 传统方案需 71 万+ 硬件投入与长流程改造,而飞鹤要在 3 天内上线核心功能
+arc.solution: 飞书 aily(摄像头接入·报警规则)+ Base(工单工作流·作业指导书)+ 无人机(自动飞向问题点位)三层架构
+arc.value: 巡检全过程留存 · 知识反哺数据分析 · 设备维保周期科学化 · 全国 14 家兄弟工厂可一键打包复用
+closing: 从技术工具到管理生态 · 飞鹤已经做到「标准可知 · 执行可见 · 风险可控」 —— 这正是 AI 作为「标准、质量、执行、安全的守护者」的真实样子
 
 ## slide-50 (content-2col) — 36 数字员工落地经验
 
@@ -281,6 +330,5 @@ action-03.inferred: 不是卖不动,是冷链补货跟不上。<span class="hl">
 
 ## slide-65 (content-2col) — 55 行业 AI 实践
 
-## slide-66 (content-2col) — 56 全球化合规
 
 ## slide-67 (content-2col) — 57 收尾 hero
