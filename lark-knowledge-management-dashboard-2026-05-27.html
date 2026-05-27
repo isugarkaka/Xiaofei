@@ -730,6 +730,235 @@
     }
     .dept-track { height: 9px; }
 
+    /* Layout v3: module internals aligned to the revised management dashboard brief. */
+    .asset-build .panel-body,
+    .asset-consume .panel-body,
+    .ops .panel-body {
+      display: grid;
+      gap: 10px;
+    }
+    .asset-build .panel-body {
+      grid-template-columns: 1fr;
+      grid-template-rows: 68px minmax(0, 1fr);
+    }
+    .build-kpis,
+    .consume-kpis,
+    .metric-row {
+      display: grid;
+      gap: 8px;
+    }
+    .build-kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .build-grid {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 10px;
+    }
+    .chart-box {
+      min-width: 0;
+      min-height: 0;
+      border-radius: 8px;
+      padding: 9px 10px;
+      background: rgba(6, 12, 28, 0.45);
+      border: 1px solid rgba(255,255,255,0.09);
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      gap: 6px;
+      overflow: hidden;
+    }
+    .metric-card {
+      border-radius: 8px;
+      padding: 8px 10px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.12);
+      min-width: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 6px;
+    }
+    .metric-card .name {
+      color: rgba(255,255,255,0.78);
+      font: 600 13px/1.15 var(--fs-font-cjk);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .metric-card .val {
+      margin-top: 3px;
+      font: 760 21px/1 var(--fs-font-cjk);
+    }
+    .metric-card .delta {
+      margin: 0;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .metric-card .delta svg {
+      width: 13px;
+      height: 13px;
+    }
+    .asset-build .bar-row,
+    .asset-consume .bar-row {
+      grid-template-columns: 42px minmax(0, 1fr) 34px;
+      gap: 6px;
+      font-size: 12px;
+      line-height: 1.1;
+    }
+    .asset-build .bar-track,
+    .asset-consume .bar-track { height: 8px; }
+    .chart-title {
+      min-width: 0;
+      gap: 8px;
+    }
+    .chart-title span:first-child {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .chart-title span:last-child {
+      flex: 0 0 auto;
+      font-size: 12px;
+    }
+    .multi-line {
+      width: 100%;
+      height: 100%;
+      min-height: 92px;
+    }
+    .multi-line .grid {
+      stroke: rgba(255,255,255,0.10);
+      stroke-width: 1;
+    }
+    .multi-line path {
+      fill: none;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 760;
+      stroke-dashoffset: 760;
+      animation: draw-line 1600ms ease forwards;
+    }
+    .multi-line .s1 { stroke: var(--fs-blue); }
+    .multi-line .s2 { stroke: var(--fs-teal); }
+    .multi-line .s3 { stroke: var(--fs-orange); }
+    .multi-line .s4 { stroke: var(--fs-green); }
+    .series-legend {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 5px 10px;
+      color: rgba(255,255,255,0.82);
+      font: 600 11px/1.1 var(--fs-font-cjk);
+    }
+    .series-legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+    }
+    .legend-line {
+      width: 14px;
+      height: 3px;
+      border-radius: 99px;
+      background: var(--c);
+      display: inline-block;
+    }
+
+    .asset-consume .panel-body {
+      grid-template-columns: 1fr;
+      grid-template-rows: 62px minmax(0, 1fr) 118px;
+    }
+    .asset-consume .consume-kpis {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-column: auto;
+    }
+    .consume-layout {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 0.94fr 1.06fr;
+      gap: 10px;
+    }
+    .asset-consume .rank-card {
+      grid-column: auto;
+      grid-row: auto;
+      padding: 9px 10px;
+      gap: 5px;
+    }
+    .asset-consume .rank-list { gap: 4px; }
+    .asset-consume .rank-row {
+      grid-template-columns: 18px minmax(0, 1fr) auto;
+      gap: 6px;
+      font-size: 12px;
+      line-height: 1.1;
+    }
+    .asset-consume .rank-row span:nth-child(2) {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .asset-consume .rank-val { font-size: 12px; }
+    .search-health {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      padding-bottom: 7px;
+    }
+    .search-health .multi-line { min-height: 64px; }
+
+    .ops .panel-body {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .ops-section {
+      min-height: 0;
+      border-radius: 8px;
+      padding: 8px 10px;
+      background: rgba(6, 12, 28, 0.45);
+      border: 1px solid rgba(255,255,255,0.09);
+      display: grid;
+      grid-template-rows: auto 52px minmax(0, 1fr);
+      gap: 6px;
+      overflow: hidden;
+    }
+    .section-chip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: rgba(255,255,255,0.84);
+      font: 760 14px/1.1 var(--fs-font-cjk);
+    }
+    .section-chip span {
+      color: rgba(255,255,255,0.62);
+      font: 500 11px/1.1 var(--fs-font-cjk);
+    }
+    .metric-row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .ops-section .metric-card {
+      padding: 7px 8px;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 3px;
+    }
+    .ops-section .metric-card .val { font-size: 18px; }
+    .ops-section .metric-card .delta {
+      justify-self: start;
+      margin-top: 0;
+    }
+    .ops-trend {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 122px;
+      gap: 8px;
+      align-items: center;
+    }
+    .ops-trend .multi-line { min-height: 56px; }
+    .ops-trend .series-legend {
+      display: grid;
+      gap: 7px;
+      font-size: 11px;
+    }
+
     .deck-progress {
       position: fixed;
       left: 0;
@@ -875,26 +1104,47 @@
                 <span class="panel-note" data-text-id="slide-01.section.build.note">知识资产沉淀进展</span>
               </div>
               <div class="panel-body">
-                <div class="mini-kpis">
-                  <div class="mini-card">
-                    <span class="mini-label" data-text-id="slide-01.build.inventory.name">资产盘点数</span>
-                    <span class="mini-value" data-text-id="slide-01.build.inventory.value">1,286</span>
-                    <span class="delta" data-text-id="slide-01.build.inventory.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>环比 +18.6%</span>
+                <div class="build-kpis">
+                  <div class="metric-card">
+                    <div><span class="name" data-text-id="slide-01.build.inventory.name">资产盘点数</span><div class="val" data-text-id="slide-01.build.inventory.value">1,286</div></div>
+                    <span class="delta" data-text-id="slide-01.build.inventory.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+18.6%</span>
                   </div>
-                  <div class="mini-card">
-                    <span class="mini-label" data-text-id="slide-01.build.online.name">已上线知识资产数</span>
-                    <span class="mini-value" data-text-id="slide-01.build.online.value">842</span>
-                    <span class="delta" data-text-id="slide-01.build.online.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>环比 +22.1%</span>
+                  <div class="metric-card">
+                    <div><span class="name" data-text-id="slide-01.build.online.name">已上线资产数</span><div class="val" data-text-id="slide-01.build.online.value">842</div></div>
+                    <span class="delta" data-text-id="slide-01.build.online.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+22.1%</span>
+                  </div>
+                  <div class="metric-card">
+                    <div><span class="name" data-text-id="slide-01.build.quality.name">高质量资产数</span><div class="val" data-text-id="slide-01.build.quality.value">516</div></div>
+                    <span class="delta" data-text-id="slide-01.build.quality.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+15.4%</span>
                   </div>
                 </div>
-                <div class="bar-map">
-                  <div class="chart-title"><span data-text-id="slide-01.build.dept.title">知识资产部门分布</span><span data-text-id="slide-01.build.dept.unit">单位：项</span></div>
-                  <div class="bar-row"><span data-text-id="slide-01.build.dept.01.name">运营</span><span class="bar-track"><i class="bar-fill" style="--v:100"></i></span><span class="bar-value" data-text-id="slide-01.build.dept.01.value">286</span></div>
-                  <div class="bar-row"><span data-text-id="slide-01.build.dept.02.name">销售</span><span class="bar-track"><i class="bar-fill" style="--v:83"></i></span><span class="bar-value" data-text-id="slide-01.build.dept.02.value">238</span></div>
-                  <div class="bar-row"><span data-text-id="slide-01.build.dept.03.name">产品</span><span class="bar-track"><i class="bar-fill" style="--v:59"></i></span><span class="bar-value" data-text-id="slide-01.build.dept.03.value">168</span></div>
-                  <div class="bar-row"><span data-text-id="slide-01.build.dept.04.name">客服</span><span class="bar-track"><i class="bar-fill" style="--v:50"></i></span><span class="bar-value" data-text-id="slide-01.build.dept.04.value">142</span></div>
-                  <div class="bar-row"><span data-text-id="slide-01.build.dept.05.name">人力</span><span class="bar-track"><i class="bar-fill" style="--v:38"></i></span><span class="bar-value" data-text-id="slide-01.build.dept.05.value">108</span></div>
-                  <div class="bar-row"><span data-text-id="slide-01.build.dept.06.name">财务</span><span class="bar-track"><i class="bar-fill" style="--v:34"></i></span><span class="bar-value" data-text-id="slide-01.build.dept.06.value">96</span></div>
+                <div class="build-grid">
+                  <div class="chart-box">
+                    <div class="chart-title"><span data-text-id="slide-01.build.dept.title">知识资产部门分布</span><span data-text-id="slide-01.build.dept.unit">单位：项</span></div>
+                    <div class="rank-list">
+                      <div class="bar-row"><span data-text-id="slide-01.build.dept.01.name">运营</span><span class="bar-track"><i class="bar-fill" style="--v:100"></i></span><span class="bar-value" data-text-id="slide-01.build.dept.01.value">286</span></div>
+                      <div class="bar-row"><span data-text-id="slide-01.build.dept.02.name">销售</span><span class="bar-track"><i class="bar-fill" style="--v:83"></i></span><span class="bar-value" data-text-id="slide-01.build.dept.02.value">238</span></div>
+                      <div class="bar-row"><span data-text-id="slide-01.build.dept.03.name">产品</span><span class="bar-track"><i class="bar-fill" style="--v:59"></i></span><span class="bar-value" data-text-id="slide-01.build.dept.03.value">168</span></div>
+                      <div class="bar-row"><span data-text-id="slide-01.build.dept.04.name">客服</span><span class="bar-track"><i class="bar-fill" style="--v:50"></i></span><span class="bar-value" data-text-id="slide-01.build.dept.04.value">142</span></div>
+                      <div class="bar-row"><span data-text-id="slide-01.build.dept.05.name">人力</span><span class="bar-track"><i class="bar-fill" style="--v:38"></i></span><span class="bar-value" data-text-id="slide-01.build.dept.05.value">108</span></div>
+                      <div class="bar-row"><span data-text-id="slide-01.build.dept.06.name">财务</span><span class="bar-track"><i class="bar-fill" style="--v:34"></i></span><span class="bar-value" data-text-id="slide-01.build.dept.06.value">96</span></div>
+                    </div>
+                    <div></div>
+                  </div>
+                  <div class="chart-box">
+                    <div class="chart-title"><span data-text-id="slide-01.build.funnel.title">知识资产漏斗趋势</span><span data-text-id="slide-01.build.funnel.unit">数量</span></div>
+                    <svg class="multi-line" viewBox="0 0 360 150" aria-label="知识资产漏斗趋势">
+                      <path class="grid" d="M22,28 H344 M22,66 H344 M22,104 H344 M22,132 H344"/>
+                      <path class="s1" d="M24,110 C72,100 112,86 160,78 C214,66 260,54 336,38"/>
+                      <path class="s2" d="M24,126 C76,116 120,104 164,96 C214,84 266,73 336,58"/>
+                      <path class="s3" d="M24,136 C76,128 118,120 164,112 C214,100 266,92 336,76"/>
+                    </svg>
+                    <div class="series-legend">
+                      <span data-text-id="slide-01.build.funnel.legend.inventory"><i class="legend-line" style="--c:var(--fs-blue)"></i>已盘点</span>
+                      <span data-text-id="slide-01.build.funnel.legend.online"><i class="legend-line" style="--c:var(--fs-teal)"></i>已上线</span>
+                      <span data-text-id="slide-01.build.funnel.legend.quality"><i class="legend-line" style="--c:var(--fs-orange)"></i>高质量</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </article>
@@ -906,44 +1156,44 @@
               </div>
               <div class="panel-body">
                 <div class="consume-kpis">
-                  <div class="compact-kpi"><div><span class="name" data-text-id="slide-01.consume.ai.name">AI 可消费资产占比</span><div class="val" data-text-id="slide-01.consume.ai.value">76.4%</div></div><span class="delta" data-text-id="slide-01.consume.ai.delta">+9.2%</span></div>
-                  <div class="compact-kpi"><div><span class="name" data-text-id="slide-01.consume.reuse.name">知识复用率</span><div class="val" data-text-id="slide-01.consume.reuse.value">48.7%</div></div><span class="delta" data-text-id="slide-01.consume.reuse.delta">+6.8%</span></div>
-                  <div class="compact-kpi"><div><span class="name" data-text-id="slide-01.consume.recall.name">知识召回率</span><div class="val" data-text-id="slide-01.consume.recall.value">82.6%</div></div><span class="delta" data-text-id="slide-01.consume.recall.delta">+7.1%</span></div>
+                  <div class="metric-card"><div><span class="name" data-text-id="slide-01.consume.reuse.name">知识复用率</span><div class="val" data-text-id="slide-01.consume.reuse.value">48.7%</div></div><span class="delta" data-text-id="slide-01.consume.reuse.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+6.8%</span></div>
+                  <div class="metric-card"><div><span class="name" data-text-id="slide-01.consume.qa.name">问答准确率</span><div class="val" data-text-id="slide-01.consume.qa.value">86.9%</div></div><span class="delta" data-text-id="slide-01.consume.qa.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+5.2%</span></div>
                 </div>
-                <div class="consume-left">
-                  <div class="donut-card">
-                    <div class="donut"><div class="donut-center" data-text-id="slide-01.consume.donut.center">消费<br>分布</div></div>
+                <div class="consume-layout">
+                  <div class="chart-box">
+                    <div class="chart-title"><span data-text-id="slide-01.consume.dist.title">高频消费知识资产分布</span><span data-text-id="slide-01.consume.dist.unit">by 部门</span></div>
+                    <div class="rank-list">
+                      <div class="bar-row"><span data-text-id="slide-01.consume.dist.01.name">客服</span><span class="bar-track"><i class="bar-fill" style="--v:100"></i></span><span class="bar-value" data-text-id="slide-01.consume.dist.01.value">31%</span></div>
+                      <div class="bar-row"><span data-text-id="slide-01.consume.dist.02.name">销售</span><span class="bar-track"><i class="bar-fill" style="--v:87"></i></span><span class="bar-value" data-text-id="slide-01.consume.dist.02.value">27%</span></div>
+                      <div class="bar-row"><span data-text-id="slide-01.consume.dist.03.name">产品</span><span class="bar-track"><i class="bar-fill" style="--v:58"></i></span><span class="bar-value" data-text-id="slide-01.consume.dist.03.value">18%</span></div>
+                      <div class="bar-row"><span data-text-id="slide-01.consume.dist.04.name">运营</span><span class="bar-track"><i class="bar-fill" style="--v:45"></i></span><span class="bar-value" data-text-id="slide-01.consume.dist.04.value">14%</span></div>
+                      <div class="bar-row"><span data-text-id="slide-01.consume.dist.05.name">交付</span><span class="bar-track"><i class="bar-fill" style="--v:32"></i></span><span class="bar-value" data-text-id="slide-01.consume.dist.05.value">10%</span></div>
+                    </div>
+                    <div></div>
                   </div>
-                  <div class="legend">
-                    <div class="legend-item"><i class="legend-dot" style="--c:var(--fs-blue)"></i><span data-text-id="slide-01.consume.legend.01.name">员工检索</span><b data-text-id="slide-01.consume.legend.01.value">38%</b></div>
-                    <div class="legend-item"><i class="legend-dot" style="--c:var(--fs-teal)"></i><span data-text-id="slide-01.consume.legend.02.name">AI 问答</span><b data-text-id="slide-01.consume.legend.02.value">34%</b></div>
-                    <div class="legend-item"><i class="legend-dot" style="--c:var(--fs-violet)"></i><span data-text-id="slide-01.consume.legend.03.name">工作流引用</span><b data-text-id="slide-01.consume.legend.03.value">18%</b></div>
-                    <div class="legend-item"><i class="legend-dot" style="--c:var(--fs-orange)"></i><span data-text-id="slide-01.consume.legend.04.name">培训学习</span><b data-text-id="slide-01.consume.legend.04.value">10%</b></div>
+                  <div class="rank-card">
+                    <div class="chart-title"><span data-text-id="slide-01.consume.top.title">高频消费知识资产清单</span><span data-text-id="slide-01.consume.top.unit">次</span></div>
+                    <div class="rank-list">
+                      <div class="rank-row"><span class="rank-no">1</span><span data-text-id="slide-01.consume.top.01.name">销售话术库</span><b class="rank-val" data-text-id="slide-01.consume.top.01.value">16,420</b></div>
+                      <div class="rank-row"><span class="rank-no">2</span><span data-text-id="slide-01.consume.top.02.name">客服 FAQ</span><b class="rank-val" data-text-id="slide-01.consume.top.02.value">12,880</b></div>
+                      <div class="rank-row"><span class="rank-no">3</span><span data-text-id="slide-01.consume.top.03.name">产品功能手册</span><b class="rank-val" data-text-id="slide-01.consume.top.03.value">9,640</b></div>
+                      <div class="rank-row"><span class="rank-no">4</span><span data-text-id="slide-01.consume.top.04.name">交付 SOP</span><b class="rank-val" data-text-id="slide-01.consume.top.04.value">8,210</b></div>
+                      <div class="rank-row"><span class="rank-no">5</span><span data-text-id="slide-01.consume.top.05.name">售后排障手册</span><b class="rank-val" data-text-id="slide-01.consume.top.05.value">6,940</b></div>
+                    </div>
                   </div>
                 </div>
-                <div class="rank-card">
-                  <div class="chart-title"><span data-text-id="slide-01.consume.top.title">高频消费知识资产清单</span><span data-text-id="slide-01.consume.top.unit">次</span></div>
-                  <div class="rank-list">
-                    <div class="rank-row"><span class="rank-no">1</span><span data-text-id="slide-01.consume.top.01.name">销售话术库</span><b class="rank-val" data-text-id="slide-01.consume.top.01.value">16,420</b></div>
-                    <div class="rank-row"><span class="rank-no">2</span><span data-text-id="slide-01.consume.top.02.name">客服 FAQ</span><b class="rank-val" data-text-id="slide-01.consume.top.02.value">12,880</b></div>
-                    <div class="rank-row"><span class="rank-no">3</span><span data-text-id="slide-01.consume.top.03.name">产品功能手册</span><b class="rank-val" data-text-id="slide-01.consume.top.03.value">9,640</b></div>
-                    <div class="rank-row"><span class="rank-no">4</span><span data-text-id="slide-01.consume.top.04.name">交付 SOP</span><b class="rank-val" data-text-id="slide-01.consume.top.04.value">8,210</b></div>
-                  </div>
-                </div>
-                <div class="trend-card">
-                  <div>
-                    <div class="chart-title"><span data-text-id="slide-01.consume.missing.title">知识缺失比率趋势</span><span class="status-green" data-text-id="slide-01.consume.missing.state">持续下降</span></div>
-                    <svg class="line-chart" viewBox="0 0 520 78" aria-label="知识缺失比率趋势">
-                      <path class="area" d="M8,22 C80,28 122,34 174,36 C246,42 276,50 330,53 C390,57 438,58 512,63 L512,78 L8,78 Z"/>
-                      <path class="line" d="M8,22 C80,28 122,34 174,36 C246,42 276,50 330,53 C390,57 438,58 512,63"/>
-                      <circle cx="8" cy="22" r="5"/><circle cx="174" cy="36" r="5"/><circle cx="330" cy="53" r="5"/><circle cx="512" cy="63" r="5"/>
-                    </svg>
-                  </div>
-                  <div class="dist-bars">
-                    <div class="chart-title"><span data-text-id="slide-01.consume.dist.title">高频消费知识资产分布</span></div>
-                    <div class="bar-row"><span data-text-id="slide-01.consume.dist.01.name">客服</span><span class="bar-track"><i class="bar-fill" style="--v:100"></i></span><span class="bar-value" data-text-id="slide-01.consume.dist.01.value">31%</span></div>
-                    <div class="bar-row"><span data-text-id="slide-01.consume.dist.02.name">销售</span><span class="bar-track"><i class="bar-fill" style="--v:87"></i></span><span class="bar-value" data-text-id="slide-01.consume.dist.02.value">27%</span></div>
-                    <div class="bar-row"><span data-text-id="slide-01.consume.dist.03.name">产品</span><span class="bar-track"><i class="bar-fill" style="--v:58"></i></span><span class="bar-value" data-text-id="slide-01.consume.dist.03.value">18%</span></div>
+                <div class="chart-box search-health">
+                  <div class="chart-title"><span data-text-id="slide-01.consume.health.title">检索健康度趋势</span><span class="status-green" data-text-id="slide-01.consume.health.state">整体改善</span></div>
+                  <svg class="multi-line" viewBox="0 0 520 90" aria-label="检索健康度趋势">
+                    <path class="grid" d="M12,18 H508 M12,45 H508 M12,72 H508"/>
+                    <path class="s3" d="M16,20 C88,26 142,34 202,42 C286,54 360,62 504,72"/>
+                    <path class="s2" d="M16,70 C86,64 146,58 210,50 C286,42 370,34 504,24"/>
+                    <path class="s4" d="M16,62 C86,58 148,51 210,46 C286,38 370,32 504,20"/>
+                  </svg>
+                  <div class="series-legend">
+                    <span data-text-id="slide-01.consume.health.legend.missing"><i class="legend-line" style="--c:var(--fs-orange)"></i>知识缺失比率</span>
+                    <span data-text-id="slide-01.consume.health.legend.recall"><i class="legend-line" style="--c:var(--fs-teal)"></i>知识召回率</span>
+                    <span data-text-id="slide-01.consume.health.legend.qa"><i class="legend-line" style="--c:var(--fs-green)"></i>问答准确率</span>
                   </div>
                 </div>
               </div>
@@ -955,32 +1205,43 @@
                 <span class="panel-note" data-text-id="slide-01.section.ops.note">发布后是否持续有效、好用、有反馈闭环</span>
               </div>
               <div class="panel-body">
-                <div class="ops-kpis">
-                  <div class="compact-kpi"><div><span class="name" data-text-id="slide-01.ops.satisfaction.name">用户满意度</span><div class="val" data-text-id="slide-01.ops.satisfaction.value">4.6/5</div></div><span class="delta" data-text-id="slide-01.ops.satisfaction.delta">+0.3</span></div>
-                  <div class="compact-kpi"><div><span class="name" data-text-id="slide-01.ops.feedback.name">反馈问题数</span><div class="val" data-text-id="slide-01.ops.feedback.value">126</div></div><span class="delta is-down" data-text-id="slide-01.ops.feedback.delta">-14.2%</span></div>
-                  <div class="compact-kpi"><div><span class="name" data-text-id="slide-01.ops.solve.name">问题解决率</span><div class="val" data-text-id="slide-01.ops.solve.value">87.3%</div></div><span class="delta" data-text-id="slide-01.ops.solve.delta">+11.4%</span></div>
-                  <div class="compact-kpi"><div><span class="name" data-text-id="slide-01.ops.time.name">平均解决时长</span><div class="val" data-text-id="slide-01.ops.time.value">18.6h</div></div><span class="delta is-down" data-text-id="slide-01.ops.time.delta">-22.5%</span></div>
-                </div>
-                <div class="dual-trend">
-                  <svg viewBox="0 0 620 116" aria-label="问题解决率和平均解决时长变化">
-                    <path class="solve" d="M16,84 C92,76 134,62 202,56 C280,48 352,38 430,30 C506,24 560,20 604,16"/>
-                    <path class="time" d="M16,26 C88,32 152,42 220,48 C300,58 360,68 438,74 C504,82 558,88 604,94"/>
-                  </svg>
-                  <div class="dual-legend">
-                    <span data-text-id="slide-01.ops.trend.solve"><i class="legend-dot" style="--c:var(--fs-green)"></i>问题解决率变化</span>
-                    <span data-text-id="slide-01.ops.trend.time"><i class="legend-dot" style="--c:var(--fs-blue-2)"></i>平均解决时长变化</span>
+                <div class="ops-section">
+                  <div class="section-chip" data-text-id="slide-01.ops.incident.title">incident <span>好用度与问题闭环</span></div>
+                  <div class="metric-row">
+                    <div class="metric-card"><div><span class="name" data-text-id="slide-01.ops.satisfaction.name">用户满意度</span><div class="val" data-text-id="slide-01.ops.satisfaction.value">4.6/5</div></div><span class="delta" data-text-id="slide-01.ops.satisfaction.delta">+0.3</span></div>
+                    <div class="metric-card"><div><span class="name" data-text-id="slide-01.ops.ticket-solve.name">工单解决率</span><div class="val" data-text-id="slide-01.ops.ticket-solve.value">87.3%</div></div><span class="delta" data-text-id="slide-01.ops.ticket-solve.delta">+11.4%</span></div>
+                    <div class="metric-card"><div><span class="name" data-text-id="slide-01.ops.avg-time.name">平均解决时长变化</span><div class="val" data-text-id="slide-01.ops.avg-time.value">-22.5%</div></div><span class="delta is-down" data-text-id="slide-01.ops.avg-time.delta">18.6h</span></div>
+                  </div>
+                  <div class="ops-trend">
+                    <svg class="multi-line" viewBox="0 0 360 86" aria-label="工单解决率和平均解决时长变化">
+                      <path class="grid" d="M10,18 H350 M10,44 H350 M10,70 H350"/>
+                      <path class="s4" d="M14,68 C66,60 112,52 160,44 C218,34 270,25 346,16"/>
+                      <path class="s2" d="M14,20 C66,26 116,34 164,42 C222,54 278,62 346,72"/>
+                    </svg>
+                    <div class="series-legend">
+                      <span data-text-id="slide-01.ops.incident.legend.solve"><i class="legend-line" style="--c:var(--fs-green)"></i>工单解决率</span>
+                      <span data-text-id="slide-01.ops.incident.legend.time"><i class="legend-line" style="--c:var(--fs-teal)"></i>平均时长</span>
+                    </div>
                   </div>
                 </div>
-                <div class="progress-card">
-                  <div class="progress-top"><span data-text-id="slide-01.ops.fill-rate.name">知识补齐率</span><b class="progress-value" data-text-id="slide-01.ops.fill-rate.value">72%</b></div>
-                  <div class="progress-track"><span class="progress-fill"></span></div>
-                </div>
-                <div class="speed-card">
-                  <div>
-                    <div class="label" data-text-id="slide-01.ops.fill-speed.name">知识补齐速度</div>
-                    <span class="delta" data-text-id="slide-01.ops.fill-speed.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>环比 +19.5%</span>
+                <div class="ops-section">
+                  <div class="section-chip" data-text-id="slide-01.ops.request.title">request <span>需求响应与资产上线</span></div>
+                  <div class="metric-row">
+                    <div class="metric-card"><div><span class="name" data-text-id="slide-01.ops.request-count.name">资产需求数</span><div class="val" data-text-id="slide-01.ops.request-count.value">184</div></div><span class="delta" data-text-id="slide-01.ops.request-count.delta">+12.8%</span></div>
+                    <div class="metric-card"><div><span class="name" data-text-id="slide-01.ops.request-fill.name">需求满足率</span><div class="val" data-text-id="slide-01.ops.request-fill.value">78.6%</div></div><span class="delta" data-text-id="slide-01.ops.request-fill.delta">+9.4%</span></div>
+                    <div class="metric-card"><div><span class="name" data-text-id="slide-01.ops.response-speed.name">需求响应速度</span><div class="val" data-text-id="slide-01.ops.response-speed.value">1.8d</div></div><span class="delta is-down" data-text-id="slide-01.ops.response-speed.delta">-16.7%</span></div>
                   </div>
-                  <div class="value" data-text-id="slide-01.ops.fill-speed.value">38<small>条/周</small></div>
+                  <div class="ops-trend">
+                    <svg class="multi-line" viewBox="0 0 360 86" aria-label="需求响应速度和知识上线速度">
+                      <path class="grid" d="M10,18 H350 M10,44 H350 M10,70 H350"/>
+                      <path class="s1" d="M14,22 C70,28 116,36 164,44 C226,54 278,62 346,70"/>
+                      <path class="s3" d="M14,72 C70,64 120,56 166,48 C224,38 280,28 346,18"/>
+                    </svg>
+                    <div class="series-legend">
+                      <span data-text-id="slide-01.ops.request.legend.response"><i class="legend-line" style="--c:var(--fs-blue)"></i>需求响应速度</span>
+                      <span data-text-id="slide-01.ops.request.legend.online"><i class="legend-line" style="--c:var(--fs-orange)"></i>知识上线速度</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </article>
