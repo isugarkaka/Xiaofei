@@ -969,10 +969,35 @@
     .asset-consume .rank-val { font-size: 12px; }
     .search-health {
       grid-template-columns: minmax(0, 1fr);
-      grid-template-rows: auto minmax(0, 1fr) auto;
-      padding-bottom: 7px;
+      grid-template-rows: auto minmax(0, 1fr);
+      padding-bottom: 8px;
+      gap: 7px;
     }
-    .search-health .multi-line { min-height: 64px; }
+    .search-health .multi-line { min-height: 58px; }
+    .health-trends {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .health-trend {
+      min-width: 0;
+      min-height: 0;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 3px;
+    }
+    .health-trend-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: rgba(255,255,255,0.88);
+      font: 760 12px/1.1 var(--fs-font-cjk);
+    }
+    .health-trend-title span:last-child {
+      color: rgba(255,255,255,0.60);
+      font: 600 10px/1 var(--fs-font-cjk);
+    }
 
     .ops .panel-body {
       grid-template-columns: 1fr;
@@ -1296,7 +1321,7 @@
               </div>
               <div class="panel-body">
                 <div class="consume-kpis">
-                  <div class="metric-card"><div><span class="name" data-text-id="slide-01.consume.ai.name">AI 可消费资产占比</span><div class="val" data-text-id="slide-01.consume.ai.value">76.4%</div></div><span class="delta" data-text-id="slide-01.consume.ai.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+9.2%</span></div>
+                  <div class="metric-card"><div><span class="name" data-text-id="slide-01.consume.searchable.name">人均可搜知识资产数</span><div class="val" data-text-id="slide-01.consume.searchable.value">128项/人</div></div><span class="delta" data-text-id="slide-01.consume.searchable.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+9.2%</span></div>
                   <div class="metric-card"><div><span class="name" data-text-id="slide-01.consume.reuse.name">知识复用率</span><div class="val" data-text-id="slide-01.consume.reuse.value">48.7%</div></div><span class="delta" data-text-id="slide-01.consume.reuse.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+6.8%</span></div>
                   <div class="metric-card"><div><span class="name" data-text-id="slide-01.consume.qa.name">问答准确率</span><div class="val" data-text-id="slide-01.consume.qa.value">86.9%</div></div><span class="delta" data-text-id="slide-01.consume.qa.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+5.2%</span></div>
                 </div>
@@ -1324,17 +1349,22 @@
                   </div>
                 </div>
                 <div class="chart-box search-health">
-                  <div class="chart-title"><span data-text-id="slide-01.consume.health.title">检索健康度趋势</span><span class="status-green" data-text-id="slide-01.consume.health.state">整体改善</span></div>
-                  <svg class="multi-line" viewBox="0 0 520 90" aria-label="检索健康度趋势">
-                    <path class="grid" d="M12,18 H508 M12,45 H508 M12,72 H508"/>
-                    <path class="s3" d="M16,20 C88,26 142,34 202,42 C286,54 360,62 504,72"/>
-                    <path class="s2" d="M16,70 C86,64 146,58 210,50 C286,42 370,34 504,24"/>
-                    <path class="s4" d="M16,62 C86,58 148,51 210,46 C286,38 370,32 504,20"/>
-                  </svg>
-                  <div class="series-legend">
-                    <span data-text-id="slide-01.consume.health.legend.missing"><i class="legend-line" style="--c:var(--fs-orange)"></i>知识缺失比率</span>
-                    <span data-text-id="slide-01.consume.health.legend.recall"><i class="legend-line" style="--c:var(--fs-teal)"></i>知识召回率</span>
-                    <span data-text-id="slide-01.consume.health.legend.qa"><i class="legend-line" style="--c:var(--fs-green)"></i>问答准确率</span>
+                  <div class="chart-title"><span data-text-id="slide-01.consume.health.title">检索健康度</span><span class="status-green" data-text-id="slide-01.consume.health.state">趋势监控</span></div>
+                  <div class="health-trends">
+                    <div class="health-trend">
+                      <div class="health-trend-title"><span data-text-id="slide-01.consume.health.missing.title">知识缺失比率</span><span data-text-id="slide-01.consume.health.missing.state">先升后降</span></div>
+                      <svg class="multi-line" viewBox="0 0 250 76" aria-label="知识缺失比率趋势">
+                        <path class="grid" d="M10,16 H240 M10,38 H240 M10,60 H240"/>
+                        <path class="s3" d="M12,56 C50,38 76,20 114,18 C154,18 190,38 238,54"/>
+                      </svg>
+                    </div>
+                    <div class="health-trend">
+                      <div class="health-trend-title"><span data-text-id="slide-01.consume.health.qa.title">问答准确率</span><span data-text-id="slide-01.consume.health.qa.state">缓慢上升</span></div>
+                      <svg class="multi-line" viewBox="0 0 250 76" aria-label="问答准确率趋势">
+                        <path class="grid" d="M10,16 H240 M10,38 H240 M10,60 H240"/>
+                        <path class="s4" d="M12,58 C54,55 86,51 124,46 C166,40 200,34 238,26"/>
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
