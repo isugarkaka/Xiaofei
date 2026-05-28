@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="fs-language" content="zh-only">
+  <meta name="fs-language" content="zh-en">
   <meta name="fs-deck-mode" content="inline">
   <title>企业知识管理运营仪表盘</title>
   <style>
@@ -42,6 +42,12 @@
       margin: -540px 0 0 -960px;
       transform-origin: center center;
       contain: layout paint size;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .slide-frame.is-current {
+      visibility: visible;
+      pointer-events: auto;
     }
     .slide-frame .slide { will-change: transform; transform: translateZ(0); }
     .slide {
@@ -80,6 +86,7 @@
       background: linear-gradient(135deg, rgba(60,127,255,0.38), rgba(51,214,192,0.20));
       border: 1px solid rgba(255,255,255,0.18);
     }
+    .wordmark { display: none; }
     .slide .wordmark {
       background: var(--fs-asset-logo);
     }
@@ -713,6 +720,7 @@
     }
     .health-kpis {
       grid-column: 1 / -1;
+      grid-template-columns: 1fr;
       gap: 10px;
     }
     .board { padding: 9px 12px; gap: 5px; }
@@ -1007,12 +1015,12 @@
     .ops-section {
       min-height: 0;
       border-radius: 8px;
-      padding: 8px 10px;
+      padding: 8px 10px 10px;
       background: rgba(6, 12, 28, 0.45);
       border: 1px solid rgba(255,255,255,0.09);
       display: grid;
-      grid-template-rows: auto 52px minmax(0, 1fr);
-      gap: 6px;
+      grid-template-rows: auto 64px minmax(0, 1fr);
+      gap: 8px;
       overflow: hidden;
     }
     .section-chip {
@@ -1030,14 +1038,17 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
     .ops-section .metric-card {
-      padding: 7px 8px;
+      padding: 6px 8px;
       grid-template-columns: minmax(0, 1fr);
-      gap: 3px;
+      gap: 2px;
+      align-content: center;
     }
-    .ops-section .metric-card .val { font-size: 18px; }
+    .ops-section .metric-card .name { font-size: 12px; line-height: 1.05; }
+    .ops-section .metric-card .val { font-size: 17px; }
     .ops-section .metric-card .delta {
       justify-self: start;
       margin-top: 0;
+      font-size: 11px;
     }
     .ops-trend {
       min-height: 0;
@@ -1045,6 +1056,8 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
       align-items: stretch;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 7px;
     }
     .ops-trend-card {
       min-width: 0;
@@ -1202,7 +1215,7 @@
       to { opacity: 1; transform: scaleX(1); }
     }
 
-    @media (max-aspect-ratio: 16/9) {
+    @media (max-width: 900px) {
       body { overflow: auto; }
       .deck { width: 100%; height: auto; min-height: 100vh; }
       .slide-frame {
@@ -1220,7 +1233,7 @@
   <div class="deck" data-mode="present">
     <div class="slide-frame is-current">
       <div class="slide" data-layout="raw" data-screen-label="01 企业知识管理运营仪表盘" data-slide-key="knowledge-management-dashboard">
-        <div class="wordmark" data-text-id="slide-01.wordmark">飞书</div>
+        <div class="wordmark" data-text-id="slide-01.wordmark" aria-hidden="true"></div>
         <main class="page">
           <section class="topbar">
             <div class="title-block">
@@ -1442,8 +1455,6 @@
               <div class="panel-body">
                 <div class="health-kpis">
                   <div class="compact-kpi"><div><span class="name" data-text-id="slide-01.health.register.name">知识资产登记率</span><div class="val" data-text-id="slide-01.health.register.value">93.5%</div></div><span class="delta" data-text-id="slide-01.health.register.delta">+4.2%</span></div>
-                  <div class="compact-kpi"><div><span class="name" data-text-id="slide-01.health.quality.name">知识资产质量标准达成率</span><div class="val" data-text-id="slide-01.health.quality.value">91.2%</div></div><span class="delta" data-text-id="slide-01.health.quality.delta">+5.6%</span></div>
-                  <div class="compact-kpi"><div><span class="name" data-text-id="slide-01.health.training.name">培训参与率</span><div class="val" data-text-id="slide-01.health.training.value">86.8%</div></div><span class="delta" data-text-id="slide-01.health.training.delta">+8.4%</span></div>
                 </div>
                 <div class="board">
                   <div class="board-title" data-text-id="slide-01.health.asset-rank.title">知识资产贡献榜单：部门</div>
@@ -1469,29 +1480,287 @@
         </main>
       </div>
     </div>
+    <div class="slide-frame">
+      <div class="slide" data-layout="raw" data-screen-label="02 Enterprise Knowledge Management Operations Dashboard" data-slide-key="knowledge-management-dashboard-en">
+        <div class="wordmark" data-text-id="slide-02.wordmark" aria-hidden="true"></div>
+        <main class="page">
+          <section class="topbar">
+            <div class="title-block">
+              <h1 data-text-id="slide-02.title">Enterprise Knowledge Management Operations Dashboard</h1>
+              <p data-text-id="slide-02.subtitle">Executive view of asset building, consumption, operations loop, and system health</p>
+            </div>
+            <div class="filters" aria-label="时间筛选">
+              <span class="filter-pill" data-text-id="slide-02.filter.period">
+                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
+                May 2026
+              </span>
+              <span class="filter-pill" data-text-id="slide-02.filter.scope">
+                <svg viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+                Group-wide
+              </span>
+            </div>
+          </section>
+
+          <section class="main-grid">
+            <article class="panel asset-build">
+              <div class="panel-head">
+                <h2 class="panel-title" data-text-id="slide-02.section.build.title"><i></i>Asset Building</h2>
+                <span class="panel-note" data-text-id="slide-02.section.build.note">Knowledge asset accumulation progress</span>
+              </div>
+              <div class="panel-body">
+                <div class="build-kpis">
+                  <div class="metric-card">
+                    <div><span class="name" data-text-id="slide-02.build.inventory.name">Inventoried Assets</span><div class="val" data-text-id="slide-02.build.inventory.value">1,286</div></div>
+                    <span class="delta" data-text-id="slide-02.build.inventory.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+18.6%</span>
+                  </div>
+                  <div class="metric-card">
+                    <div><span class="name" data-text-id="slide-02.build.online.name">Published Assets</span><div class="val" data-text-id="slide-02.build.online.value">842</div></div>
+                    <span class="delta" data-text-id="slide-02.build.online.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+22.1%</span>
+                  </div>
+                  <div class="metric-card">
+                    <div><span class="name" data-text-id="slide-02.build.quality.name">High-quality Assets</span><div class="val" data-text-id="slide-02.build.quality.value">516</div></div>
+                    <span class="delta" data-text-id="slide-02.build.quality.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+15.4%</span>
+                  </div>
+                </div>
+                <div class="build-grid">
+                  <div class="chart-box">
+                    <div class="chart-title"><span data-text-id="slide-02.build.dept.title">Asset Distribution</span><span data-text-id="slide-02.build.dept.unit">Items</span></div>
+                    <div class="rank-list">
+                      <div class="bar-row"><span data-text-id="slide-02.build.dept.01.name">Ops</span><span class="bar-track"><i class="bar-fill" style="--v:100"></i></span><span class="bar-value" data-text-id="slide-02.build.dept.01.value">286</span></div>
+                      <div class="bar-row"><span data-text-id="slide-02.build.dept.02.name">Sales</span><span class="bar-track"><i class="bar-fill" style="--v:83"></i></span><span class="bar-value" data-text-id="slide-02.build.dept.02.value">238</span></div>
+                      <div class="bar-row"><span data-text-id="slide-02.build.dept.03.name">Product</span><span class="bar-track"><i class="bar-fill" style="--v:59"></i></span><span class="bar-value" data-text-id="slide-02.build.dept.03.value">168</span></div>
+                      <div class="bar-row"><span data-text-id="slide-02.build.dept.04.name">Support</span><span class="bar-track"><i class="bar-fill" style="--v:50"></i></span><span class="bar-value" data-text-id="slide-02.build.dept.04.value">142</span></div>
+                      <div class="bar-row"><span data-text-id="slide-02.build.dept.05.name">HR</span><span class="bar-track"><i class="bar-fill" style="--v:38"></i></span><span class="bar-value" data-text-id="slide-02.build.dept.05.value">108</span></div>
+                      <div class="bar-row"><span data-text-id="slide-02.build.dept.06.name">Finance</span><span class="bar-track"><i class="bar-fill" style="--v:34"></i></span><span class="bar-value" data-text-id="slide-02.build.dept.06.value">96</span></div>
+                    </div>
+                    <div></div>
+                  </div>
+                  <div class="chart-box funnel-card">
+                    <div class="chart-title"><span data-text-id="slide-02.build.funnel.title">Knowledge Asset Funnel</span><span data-text-id="slide-02.build.funnel.unit">Conversion</span></div>
+                    <svg class="funnel-chart" viewBox="0 0 360 150" aria-label="Knowledge Asset Funnel">
+                      <defs>
+                        <linearGradient id="funnelA2" x1="42" y1="0" x2="318" y2="0" gradientUnits="userSpaceOnUse">
+                          <stop offset="0" stop-color="#3C7FFF"/>
+                          <stop offset="1" stop-color="#33D6C0"/>
+                        </linearGradient>
+                        <linearGradient id="funnelB2" x1="78" y1="0" x2="282" y2="0" gradientUnits="userSpaceOnUse">
+                          <stop offset="0" stop-color="#337CFF"/>
+                          <stop offset="1" stop-color="#28C8B6"/>
+                        </linearGradient>
+                        <linearGradient id="funnelC2" x1="112" y1="0" x2="248" y2="0" gradientUnits="userSpaceOnUse">
+                          <stop offset="0" stop-color="#FE7F00"/>
+                          <stop offset="1" stop-color="#33D6C0"/>
+                        </linearGradient>
+                      </defs>
+                      <path class="funnel-seg" fill="url(#funnelA2)" d="M36,18 H324 L292,56 H68 Z"/>
+                      <path class="funnel-seg" fill="url(#funnelB2)" d="M72,62 H288 L258,100 H102 Z"/>
+                      <path class="funnel-seg" fill="url(#funnelC2)" d="M108,106 H252 L226,138 H134 Z"/>
+                      <text x="180" y="42" text-anchor="middle" data-text-id="slide-02.build.funnel.stage.inventory">Inventoried Assets</text>
+                      <text class="funnel-value" x="302" y="42" text-anchor="end" data-text-id="slide-02.build.funnel.value.inventory">1,286</text>
+                      <text x="180" y="86" text-anchor="middle" data-text-id="slide-02.build.funnel.stage.online">Published Assets</text>
+                      <text class="funnel-value" x="268" y="86" text-anchor="end" data-text-id="slide-02.build.funnel.value.online">842</text>
+                      <text class="funnel-rate" x="314" y="86" text-anchor="middle" data-text-id="slide-02.build.funnel.rate.online">65%</text>
+                      <text x="180" y="128" text-anchor="middle" data-text-id="slide-02.build.funnel.stage.quality">High-quality Assets</text>
+                      <text class="funnel-value" x="230" y="128" text-anchor="end" data-text-id="slide-02.build.funnel.value.quality">516</text>
+                      <text class="funnel-rate" x="286" y="128" text-anchor="middle" data-text-id="slide-02.build.funnel.rate.quality">61%</text>
+                    </svg>
+                    <div class="asset-trend">
+                      <div class="trend-mini-title"><span data-text-id="slide-02.build.trend.title">Asset Trend</span><span data-text-id="slide-02.build.trend.unit">Asset Count</span></div>
+                      <svg class="multi-line" viewBox="0 0 360 112" aria-label="Asset Trend">
+                        <path class="grid" d="M28,18 H344 M28,46 H344 M28,74 H344 M28,98 H344"/>
+                        <path class="s1" d="M30,86 C70,70 96,54 136,44 C188,33 232,26 332,14"/>
+                        <path class="s2" d="M30,96 C76,90 106,74 146,64 C196,54 242,42 332,30"/>
+                        <path class="s3" d="M30,102 C80,98 116,92 154,88 C202,80 244,68 332,54"/>
+                      </svg>
+                      <div class="series-legend">
+                        <span data-text-id="slide-02.build.trend.legend.inventory"><i class="legend-line" style="--c:var(--fs-blue)"></i>Inventoried Assets</span>
+                        <span data-text-id="slide-02.build.trend.legend.online"><i class="legend-line" style="--c:var(--fs-teal)"></i>Published Assets</span>
+                        <span data-text-id="slide-02.build.trend.legend.quality"><i class="legend-line" style="--c:var(--fs-orange)"></i>High-quality Assets</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel asset-consume">
+              <div class="panel-head">
+                <h2 class="panel-title" data-text-id="slide-02.section.consume.title"><i></i>Asset Consumption</h2>
+                <span class="panel-note" data-text-id="slide-02.section.consume.note">Actual usage by people and AI</span>
+              </div>
+              <div class="panel-body">
+                <div class="consume-kpis">
+                  <div class="metric-card"><div><span class="name" data-text-id="slide-02.consume.searchable.name">Searchable Assets/User</span><div class="val" data-text-id="slide-02.consume.searchable.value">128/user</div></div><span class="delta" data-text-id="slide-02.consume.searchable.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+9.2%</span></div>
+                  <div class="metric-card"><div><span class="name" data-text-id="slide-02.consume.reuse.name">Reuse Rate</span><div class="val" data-text-id="slide-02.consume.reuse.value">48.7%</div></div><span class="delta" data-text-id="slide-02.consume.reuse.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+6.8%</span></div>
+                  <div class="metric-card"><div><span class="name" data-text-id="slide-02.consume.qa.name">Q&A Accuracy</span><div class="val" data-text-id="slide-02.consume.qa.value">86.9%</div></div><span class="delta" data-text-id="slide-02.consume.qa.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+5.2%</span></div>
+                </div>
+                <div class="consume-layout">
+                  <div class="chart-box">
+                    <div class="chart-title"><span data-text-id="slide-02.consume.dist.title">Asset Consumption</span><span data-text-id="slide-02.consume.dist.unit">by dept</span></div>
+                    <div class="rank-list">
+                      <div class="bar-row"><span data-text-id="slide-02.consume.dist.01.name">Support</span><span class="bar-track"><i class="bar-fill" style="--v:100"></i></span><span class="bar-value" data-text-id="slide-02.consume.dist.01.value">31%</span></div>
+                      <div class="bar-row"><span data-text-id="slide-02.consume.dist.02.name">Sales</span><span class="bar-track"><i class="bar-fill" style="--v:87"></i></span><span class="bar-value" data-text-id="slide-02.consume.dist.02.value">27%</span></div>
+                      <div class="bar-row"><span data-text-id="slide-02.consume.dist.03.name">Product</span><span class="bar-track"><i class="bar-fill" style="--v:58"></i></span><span class="bar-value" data-text-id="slide-02.consume.dist.03.value">18%</span></div>
+                      <div class="bar-row"><span data-text-id="slide-02.consume.dist.04.name">Ops</span><span class="bar-track"><i class="bar-fill" style="--v:45"></i></span><span class="bar-value" data-text-id="slide-02.consume.dist.04.value">14%</span></div>
+                      <div class="bar-row"><span data-text-id="slide-02.consume.dist.05.name">Delivery</span><span class="bar-track"><i class="bar-fill" style="--v:32"></i></span><span class="bar-value" data-text-id="slide-02.consume.dist.05.value">10%</span></div>
+                    </div>
+                    <div></div>
+                  </div>
+                  <div class="rank-card">
+                    <div class="chart-title"><span data-text-id="slide-02.consume.top.title">Top Consumed Assets</span><span data-text-id="slide-02.consume.top.unit">Uses</span></div>
+                    <div class="rank-list">
+                      <div class="rank-row"><span class="rank-no">1</span><span data-text-id="slide-02.consume.top.01.name">Sales Script Library</span><b class="rank-val" data-text-id="slide-02.consume.top.01.value">16,420</b></div>
+                      <div class="rank-row"><span class="rank-no">2</span><span data-text-id="slide-02.consume.top.02.name">Support FAQ</span><b class="rank-val" data-text-id="slide-02.consume.top.02.value">12,880</b></div>
+                      <div class="rank-row"><span class="rank-no">3</span><span data-text-id="slide-02.consume.top.03.name">Product Feature Guide</span><b class="rank-val" data-text-id="slide-02.consume.top.03.value">9,640</b></div>
+                      <div class="rank-row"><span class="rank-no">4</span><span data-text-id="slide-02.consume.top.04.name">Delivery SOP</span><b class="rank-val" data-text-id="slide-02.consume.top.04.value">8,210</b></div>
+                      <div class="rank-row"><span class="rank-no">5</span><span data-text-id="slide-02.consume.top.05.name">Troubleshooting Guide</span><b class="rank-val" data-text-id="slide-02.consume.top.05.value">6,940</b></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="chart-box search-health">
+                  <div class="chart-title"><span data-text-id="slide-02.consume.health.title">Search Health</span><span class="status-green" data-text-id="slide-02.consume.health.state">Trend Watch</span></div>
+                  <div class="health-trends">
+                    <div class="health-trend">
+                      <div class="health-trend-title"><span data-text-id="slide-02.consume.health.missing.title">Knowledge Gap Ratio</span><span data-text-id="slide-02.consume.health.missing.state">rises then falls</span></div>
+                      <svg class="multi-line" viewBox="0 0 250 76" aria-label="Knowledge Gap Ratio趋势">
+                        <path class="grid" d="M10,16 H240 M10,38 H240 M10,60 H240"/>
+                        <path class="s3" d="M12,56 C50,38 76,20 114,18 C154,18 190,38 238,54"/>
+                      </svg>
+                    </div>
+                    <div class="health-trend">
+                      <div class="health-trend-title"><span data-text-id="slide-02.consume.health.qa.title">Q&A Accuracy</span><span data-text-id="slide-02.consume.health.qa.state">gradual rise</span></div>
+                      <svg class="multi-line" viewBox="0 0 250 76" aria-label="Q&A Accuracy趋势">
+                        <path class="grid" d="M10,16 H240 M10,38 H240 M10,60 H240"/>
+                        <path class="s4" d="M12,58 C54,55 86,51 124,46 C166,40 200,34 238,26"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel ops">
+              <div class="panel-head">
+                <h2 class="panel-title" data-text-id="slide-02.section.ops.title"><i></i>Asset Operations</h2>
+                <span class="panel-note" data-text-id="slide-02.section.ops.note">Post-launch effectiveness, usability, and feedback loop</span>
+              </div>
+              <div class="panel-body">
+                <div class="ops-section">
+                  <div class="section-chip" data-text-id="slide-02.ops.incident.title">incident <span>Usability and issue closure</span></div>
+                  <div class="metric-row">
+                    <div class="metric-card"><div><span class="name" data-text-id="slide-02.ops.satisfaction.name">User Satisfaction</span><div class="val" data-text-id="slide-02.ops.satisfaction.value">4.6/5</div></div><span class="delta" data-text-id="slide-02.ops.satisfaction.delta">+0.3</span></div>
+                    <div class="metric-card"><div><span class="name" data-text-id="slide-02.ops.ticket-solve.name">Ticket Resolution</span><div class="val" data-text-id="slide-02.ops.ticket-solve.value">87.3%</div></div><span class="delta" data-text-id="slide-02.ops.ticket-solve.delta">+11.4%</span></div>
+                    <div class="metric-card"><div><span class="name" data-text-id="slide-02.ops.avg-time.name">Avg. Time Change</span><div class="val" data-text-id="slide-02.ops.avg-time.value">-22.5%</div></div><span class="delta is-down" data-text-id="slide-02.ops.avg-time.delta">18.6h</span></div>
+                  </div>
+                  <div class="ops-trend">
+                    <div class="ops-trend-card">
+                      <div class="ops-trend-title"><span data-text-id="slide-02.ops.incident.solve.title">Ticket Resolution</span><span data-text-id="slide-02.ops.incident.solve.state">gradual rise</span></div>
+                      <svg class="multi-line" viewBox="0 0 250 76" aria-label="Ticket Resolution Rate趋势">
+                        <path class="grid" d="M10,16 H240 M10,38 H240 M10,60 H240"/>
+                        <path class="s4" d="M12,58 C52,54 86,49 124,43 C166,36 202,30 238,22"/>
+                      </svg>
+                    </div>
+                    <div class="ops-trend-card">
+                      <div class="ops-trend-title"><span data-text-id="slide-02.ops.incident.time.title">Avg. Resolution Time</span><span data-text-id="slide-02.ops.incident.time.state">gradual decline</span></div>
+                      <svg class="multi-line" viewBox="0 0 250 76" aria-label="Avg. Resolution Time趋势">
+                        <path class="grid" d="M10,16 H240 M10,38 H240 M10,60 H240"/>
+                        <path class="s2" d="M12,20 C54,25 88,31 126,38 C166,45 202,52 238,58"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="ops-section">
+                  <div class="section-chip" data-text-id="slide-02.ops.request.title">request <span>Request response and asset launch</span></div>
+                  <div class="metric-row">
+                    <div class="metric-card"><div><span class="name" data-text-id="slide-02.ops.request-count.name">Asset Requests</span><div class="val" data-text-id="slide-02.ops.request-count.value">184</div></div><span class="delta" data-text-id="slide-02.ops.request-count.delta">+12.8%</span></div>
+                    <div class="metric-card"><div><span class="name" data-text-id="slide-02.ops.request-fill.name">Fulfillment Rate</span><div class="val" data-text-id="slide-02.ops.request-fill.value">78.6%</div></div><span class="delta" data-text-id="slide-02.ops.request-fill.delta">+9.4%</span></div>
+                    <div class="metric-card"><div><span class="name" data-text-id="slide-02.ops.response-speed.name">Response Speed</span><div class="val" data-text-id="slide-02.ops.response-speed.value">1.8d</div></div><span class="delta is-down" data-text-id="slide-02.ops.response-speed.delta">-16.7%</span></div>
+                  </div>
+                  <div class="ops-trend">
+                    <div class="ops-trend-card">
+                      <div class="ops-trend-title"><span data-text-id="slide-02.ops.request.response.title">Response Speed</span><span data-text-id="slide-02.ops.request.response.state">gradual rise</span></div>
+                      <svg class="multi-line" viewBox="0 0 250 76" aria-label="Request Response Speed趋势">
+                        <path class="grid" d="M10,16 H240 M10,38 H240 M10,60 H240"/>
+                        <path class="s1" d="M12,58 C50,54 82,50 120,44 C162,38 198,31 238,24"/>
+                      </svg>
+                    </div>
+                    <div class="ops-trend-card">
+                      <div class="ops-trend-title"><span data-text-id="slide-02.ops.request.online.title">Knowledge Launch Speed</span><span data-text-id="slide-02.ops.request.online.state">rises then plateaus</span></div>
+                      <svg class="multi-line" viewBox="0 0 250 76" aria-label="Knowledge Launch Speed趋势">
+                        <path class="grid" d="M10,16 H240 M10,38 H240 M10,60 H240"/>
+                        <path class="s3" d="M12,58 C48,48 80,35 118,28 C154,22 194,22 238,22"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel health">
+              <div class="panel-head">
+                <h2 class="panel-title" data-text-id="slide-02.section.health.title"><i></i>System Health</h2>
+                <span class="panel-note" data-text-id="slide-02.section.health.note">Whether the knowledge management system is truly running</span>
+              </div>
+              <div class="panel-body">
+                <div class="health-kpis">
+                  <div class="compact-kpi"><div><span class="name" data-text-id="slide-02.health.register.name">Asset Registration Rate</span><div class="val" data-text-id="slide-02.health.register.value">93.5%</div></div><span class="delta" data-text-id="slide-02.health.register.delta">+4.2%</span></div>
+                </div>
+                <div class="board">
+                  <div class="board-title" data-text-id="slide-02.health.asset-rank.title">Knowledge Asset Contribution Ranking: Dept</div>
+                  <div class="rank-list">
+                    <div class="dept-row"><span class="dept-medal">1</span><span data-text-id="slide-02.health.asset-rank.01.name">Ops</span><span class="dept-track"><i class="dept-fill" style="--v:100"></i></span><b data-text-id="slide-02.health.asset-rank.01.value">286</b></div>
+                    <div class="dept-row"><span class="dept-medal">2</span><span data-text-id="slide-02.health.asset-rank.02.name">Sales</span><span class="dept-track"><i class="dept-fill" style="--v:83"></i></span><b data-text-id="slide-02.health.asset-rank.02.value">238</b></div>
+                    <div class="dept-row"><span class="dept-medal">3</span><span data-text-id="slide-02.health.asset-rank.03.name">Product</span><span class="dept-track"><i class="dept-fill" style="--v:59"></i></span><b data-text-id="slide-02.health.asset-rank.03.value">168</b></div>
+                    <div class="dept-row"><span class="dept-medal">4</span><span data-text-id="slide-02.health.asset-rank.04.name">Support</span><span class="dept-track"><i class="dept-fill" style="--v:50"></i></span><b data-text-id="slide-02.health.asset-rank.04.value">142</b></div>
+                  </div>
+                </div>
+                <div class="board">
+                  <div class="board-title" data-text-id="slide-02.health.kb-rank.title">Knowledge Base Contribution Ranking: Dept</div>
+                  <div class="rank-list">
+                    <div class="dept-row"><span class="dept-medal">1</span><span data-text-id="slide-02.health.kb-rank.01.name">Support</span><span class="dept-track"><i class="dept-fill" style="--v:100"></i></span><b data-text-id="slide-02.health.kb-rank.01.value">218</b></div>
+                    <div class="dept-row"><span class="dept-medal">2</span><span data-text-id="slide-02.health.kb-rank.02.name">Sales</span><span class="dept-track"><i class="dept-fill" style="--v:86"></i></span><b data-text-id="slide-02.health.kb-rank.02.value">188</b></div>
+                    <div class="dept-row"><span class="dept-medal">3</span><span data-text-id="slide-02.health.kb-rank.03.name">Product</span><span class="dept-track"><i class="dept-fill" style="--v:73"></i></span><b data-text-id="slide-02.health.kb-rank.03.value">159</b></div>
+                    <div class="dept-row"><span class="dept-medal">4</span><span data-text-id="slide-02.health.kb-rank.04.name">Ops</span><span class="dept-track"><i class="dept-fill" style="--v:66"></i></span><b data-text-id="slide-02.health.kb-rank.04.value">144</b></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
   </div>
   <div class="deck-progress"><span></span></div>
   <div class="deck-controls" aria-label="演示控制">
     <button class="ctl prev" type="button" aria-label="上一页">‹</button>
-    <span class="page-no">1 / 1</span>
+    <span class="page-no">1 / 2</span>
     <button class="ctl next" type="button" aria-label="下一页">›</button>
     <button class="ctl fs" type="button" aria-label="全屏">□</button>
   </div>
   <script>
     (function () {
-      var frame = document.querySelector('.slide-frame');
+      var frames = Array.prototype.slice.call(document.querySelectorAll('.slide-frame'));
+      var current = 0;
+      function showSlide(index) {
+        current = (index + frames.length) % frames.length;
+        frames.forEach(function (frame, i) { frame.classList.toggle('is-current', i === current); });
+        var pageNo = document.querySelector('.page-no');
+        if (pageNo) pageNo.textContent = (current + 1) + ' / ' + frames.length;
+      }
       function fit() {
         var scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
-        if (window.matchMedia('(max-aspect-ratio: 16/9)').matches) {
-          scale = window.innerWidth / 1920;
+        frames.forEach(function (frame) {
+          if (window.matchMedia('(max-aspect-ratio: 16/9)').matches) {
+            scale = window.innerWidth / 1920;
+            frame.style.transform = 'scale(' + scale + ')';
+            frame.style.height = 1080 + 'px';
+            frame.style.marginBottom = (1080 * scale - 1080) + 'px';
+            return;
+          }
           frame.style.transform = 'scale(' + scale + ')';
-          frame.style.height = 1080 + 'px';
-          frame.style.marginBottom = (1080 * scale - 1080) + 'px';
-          return;
-        }
-        frame.style.transform = 'scale(' + scale + ')';
-        frame.style.height = '1080px';
-        frame.style.marginBottom = '0';
+          frame.style.height = '1080px';
+          frame.style.marginBottom = '0';
+        });
       }
       window.addEventListener('resize', fit);
       var idleTimer = null;
@@ -1505,6 +1774,12 @@
       window.addEventListener('mousemove', markActive);
       window.addEventListener('keydown', markActive);
       window.addEventListener('click', markActive);
+      document.querySelector('.ctl.prev').addEventListener('click', function () { showSlide(current - 1); });
+      document.querySelector('.ctl.next').addEventListener('click', function () { showSlide(current + 1); });
+      window.addEventListener('keydown', function (event) {
+        if (event.key === 'ArrowLeft' || event.key === 'PageUp') showSlide(current - 1);
+        if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') showSlide(current + 1);
+      });
       document.querySelector('.ctl.fs').addEventListener('click', function () {
         if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
           document.documentElement.requestFullscreen();
@@ -1513,6 +1788,7 @@
         }
       });
       document.addEventListener('fullscreenchange', fit);
+      showSlide(0);
       fit();
       markActive();
     })();
