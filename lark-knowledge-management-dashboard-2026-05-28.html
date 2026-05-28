@@ -853,7 +853,7 @@
     .funnel-chart {
       width: 100%;
       height: 100%;
-      min-height: 92px;
+      min-height: 118px;
     }
     .funnel-chart .funnel-seg {
       stroke: rgba(255,255,255,0.16);
@@ -875,11 +875,41 @@
       font-size: 14px;
       font-weight: 700;
     }
-    .funnel-caption {
+    .funnel-chart .funnel-rate {
+      fill: var(--fs-orange);
+      font-size: 16px;
+      font-weight: 760;
+    }
+    .funnel-card {
+      grid-template-rows: auto 128px minmax(0, 1fr);
+      gap: 8px;
+    }
+    .asset-trend {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 7px;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      gap: 4px;
+      min-height: 0;
+    }
+    .trend-mini-title {
       display: flex;
       justify-content: space-between;
-      color: rgba(255,255,255,0.70);
-      font: 600 11px/1 var(--fs-font-cjk);
+      color: rgba(255,255,255,0.88);
+      font: 760 13px/1.1 var(--fs-font-cjk);
+    }
+    .trend-mini-title span:last-child {
+      color: rgba(255,255,255,0.60);
+      font-weight: 600;
+    }
+    .asset-trend .multi-line {
+      min-height: 70px;
+    }
+    .axis-labels {
+      display: flex;
+      justify-content: space-between;
+      color: rgba(255,255,255,0.52);
+      font: 600 10px/1 var(--fs-font-cjk);
     }
     .series-legend {
       display: flex;
@@ -1211,7 +1241,7 @@
                     </div>
                     <div></div>
                   </div>
-                  <div class="chart-box">
+                  <div class="chart-box funnel-card">
                     <div class="chart-title"><span data-text-id="slide-01.build.funnel.title">知识资产漏斗</span><span data-text-id="slide-01.build.funnel.unit">转化</span></div>
                     <svg class="funnel-chart" viewBox="0 0 360 150" aria-label="知识资产漏斗">
                       <defs>
@@ -1235,12 +1265,24 @@
                       <text class="funnel-value" x="302" y="42" text-anchor="end" data-text-id="slide-01.build.funnel.value.inventory">1,286</text>
                       <text x="180" y="86" text-anchor="middle" data-text-id="slide-01.build.funnel.stage.online">已上线资产</text>
                       <text class="funnel-value" x="268" y="86" text-anchor="end" data-text-id="slide-01.build.funnel.value.online">842</text>
+                      <text class="funnel-rate" x="314" y="86" text-anchor="middle" data-text-id="slide-01.build.funnel.rate.online">65%</text>
                       <text x="180" y="128" text-anchor="middle" data-text-id="slide-01.build.funnel.stage.quality">高质量资产</text>
                       <text class="funnel-value" x="230" y="128" text-anchor="end" data-text-id="slide-01.build.funnel.value.quality">516</text>
+                      <text class="funnel-rate" x="286" y="128" text-anchor="middle" data-text-id="slide-01.build.funnel.rate.quality">61%</text>
                     </svg>
-                    <div class="funnel-caption">
-                      <span data-text-id="slide-01.build.funnel.caption.online">上线转化 65%</span>
-                      <span data-text-id="slide-01.build.funnel.caption.quality">高质量占比 40%</span>
+                    <div class="asset-trend">
+                      <div class="trend-mini-title"><span data-text-id="slide-01.build.trend.title">知识资产趋势图</span><span data-text-id="slide-01.build.trend.unit">资产数量</span></div>
+                      <svg class="multi-line" viewBox="0 0 360 112" aria-label="知识资产趋势图">
+                        <path class="grid" d="M28,18 H344 M28,46 H344 M28,74 H344 M28,98 H344"/>
+                        <path class="s1" d="M30,86 C70,70 96,54 136,44 C188,33 232,26 332,14"/>
+                        <path class="s2" d="M30,96 C76,90 106,74 146,64 C196,54 242,42 332,30"/>
+                        <path class="s3" d="M30,102 C80,98 116,92 154,88 C202,80 244,68 332,54"/>
+                      </svg>
+                      <div class="series-legend">
+                        <span data-text-id="slide-01.build.trend.legend.inventory"><i class="legend-line" style="--c:var(--fs-blue)"></i>已盘点资产数</span>
+                        <span data-text-id="slide-01.build.trend.legend.online"><i class="legend-line" style="--c:var(--fs-teal)"></i>已上线资产数</span>
+                        <span data-text-id="slide-01.build.trend.legend.quality"><i class="legend-line" style="--c:var(--fs-orange)"></i>高质量资产数</span>
+                      </div>
                     </div>
                   </div>
                 </div>
