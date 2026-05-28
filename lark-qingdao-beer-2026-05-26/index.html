@@ -192,7 +192,7 @@
       background: linear-gradient(180deg, rgba(60,127,255,0.18) 0%, rgba(8,12,24,0.55) 60%);
       box-shadow: 0 0 0 1px rgba(60,127,255,0.40) inset,
                   0 32px 64px -28px rgba(60,127,255,0.40);
-      padding: 44px 36px 42px;
+      padding: 36px 36px 30px;
       /* margin-top:0 默认,自然顶在网格顶部,比边卡(margin-top:36)
          先开始,加上自身内容更多,自然形成上凸下凸 */
     }
@@ -216,7 +216,7 @@
       align-self: flex-start;
     }
 [data-page="04"] .slide .card.is-hero .card-tag {
-      padding: 8px 18px; margin-bottom: 24px;
+      padding: 8px 18px; margin-bottom: 18px;
       background: rgba(60,127,255,0.22);
       border-color: rgba(60,127,255,0.55);
       color: #fff;
@@ -228,6 +228,7 @@
       margin: 0 0 18px 0;
     }
 [data-page="04"] .slide .card.is-hero .card-head { gap: 0; margin-bottom: 28px; }
+[data-page="04"] .slide .card.is-hero .card-head { margin-bottom: 20px; }
 [data-page="04"] /* 边卡 logo (icon style) · 56×56 方形 */
     .slide .card:not(.is-hero) .card-logo {
       flex-shrink: 0;
@@ -275,9 +276,9 @@
       color: rgba(255,255,255,0.68);
       letter-spacing: 0.005em;
     }
-[data-page="04"] .slide .card.is-hero .feat { margin-bottom: 22px; }
+[data-page="04"] .slide .card.is-hero .feat { margin-bottom: 16px; }
 [data-page="04"] .slide .card.is-hero .feat .feat-label { color: #fff; font-size: 22px; }
-[data-page="04"] .slide .card.is-hero .feat .feat-body { color: rgba(255,255,255,0.82); font-size: 22px; }
+[data-page="04"] .slide .card.is-hero .feat .feat-body { color: rgba(255,255,255,0.82); font-size: 20px; line-height: 1.42; }
 [data-page="04"] /* 底部 strap · 豆包大模型 */
     .slide .doubao-strap {
       margin-top: 20px;
@@ -1114,7 +1115,7 @@
 [data-page="11"] .slide .dir-card {
       position: relative;
       display: flex; flex-direction: column;
-      gap: 16px;
+      gap: 18px;
       padding: 30px 26px;
       background: rgba(8,12,24,0.45);
       border: 2px solid;
@@ -1126,12 +1127,12 @@
 [data-page="11"] .slide .dir-card.is-c3 { border-color: rgba(60,127,255,0.55);  background: linear-gradient(180deg, rgba(60,127,255,0.16) 0%, rgba(8,12,24,0.50) 100%); }
 [data-page="11"] .slide .dir-card.is-c4 { border-color: rgba(254,127,0,0.50);   background: linear-gradient(180deg, rgba(254,127,0,0.14) 0%, rgba(8,12,24,0.50) 100%); }
 [data-page="11"] .slide .dir-num {
-      font: 800 44px/1 var(--fs-font-latin);
+      font: 800 48px/1 var(--fs-font-latin);
       letter-spacing: 0.02em;
       color: #fff;
     }
 [data-page="11"] .slide .dir-name {
-      font: 800 28px/1.2 var(--fs-font-cjk);
+      font: 800 30px/1.2 var(--fs-font-cjk);
       color: #fff;
       letter-spacing: 0.005em;
     }
@@ -1144,11 +1145,11 @@
       background: linear-gradient(90deg, rgba(255,255,255,0.30), rgba(255,255,255,0.05));
     }
 [data-page="11"] .slide .dir-sub {
-      font: 700 24px/1.35 var(--fs-font-cjk);
+      font: 700 26px/1.35 var(--fs-font-cjk);
       color: #fff;
     }
 [data-page="11"] .slide .dir-desc {
-      font: 500 26px/1.42 var(--fs-font-cjk);
+      font: 500 28px/1.42 var(--fs-font-cjk);
       color: #fff;
       margin-top: auto;
     }
@@ -7860,6 +7861,65 @@
     </div>
 
 <div class="slide-frame">
+      <div class="slide" data-layout="content-2col" data-accent="blue" data-decor="blue-glow" data-screen-label="15 青啤管理分身" data-slide-key="qingdao-management-twin">
+        <style>
+          .slide[data-slide-key="qingdao-management-twin"] .stage { padding: 0; }
+          .slide[data-slide-key="qingdao-management-twin"] .header { text-align: left; }
+          .slide[data-slide-key="qingdao-management-twin"] .header .title-zh {
+            font-size: 44px; font-weight: 700; line-height: 1.18; color: #fff; margin: 0;
+          }
+          .slide[data-slide-key="qingdao-management-twin"] .header .page-sub {
+            font-size: 28px; font-weight: 500; line-height: 1.4; color: #fff; margin: 22px 0 0;
+          }
+          .slide[data-slide-key="qingdao-management-twin"] .demo-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 48px; height: 100%;
+            align-items: center; justify-items: center;
+          }
+          .slide[data-slide-key="qingdao-management-twin"] .demo-col {
+            display: flex; flex-direction: column;
+            align-items: center; gap: 16px;
+          }
+          .slide[data-slide-key="qingdao-management-twin"] .demo-iframe {
+            width: 360px; height: 780px;
+            border: 0; display: block;
+            border-radius: 44px;
+            clip-path: inset(0 round 44px);
+          }
+          .slide[data-slide-key="qingdao-management-twin"] .demo-caption {
+            font-size: 22px; font-weight: 700; color: #fff;
+            text-align: center; margin: 0; line-height: 1.4;
+          }
+          .slide[data-slide-key="qingdao-management-twin"] .demo-caption .sub {
+            display: block;
+            font-size: 18px; font-weight: 500;
+            color: #8CB0FF;
+            margin-top: 4px; letter-spacing: 0.02em;
+          }
+        </style>
+        <div class="wordmark"></div>
+        <div class="header">
+          <h2 class="title-zh" data-text-id="slide-15.title">青岛啤酒 · 管理者数字分身演示</h2>
+          <p class="page-sub" data-text-id="slide-15.sub">从费用审批到督办闭环 · 管理分身持续在线</p>
+        </div>
+        <div class="stage">
+          <div class="demo-grid">
+            <div class="demo-col">
+              <iframe class="demo-iframe" src="input/管理分身青岛啤酒/index.html"
+                loading="lazy" title="批阅伙伴"></iframe>
+              <p class="demo-caption" data-text-id="slide-15.left.cap">青啤审批伙伴<span class="sub">旺季费用审批 · AI 先批一轮</span></p>
+            </div>
+            <div class="demo-col">
+              <iframe class="demo-iframe" src="input/管理分身青岛啤酒/followup.html"
+                loading="lazy" title="督办全景图"></iframe>
+              <p class="demo-caption" data-text-id="slide-15.right.cap">督办全景图<span class="sub">上周决策今安在 · 卡点自动归因</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="slide-frame">
       <div class="slide" data-layout="image-text" data-accent="orange" data-screen-label="13 产品价值链跨部门协作" data-slide-key="sps-coord-pain">
         <div class="wordmark">飞书</div>
 <style>
@@ -8993,65 +9053,6 @@
       </div>
     </div>
 
-<div class="slide-frame">
-      <div class="slide" data-layout="content-2col" data-accent="blue" data-decor="blue-glow" data-screen-label="15 青啤管理分身" data-slide-key="qingdao-management-twin">
-        <style>
-          .slide[data-slide-key="qingdao-management-twin"] .stage { padding: 0; }
-          .slide[data-slide-key="qingdao-management-twin"] .header { text-align: left; }
-          .slide[data-slide-key="qingdao-management-twin"] .header .title-zh {
-            font-size: 44px; font-weight: 700; line-height: 1.18; color: #fff; margin: 0;
-          }
-          .slide[data-slide-key="qingdao-management-twin"] .header .page-sub {
-            font-size: 28px; font-weight: 500; line-height: 1.4; color: #fff; margin: 22px 0 0;
-          }
-          .slide[data-slide-key="qingdao-management-twin"] .demo-grid {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 48px; height: 100%;
-            align-items: center; justify-items: center;
-          }
-          .slide[data-slide-key="qingdao-management-twin"] .demo-col {
-            display: flex; flex-direction: column;
-            align-items: center; gap: 16px;
-          }
-          .slide[data-slide-key="qingdao-management-twin"] .demo-iframe {
-            width: 360px; height: 780px;
-            border: 0; display: block;
-            border-radius: 44px;
-            clip-path: inset(0 round 44px);
-          }
-          .slide[data-slide-key="qingdao-management-twin"] .demo-caption {
-            font-size: 22px; font-weight: 700; color: #fff;
-            text-align: center; margin: 0; line-height: 1.4;
-          }
-          .slide[data-slide-key="qingdao-management-twin"] .demo-caption .sub {
-            display: block;
-            font-size: 18px; font-weight: 500;
-            color: #8CB0FF;
-            margin-top: 4px; letter-spacing: 0.02em;
-          }
-        </style>
-        <div class="wordmark"></div>
-        <div class="header">
-          <h2 class="title-zh" data-text-id="slide-15.title">青岛啤酒 · 管理者数字分身演示</h2>
-          <p class="page-sub" data-text-id="slide-15.sub">从费用审批到督办闭环 · 管理分身持续在线</p>
-        </div>
-        <div class="stage">
-          <div class="demo-grid">
-            <div class="demo-col">
-              <iframe class="demo-iframe" src="input/管理分身青岛啤酒/index.html"
-                loading="lazy" title="批阅伙伴"></iframe>
-              <p class="demo-caption" data-text-id="slide-15.left.cap">青啤审批伙伴<span class="sub">旺季费用审批 · AI 先批一轮</span></p>
-            </div>
-            <div class="demo-col">
-              <iframe class="demo-iframe" src="input/管理分身青岛啤酒/followup.html"
-                loading="lazy" title="督办全景图"></iframe>
-              <p class="demo-caption" data-text-id="slide-15.right.cap">督办全景图<span class="sub">上周决策今安在 · 卡点自动归因</span></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
 <div class="slide-frame" data-page="16">
       <div class="slide" data-layout="section" data-screen-label="16 Section 02" data-slide-key="section-2-divider">
         <div class="wordmark is-mono"></div>
@@ -9500,6 +9501,7 @@
   font: 700 18px/1 var(--fs-font-cjk);
 }
 </style>
+
 <div class="slide-frame">
       <div class="slide" data-page="17" data-layout="content-2col" data-accent="blue" data-decor="blue-glow" data-screen-label="17 知识冰山" data-slide-key="knowledge-iceberg">
         <div class="wordmark"></div>
@@ -9618,6 +9620,187 @@
       </div>
     </div>
 
+
+<style data-inserted-slide-styles="story-268-recvgatuxsb8eh">
+/* ============================================================================
+ * One-pager case — `.story-case` content-2col override (frozen at v2)
+ *
+ * v2 (2026-05-03): both columns top-align with shared row height equal to
+ *   the LEFT text column's natural height (image is no longer taller than
+ *   the text). Magazine-spread feel; the image is cropped via cover to fit
+ *   the height the text dictates.
+ * ============================================================================
+ */
+
+.slide.story-case[data-layout="content-2col"] .grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  grid-template-rows: auto;          /* row sizes to content (was: 1fr → 770px) */
+  column-gap: 56px;
+  align-content: center;             /* center the auto-row vertically in stage */
+  align-items: stretch;              /* both cols share row height */
+}
+
+.slide.story-case .col-text {
+  display: flex; flex-direction: column;
+  gap: 28px;
+  min-width: 0;
+  /* removed v2: justify-content: center — content top-aligns inside the col
+     so its first element (industry-tag) defines the shared row top edge */
+}
+
+.slide.story-case .industry-tag {
+  display: inline-flex; align-items: center; gap: 10px;
+  align-self: flex-start;
+  padding: 8px 16px;
+  border: 1px solid rgba(60, 127, 255, 0.45);
+  border-radius: 999px;
+  background: rgba(60, 127, 255, 0.10);
+  font: 600 18px/1 var(--fs-font-cjk);
+  color: var(--fs-blue);
+  letter-spacing: 0.06em;
+}
+.slide.story-case .industry-tag::before {
+  content: "";
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--fs-blue);
+}
+
+.slide.story-case .story-hook {
+  margin: 0;
+  font: 600 30px/1.45 var(--fs-font-cjk);
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: -0.005em;
+}
+.slide.story-case .story-hook .accent { color: var(--fs-teal); }
+
+.slide.story-case .story-arc {
+  display: flex; flex-direction: column;
+  gap: 18px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+}
+.slide.story-case .story-arc .row {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  column-gap: 20px;
+  align-items: baseline;
+}
+.slide.story-case .story-arc .lbl {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 4px 0 4px 14px;
+  font: 700 18px/1 var(--fs-font-cjk);
+  letter-spacing: 0.16em;
+  color: var(--fs-blue);
+  border-left: 3px solid var(--fs-blue);
+}
+.slide.story-case .story-arc .lbl.is-orange { color: #FE7F00; border-color: #FE7F00; }
+.slide.story-case .story-arc .lbl.is-teal   { color: var(--fs-teal); border-color: var(--fs-teal); }
+.slide.story-case .story-arc .lbl.is-violet { color: #9F6FF1; border-color: #9F6FF1; }
+.slide.story-case .story-arc p {
+  margin: 0;
+  font: 500 22px/1.55 var(--fs-font-cjk);
+  color: rgba(255, 255, 255, 0.86);
+}
+.slide.story-case .story-arc p .accent {
+  color: var(--fs-teal);
+  font-weight: 600;
+}
+
+.slide.story-case .col-visual {
+  display: flex; align-items: stretch; justify-content: stretch;
+  min-width: 0; min-height: 0;
+}
+/* The per-instance background-image / position / size is inlined via style=""
+   on the .scene-frame element so bundles can reference per-case filenames.
+   Everything else (frame chrome) lives here.
+
+   v2: removed `min-height: 680px` — frame stretches to row height which now
+   matches the left text column's natural height (top-aligned magazine spread).
+   The 16:9 illustration is cropped via background-size: cover. */
+.slide.story-case .scene-frame {
+  position: relative;
+  flex: 1; width: 100%;
+  min-height: 360px;                  /* floor for very-short cases (avoid degeneracy) */
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: rgba(8, 12, 24, 0.45);
+  background-repeat: no-repeat;
+  overflow: hidden;
+  box-shadow: 0 24px 64px -24px rgba(0, 0, 0, 0.65),
+              0 0 0 1px rgba(60, 127, 255, 0.16);
+}
+.slide.story-case .scene-frame .scene-media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #f7f8fb;
+}
+.slide.story-case .scene-frame .scene-cap {
+  position: absolute; left: 18px; bottom: 18px;
+  padding: 8px 14px;
+  background: rgba(8, 12, 24, 0.72);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  font: 500 16px/1.3 var(--fs-font-cjk);
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.04em;
+}
+</style>
+<div class="slide-frame">
+      <div class="slide story-case" data-layout="content-2col" data-accent="blue" data-decor="blue-glow" data-screen-label="19 元气森林 AI业务教练" data-slide-key="story-268-recvgatuxsb8eh" id="story-268-recvgatuxsb8eh">
+        <div class="wordmark"></div>
+        <div class="header">
+          <h2 class="title-zh" data-text-id="slide-268.title">元气森林：AI业务教练沉淀经验赋能一线业务员</h2>
+        </div>
+        <div class="stage">
+          <div class="grid">
+            <div class="col-text">
+              <span class="industry-tag" data-text-id="slide-268.industry">企业隐性业务经验难沉淀 · 客户案例</span>
+
+              <p class="story-hook">
+                <span data-text-id="slide-268.hook.lead">三千业务员原问问题耗时间，</span><span class="accent" data-text-id="slide-268.hook.accent">练随问随答一年省万余小时</span><span data-text-id="slide-268.hook.tail">。</span>
+              </p>
+
+              <div class="story-arc">
+                <div class="row">
+                  <span class="lbl">痛点</span>
+                  <p data-text-id="slide-268.arc.pain">企业隐性业务经验难沉淀，新人成长依赖师傅，效率低成本高</p>
+                </div>
+                <div class="row">
+                  <span class="lbl is-orange">冲突</span>
+                  <p data-text-id="slide-268.arc.conflict">元气森林有3000多名一线业务员，企业80%的业务经验都是老员工的隐性经验，原来靠师徒制传承，范围小效率低，新人遇到问题要找领导同事询问，每次问题平均耗3分钟，积年累月浪费大量时间</p>
+                </div>
+                <div class="row">
+                  <span class="lbl is-teal">解法</span>
+                  <p data-text-id="slide-268.arc.solution">打造了AI销售伙伴“小森哥”，把企业显性SOP和老员工的隐性经验全部沉淀进AI，一线业务员任何产品、流程问题都可以随时问，测算后一年总共节省了1万多个小时的时间，新人成长不用再碰运气靠好师傅，随时能拿到权威的经验指导</p>
+                </div>
+                <div class="row">
+                  <span class="lbl is-violet">价值</span>
+                  <p>
+                    <span data-text-id="slide-268.arc.value.lead">沉淀企业隐形经验，赋能一线，</span><span class="accent" data-text-id="slide-268.arc.value.accent">降低人才培养时间成本</span><span data-text-id="slide-268.arc.value.tail">。</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-visual">
+              <div class="scene-frame yuanqi-gif-frame" role="img" aria-label="小森哥 AI 销售伙伴聊天动图">
+                <img class="scene-media" src="assets/yuanqi-xiaosenge-coach.gif" alt="小森哥 AI 销售伙伴聊天动图">
+                <span class="scene-cap" data-text-id="slide-268.scene.caption">现场 · 小森哥 AI 销售伙伴沉淀经验赋能一线</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="source-footer" data-text-id="slide-268.source">数据来源 · 客户访谈 · 飞书企业 AI 知识库内部口径</p>
+        <div class="footer">
+          <span data-text-id="slide-268.footer.brand">飞书企业 AI · 客户案例 · STORY 077</span>
+          <span class="pageno">01</span>
+        </div>
+      </div>
+    </div>
 <div class="slide-frame">
       <div class="slide" data-layout="content-2col" data-accent="blue" data-screen-label="22 青啤终端陈列直觉 · AI 复制" data-slide-key="qingdao-terminal-display-instinct">
         <div class="wordmark">飞书</div>
@@ -11410,371 +11593,11 @@
 </div>
       </div>
     </div>
-<div class="slide-frame">
-  <div class="slide"
-       data-layout="content-2col"
-       data-screen-label="28 数字员工四类框架"
-       data-slide-key="de-four-roles-framework"
-       data-page="de4">
-    <div class="wordmark"></div>
-    <div class="de-wrap">
-
-      <!-- 标题区 -->
-      <div class="de-header">
-        <h2 class="de-title" data-text-id="slide-60.title">未来酒饮企业的数字员工</h2>
-        <p class="de-sub" data-text-id="slide-60.sub">AI 时代，每家企业都将拥有四类不知疲倦的数字同事</p>
-      </div>
-
-      <!-- 2×2 卡片矩阵 -->
-      <div class="de-grid">
-
-        <!-- 卡片一：超级情报员（左上） -->
-        <div class="de-card">
-          <img class="de-avatar" src="assets/shared/digital_employee_avatars_50/08_east_asian_man_glasses_sweater.png" alt="超级情报员">
-          <h3 class="de-role" data-text-id="slide-60.c1.role">超级情报员</h3>
-          <p class="de-oneliner" data-text-id="slide-60.c1.oneliner">7×24 小时扫描世界，把外部信号变成内部决策输入</p>
-          <p class="de-logic" data-text-id="slide-60.c1.logic">世界上 99% 的有效信息已经公开，缺的是不间断扫描 + 过滤 + 归因的能力</p>
-          <div class="de-tags">
-            <span class="de-tag" data-text-id="slide-60.c1.t1">竞品监控</span>
-            <span class="de-tag" data-text-id="slide-60.c1.t2">政策雷达</span>
-            <span class="de-tag" data-text-id="slide-60.c1.t3">客户情报</span>
-            <span class="de-tag" data-text-id="slide-60.c1.t4">市场异动</span>
-          </div>
-        </div>
-
-        <!-- 卡片二：超级操盘员（右上） -->
-        <div class="de-card">
-          <img class="de-avatar" src="assets/shared/digital_employee_avatars_50/19_latin_man_slick_suit.png" alt="超级操盘员">
-          <h3 class="de-role" data-text-id="slide-60.c2.role">超级操盘员</h3>
-          <p class="de-oneliner" data-text-id="slide-60.c2.oneliner">在策略框架内，对每个具体场景做出最优执行判断</p>
-          <p class="de-logic" data-text-id="slide-60.c2.logic">总部定大脑（策略框架），AI 做小脑（千百万次本地执行判断）——去中心化才靠谱</p>
-          <div class="de-tags">
-            <span class="de-tag" data-text-id="slide-60.c2.t1">动态定价</span>
-            <span class="de-tag" data-text-id="slide-60.c2.t2">千店选品</span>
-            <span class="de-tag" data-text-id="slide-60.c2.t3">千人千面营销</span>
-            <span class="de-tag" data-text-id="slide-60.c2.t4">个性化话术</span>
-          </div>
-        </div>
-
-        <!-- 卡片三：超级创作员（左下） -->
-        <div class="de-card">
-          <img class="de-avatar" src="assets/shared/digital_employee_avatars_50/25_east_asian_woman_navy_blazer.png" alt="超级创作员">
-          <h3 class="de-role" data-text-id="slide-60.c3.role">超级创作员</h3>
-          <p class="de-oneliner" data-text-id="slide-60.c3.oneliner">以无限并发的方式产出内容、方案、物料——把人力从重复生产中解放</p>
-          <p class="de-logic" data-text-id="slide-60.c3.logic">创作的本质是"在约束条件内的最优生成"，目标 / 调性 / 场景给定后 AI 可无限并发</p>
-          <div class="de-tags">
-            <span class="de-tag" data-text-id="slide-60.c3.t1">营销物料</span>
-            <span class="de-tag" data-text-id="slide-60.c3.t2">业务提案</span>
-            <span class="de-tag" data-text-id="slide-60.c3.t3">产品方案</span>
-            <span class="de-tag" data-text-id="slide-60.c3.t4">管理报告</span>
-          </div>
-        </div>
-
-        <!-- 卡片四：超级守护员（右下） -->
-        <div class="de-card">
-          <img class="de-avatar" src="assets/shared/digital_employee_avatars_50/29_east_asian_man_mature_vest.png" alt="超级守护员">
-          <h3 class="de-role" data-text-id="slide-60.c4.role">超级守护员</h3>
-          <p class="de-oneliner" data-text-id="slide-60.c4.oneliner">把一切有标准的检查工作接管，从"抽检 + 事后"变成"全检 + 实时"</p>
-          <p class="de-logic" data-text-id="slide-60.c4.logic">一切有标准的判断，本质是"对照标准"——不需要人，需要 7×24 不疲倦地对照</p>
-          <div class="de-tags">
-            <span class="de-tag" data-text-id="slide-60.c4.t1">合规审查</span>
-            <span class="de-tag" data-text-id="slide-60.c4.t2">服务质检</span>
-            <span class="de-tag" data-text-id="slide-60.c4.t3">仪容仪表</span>
-            <span class="de-tag" data-text-id="slide-60.c4.t4">反舞弊监控</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- 底部总结语 -->
-      <div class="de-footer">
-        <p data-text-id="slide-60.footer.l1">过去的企业用规则管理规模，未来的企业用 AI 管理复杂度——</p>
-        <p data-text-id="slide-60.footer.l2">情报员看世界，操盘员判本地，创作员造内容，守护员守边界。</p>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<style>
-  /* === slide-34 · 超级创作员 · 10× 内容产出 + 夏季夜经济示例(merged) === */
-  /* R20 ladder: {14,18,22,28,38,44,52,56,64,88,100,132,160}; body ≥22; chrome ≥14 */
-  .slide[data-page="creator-merged"] .stage {
-    display: grid;
-    grid-template-rows: auto auto auto 1fr;
-    gap: 14px;
-    padding-top: 0;
-  }
-
-  /* ── 顶部 thesis 行 ── */
-  .slide[data-page="creator-merged"] .cm-thesis {
-    display: flex; align-items: center; gap: 22px;
-    padding: 14px 22px;
-    border-radius: 12px;
-    background: linear-gradient(90deg, rgba(159,111,241,0.18), rgba(159,111,241,0.05));
-    border: 1px solid rgba(159,111,241,0.35);
-  }
-  .slide[data-page="creator-merged"] .cm-stat {
-    font: 800 52px/1 Georgia,"Times New Roman",serif;
-    color: rgba(196,150,255,0.95);
-    letter-spacing: -0.02em;
-  }
-  .slide[data-page="creator-merged"] .cm-stat-label {
-    font: 700 18px/1.3 var(--fs-font-cjk);
-    color: #fff;
-  }
-  .slide[data-page="creator-merged"] .cm-sub {
-    flex: 1;
-    font: 400 22px/1.45 var(--fs-font-cjk);
-    color: rgba(255,255,255,0.82);
-  }
-  .slide[data-page="creator-merged"] .cm-sub b {
-    color: rgba(196,150,255,0.98); font-weight: 600;
-  }
-
-  /* ── 中部 6 步流程 ── */
-  .slide[data-page="creator-merged"] .cm-pipe {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 0;
-  }
-  .slide[data-page="creator-merged"] .cm-step {
-    position: relative;
-    padding: 14px 16px;
-    background: rgba(159,111,241,0.07);
-    border: 1px solid rgba(159,111,241,0.30);
-    display: flex; flex-direction: column; gap: 6px;
-  }
-  .slide[data-page="creator-merged"] .cm-step:first-child { border-radius: 12px 0 0 12px; }
-  .slide[data-page="creator-merged"] .cm-step:last-child  { border-radius: 0 12px 12px 0; }
-  .slide[data-page="creator-merged"] .cm-step + .cm-step { margin-left: -1px; }
-  .slide[data-page="creator-merged"] .cm-num {
-    font: 700 14px/1 var(--fs-font-cjk);
-    letter-spacing: 0.14em;
-    color: rgba(196,150,255,0.80);
-  }
-  .slide[data-page="creator-merged"] .cm-step-title {
-    margin: 0;
-    font: 700 22px/1.25 var(--fs-font-cjk);
-    color: #fff;
-  }
-  .slide[data-page="creator-merged"] .cm-step:not(:last-child)::after {
-    content: "›";
-    position: absolute; right: -10px; top: 50%;
-    transform: translateY(-50%);
-    font: 700 28px/1 var(--fs-font-cjk);
-    color: rgba(159,111,241,0.75);
-    z-index: 2; pointer-events: none;
-  }
-
-  /* ── 案例分隔 eyebrow ── */
-  .slide[data-page="creator-merged"] .cm-case-divider {
-    display: flex; align-items: center; gap: 14px;
-    margin-top: 4px;
-  }
-  .slide[data-page="creator-merged"] .cm-case-divider::before,
-  .slide[data-page="creator-merged"] .cm-case-divider::after {
-    content: ""; flex: 1; height: 1px;
-    background: rgba(255,255,255,0.14);
-  }
-  .slide[data-page="creator-merged"] .cm-case-label {
-    font: 700 18px/1.3 var(--fs-font-cjk);
-    letter-spacing: 0.16em;
-    color: rgba(196,150,255,0.92);
-  }
-  .slide[data-page="creator-merged"] .cm-case-label .cm-case-title {
-    font: 700 22px/1.3 var(--fs-font-cjk);
-    color: #fff; letter-spacing: 0; margin-left: 14px;
-  }
-
-  /* ── 底部案例 zone ── */
-  .slide[data-page="creator-merged"] .cm-case {
-    display: grid;
-    grid-template-columns: 340px 1fr;
-    gap: 24px;
-    min-height: 0;
-  }
-  .slide[data-page="creator-merged"] .cm-visual {
-    display: flex; flex-direction: column; gap: 12px; min-height: 0;
-  }
-  .slide[data-page="creator-merged"] .cm-imgholder {
-    aspect-ratio: 4 / 5;
-    border-radius: 12px;
-    overflow: hidden;
-    background:
-      url('input/image_w1024_h1280_青岛啤酒夏日啤酒节海报.png') center/cover no-repeat,
-      linear-gradient(180deg, rgba(159,111,241,0.10), rgba(159,111,241,0.04));
-    box-shadow: 0 0 0 1px rgba(159,111,241,0.35) inset;
-  }
-  .slide[data-page="creator-merged"] .cm-imgholder .ph-tag,
-  .slide[data-page="creator-merged"] .cm-imgholder .ph-hint { display: none; }
-  .slide[data-page="creator-merged"] .cm-concept {
-    padding: 12px 18px;
-    border-radius: 10px;
-    background: linear-gradient(90deg, rgba(159,111,241,0.20), rgba(159,111,241,0.05));
-    border-left: 4px solid rgba(196,150,255,0.85);
-  }
-  .slide[data-page="creator-merged"] .cm-quote {
-    margin: 0;
-    font: 600 22px/1.45 var(--fs-font-cjk);
-    color: #fff;
-  }
-  .slide[data-page="creator-merged"] .cm-quote em {
-    font-style: normal; color: rgba(196,150,255,0.98);
-  }
-
-  /* 案例右栏 · 3 条主线卡 */
-  .slide[data-page="creator-merged"] .cm-lines {
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: 12px; min-height: 0;
-  }
-  .slide[data-page="creator-merged"] .cm-line {
-    padding: 12px 18px;
-    border-radius: 12px;
-    background: rgba(159,111,241,0.07);
-    border: 1px solid rgba(159,111,241,0.32);
-    display: flex; flex-direction: column; gap: 6px;
-  }
-  .slide[data-page="creator-merged"] .cm-line .l-head {
-    display: flex; align-items: baseline; gap: 12px;
-  }
-  .slide[data-page="creator-merged"] .cm-line .l-num {
-    font: 700 28px/1 Georgia,"Times New Roman",serif;
-    color: rgba(196,150,255,0.90);
-  }
-  .slide[data-page="creator-merged"] .cm-line .l-name {
-    margin: 0;
-    font: 700 22px/1.25 var(--fs-font-cjk);
-    color: #fff;
-  }
-  .slide[data-page="creator-merged"] .cm-line .l-tag {
-    font: 700 14px/1 var(--fs-font-cjk);
-    letter-spacing: 0.12em;
-    padding: 4px 10px; border-radius: 999px;
-    background: rgba(159,111,241,0.25);
-    color: rgba(196,150,255,0.98);
-  }
-  .slide[data-page="creator-merged"] .cm-line .l-body {
-    margin: 0;
-    font: 400 22px/1.5 var(--fs-font-cjk);
-    color: rgba(255,255,255,0.86);
-  }
-  .slide[data-page="creator-merged"] .cm-line .l-body b {
-    color: #fff; font-weight: 600;
-  }
-</style>
-
-<div class="slide-frame">
-  <div class="slide"
-       data-layout="content-2col"
-       data-accent="violet"
-       data-decor="violet-glow"
-       data-screen-label="34 超级创作员"
-       data-slide-key="qingdao-super-creator-merged"
-       data-page="creator-merged">
-    <div class="wordmark"></div>
-    <div class="header">
-      <h2 class="title-zh" data-text-id="slide-creator-merged.title">超级创作员 · 10× 效率产出营销内容</h2>
-    </div>
-    <div class="stage">
-
-      <!-- 顶部 thesis -->
-      <div class="cm-thesis">
-        <span class="cm-stat">10×</span>
-        <span class="cm-stat-label">内容产出提速<br>人力成本不变</span>
-        <span class="cm-sub" data-text-id="slide-creator-merged.sub">品牌档案 → <b>抖音脚本 + 小红书笔记 + 海报文案</b> · 全自动端到端 · <b>21 min</b> 出全套</span>
-      </div>
-
-      <!-- 6 步流程(只留标题) -->
-      <div class="cm-pipe">
-        <div class="cm-step">
-          <span class="cm-num">STEP 01</span>
-          <h3 class="cm-step-title" data-text-id="slide-creator-merged.s1.title">品牌产品档案</h3>
-        </div>
-        <div class="cm-step">
-          <span class="cm-num">STEP 02</span>
-          <h3 class="cm-step-title" data-text-id="slide-creator-merged.s2.title">客群画像</h3>
-        </div>
-        <div class="cm-step">
-          <span class="cm-num">STEP 03</span>
-          <h3 class="cm-step-title" data-text-id="slide-creator-merged.s3.title">素材库构建</h3>
-        </div>
-        <div class="cm-step">
-          <span class="cm-num">STEP 04</span>
-          <h3 class="cm-step-title" data-text-id="slide-creator-merged.s4.title">4R 策略匹配</h3>
-        </div>
-        <div class="cm-step">
-          <span class="cm-num">STEP 05</span>
-          <h3 class="cm-step-title" data-text-id="slide-creator-merged.s5.title">每日热点过滤</h3>
-        </div>
-        <div class="cm-step">
-          <span class="cm-num">STEP 06</span>
-          <h3 class="cm-step-title" data-text-id="slide-creator-merged.s6.title">双平台产出</h3>
-        </div>
-      </div>
-
-      <!-- 案例分隔 -->
-      <div class="cm-case-divider">
-        <span class="cm-case-label" data-text-id="slide-creator-merged.case.eyebrow">案例 · 青岛啤酒夏季夜经济<span class="cm-case-title" data-text-id="slide-creator-merged.case.title">《下班第一杯,敬城市夜晚》— 即饮场景整合营销</span></span>
-      </div>
-
-      <!-- 底部案例 zone -->
-      <div class="cm-case">
-
-        <!-- 左:配图 + 主张 -->
-        <div class="cm-visual">
-          <div class="cm-imgholder" aria-label="16:9 配图占位">
-            <span class="ph-tag" data-text-id="slide-creator-merged.ph.tag">16 : 9 配 图 位</span>
-            <span class="ph-hint" data-text-id="slide-creator-merged.ph.hint">消费者在夜宵街、观赛酒吧、海边啤酒节的「举杯高光」瞬间</span>
-          </div>
-          <div class="cm-concept">
-            <p class="cm-quote" data-text-id="slide-creator-merged.concept"><em>"下班后的第一杯,才是这座城市真正开场的声音。"</em></p>
-          </div>
-        </div>
-
-        <!-- 右:3 条主线 -->
-        <div class="cm-lines">
-          <div class="cm-line">
-            <div class="l-head">
-              <span class="l-num">01</span>
-              <h3 class="l-name" data-text-id="slide-creator-merged.l1.name">情绪向 · 城市夜归短片</h3>
-              <span class="l-tag" data-text-id="slide-creator-merged.l1.tag">流量必做</span>
-            </div>
-            <p class="l-body" data-text-id="slide-creator-merged.l1.body"><b>18:00 写字楼灯灭</b> / <b>20:00 烧烤摊起烟</b> / <b>22:00 球赛开场</b>,把青岛啤酒变成下班后第一杯的城市暗号</p>
-          </div>
-          <div class="cm-line">
-            <div class="l-head">
-              <span class="l-num">02</span>
-              <h3 class="l-name" data-text-id="slide-creator-merged.l2.name">场景向 · 3 类高频即饮场景</h3>
-              <span class="l-tag" data-text-id="slide-creator-merged.l2.tag">转化必做</span>
-            </div>
-            <p class="l-body" data-text-id="slide-creator-merged.l2.body"><b>朋友局</b>(烧烤 + 小龙虾) · <b>观赛局</b>(酒吧 / KTV) · <b>海边局</b>(音乐节 / 夜市外摆)</p>
-          </div>
-          <div class="cm-line">
-            <div class="l-head">
-              <span class="l-num">03</span>
-              <h3 class="l-name" data-text-id="slide-creator-merged.l3.name">转化向 · 终端联动 + 达人</h3>
-              <span class="l-tag" data-text-id="slide-creator-merged.l3.tag">破圈必做</span>
-            </div>
-            <p class="l-body" data-text-id="slide-creator-merged.l3.body"><b>#下班第一杯青岛啤酒</b> + 联动 <b>3-5 位</b> 本地生活达人,带用户走夜宵街、观赛酒吧、海边啤酒节路线发 vlog</p>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-
 <style>
   /* === guardian-case · 超级守护员 · 罗莱家纺案例 === */
   .slide[data-page="guardian-case"] .stage {
     display: flex; flex-direction: column; gap: 14px; justify-content: center;
   }
-  /* 行业标签 + 钩子 */
   .slide[data-page="guardian-case"] .meta-row {
     display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
   }
@@ -11791,7 +11614,6 @@
   .slide[data-page="guardian-case"] .hook .accent {
     color: #33D6C0; font-weight: 700;
   }
-  /* KPI 条 */
   .slide[data-page="guardian-case"] .kpi-strip {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
   }
@@ -11821,7 +11643,6 @@
   .slide[data-page="guardian-case"] .kd {
     font: 500 18px/1.3 var(--fs-font-cjk); color: rgba(255,255,255,0.75);
   }
-  /* 正文区 · 叙事 + 占位图 */
   .slide[data-page="guardian-case"] .case-body {
     display: grid; grid-template-columns: 1fr 1.1fr; gap: 22px; align-items: stretch;
   }
@@ -11844,12 +11665,10 @@
     margin: 0; font: 500 22px/1.35 var(--fs-font-cjk); color: rgba(255,255,255,0.95);
   }
   .slide[data-page="guardian-case"] .arc-row p strong { color: #33D6C0; font-weight: 700; }
-  /* 配图占位 */
   .slide[data-page="guardian-case"] .col-visual {
     border-radius: 16px; overflow: hidden;
     border: 1px solid rgba(51,214,192,0.25);
   }
-  /* 结尾呼应 */
   .slide[data-page="guardian-case"] .closing-strip {
     padding: 12px 22px; border-radius: 12px;
     background: linear-gradient(90deg, rgba(51,214,192,0.16), rgba(51,214,192,0.04));
@@ -11860,7 +11679,6 @@
     color: #33D6C0; font-weight: 800; letter-spacing: 0.01em;
   }
 </style>
-
 <div class="slide-frame">
   <div class="slide"
        data-layout="content-2col"
