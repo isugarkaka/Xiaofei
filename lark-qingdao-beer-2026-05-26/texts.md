@@ -165,13 +165,13 @@ num: 01.
 title: 管理者数字分身
 lede: 给管理者减负,提高管理半径
 
-## slide-12 (content-2col) — 12 AI 时代 · 管理分身
-
 ## slide-13 (content-2col) — 12 让 AI 更懂你
 
 ## slide-14 (content-2col) — 13 从每场会议
 
 ## slide-15 (content-2col) — 14 代我评审
+
+## slide-12 (content-2col) — 12 AI 时代 · 管理分身
 
 ## slide-16 (content-2col) — 16 构建管理分身 · 4 步飞轮
 
@@ -269,7 +269,7 @@ action-03.inferred: 不是卖不动,是冷链补货跟不上。<span class="hl">
 ## slide-49 (content-2col) — 36 超级质检员 · 案例
 
 ## slide-68 (content-2col) — 36B 飞鹤鹤巡 AI 巡检
-title: 飞鹤鹤巡 · 重塑 AI 巡检 — 3 天上线,年节约 331 人天
+title: 超级守护员：飞鹤鹤巡重塑AI巡检流程
 industry: 乳制品工厂 · EHS / 设备巡检 · 客户案例
 hook.lead: 把厂区摄像头接进 
 hook.k1: aily
