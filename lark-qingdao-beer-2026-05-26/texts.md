@@ -262,11 +262,7 @@ action-03.inferred: 不是卖不动,是冷链补货跟不上。<span class="hl">
 
 ## slide-44 (content-2col) — 28 数字员工四类框架
 
-## slide-45 (content-2col) — 31 旺季渠道情报站
-
 ## slide-46 (content-3up) — 32 五大情报通道
-
-## slide-47 (content-2col) — 33 超级操作员
 
 ## slide-48 (content-2col) — 34 超级创作员
 
