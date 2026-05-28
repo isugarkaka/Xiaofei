@@ -1001,14 +1001,8 @@
 
     .ops .panel-body {
       grid-template-columns: 1fr;
-      grid-template-rows: 62px repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(0, 1fr));
       gap: 10px;
-    }
-    .ops-summary {
-      min-height: 0;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
     }
     .ops-section {
       min-height: 0;
@@ -1048,15 +1042,28 @@
     .ops-trend {
       min-height: 0;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 122px;
-      gap: 8px;
-      align-items: center;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      align-items: stretch;
     }
-    .ops-trend .multi-line { min-height: 56px; }
-    .ops-trend .series-legend {
+    .ops-trend-card {
+      min-width: 0;
+      min-height: 0;
       display: grid;
-      gap: 7px;
-      font-size: 11px;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 3px;
+    }
+    .ops-trend .multi-line { min-height: 54px; }
+    .ops-trend-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: rgba(255,255,255,0.88);
+      font: 760 11px/1.1 var(--fs-font-cjk);
+    }
+    .ops-trend-title span:last-child {
+      color: rgba(255,255,255,0.60);
+      font: 600 10px/1 var(--fs-font-cjk);
     }
     .page {
       grid-template-rows: 72px minmax(0, 1fr);
@@ -1376,10 +1383,6 @@
                 <span class="panel-note" data-text-id="slide-01.section.ops.note">发布后是否持续有效、好用、有反馈闭环</span>
               </div>
               <div class="panel-body">
-                <div class="ops-summary">
-                  <div class="metric-card"><div><span class="name" data-text-id="slide-01.ops.solve-rate.name">问题解决率</span><div class="val" data-text-id="slide-01.ops.solve-rate.value">87.3%</div></div><span class="delta" data-text-id="slide-01.ops.solve-rate.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+11.4%</span></div>
-                  <div class="metric-card"><div><span class="name" data-text-id="slide-01.ops.quality-standard.name">质量标准达成率</span><div class="val" data-text-id="slide-01.ops.quality-standard.value">91.2%</div></div><span class="delta" data-text-id="slide-01.ops.quality-standard.delta"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/><path d="M12 8v12"/></svg>+5.6%</span></div>
-                </div>
                 <div class="ops-section">
                   <div class="section-chip" data-text-id="slide-01.ops.incident.title">incident <span>好用度与问题闭环</span></div>
                   <div class="metric-row">
@@ -1388,14 +1391,19 @@
                     <div class="metric-card"><div><span class="name" data-text-id="slide-01.ops.avg-time.name">平均解决时长变化</span><div class="val" data-text-id="slide-01.ops.avg-time.value">-22.5%</div></div><span class="delta is-down" data-text-id="slide-01.ops.avg-time.delta">18.6h</span></div>
                   </div>
                   <div class="ops-trend">
-                    <svg class="multi-line" viewBox="0 0 360 86" aria-label="工单解决率和平均解决时长变化">
-                      <path class="grid" d="M10,18 H350 M10,44 H350 M10,70 H350"/>
-                      <path class="s4" d="M14,68 C66,60 112,52 160,44 C218,34 270,25 346,16"/>
-                      <path class="s2" d="M14,20 C66,26 116,34 164,42 C222,54 278,62 346,72"/>
-                    </svg>
-                    <div class="series-legend">
-                      <span data-text-id="slide-01.ops.incident.legend.solve"><i class="legend-line" style="--c:var(--fs-green)"></i>工单解决率</span>
-                      <span data-text-id="slide-01.ops.incident.legend.time"><i class="legend-line" style="--c:var(--fs-teal)"></i>平均时长</span>
+                    <div class="ops-trend-card">
+                      <div class="ops-trend-title"><span data-text-id="slide-01.ops.incident.solve.title">工单解决率</span><span data-text-id="slide-01.ops.incident.solve.state">缓慢上升</span></div>
+                      <svg class="multi-line" viewBox="0 0 250 76" aria-label="工单解决率趋势">
+                        <path class="grid" d="M10,16 H240 M10,38 H240 M10,60 H240"/>
+                        <path class="s4" d="M12,58 C52,54 86,49 124,43 C166,36 202,30 238,22"/>
+                      </svg>
+                    </div>
+                    <div class="ops-trend-card">
+                      <div class="ops-trend-title"><span data-text-id="slide-01.ops.incident.time.title">平均解决时长</span><span data-text-id="slide-01.ops.incident.time.state">缓慢下降</span></div>
+                      <svg class="multi-line" viewBox="0 0 250 76" aria-label="平均解决时长趋势">
+                        <path class="grid" d="M10,16 H240 M10,38 H240 M10,60 H240"/>
+                        <path class="s2" d="M12,20 C54,25 88,31 126,38 C166,45 202,52 238,58"/>
+                      </svg>
                     </div>
                   </div>
                 </div>
@@ -1407,14 +1415,19 @@
                     <div class="metric-card"><div><span class="name" data-text-id="slide-01.ops.response-speed.name">需求响应速度</span><div class="val" data-text-id="slide-01.ops.response-speed.value">1.8d</div></div><span class="delta is-down" data-text-id="slide-01.ops.response-speed.delta">-16.7%</span></div>
                   </div>
                   <div class="ops-trend">
-                    <svg class="multi-line" viewBox="0 0 360 86" aria-label="需求响应速度和知识上线速度">
-                      <path class="grid" d="M10,18 H350 M10,44 H350 M10,70 H350"/>
-                      <path class="s1" d="M14,22 C70,28 116,36 164,44 C226,54 278,62 346,70"/>
-                      <path class="s3" d="M14,72 C70,64 120,56 166,48 C224,38 280,28 346,18"/>
-                    </svg>
-                    <div class="series-legend">
-                      <span data-text-id="slide-01.ops.request.legend.response"><i class="legend-line" style="--c:var(--fs-blue)"></i>需求响应速度</span>
-                      <span data-text-id="slide-01.ops.request.legend.online"><i class="legend-line" style="--c:var(--fs-orange)"></i>知识上线速度</span>
+                    <div class="ops-trend-card">
+                      <div class="ops-trend-title"><span data-text-id="slide-01.ops.request.response.title">需求响应速度</span><span data-text-id="slide-01.ops.request.response.state">缓慢上升</span></div>
+                      <svg class="multi-line" viewBox="0 0 250 76" aria-label="需求响应速度趋势">
+                        <path class="grid" d="M10,16 H240 M10,38 H240 M10,60 H240"/>
+                        <path class="s1" d="M12,58 C50,54 82,50 120,44 C162,38 198,31 238,24"/>
+                      </svg>
+                    </div>
+                    <div class="ops-trend-card">
+                      <div class="ops-trend-title"><span data-text-id="slide-01.ops.request.online.title">知识上线速度</span><span data-text-id="slide-01.ops.request.online.state">上升后持平</span></div>
+                      <svg class="multi-line" viewBox="0 0 250 76" aria-label="知识上线速度趋势">
+                        <path class="grid" d="M10,16 H240 M10,38 H240 M10,60 H240"/>
+                        <path class="s3" d="M12,58 C48,48 80,35 118,28 C154,22 194,22 238,22"/>
+                      </svg>
                     </div>
                   </div>
                 </div>
