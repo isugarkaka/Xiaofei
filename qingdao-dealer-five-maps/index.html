@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>经销商的画像,藏在一次次拜访的累积里</title>
+<link rel="stylesheet" href="https://isugarkaka.github.io/Xiaofei/lark-qingdao-beer-2026-05-26/assets/feishu-deck.css">
+<style>
+.slide[data-slide-key="ks-dealer-five-maps-demo"] .header {
+  position: absolute;
+  top: 72px;
+  left: 96px;
+  right: 96px;
+  z-index: 2;
+}
+.slide[data-slide-key="ks-dealer-five-maps-demo"] .header .title-zh {
+  margin: 0;
+  font: 800 42px/1.2 var(--fs-font-cjk);
+  color: #fff;
+}
+.slide[data-slide-key="ks-dealer-five-maps-demo"] .stage {
+  position: absolute;
+  left: 96px;
+  right: 96px;
+  top: 160px;
+  bottom: 72px;
+  display: block;
+}
+.slide[data-slide-key="ks-dealer-five-maps-demo"] .iframe-wrap {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(60,127,255,0.30);
+  background: #050814;
+}
+.slide[data-slide-key="ks-dealer-five-maps-demo"] iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+  background: #050814;
+}
+</style>
+</head>
+<body>
+<main class="deck" data-mode="present" data-js-ready="true">
+  <div class="slide-frame is-current">
+    <div class="slide" data-layout="iframe-embed" data-screen-label="23 经销商画像 · 五张地图 demo" data-slide-key="ks-dealer-five-maps-demo">
+      <div class="wordmark">飞书</div>
+      <div class="header">
+        <h2 class="title-zh">经销商的画像,藏在一次次拜访的累积里</h2>
+      </div>
+      <div class="stage">
+        <div class="iframe-wrap">
+          <iframe src="dealer-five-maps-system/index.html" loading="eager" title="经销商管理 五张地图 interactive demo"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+function resizeSlide() {
+  const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+  document.documentElement.style.setProperty("--fs-scale", String(scale));
+}
+window.addEventListener("resize", resizeSlide, { passive: true });
+resizeSlide();
+</script>
+</body>
+</html>
