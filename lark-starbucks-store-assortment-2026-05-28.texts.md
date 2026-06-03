@@ -40,5 +40,5 @@ step-03.num: 03
 step-03.title: 总部反馈复制
 step-03.body: 总部识别有效调整，给门店打场景标签，把策略复制到相似门店并持续回流训练。
 
-## slide-03 (iframe-embed) — 03 系统原型 Demo
-title: 系统原型 Demo：门店备货闭环工作台
+## slide-03 (iframe-embed) — 03 门店备货工作台
+title: 门店备货工作台
