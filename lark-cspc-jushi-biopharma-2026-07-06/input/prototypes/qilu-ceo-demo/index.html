@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>经营督办分身 · 巨石生物</title>
+<style>
+:root{
+  --rail:#f9f9f9;
+  --bg:#ffffff;
+  --surf:#ffffff;
+  --card:#ffffff;
+  --card-2:#f5f6f7;
+  --surf-3:#f2f3f5;
+  --line:#1f23291a;
+  --line-2:#1f232912;
+  --ink:#1f2329; --ink-2:#646a73; --ink-3:#8f959e; --ink-4:#bbbfc4;
+  --blue:#3370ff; --blue-press:#245bdb; --blue-active:#3370ff;
+  --blue-08:#3370ff14; --blue-12:#3370ff24; --blue-50:#3370ff0f;
+  --teal:#34c724; --teal-ink:#2ea121; --teal-bg:#34c7241f;
+  --orange:#ff8800; --orange-ink:#e57600; --orange-bg:#ff88001f;
+  --red:#f54a45; --red-ink:#d83931; --red-bg:#f54a451f;
+  --font:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","Helvetica Neue",Arial,system-ui,sans-serif;
+  --r-sm:6px; --r-md:8px; --r-lg:12px; --r-pill:999px;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{font-family:var(--font);font-size:16px;line-height:1.5;color:var(--ink);background:var(--bg);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow:hidden;
+  font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;}
+button{font:inherit;border:none;background:none;cursor:pointer;color:inherit;}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;}
+img{display:block;}
+svg.uic{width:18px;height:18px;display:block;flex:none;}
+::-webkit-scrollbar{width:10px;height:10px;}
+::-webkit-scrollbar-thumb{background:#1f232924;border-radius:6px;border:3px solid transparent;background-clip:padding-box;}
+::-webkit-scrollbar-thumb:hover{background:#1f232940;background-clip:padding-box;}
+
+/* twin avatar (real photo of 何嘉, reused for the bot everywhere) */
+.tw-av{background-image:url(data:image/jpeg;base64,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);background-size:cover;background-position:center top;
+  border-radius:10px;width:40px;height:40px;flex-shrink:0;display:block;}
+
+/* ===== App grid ===== */
+.app{display:grid;grid-template-columns:56px minmax(0,1fr) 0px;height:100vh;min-width:1180px;
+  transition:grid-template-columns 420ms var(--ease);background:var(--bg);}
+.app.open{grid-template-columns:56px minmax(430px,1fr) 472px;}
+
+/* ===== Rail ===== */
+.rail{background:#f9f9f9;border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;padding:12px 0 14px;gap:10px;}
+.rail__home{width:38px;height:38px;border-radius:10px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;cursor:pointer;}
+.rail__home img{width:24px;height:auto;}
+.rail__sep{width:22px;height:1px;background:var(--line);margin:1px 0;}
+.rail__app{width:40px;height:40px;border-radius:11px;overflow:hidden;cursor:pointer;opacity:.7;
+  transition:opacity .14s,background .14s;position:relative;display:grid;place-items:center;}
+.rail__app:hover{opacity:.92;}
+.rail__app.active{opacity:1;background:#1f23290d;}
+.rail__app.active::before{content:"";position:absolute;left:-12px;top:50%;transform:translateY(-50%);width:3px;height:20px;border-radius:0 3px 3px 0;background:var(--blue);}
+.rail__app .tw-av{width:36px;height:36px;border-radius:9px;}
+.rail__ws{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:16px;opacity:.9;cursor:pointer;transition:.14s;}
+.rail__ws:hover{opacity:1;}
+.rail__spacer{flex:1;}
+.rail__btn{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;color:var(--ink-3);position:relative;transition:.14s;}
+.rail__btn:hover{background:#1f23290d;color:var(--ink);}
+.rail__btn .uic{width:20px;height:20px;}
+.rail__btn .dot{position:absolute;top:7px;right:8px;width:7px;height:7px;border-radius:50%;background:var(--red);border:1.5px solid #f9f9f9;}
+.rail__me{width:36px;height:36px;border-radius:10px;background:var(--blue);display:grid;place-items:center;color:#fff;font-weight:600;font-size:15px;cursor:pointer;}
+
+/* ===== Chat ===== */
+.chat{display:flex;flex-direction:column;min-width:0;background:var(--surf);}
+.chat__head{height:62px;flex-shrink:0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;padding:0 22px;}
+.chat__head .tw-av{width:40px;height:40px;}
+.chat__title{min-width:0;}
+.chat__title .nm{display:flex;align-items:center;gap:8px;}
+.chat__title .nm b{font-size:18.5px;font-weight:600;color:var(--ink);}
+.chat__title .nm .robot{font-size:12.5px;font-weight:600;color:var(--orange-ink);background:var(--orange-bg);padding:1px 7px;border-radius:var(--r-sm);}
+.chat__title .nm .pres{width:8px;height:8px;border-radius:50%;background:var(--teal);border:2px solid #fff;}
+.chat__title .sub{font-size:14px;color:var(--ink-3);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.chat__spacer{flex:1;}
+.chat__tools{display:flex;gap:2px;}
+.htool{width:34px;height:34px;border-radius:7px;color:var(--ink-2);display:grid;place-items:center;transition:.12s;}
+.htool:hover{background:var(--surf-3);color:var(--ink);}
+.htool .uic{width:18px;height:18px;}
+
+.chat__tabs{display:flex;align-items:center;gap:4px;padding:8px 22px;border-bottom:1px solid var(--line-2);flex-shrink:0;}
+.ctab{display:inline-flex;align-items:center;gap:6px;font-size:15px;color:var(--ink-2);padding:5px 12px;border-radius:var(--r-sm);transition:.12s;}
+.ctab.active{background:var(--blue-08);color:var(--blue-active);font-weight:600;}
+.ctab:not(.active):hover{background:var(--surf-3);}
+.ctab .uic{width:15px;height:15px;}
+
+.chat__body{flex:1;overflow-y:auto;padding:20px 22px 8px;background:var(--bg);}
+.chat__inner{max-width:680px;}
+.daydiv{display:flex;justify-content:center;margin:6px 0 18px;}
+.daydiv span{font-size:12.5px;color:var(--ink-3);background:#1f23290a;padding:3px 12px;border-radius:var(--r-pill);}
+
+.typing{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;}
+.typing .tw-av{width:40px;height:40px;}
+.typing__bubble{background:var(--card);border:1px solid var(--line);border-radius:4px 14px 14px 14px;padding:14px 18px;display:flex;gap:5px;align-items:center;}
+.typing__bubble i{width:7px;height:7px;border-radius:50%;background:var(--ink-3);animation:blink 1.3s infinite var(--ease);}
+.typing__bubble i:nth-child(2){animation-delay:.18s;}
+.typing__bubble i:nth-child(3){animation-delay:.36s;}
+.typing__label{font-size:12.5px;color:var(--ink-3);margin-left:6px;}
+@keyframes blink{0%,60%,100%{opacity:.3;transform:translateY(0);}30%{opacity:1;transform:translateY(-3px);}}
+
+.msg{display:flex;gap:12px;align-items:flex-start;position:relative;margin-bottom:8px;}
+.msg.hide{display:none;}
+.msg.in{animation:msgin 460ms var(--ease) both;}
+@keyframes msgin{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.msg .tw-av{width:40px;height:40px;}
+.msg__col{min-width:0;flex:1;}
+.msg__meta{display:flex;align-items:baseline;gap:8px;margin-bottom:6px;}
+.msg__meta b{font-size:15.5px;font-weight:600;color:var(--ink);}
+.msg__meta .robot{font-size:11.5px;font-weight:600;color:var(--orange-ink);background:var(--orange-bg);padding:1px 5px;border-radius:var(--r-sm);}
+.msg__meta .t{font-size:12.5px;color:var(--ink-3);}
+.msg__actions{position:absolute;top:16px;right:0;display:flex;gap:1px;padding:2px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);opacity:0;transition:.12s;}
+.msg:hover .msg__actions{opacity:1;}
+.msg__actions button{width:26px;height:26px;border-radius:4px;color:var(--ink-2);display:grid;place-items:center;}
+.msg__actions button:hover{background:var(--surf-3);color:var(--ink);}
+.msg__actions .uic{width:15px;height:15px;}
+
+/* report card */
+.report{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;cursor:pointer;
+  transition:border-color 200ms var(--ease),transform 120ms var(--ease);max-width:560px;}
+.report:hover{border-color:#3370ff80;}
+.report:active{transform:scale(0.997);}
+.report.selected{border-color:var(--blue);}
+.report__reply{display:flex;align-items:center;gap:8px;padding:12px 16px 0;font-size:14px;color:var(--ink-3);}
+.report__reply .bar{width:3px;align-self:stretch;background:var(--blue);border-radius:2px;margin:2px 0;opacity:.7;}
+.report__reply b{color:var(--ink-2);font-weight:500;}
+.report__hd{padding:12px 16px 0;}
+.report__eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.06em;color:var(--blue-active);display:flex;align-items:center;gap:7px;}
+.report__eyebrow .day{color:var(--ink-3);font-weight:500;}
+.report__title{font-size:22px;font-weight:600;color:var(--ink);margin-top:7px;letter-spacing:-0.01em;}
+.report__chips{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap;}
+.rchip{font-size:12.5px;font-weight:600;padding:2px 8px;border-radius:var(--r-pill);}
+.rchip.teal{background:var(--teal-bg);color:var(--teal-ink);}
+.rchip.blue{background:var(--blue-08);color:var(--blue-active);}
+.rchip.red{background:var(--red-bg);color:var(--red-ink);}
+.report__body{padding:14px 16px 0;}
+.report__lead{font-size:15px;color:var(--ink-2);line-height:1.6;}
+.report__lead b{color:var(--ink);font-weight:600;}
+.lane-rows{margin-top:12px;display:flex;flex-direction:column;border:1px solid var(--line-2);border-radius:var(--r-md);overflow:hidden;}
+.lane-row{display:flex;align-items:center;gap:10px;padding:11px 13px;background:#fff;}
+.lane-row + .lane-row{border-top:1px solid var(--line-2);}
+.lane-row.crux{background:var(--red-bg);}
+.lr-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.lr-dot.teal{background:var(--teal);}.lr-dot.blue{background:var(--blue);}.lr-dot.red{background:var(--red);}
+.lr-name{font-size:15px;color:var(--ink);font-weight:500;}
+.lr-who{font-size:13px;color:var(--ink-3);}
+.lr-spacer{flex:1;}
+.lr-state{font-size:14px;font-weight:600;}
+.lr-state.teal{color:var(--teal-ink);}.lr-state.blue{color:var(--blue-active);}.lr-state.red{color:var(--red-ink);}
+.lr-tag{font-size:11.5px;font-weight:700;color:#fff;background:var(--red);padding:1px 6px;border-radius:var(--r-pill);margin-left:8px;}
+.report__callout{margin:13px 16px 0;background:var(--red-bg);border-radius:var(--r-md);padding:10px 13px;display:flex;gap:9px;align-items:flex-start;}
+.report__callout .uic{width:16px;height:16px;color:var(--red-ink);flex-shrink:0;margin-top:1px;}
+.report__callout p{font-size:14.5px;color:var(--ink);line-height:1.55;}
+.report__callout b{color:var(--red-ink);font-weight:700;}
+.report__foot{margin-top:14px;padding:11px 16px;background:#1f23290a;border-top:1px solid var(--line-2);display:flex;align-items:center;gap:8px;}
+.report__foot .open-lbl{font-size:15px;font-weight:600;color:var(--blue-active);display:flex;align-items:center;gap:6px;}
+.report__foot .open-lbl .uic{width:15px;height:15px;transition:transform 200ms var(--ease);}
+.report.selected .report__foot .open-lbl .uic{transform:translateX(3px);}
+.report__foot .spacer{flex:1;}
+.report__foot .meta{font-size:12.5px;color:var(--ink-3);}
+
+.rxns{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
+.rxn{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:var(--r-pill);background:var(--blue-08);border:1px solid #3370ff3d;font-size:14px;color:var(--blue-active);font-weight:500;transition:.12s;}
+.rxn:hover{background:var(--blue-12);}
+.rxn .uic{width:13px;height:13px;}
+
+/* ===== Composer ===== */
+.composer{flex-shrink:0;padding:8px 18px 16px;background:var(--surf);}
+.comp-box{border:1px solid var(--line);border-radius:var(--r-lg);background:#fff;padding:12px 14px 8px;transition:border-color .14s;}
+.comp-box:focus-within,.comp-box.focus{border-color:var(--blue);}
+.comp-field{min-height:46px;font-size:16px;color:var(--ink-3);line-height:1.6;}
+.comp-bar{display:flex;align-items:center;gap:2px;margin-top:6px;}
+.comp-bar .sp{flex:1;}
+.cbtn{height:30px;min-width:30px;padding:0 6px;border-radius:6px;color:var(--ink-2);display:inline-flex;align-items:center;justify-content:center;gap:3px;transition:.12s;}
+.cbtn:hover{background:var(--surf-3);color:var(--ink);}
+.cbtn .uic{width:18px;height:18px;}
+.cbtn.aa{font-size:17px;font-weight:600;letter-spacing:-0.02em;}
+.comp-div{width:1px;height:18px;background:var(--line);margin:0 6px;}
+.comp-send{width:34px;height:30px;border-radius:6px;display:grid;place-items:center;color:var(--ink-4);transition:.14s;}
+.comp-send .uic{width:19px;height:19px;}
+.comp-send.on{color:#fff;background:var(--blue);}
+
+/* ===== Drawer ===== */
+.drawer{overflow:hidden;background:var(--surf);border-left:1px solid var(--line);display:flex;}
+.drawer__inner{width:472px;min-width:472px;display:flex;flex-direction:column;
+  opacity:0;transform:translateX(24px);transition:opacity 320ms var(--ease) 120ms,transform 360ms var(--ease) 80ms;}
+.app.open .drawer__inner{opacity:1;transform:translateX(0);}
+
+.dr-head{height:62px;flex-shrink:0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:4px;padding:0 10px 0 14px;}
+.dr-head .home{margin-right:6px;}
+.dr-head h2{font-size:17px;font-weight:600;color:var(--ink);flex:1;text-align:center;}
+.dr-ic{width:34px;height:34px;border-radius:7px;color:var(--ink-2);display:grid;place-items:center;transition:.12s;}
+.dr-ic:hover{background:var(--surf-3);color:var(--ink);}
+.dr-ic .uic{width:18px;height:18px;}
+.dr-scroll{flex:1;overflow-y:auto;}
+
+.dr-title{padding:18px 20px 14px;}
+.dr-title h1{font-size:24px;font-weight:600;color:var(--ink);line-height:1.32;letter-spacing:-0.01em;}
+.dr-title .tags{display:flex;gap:7px;margin-top:11px;flex-wrap:wrap;}
+.dtag{font-size:13px;font-weight:600;padding:3px 9px;border-radius:var(--r-sm);}
+.dtag.blue{background:var(--blue-08);color:var(--blue-active);}
+.dtag.red{background:var(--red-bg);color:var(--red-ink);}
+.dr-title .sumline{margin-top:12px;font-size:14.5px;color:var(--ink-3);display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.dr-title .sumline>span{white-space:nowrap;}
+.dr-title .sumline b{color:var(--ink-2);font-weight:600;}
+.dr-title .sumline .sep{color:var(--ink-4);}
+.dr-title .sumline .more{color:var(--blue-active);display:inline-flex;align-items:center;gap:2px;cursor:pointer;}
+.dr-title .sumline .more .uic{width:12px;height:12px;}
+
+.dr-actions{display:flex;margin:0 20px 16px;border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;}
+.dr-act{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:11px 6px;background:#fff;transition:.12s;}
+.dr-act + .dr-act{border-left:1px solid var(--line);}
+.dr-act:hover{background:var(--card-2);}
+.dr-act .uic{width:17px;height:17px;color:var(--blue-active);}
+.dr-act span{font-size:14.5px;color:var(--ink);font-weight:500;}
+
+.dr-tabs{display:flex;gap:2px;padding:0 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--surf);z-index:3;}
+.dtab{position:relative;padding:13px 12px;font-size:16px;color:var(--ink-2);font-weight:500;transition:.12s;display:inline-flex;align-items:center;gap:6px;}
+.dtab:hover{color:var(--ink);}
+.dtab.active{color:var(--blue-active);font-weight:600;}
+.dtab.active::after{content:"";position:absolute;left:8px;right:8px;bottom:-1px;height:2px;background:var(--blue);border-radius:2px 2px 0 0;}
+.dtab .b{font-size:11.5px;font-weight:700;color:#fff;background:var(--red);padding:0 5px;border-radius:var(--r-pill);min-width:16px;text-align:center;}
+
+.dr-panels{padding:16px 20px 28px;}
+.dpanel{display:none;}
+.dpanel.active{display:block;animation:fade 260ms var(--ease);}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* section card */
+.scard{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:15px 16px;margin-bottom:14px;}
+.scard__hd{display:flex;align-items:center;margin-bottom:13px;}
+.scard__hd .bar{width:3px;height:14px;border-radius:2px;background:var(--blue);margin-right:9px;}
+.scard__hd b{font-size:16.5px;font-weight:600;color:var(--ink);}
+.scard__hd .n{font-size:14px;color:var(--ink-3);margin-left:7px;font-weight:600;}
+.scard__hd .all{margin-left:auto;font-size:14px;color:var(--ink-3);display:inline-flex;align-items:center;gap:2px;cursor:pointer;}
+.scard__hd .all:hover{color:var(--blue-active);}
+.scard__hd .all .uic{width:13px;height:13px;}
+
+.irow{display:flex;align-items:flex-start;gap:12px;padding:9px 0;}
+.irow + .irow{border-top:1px solid var(--line-2);}
+.irow .k{width:96px;flex-shrink:0;font-size:15px;color:var(--ink-3);}
+.irow .v{flex:1;font-size:15px;color:var(--ink);line-height:1.55;}
+.irow .v strong{font-weight:600;}
+
+.rat{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.rat li{position:relative;padding-left:20px;font-size:15.5px;color:var(--ink-2);line-height:1.6;}
+.rat li::before{content:"";position:absolute;left:5px;top:8px;width:6px;height:6px;border-radius:50%;background:var(--ink-4);}
+.rat li strong{color:var(--ink);font-weight:600;}
+.rat li.crux{background:var(--red-bg);border-left:3px solid var(--red);border-radius:var(--r-sm);padding:12px 13px 12px 15px;color:var(--ink);}
+.rat li.crux::before{display:none;}
+.crux-tag{display:inline-block;vertical-align:1px;margin-right:7px;font-size:12.5px;font-weight:700;color:#fff;background:var(--red);padding:1px 7px;border-radius:var(--r-sm);}
+.rat q{quotes:"\201C" "\201D";font-weight:600;color:var(--ink);}
+
+.synth__row{display:flex;gap:8px;}
+.synth__stat{flex:1;text-align:center;padding:10px 4px;border-radius:var(--r-sm);background:#1f232908;}
+.synth__stat .n{font-size:26.5px;font-weight:700;line-height:1;}
+.synth__stat .l{font-size:12.5px;color:var(--ink-3);margin-top:5px;}
+.synth__stat.teal .n{color:var(--teal-ink);}.synth__stat.red .n{color:var(--red-ink);}.synth__stat.blue .n{color:var(--blue-active);}
+.synth__note{margin-top:13px;padding-top:13px;border-top:1px solid var(--line-2);font-size:14.5px;color:var(--ink-2);line-height:1.65;}
+.synth__note b{color:var(--red-ink);font-weight:600;}
+
+.trow{display:flex;align-items:center;gap:12px;padding:9px 0;}
+.trow + .trow{border-top:1px solid var(--line-2);}
+.trow .role{width:96px;flex-shrink:0;font-size:15px;color:var(--ink-3);}
+.tperson{display:inline-flex;align-items:center;gap:8px;}
+.tav{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:12.5px;font-weight:600;}
+.tperson .tn{font-size:15px;color:var(--ink);}
+.tperson .state-mini{font-size:11.5px;font-weight:600;padding:1px 6px;border-radius:var(--r-pill);margin-left:2px;}
+.state-mini.teal{background:var(--teal-bg);color:var(--teal-ink);}
+.state-mini.blue{background:var(--blue-08);color:var(--blue-active);}
+.state-mini.red{background:var(--red-bg);color:var(--red-ink);}
+
+.dlane{border:1px solid var(--line);border-radius:var(--r-lg);padding:14px;margin-bottom:12px;background:var(--card);}
+.dlane.crux{border-color:#f54a4566;}
+.dlane__hd{display:flex;align-items:center;gap:10px;margin-bottom:11px;}
+.dlane__av{width:28px;height:28px;border-radius:var(--r-sm);display:grid;place-items:center;color:#fff;font-size:14px;font-weight:600;flex-shrink:0;}
+.dlane__nm{font-size:15.5px;font-weight:600;color:var(--ink);}
+.dlane__who{font-size:12.5px;color:var(--ink-3);}
+.dlane__sp{flex:1;}
+.dstate{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:var(--r-pill);font-size:14px;font-weight:600;}
+.dstate .uic{width:12px;height:12px;}
+.dstate.teal{background:var(--teal-bg);color:var(--teal-ink);}
+.dstate.blue{background:var(--blue-08);color:var(--blue-active);}
+.dstate.red{background:var(--red-bg);color:var(--red-ink);}
+.dsig{display:flex;flex-direction:column;gap:6px;}
+.sigrow{display:flex;gap:9px;align-items:flex-start;padding:8px;border-radius:var(--r-sm);cursor:pointer;transition:background .12s;}
+.sigrow:hover{background:#1f232908;}
+.sigrow__ic{width:18px;height:18px;border-radius:5px;display:grid;place-items:center;flex-shrink:0;margin-top:1px;}
+.sigrow__ic .uic{width:11px;height:11px;}
+.sigrow.ok .sigrow__ic{background:var(--teal-bg);color:var(--teal-ink);}
+.sigrow.warn .sigrow__ic{background:var(--orange-bg);color:var(--orange-ink);}
+.sigrow.bad .sigrow__ic{background:var(--red-bg);color:var(--red-ink);}
+.sigrow__col{min-width:0;flex:1;}
+.sigrow__meta{display:flex;align-items:center;gap:7px;margin-bottom:2px;}
+.sigrow__src{font-size:12px;font-weight:600;color:var(--ink-2);background:#1f23290f;padding:1px 6px;border-radius:4px;}
+.sigrow__t{font-size:12px;color:var(--ink-3);}
+.sigrow__exp{margin-left:auto;font-size:12px;color:var(--ink-4);}
+.sigrow:hover .sigrow__exp{color:var(--blue-active);}
+.sigrow__desc{font-size:15px;color:var(--ink);line-height:1.5;}
+.sigrow__desc .num{font-weight:700;}
+.sigrow__desc .num.up{color:var(--teal-ink);}
+.sigrow__desc .num.bad{color:var(--red-ink);}
+.sigrow__desc strong{font-weight:700;}
+.sigrow__interp{display:none;margin-top:7px;background:var(--blue-50);border-left:2px solid var(--blue);border-radius:var(--r-sm);padding:9px 11px;font-size:14px;color:var(--ink-2);line-height:1.55;}
+.sigrow__interp .l{display:flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;color:var(--blue-active);letter-spacing:.04em;margin-bottom:4px;}
+.sigrow__interp .l .uic{width:11px;height:11px;}
+.sigrow.open .sigrow__interp{display:block;animation:fade 200ms var(--ease);}
+
+/* escalation */
+.esc{border:1px solid #f54a4552;border-radius:var(--r-lg);overflow:hidden;}
+.esc__bar{background:var(--red);color:#fff;padding:11px 14px;display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;}
+.esc__bar .uic{width:15px;height:15px;}
+.esc__bar .pill{margin-left:auto;font-size:12px;background:#ffffff33;padding:1px 8px;border-radius:var(--r-pill);}
+.esc__body{padding:14px;background:var(--card);}
+.esc__text{font-size:15px;line-height:1.72;color:var(--ink-2);}
+.esc__text p + p{margin-top:9px;}
+.esc__text strong{color:var(--ink);font-weight:600;}
+.esc__text .em{color:var(--red-ink);font-weight:600;}
+.esc__text q{quotes:"\201C" "\201D";color:var(--ink);font-weight:600;background:var(--blue-08);padding:1px 5px;border-radius:4px;}
+.esc__div{height:1px;background:var(--line-2);margin:13px 0;}
+.esc__lbl{font-size:12.5px;color:var(--ink-3);font-weight:600;margin-bottom:9px;}
+.choice{border:1px solid var(--line);border-radius:var(--r-md);padding:11px 13px;margin-bottom:8px;}
+.choice.pref{border-color:#3370ff80;background:var(--blue-08);}
+.choice__h{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+.choice__k{width:20px;height:20px;border-radius:var(--r-sm);display:grid;place-items:center;font-size:12.5px;font-weight:700;background:var(--surf-3);color:var(--ink-2);}
+.choice.pref .choice__k{background:var(--blue);color:#fff;}
+.choice__t{font-size:15px;font-weight:600;color:var(--ink);}
+.choice__tag{margin-left:auto;font-size:11.5px;font-weight:700;padding:2px 7px;border-radius:var(--r-sm);}
+.choice.pref .choice__tag{background:var(--blue);color:#fff;}
+.choice.no .choice__tag{background:var(--red-bg);color:var(--red-ink);}
+.choice__d{font-size:14px;color:var(--ink-2);line-height:1.55;}
+.choice__d strong{color:var(--ink);font-weight:600;}
+.choice__d .warn{color:var(--red-ink);font-weight:600;}
+.esc__btns{display:flex;gap:8px;padding:12px 14px;background:#1f232908;border-top:1px solid var(--line-2);}
+.btn{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:10px;border-radius:var(--r-sm);font-size:15px;font-weight:600;border:1px solid var(--line);background:#fff;color:var(--ink);transition:.12s;}
+.btn .uic{width:15px;height:15px;}
+.btn:hover{background:var(--surf-3);}
+.btn:active{transform:scale(.98);}
+.btn.primary{background:var(--blue);color:#fff;border-color:var(--blue);flex:1.5;}
+.btn.primary:hover{background:var(--blue-press);}
+
+/* timeline */
+.tl{position:relative;}
+.tlitem{position:relative;padding:0 0 18px 24px;border-left:2px solid var(--line-2);margin-left:5px;}
+.tlitem:last-child{border-left-color:transparent;padding-bottom:0;}
+.tlitem::before{content:"";position:absolute;left:-7px;top:1px;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid var(--ink-4);}
+.tlitem.now::before{border-color:var(--red);background:var(--red);}
+.tlitem.bot::before{border-color:var(--blue);background:#fff;}
+.tlitem__t{font-size:13px;color:var(--ink-3);font-weight:600;margin-bottom:3px;}
+.tlitem__d{font-size:15px;color:var(--ink);line-height:1.55;}
+.tlitem__d .who{color:var(--blue-active);font-weight:600;}
+.tlitem.now .tlitem__d{font-weight:600;}
+.tlitem__sub{font-size:14px;color:var(--ink-3);margin-top:3px;}
+
+.tagline{margin:4px 0 0;padding-top:16px;border-top:1px solid var(--line-2);text-align:center;font-size:13px;color:var(--ink-3);letter-spacing:.04em;}
+.tagline b{color:var(--ink-2);font-weight:600;}
+.tagline .sep{color:var(--ink-4);margin:0 8px;}
+
+/* toast */
+#toasts{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:999;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;}
+.toast{pointer-events:auto;background:#1f2329;border:1px solid #ffffff1f;color:#fff;padding:11px 16px;border-radius:var(--r-md);font-size:15px;display:flex;align-items:center;gap:10px;max-width:540px;animation:tin 240ms var(--ease);}
+.toast .ti{display:inline-flex;flex:none;}
+.toast .ti .uic{width:17px;height:17px;}
+.toast .ti-ok{color:#3ad07f;}.toast .ti-info{color:#5b8cff;}.toast .ti-warn{color:#ffa84d;}
+.toast .s{color:#ffffff8c;font-size:14px;}
+@keyframes tin{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+@keyframes tout{to{opacity:0;transform:translateY(8px);}}
+
+.hintbubble{position:absolute;top:68px;left:74px;background:#1f2329;border:1px solid #ffffff1f;color:#fff;font-size:14px;padding:7px 12px;border-radius:var(--r-md);display:none;align-items:center;gap:7px;z-index:30;animation:tin 300ms var(--ease);}
+.hintbubble.show{display:flex;}
+.hintbubble::before{content:"";position:absolute;left:-5px;top:13px;width:10px;height:10px;background:#1f2329;border-left:1px solid #ffffff1f;border-bottom:1px solid #ffffff1f;transform:rotate(45deg);}
+.hintbubble .uic{width:14px;height:14px;color:#7aa6ff;}
+
+@media (max-width:1280px){
+  .app.open{grid-template-columns:56px minmax(380px,1fr) 432px;}
+  .drawer__inner{width:432px;min-width:432px;}
+}
+</style>
+</head>
+<body>
+
+<div class="app" id="app">
+
+  <!-- RAIL -->
+  <nav class="rail">
+    <div class="rail__home" title="飞书"><img data-fs-src="data:image/png;base64,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" alt="飞书" loading="lazy" decoding="async"></div>
+    <div class="rail__sep"></div>
+    <div class="rail__app active" title="经营督办分身"><span class="tw-av" role="img" aria-label="经营督办分身 何嘉"></span></div>
+    <div class="rail__ws" style="background:#7c5cff;" title="巨石生物">齐</div>
+    <div class="rail__ws" style="background:#1faead;" title="灵犀">犀</div>
+    <div class="rail__spacer"></div>
+    <button class="rail__btn" type="button" title="通知"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 3.176v-.26c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v.26c3.45.917 6 4.15 6 7.998v6.364h1a1 1 0 1 1 0 2H3a1 1 0 1 1 0-2h1v-6.364c0-3.848 2.55-7.081 6-7.998ZM6 17.538h12v-6.361c0-3.458-2.686-6.261-6-6.261s-6 2.803-6 6.26v6.362Zm2.75 4.5a1 1 0 0 1 1-1h4.5a1 1 0 0 1 0 2h-4.5a1 1 0 0 1-1-1Z" fill="currentColor"/></svg><span class="dot"></span></button>
+    <div class="rail__me" title="管理者">我</div>
+  </nav>
+
+  <!-- CHAT -->
+  <main class="chat">
+    <header class="chat__head">
+      <span class="tw-av" role="img" aria-label="经营督办分身 何嘉"></span>
+      <div class="chat__title">
+        <div class="nm"><b>经营督办分身</b><span class="robot">机器人</span><span class="pres" title="在线"></span></div>
+        <div class="sub">不止 CEO — 人人都有自己的管理分身</div>
+      </div>
+      <div class="chat__spacer"></div>
+      <div class="chat__tools">
+        <button class="htool" title="搜索"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16.473 17.887A9.46 9.46 0 0 1 10.5 20a9.5 9.5 0 1 1 9.5-9.5 9.46 9.46 0 0 1-2.113 5.973l3.773 3.773a.996.996 0 0 1-.007 1.407.996.996 0 0 1-1.407.007l-3.773-3.773ZM18 10.5a7.5 7.5 0 1 0-15 0 7.5 7.5 0 0 0 15 0Z" fill="currentColor"/></svg></button>
+        <button class="htool" title="新建"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2a1 1 0 0 0-1 1v8H3a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-8h8a1 1 0 1 0 0-2h-8V3a1 1 0 0 0-1-1Z" fill="currentColor"/></svg></button>
+        <button class="htool" title="待办"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17.207 10.207a1 1 0 0 0-1.414-1.414L11 13.586l-2.293-2.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l5.5-5.5Z" fill="currentColor"/> <path d="M2 4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4Zm2 0v16h16V4H4Z" fill="currentColor"/></svg></button>
+        <button class="htool" title="设置"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m4.328 19.734-.31-.34a10.91 10.91 0 0 1-2.386-4.146l-.135-.436L3.545 12 1.497 9.188l.135-.436a10.91 10.91 0 0 1 2.385-4.147l.311-.339 3.442.377 1.398-3.187.448-.101A10.843 10.843 0 0 1 12 1.09c.809 0 1.607.089 2.384.264l.448.1 1.398 3.188 3.442-.377.31.34a10.91 10.91 0 0 1 2.386 4.146l.135.436L20.455 12l2.048 2.812-.135.436a10.91 10.91 0 0 1-2.385 4.147l-.311.339-3.442-.377-1.398 3.187-.448.101a10.848 10.848 0 0 1-4.768 0l-.448-.1-1.398-3.188-3.442.377Zm3.485-2.21a1.488 1.488 0 0 1 1.525.881l1.12 2.554a9.05 9.05 0 0 0 3.084 0l1.12-2.554a1.488 1.488 0 0 1 1.524-.881l2.755.3c.665-.8 1.19-1.71 1.547-2.69l-1.644-2.258a1.488 1.488 0 0 1 0-1.752l1.644-2.258a9.091 9.091 0 0 0-1.547-2.69l-2.755.3a1.488 1.488 0 0 1-1.524-.881l-1.12-2.554a9.053 9.053 0 0 0-3.084 0l-1.12 2.554a1.488 1.488 0 0 1-1.525.881l-2.754-.3a9.09 9.09 0 0 0-1.548 2.69l1.645 2.258c.38.522.38 1.23 0 1.752l-1.644 2.258c.358.98.882 1.89 1.547 2.69l2.754-.3ZM12 16.545c-2.502 0-4.528-2.036-4.528-4.545 0-2.51 2.026-4.545 4.528-4.545S16.528 9.49 16.528 12 14.502 16.545 12 16.545Zm0-1.818c1.496 0 2.71-1.22 2.71-2.727A2.719 2.719 0 0 0 12 9.273 2.719 2.719 0 0 0 9.29 12 2.719 2.719 0 0 0 12 14.727Z" fill="currentColor"/></svg></button>
+      </div>
+    </header>
+
+    <div class="chat__tabs">
+      <button class="ctab active" type="button"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 9h7a1.001 1.001 0 0 1 0 2H9.02C8.398 11 8 10.5 8 10a1 1 0 0 1 1-1Zm0 4h3.988A1.001 1.001 0 1 1 13 15H9a1 1 0 0 1-1-1 1 1 0 0 1 1-1Z" fill="currentColor"/> <path d="m3.391 20.732 1.055-1.508c-1.703-1.75-2.791-4.071-2.93-6.637-.01-.194-.016-.39-.016-.587 0-5.799 4.837-10.5 10.803-10.5a11.477 11.477 0 0 1 .197 0c2.611 0 5 .953 6.836 2.53A10.513 10.513 0 0 1 22.5 8.525c.022.06.5 2.042.5 3.475 0 5.375-4.038 9.806-9.246 10.426h-.002c-.41.049-.828.074-1.252.074h-.203c-.203 0-.475-.002-.53 0H4.353c-.934 0-1.488-1.016-.963-1.768Zm8.37-.233h.317l.422.001A8.5 8.5 0 0 0 21 12c0-.537-.094-1.251-.21-1.9a20.2 20.2 0 0 0-.202-.98 8.52 8.52 0 0 0-2.533-3.554l-.01-.01-.011-.008A8.46 8.46 0 0 0 12.42 3.5h-.118C7.387 3.5 3.5 7.359 3.5 12c0 .16.005.317.013.474v.006c.111 2.057.983 3.927 2.366 5.349l1.153 1.185L5.994 20.5h5.768Zm8.812-11.44.001.004a.624.624 0 0 1-.001-.004Z" fill="currentColor"/></svg>消息</button>
+      <button class="ctab" type="button"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 12a1 1 0 0 1 1-1h8a1 1 0 1 1 0 2H8a1 1 0 0 1-1-1Zm1 4a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2H8Z" fill="currentColor"/> <path d="M3 2.993C3 1.888 3.895 1 5 1h9.257a2 2 0 0 1 1.414.586l4.743 4.744A2 2 0 0 1 21 7.744V21c0 1.105-.894 2-1.998 2H4.996A1.99 1.99 0 0 1 3 21.009V2.993ZM14 3H5v18h14V8.02c-.48 0-2.69-.01-4.005-.016a1 1 0 0 1-.995-1V3Z" fill="currentColor"/></svg>督办档案</button>
+    </div>
+
+    <div class="chat__body" id="chatBody">
+      <div class="chat__inner">
+        <div class="daydiv"><span>今天 09:22</span></div>
+
+        <div class="typing" id="typing">
+          <span class="tw-av" role="img" aria-label="经营督办分身 何嘉"></span>
+          <div class="typing__bubble"><i></i><i></i><i></i><span class="typing__label">分身正在合成今日督办播报…</span></div>
+        </div>
+
+        <div class="msg hide" id="botMsg">
+          <span class="tw-av" role="img" aria-label="经营督办分身 何嘉"></span>
+          <div class="msg__col">
+            <div class="msg__meta"><b>经营督办分身</b><span class="robot">机器人</span><span class="t">09:22</span></div>
+
+            <div class="report" id="reportCard" role="button" tabindex="0" aria-label="展开督办详情">
+              <div class="report__reply"><span class="bar"></span><span>回复 您：<b>JMT 项目全国放量现在怎么样了</b></span></div>
+              <div class="report__hd">
+                <div class="report__eyebrow">督办播报<span class="day">· 第 64 天</span></div>
+                <div class="report__title">JMT 项目 · 全国放量</div>
+                <div class="report__chips">
+                  <span class="rchip blue">战略级督办</span>
+                  <span class="rchip teal">2 条线推进</span>
+                  <span class="rchip red">1 条线需关注</span>
+                </div>
+              </div>
+              <div class="report__body">
+                <p class="report__lead">我盯了这件事的 <b>3 条执行线</b>，本周捕捉到 <b>11 条客观信号</b>。整体研判：</p>
+                <div class="lane-rows">
+                  <div class="lane-row"><span class="lr-dot teal"></span><span class="lr-name">生产供应线 <span class="lr-who">· 生产质量</span></span><span class="lr-spacer"></span><span class="lr-state teal">进展顺利</span></div>
+                  <div class="lane-row"><span class="lr-dot blue"></span><span class="lr-name">学术准入线 <span class="lr-who">· 医学市场</span></span><span class="lr-spacer"></span><span class="lr-state blue">反超预期</span></div>
+                  <div class="lane-row crux"><span class="lr-dot red"></span><span class="lr-name">区域放量线 <span class="lr-who">· 商业化</span></span><span class="lr-spacer"></span><span class="lr-state red">需关注</span><span class="lr-tag">需你处置</span></div>
+                </div>
+              </div>
+              <div class="report__callout">
+                <svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18Zm0 2c6.075 0 11-4.925 11-11S18.075 1 12 1 1 5.925 1 12s4.925 11 11 11Z" fill="currentColor"/> <path d="M12 7a1 1 0 0 0-1 1v5a1 1 0 1 0 2 0V8a1 1 0 0 0-1-1Zm0 8a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" fill="currentColor"/></svg>
+                <p>有 1 条线触及你拍板时定的<b>关键根基</b>，我没当普通进度延迟报，已做判断下沉，建议你处置。</p>
+              </div>
+              <div class="report__foot">
+                <span class="open-lbl">点击展开 · 完整督办详情<svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7.707 21.707a1 1 0 0 1 0-1.414L16 12 7.707 3.707a1 1 0 1 1 1.414-1.414l8.293 8.293a2 2 0 0 1 0 2.828l-8.293 8.293a1 1 0 0 1-1.414 0Z" fill="currentColor"/></svg></span>
+                <span class="spacer"></span>
+                <span class="meta">巨石生物 · 灵犀</span>
+              </div>
+            </div>
+
+            <div class="rxns">
+              <button class="rxn" type="button"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m17.68 7.437 1.212 1.213a.523.523 0 0 1 0 .742l-7.828 7.828a.525.525 0 0 1-.742 0L5.85 12.749a.525.525 0 0 1 0-.743l1.213-1.212a.524.524 0 0 1 .742 0l2.888 2.887 6.244-6.245a.526.526 0 0 1 .743 0v.001Z" fill="currentColor"/></svg>收到，我来看</button>
+              <button class="rxn" type="button"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18.75 16a3.622 3.622 0 0 1-2.637-1.156A5 5 0 1 1 17 12c0 1.105.784 2 1.75 2 1.512 0 1.776-2 1.776-2 .08-.548.138-.903.138-1.568C20.664 6.997 17.164 3 12 3s-8.98 3.836-8.98 9 3.816 9.01 8.98 9.01c1.807 0 3.487-.634 4.916-1.544a.823.823 0 0 1 .853-.028l.041.024.903.519a.41.41 0 0 1 .067.682A10.953 10.953 0 0 1 12 23C5.925 23 1 18.075 1 12S5.925 1 12 1s10.657 4.265 10.657 9.432c0 .256.014.522-.136 1.794C22.296 14.326 20.75 16 18.75 16ZM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" fill="currentColor"/></svg>@张维 说明</button>
+            </div>
+          </div>
+          <div class="msg__actions">
+            <button title="点赞"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12.014 3.015a.88.88 0 0 0-.88.869A10.4 10.4 0 0 1 9.29 9.659l-1.13 1.637v9.688h10.29a1 1 0 0 0 1-.85l1.38-9a1.001 1.001 0 0 0-1-1.15h-5.671a1 1 0 0 1-1-1V4.03c0-.56-.454-1.014-1.014-1.014h-.131Zm-5.855 17.97v-9h-2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h2Zm.475-11 1.011-1.463a8.4 8.4 0 0 0 1.49-4.665 2.88 2.88 0 0 1 2.88-2.842h.13A3.013 3.013 0 0 1 15.16 4.03v3.955h4.655a3 3 0 0 1 2.993 3.45l-1.38 9a3.002 3.002 0 0 1-2.994 2.55H4.16a3 3 0 0 1-3-3v-7a3 3 0 0 1 3-3h2.475Z" fill="currentColor"/></svg></button>
+            <button title="回复"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m11.984 7.51.01-4.093c.002-.892-1.071-1.344-1.702-.714a3966.37 3966.37 0 0 0-7.923 7.916 1.948 1.948 0 0 0 .003 2.762c2.043 2.049 5.75 5.75 7.92 7.914.63.63 1.704.178 1.702-.713l-.01-4.067h1.028c3.989 0 7.01.801 8.845 3.157.372.478 1.143.181 1.143-.425v-.401c0-6.16-4.932-11.336-11.016-11.336Zm0 2.006c3.945 0 7.602 2.923 8.513 6.347-2.047-1.225-5.58-1.36-8.487-1.36H10v3.498l-5.74-5.29a1 1 0 0 1-.03-1.443L10 5.5v4.001l1.984.015Z" fill="currentColor"/></svg></button>
+            <button title="转发"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12.016 7.51-.01-4.093c-.002-.891 1.07-1.343 1.702-.714 2.167 2.161 5.869 5.855 7.923 7.916a1.948 1.948 0 0 1-.003 2.762c-2.044 2.05-5.75 5.75-7.92 7.915-.63.63-1.704.178-1.702-.714l.01-4.067h-1.028c-3.989 0-7.01.802-8.845 3.158-.372.478-1.143.18-1.143-.425v-.402c0-6.16 4.932-11.335 11.016-11.335Zm0 2.006c-3.945 0-7.602 2.923-8.514 6.348 2.048-1.225 5.581-1.36 8.488-1.36H14V18l5.74-5.29a1 1 0 0 0 .03-1.443L14 5.501v4l-1.984.015Z" fill="currentColor"/></svg></button>
+            <button title="更多"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5.5 11.75a1.75 1.75 0 1 1-3.5 0 1.75 1.75 0 0 1 3.5 0Zm8.225 0a1.75 1.75 0 1 1-3.5 0 1.75 1.75 0 0 1 3.5 0Zm8.275 0a1.75 1.75 0 1 1-3.5 0 1.75 1.75 0 0 1 3.5 0Z" fill="currentColor"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Composer -->
+    <div class="composer">
+      <div class="comp-box" id="compBox">
+        <div class="comp-field">向分身追问，或 @ 负责人指派任务…</div>
+        <div class="comp-bar">
+          <button class="cbtn aa" type="button" title="字体格式">Aa</button>
+          <button class="cbtn" type="button" title="表情"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M1 12c0 6.075 4.925 11 11 11s11-4.925 11-11S18.075 1 12 1 1 5.925 1 12Zm20 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-7-2.5a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1Zm-4 0a1 1 0 0 0-2 0v1a1 1 0 1 0 2 0v-1Zm5.455 4.5h1.12c.26 0 .44.268.323.502A5.5 5.5 0 0 1 12 17.5a5.5 5.5 0 0 1-4.893-2.986c-.123-.238.064-.514.332-.514h1.197c.31 0 .598.147.803.38.047.053.093.103.133.14.63.607 1.485.98 2.428.98.95 0 1.81-.378 2.441-.992.036-.034.077-.08.12-.128a1.08 1.08 0 0 1 .803-.38h.09Z" fill="currentColor"/></svg></button>
+          <button class="cbtn" type="button" title="@提及"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18.75 16a3.622 3.622 0 0 1-2.637-1.156A5 5 0 1 1 17 12c0 1.105.784 2 1.75 2 1.512 0 1.776-2 1.776-2 .08-.548.138-.903.138-1.568C20.664 6.997 17.164 3 12 3s-8.98 3.836-8.98 9 3.816 9.01 8.98 9.01c1.807 0 3.487-.634 4.916-1.544a.823.823 0 0 1 .853-.028l.041.024.903.519a.41.41 0 0 1 .067.682A10.953 10.953 0 0 1 12 23C5.925 23 1 18.075 1 12S5.925 1 12 1s10.657 4.265 10.657 9.432c0 .256.014.522-.136 1.794C22.296 14.326 20.75 16 18.75 16ZM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" fill="currentColor"/></svg></button>
+          <button class="cbtn" type="button" title="发送消息片段"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17.828 8c-2.984.007-5.348.553-7.332 1.634a10.628 10.628 0 0 0-4.392 4.471c-.163.311-.314.631-.452.96-.06.146-.138.348-.232.606a.5.5 0 0 1-.47.329H3.89a.5.5 0 0 1-.475-.655l.053-.16a14.46 14.46 0 0 1 .874-2.023 12.613 12.613 0 0 1 5.21-5.292c2.232-1.213 4.897-1.862 8.277-1.87l-2.537-2.537a.998.998 0 0 1 .004-1.41.998.998 0 0 1 1.41-.004l4.598 4.597a.5.5 0 0 1 0 .708l-4.601 4.601a.993.993 0 0 1-1.402-.012.993.993 0 0 1-.013-1.402l2.541-2.54ZM20 18a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 2 0v1h14v-1a1 1 0 0 1 1-1Z" fill="currentColor"/></svg></button>
+          <button class="cbtn" type="button" title="更多"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2a1 1 0 0 0-1 1v8H3a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-8h8a1 1 0 1 0 0-2h-8V3a1 1 0 0 0-1-1Z" fill="currentColor"/></svg></button>
+          <button class="cbtn" type="button" title="全屏"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.4 19H9a1 1 0 1 1 0 2H4a.997.997 0 0 1-1-1v-5a1 1 0 1 1 2 0v2.571l4.486-4.486a.979.979 0 0 1 1.389 0c.393.396.4 1.04.005 1.435L6.4 19ZM18.985 6.5l-4.428 4.429a.993.993 0 0 1-1.405 0 1.006 1.006 0 0 1-.003-1.421L17.657 5h-2.672a1 1 0 1 1 0-2h5a.997.997 0 0 1 1 1v5a1 1 0 1 1-2 0V6.5Z" fill="currentColor"/></svg></button>
+          <span class="sp"></span>
+          <span class="comp-div"></span>
+          <button class="comp-send" type="button" title="发送"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21.696 13.354a1.541 1.541 0 0 0 0-2.707L3.762.937a1.515 1.515 0 0 0-1.512.03c-.469.28-.75.774-.75 1.323l1.979 7.728 8.413 1.232c.482 0 .871.335.871.75s-.39.75-.871.75a1932.6 1932.6 0 0 1-8.41 1.223L1.5 21.71c0 .548.281 1.043.75 1.324.469.279 1.034.29 1.512.03l17.934-9.71Z" fill="currentColor"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- DRAWER -->
+  <aside class="drawer">
+    <div class="drawer__inner">
+      <header class="dr-head">
+        <button class="dr-ic home" title="主页"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m20 10-8-5.939L4 10v10h5v-3.8a2.2 2.2 0 0 1 2.2-2.2h1.6a2.2 2.2 0 0 1 2.2 2.2V20h5V10Zm-9 11a1 1 0 0 1-1 1H4a2 2 0 0 1-2-2V10a2 2 0 0 1 .75-1.562l8-5.938a2 2 0 0 1 2.5 0l8 5.938A2 2 0 0 1 22 10v10a2 2 0 0 1-2 2h-6a1 1 0 0 1-1-1v-4.8a.2.2 0 0 0-.2-.2h-1.6a.2.2 0 0 0-.2.2V21Z" fill="currentColor"/></svg></button>
+        <h2>督办详情</h2>
+        <button class="dr-ic" title="发消息"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 9h7a1.001 1.001 0 0 1 0 2H9.02C8.398 11 8 10.5 8 10a1 1 0 0 1 1-1Zm0 4h3.988A1.001 1.001 0 1 1 13 15H9a1 1 0 0 1-1-1 1 1 0 0 1 1-1Z" fill="currentColor"/> <path d="m3.391 20.732 1.055-1.508c-1.703-1.75-2.791-4.071-2.93-6.637-.01-.194-.016-.39-.016-.587 0-5.799 4.837-10.5 10.803-10.5a11.477 11.477 0 0 1 .197 0c2.611 0 5 .953 6.836 2.53A10.513 10.513 0 0 1 22.5 8.525c.022.06.5 2.042.5 3.475 0 5.375-4.038 9.806-9.246 10.426h-.002c-.41.049-.828.074-1.252.074h-.203c-.203 0-.475-.002-.53 0H4.353c-.934 0-1.488-1.016-.963-1.768Zm8.37-.233h.317l.422.001A8.5 8.5 0 0 0 21 12c0-.537-.094-1.251-.21-1.9a20.2 20.2 0 0 0-.202-.98 8.52 8.52 0 0 0-2.533-3.554l-.01-.01-.011-.008A8.46 8.46 0 0 0 12.42 3.5h-.118C7.387 3.5 3.5 7.359 3.5 12c0 .16.005.317.013.474v.006c.111 2.057.983 3.927 2.366 5.349l1.153 1.185L5.994 20.5h5.768Zm8.812-11.44.001.004a.624.624 0 0 1-.001-.004Z" fill="currentColor"/></svg></button>
+        <button class="dr-ic" title="分享"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17.828 8c-2.984.007-5.348.553-7.332 1.634a10.628 10.628 0 0 0-4.392 4.471c-.163.311-.314.631-.452.96-.06.146-.138.348-.232.606a.5.5 0 0 1-.47.329H3.89a.5.5 0 0 1-.475-.655l.053-.16a14.46 14.46 0 0 1 .874-2.023 12.613 12.613 0 0 1 5.21-5.292c2.232-1.213 4.897-1.862 8.277-1.87l-2.537-2.537a.998.998 0 0 1 .004-1.41.998.998 0 0 1 1.41-.004l4.598 4.597a.5.5 0 0 1 0 .708l-4.601 4.601a.993.993 0 0 1-1.402-.012.993.993 0 0 1-.013-1.402l2.541-2.54ZM20 18a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 2 0v1h14v-1a1 1 0 0 1 1-1Z" fill="currentColor"/></svg></button>
+        <button class="dr-ic" id="closeDrawer" title="收起"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.207 20.207a.99.99 0 0 0 .003-1.403L13.406 12l6.804-6.804a.99.99 0 0 0-.003-1.403.99.99 0 0 0-1.403-.003L12 10.594 5.196 3.79a.99.99 0 0 0-1.403.003.99.99 0 0 0-.003 1.403L10.594 12 3.79 18.804a.99.99 0 0 0 .003 1.403.99.99 0 0 0 1.403.003L12 13.406l6.804 6.804a.99.99 0 0 0 1.403-.003Z" fill="currentColor"/></svg></button>
+      </header>
+
+      <div class="dr-scroll">
+        <div class="dr-title">
+          <h1>JMT 项目 · 全国放量</h1>
+          <div class="tags">
+            <span class="dtag blue">战略级督办</span>
+            <span class="dtag red">重点预警</span>
+          </div>
+          <div class="sumline">
+            <span>第 <b>64</b> 天督办</span><span class="sep">·</span>
+            <span>分身已分析 <b>11</b> 条信号含：</span>
+            <span class="more">重点 1 <svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7.707 21.707a1 1 0 0 1 0-1.414L16 12 7.707 3.707a1 1 0 1 1 1.414-1.414l8.293 8.293a2 2 0 0 1 0 2.828l-8.293 8.293a1 1 0 0 1-1.414 0Z" fill="currentColor"/></svg></span>
+          </div>
+        </div>
+
+        <div class="dr-actions">
+          <button class="dr-act" data-toast="正在打开实时数据看板|进院 / 动销 / 库存周转 三表联动"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 4a1 1 0 0 0-2 0v15a3 3 0 0 0 3 3h17a1 1 0 1 0 0-2H5a1 1 0 0 1-1-1V4Z" fill="currentColor"/> <path d="M8 11a1 1 0 0 0-1 1v5a1 1 0 1 0 2 0v-5a1 1 0 0 0-1-1Zm5-2a1 1 0 1 1 2 0v8a1 1 0 1 1-2 0V9Zm7-5a1 1 0 0 0-1 1v12a1 1 0 1 0 2 0V5a1 1 0 0 0-1-1Z" fill="currentColor"/></svg><span>数据看板</span></button>
+          <button class="dr-act" id="actEvidence"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M11 8a1 1 0 1 1 2 0v3h3a1 1 0 1 1 0 2h-4a1 1 0 0 1-1-1V8Z" fill="currentColor"/> <path d="M12 23c6.075 0 11-4.925 11-11S18.075 1 12 1 1 5.925 1 12s4.925 11 11 11Zm0-2a9 9 0 1 1 0-18 9 9 0 0 1 0 18Z" fill="currentColor"/></svg><span>看证据链</span></button>
+          <button class="dr-act" data-toast="已建临时督办群|您 × 张维 × 李航 · 已同步本卡片"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8.5 4.5a2.5 2.5 0 1 0 .001 5.001A2.5 2.5 0 0 0 8.5 4.5ZM4 7a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0Zm1.835 7.5c-1.82 0-3.335 1.498-3.335 3.4v1.6h12v-1.6c0-1.901-1.515-3.4-3.335-3.4h-5.33ZM.5 17.9c0-2.982 2.39-5.4 5.335-5.4h5.33c2.945 0 5.335 2.418 5.335 5.4v1.6c0 1.1-.9 2-2 2h-12c-1.1 0-2-.9-2-2v-1.6Zm22 2.6h-4.135v-2H21.5v-.6c0-1.002-.845-1.9-2-1.9h-1.31a5.46 5.46 0 0 0-.985-2H19.5c2.21 0 4 1.746 4 3.9v1.6c.025.535-.49 1.02-1 1Zm-6-11a1.001 1.001 0 1 1 1 1c-.55 0-1-.447-1-1Zm1-3a3.001 3.001 0 0 0 0 6 3.001 3.001 0 0 0 0-6Z" fill="currentColor"/></svg><span>拉群督办</span></button>
+        </div>
+
+        <div class="dr-tabs">
+          <button class="dtab active" data-panel="overview" type="button">概览</button>
+          <button class="dtab" data-panel="lanes" type="button">执行线</button>
+          <button class="dtab" data-panel="todo" type="button">待处置 <span class="b">1</span></button>
+          <button class="dtab" data-panel="follow" type="button">跟进</button>
+        </div>
+
+        <div class="dr-panels">
+
+          <!-- OVERVIEW -->
+          <div class="dpanel active" data-panel="overview">
+            <div class="scard">
+              <div class="scard__hd"><span class="bar"></span><b>当初拍板的逻辑</b><span class="all">分身据此判断<svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7.707 21.707a1 1 0 0 1 0-1.414L16 12 7.707 3.707a1 1 0 1 1 1.414-1.414l8.293 8.293a2 2 0 0 1 0 2.828l-8.293 8.293a1 1 0 0 1-1.414 0Z" fill="currentColor"/></svg></span></div>
+              <ul class="rat">
+                <li>JMT 项目是公司今年的战略大单品，全国放量是<strong>全年增长的胜负手</strong>，必须放得稳、放得实。</li>
+                <li>放量 = 进院 × 终端动销；生产和学术都已铺到位，真正的硬仗在<strong>区域终端的真实动销</strong>。</li>
+                <li class="crux"><span class="crux-tag">关键</span><q>放量要算总账，不能只看出货数字</q> —— 进院和终端动销跟不上，渠道里压的货就是虚的，季后退货回流，全国放量会变成<strong style="color:var(--red-ink)">纸面数字</strong>。这是出货与真实放量的取舍，是整件事的根基。</li>
+              </ul>
+            </div>
+
+            <div class="scard">
+              <div class="scard__hd"><span class="bar"></span><b>分身整体研判</b></div>
+              <div class="synth__row">
+                <div class="synth__stat teal"><div class="n">2</div><div class="l">推进 / 反超</div></div>
+                <div class="synth__stat red"><div class="n">1</div><div class="l">需关注</div></div>
+                <div class="synth__stat blue"><div class="n">11</div><div class="l">客观信号</div></div>
+              </div>
+              <div class="synth__note">生产供应、学术准入两条线都在往全国放量的方向走，甚至反超预期。<b>真正的瓶颈在区域放量线</b>——华东重点区域的进院与终端动销明显落后于计划，按当前节奏会拖累全国放量目标、并在季后造成渠道库存积压。</div>
+            </div>
+
+            <div class="scard">
+              <div class="scard__hd"><span class="bar"></span><b>督办团队</b><span class="n">4</span><span class="all">全部<svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7.707 21.707a1 1 0 0 1 0-1.414L16 12 7.707 3.707a1 1 0 1 1 1.414-1.414l8.293 8.293a2 2 0 0 1 0 2.828l-8.293 8.293a1 1 0 0 1-1.414 0Z" fill="currentColor"/></svg></span></div>
+              <div class="trow"><span class="role">业务负责人</span><span class="tperson"><span class="tav" style="background:#7c5cff;">周</span><span class="tn">周成</span></span></div>
+              <div class="trow"><span class="role">生产供应线</span><span class="tperson"><span class="tav" style="background:#3370ff;">陈</span><span class="tn">陈敏</span><span class="state-mini teal">进展顺利</span></span></div>
+              <div class="trow"><span class="role">学术准入线</span><span class="tperson"><span class="tav" style="background:#1faead;">李</span><span class="tn">李航</span><span class="state-mini blue">反超预期</span></span></div>
+              <div class="trow"><span class="role">区域放量线</span><span class="tperson"><span class="tav" style="background:#f54a45;">张</span><span class="tn">张维</span><span class="state-mini red">需关注</span></span></div>
+            </div>
+          </div>
+
+          <!-- LANES -->
+          <div class="dpanel" data-panel="lanes">
+            <div class="dlane">
+              <div class="dlane__hd">
+                <div class="dlane__av" style="background:#3370ff;">陈</div>
+                <div><div class="dlane__nm">生产供应线</div><div class="dlane__who">陈敏 · 生产质量</div></div>
+                <div class="dlane__sp"></div>
+                <span class="dstate teal"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m17.68 7.437 1.212 1.213a.523.523 0 0 1 0 .742l-7.828 7.828a.525.525 0 0 1-.742 0L5.85 12.749a.525.525 0 0 1 0-.743l1.213-1.212a.524.524 0 0 1 .742 0l2.888 2.887 6.244-6.245a.526.526 0 0 1 .743 0v.001Z" fill="currentColor"/></svg>进展顺利</span>
+              </div>
+              <div class="dsig">
+                <div class="sigrow ok" data-interp="批签发全部一次性通过，意味着供应端没有合规与质量卡点，放量没有后顾之忧。">
+                  <span class="sigrow__ic"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m17.68 7.437 1.212 1.213a.523.523 0 0 1 0 .742l-7.828 7.828a.525.525 0 0 1-.742 0L5.85 12.749a.525.525 0 0 1 0-.743l1.213-1.212a.524.524 0 0 1 .742 0l2.888 2.887 6.244-6.245a.526.526 0 0 1 .743 0v.001Z" fill="currentColor"/></svg></span>
+                  <div class="sigrow__col"><div class="sigrow__meta"><span class="sigrow__src">质量系统</span><span class="sigrow__t">本月</span><span class="sigrow__exp">分身解读</span></div><div class="sigrow__desc">JMT 项目批签发通过率 <span class="num up">100%</span>，放行周期 <span class="num up">-32%</span></div><div class="sigrow__interp"></div></div>
+                </div>
+                <div class="sigrow ok" data-interp="产能爬坡到位并留出安全库存，供应端已经为全国铺货做好兜底，不会成为放量的瓶颈。">
+                  <span class="sigrow__ic"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m17.68 7.437 1.212 1.213a.523.523 0 0 1 0 .742l-7.828 7.828a.525.525 0 0 1-.742 0L5.85 12.749a.525.525 0 0 1 0-.743l1.213-1.212a.524.524 0 0 1 .742 0l2.888 2.887 6.244-6.245a.526.526 0 0 1 .743 0v.001Z" fill="currentColor"/></svg></span>
+                  <div class="sigrow__col"><div class="sigrow__meta"><span class="sigrow__src">生产排程</span><span class="sigrow__t">本月</span><span class="sigrow__exp">分身解读</span></div><div class="sigrow__desc">产能爬坡达 <span class="num up">目标 112%</span>，安全库存覆盖 6 周</div><div class="sigrow__interp"></div></div>
+                </div>
+                <div class="sigrow ok" data-interp="发货及时率高说明物流配送顺畅，重点区域的终端不会因为缺货而错过动销窗口。">
+                  <span class="sigrow__ic"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m17.68 7.437 1.212 1.213a.523.523 0 0 1 0 .742l-7.828 7.828a.525.525 0 0 1-.742 0L5.85 12.749a.525.525 0 0 1 0-.743l1.213-1.212a.524.524 0 0 1 .742 0l2.888 2.887 6.244-6.245a.526.526 0 0 1 .743 0v.001Z" fill="currentColor"/></svg></span>
+                  <div class="sigrow__col"><div class="sigrow__meta"><span class="sigrow__src">供应链</span><span class="sigrow__t">滚动 30 天</span><span class="sigrow__exp">分身解读</span></div><div class="sigrow__desc">全国订单发货及时率 <span class="num up">99.2%</span>，缺货预警 0 次</div><div class="sigrow__interp"></div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dlane">
+              <div class="dlane__hd">
+                <div class="dlane__av" style="background:#1faead;">李</div>
+                <div><div class="dlane__nm">学术准入线</div><div class="dlane__who">李航 · 医学市场</div></div>
+                <div class="dlane__sp"></div>
+                <span class="dstate blue"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21.707 16.293a1 1 0 0 1-1.414 0L12 8l-8.293 8.293a1 1 0 0 1-1.414-1.414l8.293-8.293a2 2 0 0 1 2.828 0l8.293 8.293a1 1 0 0 1 0 1.414Z" fill="currentColor"/></svg>反超预期</span>
+              </div>
+              <div class="dsig">
+                <div class="sigrow ok" data-interp="进院数超计划，意味着放量有了真实的终端入口，是质量最高的一类进展。">
+                  <span class="sigrow__ic"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m17.68 7.437 1.212 1.213a.523.523 0 0 1 0 .742l-7.828 7.828a.525.525 0 0 1-.742 0L5.85 12.749a.525.525 0 0 1 0-.743l1.213-1.212a.524.524 0 0 1 .742 0l2.888 2.887 6.244-6.245a.526.526 0 0 1 .743 0v.001Z" fill="currentColor"/></svg></span>
+                  <div class="sigrow__col"><div class="sigrow__meta"><span class="sigrow__src">准入系统</span><span class="sigrow__t">本季度</span><span class="sigrow__exp">分身解读</span></div><div class="sigrow__desc">关键批次放行 <span class="num up">+27%</span>，超季度放行计划</div><div class="sigrow__interp"></div></div>
+                </div>
+                <div class="sigrow ok" data-interp="学术覆盖来自真实的偏差复盘与 QA/QC 反馈，不是口径堆数——这条线真在变好。">
+                  <span class="sigrow__ic"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m17.68 7.437 1.212 1.213a.523.523 0 0 1 0 .742l-7.828 7.828a.525.525 0 0 1-.742 0L5.85 12.749a.525.525 0 0 1 0-.743l1.213-1.212a.524.524 0 0 1 .742 0l2.888 2.887 6.244-6.245a.526.526 0 0 1 .743 0v.001Z" fill="currentColor"/></svg></span>
+                  <div class="sigrow__col"><div class="sigrow__meta"><span class="sigrow__src">质量/注册协同</span><span class="sigrow__t">滚动 30 天</span><span class="sigrow__exp">分身解读</span></div><div class="sigrow__desc">关键批次 QA/QC 覆盖率较基线 <span class="num up">+2.1 倍</span></div><div class="sigrow__interp"></div></div>
+                </div>
+                <div class="sigrow warn" data-interp="个别区域指南落地慢还不致命，但要盯住——别让它拖慢整体进院节奏。">
+                  <span class="sigrow__ic"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18Zm0 2c6.075 0 11-4.925 11-11S18.075 1 12 1 1 5.925 1 12s4.925 11 11 11Z" fill="currentColor"/> <path d="M12 7a1 1 0 0 0-1 1v5a1 1 0 1 0 2 0V8a1 1 0 0 0-1-1Zm0 8a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" fill="currentColor"/></svg></span>
+                  <div class="sigrow__col"><div class="sigrow__meta"><span class="sigrow__src">医学事务</span><span class="sigrow__t">本周</span><span class="sigrow__exp">分身解读</span></div><div class="sigrow__desc">个别区域诊疗指南落地<span class="num bad">慢于预期</span>，需持续观察</div><div class="sigrow__interp"></div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dlane crux">
+              <div class="dlane__hd">
+                <div class="dlane__av" style="background:#f54a45;">张</div>
+                <div><div class="dlane__nm">区域放量线</div><div class="dlane__who">张维 · 商业化</div></div>
+                <div class="dlane__sp"></div>
+                <span class="dstate red"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18Zm0 2c6.075 0 11-4.925 11-11S18.075 1 12 1 1 5.925 1 12s4.925 11 11 11Z" fill="currentColor"/> <path d="M12 7a1 1 0 0 0-1 1v5a1 1 0 1 0 2 0V8a1 1 0 0 0-1-1Zm0 8a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" fill="currentColor"/></svg>需关注</span>
+              </div>
+              <div class="dsig">
+                <div class="sigrow bad" data-interp="进院数在涨、终端动销没跟上，说明铺进去的货卖得不够快——这是放量虚高的第一个客观信号。">
+                  <span class="sigrow__ic"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.207 20.207a.99.99 0 0 0 .003-1.403L13.406 12l6.804-6.804a.99.99 0 0 0-.003-1.403.99.99 0 0 0-1.403-.003L12 10.594 5.196 3.79a.99.99 0 0 0-1.403.003.99.99 0 0 0-.003 1.403L10.594 12 3.79 18.804a.99.99 0 0 0 .003 1.403.99.99 0 0 0 1.403.003L12 13.406l6.804 6.804a.99.99 0 0 0 1.403-.003Z" fill="currentColor"/></svg></span>
+                  <div class="sigrow__col"><div class="sigrow__meta"><span class="sigrow__src">动销数据</span><span class="sigrow__t">近 21 天</span><span class="sigrow__exp">分身解读</span></div><div class="sigrow__desc">华东区终端动销环比仅 <span class="num bad">+8%</span>，落后进院增速</div><div class="sigrow__interp"></div></div>
+                </div>
+                <div class="sigrow bad" data-interp="库存周转放缓说明渠道里压了货卖不动，这不是出货问题，是真实放量的质量问题。">
+                  <span class="sigrow__ic"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.207 20.207a.99.99 0 0 0 .003-1.403L13.406 12l6.804-6.804a.99.99 0 0 0-.003-1.403.99.99 0 0 0-1.403-.003L12 10.594 5.196 3.79a.99.99 0 0 0-1.403.003.99.99 0 0 0-.003 1.403L10.594 12 3.79 18.804a.99.99 0 0 0 .003 1.403.99.99 0 0 0 1.403.003L12 13.406l6.804 6.804a.99.99 0 0 0 1.403-.003Z" fill="currentColor"/></svg></span>
+                  <div class="sigrow__col"><div class="sigrow__meta"><span class="sigrow__src">渠道库存</span><span class="sigrow__t">本周</span><span class="sigrow__exp">分身解读</span></div><div class="sigrow__desc">华东区渠道库存周转放缓至 <span class="num bad">2.1 个月</span>，高于健康线</div><div class="sigrow__interp"></div></div>
+                </div>
+                <div class="sigrow bad" data-interp="这条信号把前两条的后果量化了：进院靠前的货有一半还压在渠道，季后大概率退货回流，全国放量被结构性高估。">
+                  <span class="sigrow__ic"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.207 20.207a.99.99 0 0 0 .003-1.403L13.406 12l6.804-6.804a.99.99 0 0 0-.003-1.403.99.99 0 0 0-1.403-.003L12 10.594 5.196 3.79a.99.99 0 0 0-1.403.003.99.99 0 0 0-.003 1.403L10.594 12 3.79 18.804a.99.99 0 0 0 .003 1.403.99.99 0 0 0 1.403.003L12 13.406l6.804 6.804a.99.99 0 0 0 1.403-.003Z" fill="currentColor"/></svg></span>
+                  <div class="sigrow__col"><div class="sigrow__meta"><span class="sigrow__src">出货结构</span><span class="sigrow__t">分析</span><span class="sigrow__exp">分身解读</span></div><div class="sigrow__desc">华东区出货 <span class="num bad">54%</span> 未形成终端动销，预估季后退货回流 <span class="num bad">约 2 个月货量</span></div><div class="sigrow__interp"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TODO -->
+          <div class="dpanel" data-panel="todo">
+            <div class="esc">
+              <div class="esc__bar"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18Zm0 2c6.075 0 11-4.925 11-11S18.075 1 12 1 1 5.925 1 12s4.925 11 11 11Z" fill="currentColor"/> <path d="M12 7a1 1 0 0 0-1 1v5a1 1 0 1 0 2 0V8a1 1 0 0 0-1-1Zm0 8a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" fill="currentColor"/></svg>重点预警 · 区域放量线<span class="pill">需上级处置</span></div>
+              <div class="esc__body">
+                <div class="esc__text">
+                  <p><strong>提醒您：</strong>区域放量线我捕捉到三个客观信号，指向同一件事：华东区<span class="em">进院在涨、终端没跟上</span>——动销仅 +8% 落后进院增速、渠道库存周转放缓到 2.1 个月、54% 出货没形成真实动销。</p>
+                  <p>我没当成普通进度延迟来报。按你当初的话 —— <q>放量要算总账，不能只看出货数字</q> —— 这恰恰在动摇全国放量的<strong>根基</strong>：这些货进渠道时报表好看，但卖不动会在季后集中退货回流，把全国放量打回纸面数字。</p>
+                </div>
+                <div class="esc__div"></div>
+                <div class="esc__lbl">两个选择 · 我已标注倾向</div>
+                <div class="choice pref">
+                  <div class="choice__h"><span class="choice__k">A</span><span class="choice__t">资源攻坚华东动销、阶段性下调激进出货目标</span><span class="choice__tag">分身倾向</span></div>
+                  <div class="choice__d">把市场与医学资源向华东重点终端倾斜、加速动销转化，本季对华东出货目标做阶段性下调。<strong>守住真实动销 = 守住全国放量的根基</strong>，正是你拍板时的取舍。</div>
+                </div>
+                <div class="choice no">
+                  <div class="choice__h"><span class="choice__k">B</span><span class="choice__t">维持华东出货目标先压货</span><span class="choice__tag">不建议</span></div>
+                  <div class="choice__d">本季出货报表好看，但卖不动的货季后集中退货回流，会让<span class="warn">全国放量变成纸面数字</span>，直接违背你"不能只看出货数字"的初衷。</div>
+                </div>
+              </div>
+              <div class="esc__btns">
+                <button class="btn primary" id="btnA" type="button"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m17.68 7.437 1.212 1.213a.523.523 0 0 1 0 .742l-7.828 7.828a.525.525 0 0 1-.742 0L5.85 12.749a.525.525 0 0 1 0-.743l1.213-1.212a.524.524 0 0 1 .742 0l2.888 2.887 6.244-6.245a.526.526 0 0 1 .743 0v.001Z" fill="currentColor"/></svg>按 A 走 · 资源攻坚并拉三方会</button>
+              </div>
+              <div class="esc__btns" style="padding-top:0;background:var(--card);border-top:none;">
+                <button class="btn" id="btnEv2" type="button"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M11 8a1 1 0 1 1 2 0v3h3a1 1 0 1 1 0 2h-4a1 1 0 0 1-1-1V8Z" fill="currentColor"/> <path d="M12 23c6.075 0 11-4.925 11-11S18.075 1 12 1 1 5.925 1 12s4.925 11 11 11Zm0-2a9 9 0 1 1 0-18 9 9 0 0 1 0 18Z" fill="currentColor"/></svg>先看完整证据链</button>
+                <button class="btn" data-toast="已转交 张维|要求 24h 内就华东动销缺口书面说明"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18.75 16a3.622 3.622 0 0 1-2.637-1.156A5 5 0 1 1 17 12c0 1.105.784 2 1.75 2 1.512 0 1.776-2 1.776-2 .08-.548.138-.903.138-1.568C20.664 6.997 17.164 3 12 3s-8.98 3.836-8.98 9 3.816 9.01 8.98 9.01c1.807 0 3.487-.634 4.916-1.544a.823.823 0 0 1 .853-.028l.041.024.903.519a.41.41 0 0 1 .067.682A10.953 10.953 0 0 1 12 23C5.925 23 1 18.075 1 12S5.925 1 12 1s10.657 4.265 10.657 9.432c0 .256.014.522-.136 1.794C22.296 14.326 20.75 16 18.75 16ZM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" fill="currentColor"/></svg>@张维 要说明</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- FOLLOW -->
+          <div class="dpanel" data-panel="follow">
+            <div class="scard">
+              <div class="scard__hd"><span class="bar"></span><b>分身督办轨迹</b><span class="all">自主推进，最后才升级</span></div>
+              <div class="tl">
+                <div class="tlitem bot">
+                  <div class="tlitem__t">第 60 天 · 09:10</div>
+                  <div class="tlitem__d">分身首次标记华东动销缺口，自动推送给区域放量线负责人 <span class="who">@张维</span></div>
+                  <div class="tlitem__sub">未惊动上级 — 先给一线机会自查</div>
+                </div>
+                <div class="tlitem">
+                  <div class="tlitem__t">第 61 天 · 14:30</div>
+                  <div class="tlitem__d">张维回复"季度冲刺正常铺货"，但未提供终端动销跟进计划</div>
+                  <div class="tlitem__sub">分身标记：出货口径与动销数据不一致</div>
+                </div>
+                <div class="tlitem bot">
+                  <div class="tlitem__t">第 62 天 · 11:05</div>
+                  <div class="tlitem__d">分身检测到渠道库存周转持续放缓、出货未转动销，升级为<span style="color:var(--red-ink);font-weight:600;">重点信号</span></div>
+                  <div class="tlitem__sub">触及"不能只看出货数字"判断逻辑</div>
+                </div>
+                <div class="tlitem now">
+                  <div class="tlitem__t">第 64 天 · 09:22 · 当前</div>
+                  <div class="tlitem__d">三项信号合成，做判断下沉，升级至上级 <span class="who">@上一层管理者</span></div>
+                  <div class="tlitem__sub">已附 A/B 选择与分身倾向，待处置</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+<div class="hintbubble" id="hint"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 21.25a1 1 0 1 1 0 2h-4a1 1 0 1 1 0-2h4ZM12 .75c.852 0 1.677.12 2.458.342-.01.2-.049.398-.123.585A1.804 1.804 0 0 1 12.829 2.8 7 7 0 0 0 5 9.672l.107 1.27a5.065 5.065 0 0 0 3.446 4.384 2.17 2.17 0 0 1 1.372 1.372l.517 1.552h3.118l.517-1.552a2.17 2.17 0 0 1 1.372-1.372 5.065 5.065 0 0 0 3.446-4.385L19 9.671a7.051 7.051 0 0 0-.038-.633 1.801 1.801 0 0 1 .558-1.2 1.804 1.804 0 0 1 1.154-.488c.21.764.326 1.569.326 2.4l-.113 1.357a7.066 7.066 0 0 1-4.807 6.117.169.169 0 0 0-.106.106l-.555 1.663a1.838 1.838 0 0 1-1.743 1.257h-3.352c-.79 0-1.493-.506-1.743-1.257l-.555-1.663a.169.169 0 0 0-.106-.106 7.066 7.066 0 0 1-4.807-6.117L3 9.75a9 9 0 0 1 9-9Z" fill="currentColor"/> <path d="M17.204.897c.11 0 .2.09.205.2a3.801 3.801 0 0 0 3.596 3.594c.11.006.2.096.2.206a.21.21 0 0 1-.2.206 3.801 3.801 0 0 0-3.596 3.594.209.209 0 0 1-.205.2.21.21 0 0 1-.205-.2 3.8 3.8 0 0 0-3.595-3.594.21.21 0 0 1-.2-.206c0-.11.09-.2.2-.206A3.8 3.8 0 0 0 17 1.097a.208.208 0 0 1 .205-.2Z" fill="currentColor"/></svg>点开这条消息，在右侧展开详情</div>
+<div id="toasts" aria-live="polite"></div>
+
+<script>
+const app = document.getElementById('app');
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const t = document.getElementById('typing'); if (t) t.style.display='none';
+    const m = document.getElementById('botMsg'); m.classList.remove('hide'); m.classList.add('in');
+    setTimeout(() => document.getElementById('hint').classList.add('show'), 700);
+  }, 1500);
+});
+function openDrawer(){ app.classList.add('open'); document.getElementById('reportCard').classList.add('selected'); document.getElementById('hint').classList.remove('show'); }
+function closeDrawer(){ app.classList.remove('open'); document.getElementById('reportCard').classList.remove('selected'); }
+const card = document.getElementById('reportCard');
+card.addEventListener('click', () => app.classList.contains('open') ? null : openDrawer());
+card.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' '){ e.preventDefault(); openDrawer(); }});
+document.getElementById('closeDrawer').addEventListener('click', closeDrawer);
+
+document.querySelectorAll('.dtab').forEach(tab => tab.addEventListener('click', () => {
+  const p = tab.dataset.panel;
+  document.querySelectorAll('.dtab').forEach(x => x.classList.toggle('active', x===tab));
+  document.querySelectorAll('.dpanel').forEach(panel => panel.classList.toggle('active', panel.dataset.panel===p));
+  document.querySelector('.dr-scroll').scrollTo({ top: 0, behavior:'smooth' });
+}));
+
+document.querySelectorAll('.sigrow').forEach(s => {
+  const box = s.querySelector('.sigrow__interp');
+  box.innerHTML = '<span class="l"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5.748A13.92 13.92 0 0 1 5.944 12 13.92 13.92 0 0 1 12 18.251 13.92 13.92 0 0 1 18.056 12 13.92 13.92 0 0 1 12 5.748ZM23.497 12a.533.533 0 0 1-.473.526l-.124.016c-.873.111-1.718.318-2.521.611l-.973.407a11.916 11.916 0 0 0-5.718 5.792l-.402.986a12.002 12.002 0 0 0-.601 2.532l-.028.128c-.09.289-.35.5-.657.5l-.128-.014a.704.704 0 0 1-.53-.486l-.027-.128a12.002 12.002 0 0 0-.601-2.532l-.402-.986a11.917 11.917 0 0 0-5.718-5.792l-.973-.407a11.61 11.61 0 0 0-2.303-.582l-.342-.045A.533.533 0 0 1 .503 12c0-.271.207-.495.473-.526a11.607 11.607 0 0 0 2.328-.517l.317-.11.973-.407a11.917 11.917 0 0 0 5.718-5.793l.402-.985c.287-.807.491-1.655.601-2.532A.703.703 0 0 1 12 .503c.35 0 .64.274.685.627.11.877.314 1.725.601 2.532l.402.985a11.917 11.917 0 0 0 5.718 5.793l.973.407.317.11c.746.248 1.525.423 2.328.517.266.03.473.255.473.526Z" fill="currentColor"/></svg>分身解读</span>' + (s.dataset.interp||'');
+  s.addEventListener('click', () => { s.classList.toggle('open'); const e=s.querySelector('.sigrow__exp'); if(e) e.textContent = s.classList.contains('open')?'收起':'分身解读'; });
+});
+
+const toastsEl = document.getElementById('toasts');
+function toast(kind, title, sub){
+  const icons={ok:'<span class="ti ti-ok"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m17.68 7.437 1.212 1.213a.523.523 0 0 1 0 .742l-7.828 7.828a.525.525 0 0 1-.742 0L5.85 12.749a.525.525 0 0 1 0-.743l1.213-1.212a.524.524 0 0 1 .742 0l2.888 2.887 6.244-6.245a.526.526 0 0 1 .743 0v.001Z" fill="currentColor"/></svg></span>',info:'<span class="ti ti-info"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 2C5.925 23 1 18.075 1 12S5.925 1 12 1s11 4.925 11 11-4.925 11-11 11Zm-1-7.5v-4a1 1 0 1 1 0-2h1.004c.55 0 .998.445.998.996.003 1.668-.002 3.336-.002 5.004h.5a1 1 0 1 1 0 2h-3a1 1 0 1 1 0-2h.5Zm1-7a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" fill="currentColor"/></svg></span>',warn:'<span class="ti ti-warn"><svg class="uic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18Zm0 2c6.075 0 11-4.925 11-11S18.075 1 12 1 1 5.925 1 12s4.925 11 11 11Z" fill="currentColor"/> <path d="M12 7a1 1 0 0 0-1 1v5a1 1 0 1 0 2 0V8a1 1 0 0 0-1-1Zm0 8a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" fill="currentColor"/></svg></span>'};
+  const el=document.createElement('div'); el.className='toast';
+  el.innerHTML=(icons[kind]||icons.info)+'<div>'+title+(sub?' <span class="s">'+sub+'</span>':'')+'</div>';
+  toastsEl.appendChild(el);
+  setTimeout(()=>{el.style.animation='tout 220ms var(--ease) forwards';setTimeout(()=>el.remove(),240);},3400);
+}
+document.getElementById('btnA').addEventListener('click', () => { toast('ok','已启动华东动销攻坚 · 发起三方会','您 × 张维 × 李航 · 优先匹配本周三 10:00'); document.querySelector('.dtab[data-panel="todo"] .b')?.remove(); });
+function showEvidence(){
+  document.querySelector('.dtab[data-panel="lanes"]').click();
+  setTimeout(()=>{ document.querySelectorAll('.dlane.crux .sigrow').forEach(s=>{ if(!s.classList.contains('open')){s.classList.add('open');const e=s.querySelector('.sigrow__exp');if(e)e.textContent='收起';} }); const lane=document.querySelector('.dlane.crux'); if(lane) document.querySelector('.dr-scroll').scrollTo({top:lane.offsetTop-60,behavior:'smooth'}); },120);
+  toast('warn','展开区域放量线证据链','3 条信号 · 含动销与库存数据 · 跨 21 天');
+}
+document.getElementById('actEvidence').addEventListener('click', showEvidence);
+document.getElementById('btnEv2').addEventListener('click', showEvidence);
+document.querySelectorAll('[data-toast]').forEach(b => b.addEventListener('click', () => { const [t,s]=b.dataset.toast.split('|'); toast('info',t,s); }));
+document.querySelectorAll('.rxn').forEach(r => r.addEventListener('click', () => toast('ok','已表态','分身已记录你的回应')));
+document.querySelector('.comp-send').addEventListener('click', () => toast('info','已发送给分身','分身将基于最新客观信号回应'));
+</script>
+<script>
+(() => {
+  const items = Array.from(document.querySelectorAll('[data-fs-src]'));
+  let index = 0;
+  function hydrate(el) {
+    if (!el) return;
+    if (el.tagName === 'OBJECT') {
+      if (!el.getAttribute('data')) el.setAttribute('data', el.getAttribute('data-fs-src'));
+      return;
+    }
+    if (el.getAttribute('src')) return;
+    el.setAttribute('src', el.getAttribute('data-fs-src'));
+    if (el.tagName === 'SOURCE' && el.parentElement && el.parentElement.tagName === 'VIDEO') {
+      try { el.parentElement.load(); } catch (_) {}
+    }
+  }
+  function next() {
+    if (index >= items.length) return;
+    hydrate(items[index++]);
+    setTimeout(next, 220);
+  }
+  if ('requestIdleCallback' in window) requestIdleCallback(next, { timeout: 500 });
+  else setTimeout(next, 120);
+})();
+</script>
+</body>
+</html>

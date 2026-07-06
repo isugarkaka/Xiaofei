@@ -1,0 +1,474 @@
+{
+  "schema_version": "1.0",
+  "package_type": "feishu-deck-h5-library",
+  "deck_id": "combined-2026-07-05-ec7f",
+  "title": "巨石生物",
+  "primary_html": "index.html",
+  "generated_by": "feishu-slide-library viewer download",
+  "source": "viewer-download",
+  "slide_count": 77,
+  "slides": [
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-p01-cover",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "p01-cover",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-business-ai-deepening",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-business-ai-deepening",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-agenda-qilu-position",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "agenda-qilu-position",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-feishu-wps-platform-compare",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "feishu-wps-platform-compare",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260622-fa8e5171b34223b4-bytedance-ai-portfolio",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "bytedance-ai-portfolio",
+      "version": "1"
+    },
+    {
+      "slide_id": "lark-pcg-2026-06-17-ai-landscape",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "ai-landscape",
+      "version": "2"
+    },
+    {
+      "slide_id": "lark-product-focus-ai-202604",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-product-focus",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-medical-health-overview",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "medical-health-overview",
+      "version": "1"
+    },
+    {
+      "slide_id": "lark-tiejian-international-2026-06-24-shandong-logo-wall",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "shandong-logo-wall",
+      "version": "1"
+    },
+    {
+      "slide_id": "lark-arr-history-202602",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "arr-history",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-the-leap",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-the-leap",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-org-body",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-org-body",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-agenda-qilu-ai-native-org",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "agenda-qilu-ai-native-org",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-digital-avatar-section",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-digital-avatar-section",
+      "version": "1"
+    },
+    {
+      "slide_id": "ai-knows-you",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "ai-knows-you",
+      "version": "2"
+    },
+    {
+      "slide_id": "meeting-recap-ai",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "meeting-recap-ai",
+      "version": "2"
+    },
+    {
+      "slide_id": "ingest-20260615-901e12328794b5ec-proxy-review-ai",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "proxy-review-ai",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-my-twin-fullscope",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-my-twin-fullscope",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-avatar-org-types",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-avatar-org-types",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-management-avatar-demo",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-management-avatar-demo",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260615-901e12328794b5ec-management-clone-flywheel",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "management-clone-flywheel",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-nerve-section",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-nerve-section",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-quote-org-collab-2",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "quote-org-collab-2",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-kangshifu-8-depts-2",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "kangshifu-8-depts-2",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-kangshifu-solution-3layer-2",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "kangshifu-solution-3layer-2",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-ai-pmo-onepage-2",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "ai-pmo-onepage-2",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-iit-command-center",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-iit-command-center",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-procurement-pmo",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-procurement-pmo",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-intl-registration-pmo",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-intl-registration-pmo",
+      "version": "1"
+    },
+    {
+      "slide_id": "qilu-page20-frontline-execution-avatars-qilu-frontline-execution-avatars",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-frontline-execution-avatars",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-speaking-system",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-speaking-system",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-zhengdatianqing-marketing-brain-case",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "zhengdatianqing-marketing-brain-case",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-crm-insight-demo",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-crm-insight-demo",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-specialist-system-section",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-specialist-system-section",
+      "version": "1"
+    },
+    {
+      "slide_id": "lark-pcg-2026-06-17-km-pain-points",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "km-pain-points",
+      "version": "3"
+    },
+    {
+      "slide_id": "lark-pcg-2026-06-17-bd-service-desk",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "bd-service-desk",
+      "version": "2"
+    },
+    {
+      "slide_id": "knowledge-iceberg",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "knowledge-iceberg",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-haizheng-rep-assistant",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "haizheng-rep-assistant",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-ferment-master-judgment",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "ferment-master-judgment",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-yangzijiang-capa-deviation",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "yangzijiang-capa-deviation",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-avatar-business-root",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-avatar-business-root",
+      "version": "1"
+    },
+    {
+      "slide_id": "wei-chuan-ai-deck-pages-system-integration-thesis",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "system-integration-thesis",
+      "version": "4"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-academic-demo",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-academic-demo",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-one-policy-one-group-value",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "one-policy-one-group-value",
+      "version": "1"
+    },
+    {
+      "slide_id": "lark-huzhou-bank-2026-06-24-base-two-blindspots",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "base-two-blindspots",
+      "version": "1"
+    },
+    {
+      "slide_id": "lark-store-display-instinct-en-202605",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "store-manager-display-instinct",
+      "version": "3"
+    },
+    {
+      "slide_id": "lark-tiejian-international-2026-06-24-judgment-training-complaints",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "judgment-training-complaints",
+      "version": "2"
+    },
+    {
+      "slide_id": "lark-ai-2026-06-17-aia-coach-school-clue",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "aia-coach-school-clue",
+      "version": "4"
+    },
+    {
+      "slide_id": "four-extraction-measures",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "four-extraction-measures",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-slide-040",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "slide-040",
+      "version": "1"
+    },
+    {
+      "slide_id": "wei-chuan-ai-deck-pages-knowledge-management-wall",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "knowledge-management-wall",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-everyone-builder-section",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-everyone-builder-section",
+      "version": "1"
+    },
+    {
+      "slide_id": "lark-two-modes-it-vs-business-202604",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "two-modes",
+      "version": "2"
+    },
+    {
+      "slide_id": "lark-advice-composite-talent-en-202605",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "composite-talent-iceberg",
+      "version": "3"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-hisun-ai-supply-collab",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "hisun-ai-supply-collab",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-feishu-ai-pioneer-case",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "feishu-ai-pioneer-case",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-cognition-cultivation",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "cognition-cultivation",
+      "version": "1"
+    },
+    {
+      "slide_id": "lark-mechanism-incentive-step2-202604",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "mechanism-incentive",
+      "version": "1"
+    },
+    {
+      "slide_id": "lark-pcg-2026-06-17-tool-training",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "tool-training",
+      "version": "4"
+    },
+    {
+      "slide_id": "lark-tiejian-international-2026-06-24-qilu-src-slide-065-qilu-original",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-src-slide-065-qilu-original",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-src-slide-060",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-src-slide-060",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-src-p48-agenda",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-src-p48-agenda",
+      "version": "1"
+    },
+    {
+      "slide_id": "lark-feishu-ecosystem-allinone-202604",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-src-feishu-ecosystem",
+      "version": "1"
+    },
+    {
+      "slide_id": "lark-feishu-product-leadership-202604",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-src-feishu-product-leadership-qilu",
+      "version": "1"
+    },
+    {
+      "slide_id": "lark-global-compliance-202604",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-src-global-compliance-qilu",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-src-scenario-driven-healthcare-practice",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-src-scenario-driven-healthcare-practice",
+      "version": "1"
+    },
+    {
+      "slide_id": "lark-tiejian-international-2026-06-24-core-thesis",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "core-thesis",
+      "version": "2"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-src-ai-special-service-lifecycle",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-src-ai-special-service-lifecycle",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-growth-efficiency-gap",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-growth-efficiency-gap",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-agenda-4",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "agenda-4",
+      "version": "1"
+    },
+    {
+      "slide_id": "wei-chuan-ai-deck-pages-phase1-preview-goal",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "phase1-preview-goal",
+      "version": "1"
+    },
+    {
+      "slide_id": "wei-chuan-ai-deck-pages-phase1-preview-actions",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "phase1-preview-actions",
+      "version": "1"
+    },
+    {
+      "slide_id": "wei-chuan-ai-deck-pages-phase2-preview-goal",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "phase2-preview-goal",
+      "version": "1"
+    },
+    {
+      "slide_id": "wei-chuan-ai-deck-pages-phase2-preview-actions",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "phase2-preview-actions",
+      "version": "1"
+    },
+    {
+      "slide_id": "wei-chuan-ai-deck-pages-phase3-preview-deepen",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "phase3-preview-deepen",
+      "version": "1"
+    },
+    {
+      "slide_id": "wei-chuan-ai-deck-pages-influence-opportunity",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-influence-opportunity",
+      "version": "1"
+    },
+    {
+      "slide_id": "ingest-20260624-4d54a6830be69a4d-qilu-ai-positioning",
+      "source_deck": "ingest-20260624-4d54a6830be69a4d",
+      "source_slide_key": "qilu-ai-positioning",
+      "version": "1"
+    }
+  ]
+}
