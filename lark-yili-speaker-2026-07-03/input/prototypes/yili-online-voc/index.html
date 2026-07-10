@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>伊利线上平台 VOC 用户评价分析系统</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --yili-green:#00a651;
+  --yili-green-d:#008a44;
+  --yili-blue:#0072c6;
+  --yili-blue-l:#e8f4fd;
+  --yili-green-l:#e6f7ee;
+  --bg:#f4f7fa;
+  --card:#ffffff;
+  --text:#1f2d3d;
+  --text-2:#5a6b7b;
+  --text-3:#93a3b3;
+  --border:#e8edf2;
+  --red:#e5484d;
+  --amber:#f5a623;
+  --amber-d:#c47f00;
+  --shadow:0 1px 3px rgba(20,40,70,.06),0 6px 20px rgba(20,40,70,.05);
+  --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Segoe UI,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.55}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-thumb{background:#cdd7e0;border-radius:8px}
+::-webkit-scrollbar-track{background:transparent}
+
+/* ===== Top Bar ===== */
+.topbar{background:linear-gradient(120deg,var(--yili-green) 0%,var(--yili-blue) 100%);color:#fff;padding:18px 32px;box-shadow:0 4px 18px rgba(0,114,198,.18);position:sticky;top:0;z-index:50}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;max-width:1600px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:46px;height:46px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--yili-green);font-size:20px;letter-spacing:-1px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.brand h1{font-size:20px;font-weight:700;letter-spacing:.5px}
+.brand .sub{font-size:12px;opacity:.85;margin-top:2px;font-weight:400}
+.meta-chips{display:flex;gap:10px;flex-wrap:wrap}
+.chip{background:rgba(255,255,255,.16);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.22);padding:6px 14px;border-radius:20px;font-size:12px;display:flex;align-items:center;gap:6px}
+.chip b{font-weight:600}
+.dot{width:7px;height:7px;border-radius:50%;background:#7fffb0;box-shadow:0 0 0 3px rgba(127,255,176,.28);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* ===== Global Filters ===== */
+.filters{background:var(--card);border-bottom:1px solid var(--border);padding:12px 32px;position:sticky;top:82px;z-index:40}
+.filters-inner{max-width:1600px;margin:0 auto;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.filter-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-2)}
+.filter-item label{font-weight:500;white-space:nowrap}
+.filter-item select{border:1px solid var(--border);border-radius:8px;padding:6px 10px;font-size:13px;background:#fff;color:var(--text);cursor:pointer;outline:none;transition:.15s}
+.filter-item select:hover{border-color:var(--yili-green)}
+.filters-inner .spacer{flex:1}
+.ai-btn{background:linear-gradient(120deg,var(--yili-green),var(--yili-blue));color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:0 3px 10px rgba(0,166,81,.25);transition:.15s}
+.ai-btn:hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(0,166,81,.35)}
+.ai-btn.ghost{background:#fff;color:var(--yili-blue);border:1px solid var(--yili-blue)}
+.ai-btn.ghost:hover{background:var(--yili-blue-l)}
+
+/* ===== Tabs ===== */
+.tabs{background:var(--card);border-bottom:1px solid var(--border);padding:0 32px;position:sticky;top:135px;z-index:39}
+.tabs-inner{max-width:1600px;margin:0 auto;display:flex;gap:4px;overflow-x:auto}
+.tab{padding:14px 20px;font-size:14px;font-weight:600;color:var(--text-2);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:.15s;display:flex;align-items:center;gap:8px}
+.tab .num{width:22px;height:22px;border-radius:50%;background:var(--border);color:var(--text-2);font-size:12px;display:flex;align-items:center;justify-content:center;font-weight:700}
+.tab:hover{color:var(--yili-green)}
+.tab.active{color:var(--yili-green);border-bottom-color:var(--yili-green)}
+.tab.active .num{background:var(--yili-green);color:#fff}
+
+/* ===== Layout ===== */
+.wrap{max-width:1600px;margin:0 auto;padding:24px 32px 60px}
+.panel{display:none;animation:fade .35s ease}
+.panel.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.section-title{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700;margin:26px 0 14px}
+.section-title:first-child{margin-top:4px}
+.section-title .bar{width:4px;height:18px;border-radius:3px;background:linear-gradient(var(--yili-green),var(--yili-blue))}
+.section-title .hint{font-size:12px;font-weight:400;color:var(--text-3);margin-left:auto}
+
+/* ===== KPI Cards ===== */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow);cursor:pointer;transition:.18s;position:relative;overflow:hidden}
+.kpi::after{content:"";position:absolute;right:-14px;top:-14px;width:60px;height:60px;border-radius:50%;background:var(--yili-green-l);opacity:.6}
+.kpi:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(20,40,70,.1);border-color:var(--yili-green)}
+.kpi .label{font-size:12.5px;color:var(--text-2);position:relative;z-index:1}
+.kpi .val{font-size:28px;font-weight:800;margin:6px 0 2px;position:relative;z-index:1;letter-spacing:-.5px}
+.kpi .trend{font-size:11.5px;position:relative;z-index:1;display:flex;align-items:center;gap:4px}
+.kpi.danger .val{color:var(--red)}
+.kpi.danger::after{background:#fdecec}
+.kpi.warn .val{color:var(--amber-d)}
+.kpi.warn::after{background:#fef4e0}
+.kpi.ok .val{color:var(--yili-green)}
+.up{color:var(--red)}.down{color:var(--yili-green)}
+
+/* ===== Cards / Charts ===== */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow)}
+.card h3{font-size:14.5px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.card .desc{font-size:12px;color:var(--text-3);margin-bottom:14px}
+.chart-box{position:relative;height:250px}
+.chart-box.sm{height:210px}
+
+/* ===== AI Summary ===== */
+.ai-summary{background:linear-gradient(120deg,#f0fbf5,#eaf5fd);border:1px solid #cbe9d8;border-radius:var(--radius);padding:20px 24px;position:relative;overflow:hidden}
+.ai-summary::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--yili-green),var(--yili-blue))}
+.ai-summary .head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.ai-badge{background:linear-gradient(120deg,var(--yili-green),var(--yili-blue));color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;display:inline-flex;align-items:center;gap:5px}
+.ai-summary h3{font-size:15px;font-weight:700}
+.ai-summary .body{font-size:13.5px;color:var(--text);line-height:1.75}
+.ai-summary .body b{color:var(--yili-green-d)}
+.ai-summary ul{list-style:none;margin-top:10px;display:grid;gap:8px}
+.ai-summary li{display:flex;gap:8px;align-items:flex-start;background:rgba(255,255,255,.6);border-radius:8px;padding:8px 12px}
+.ai-summary li .k{color:var(--yili-blue);font-weight:700;flex-shrink:0}
+.pri-list{display:grid;gap:8px;margin-top:12px}
+.pri-item{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--border);border-radius:10px;padding:10px 14px}
+.pri-item .rank{width:24px;height:24px;border-radius:7px;background:var(--red);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pri-item .rank.r2{background:var(--amber)}
+.pri-item .rank.r3{background:var(--yili-blue)}
+.pri-item .txt{flex:1;font-size:13px}
+.pri-item .txt small{color:var(--text-3);display:block;font-size:11.5px}
+
+/* ===== Tables ===== */
+.tbl-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+table{width:100%;border-collapse:collapse}
+thead th{background:#f7fafc;color:var(--text-2);font-size:12px;font-weight:600;text-align:left;padding:12px 14px;border-bottom:1px solid var(--border);white-space:nowrap}
+tbody td{padding:12px 14px;border-bottom:1px solid #f1f5f8;font-size:13px;vertical-align:middle}
+tbody tr{transition:.12s;cursor:pointer}
+tbody tr:hover{background:#f8fcff}
+tbody tr:last-child td{border-bottom:none}
+.detail-row td{background:#fbfdff;padding:0}
+.detail-inner{padding:18px 22px;display:grid;grid-template-columns:1fr 1fr;gap:18px;animation:fade .25s}
+.detail-block h5{font-size:12px;color:var(--text-3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.detail-block .quote{background:#fff;border-left:3px solid var(--yili-blue);padding:10px 14px;border-radius:0 8px 8px 0;font-size:13px;color:var(--text);margin-bottom:6px}
+.ai-tag-line{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.mini-ai{font-size:11px;color:var(--yili-blue);background:var(--yili-blue-l);padding:3px 9px;border-radius:6px;font-weight:600}
+
+/* ===== Badges ===== */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:11.5px;font-weight:600;white-space:nowrap}
+.b-pos{background:var(--yili-green-l);color:var(--yili-green-d)}
+.b-neu{background:#eef1f4;color:var(--text-2)}
+.b-neg{background:#fdecec;color:var(--red)}
+.b-p0{background:#fde8e8;color:var(--red)}
+.b-p1{background:#fef1e0;color:var(--amber-d)}
+.b-p2{background:var(--yili-blue-l);color:var(--yili-blue)}
+.b-wait{background:#fef1e0;color:var(--amber-d)}
+.b-doing{background:var(--yili-blue-l);color:var(--yili-blue)}
+.b-done{background:var(--yili-green-l);color:var(--yili-green-d)}
+.b-closed{background:#eef1f4;color:var(--text-2)}
+.b-over{background:#fde8e8;color:var(--red);animation:blink 1.4s infinite}
+@keyframes blink{50%{opacity:.55}}
+.stars{color:var(--amber);letter-spacing:1px;font-size:13px}
+.stars .off{color:#dfe5ea}
+.tag{display:inline-block;background:#eef4f9;color:var(--text-2);font-size:11px;padding:2px 8px;border-radius:6px;margin:2px 3px 2px 0}
+.op-btn{border:1px solid var(--border);background:#fff;color:var(--yili-blue);font-size:11.5px;padding:4px 10px;border-radius:7px;cursor:pointer;font-weight:600;transition:.12s}
+.op-btn:hover{background:var(--yili-blue);color:#fff;border-color:var(--yili-blue)}
+
+/* progress */
+.prog{height:7px;background:#eef1f4;border-radius:6px;overflow:hidden;min-width:70px}
+.prog i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--yili-green),var(--yili-blue))}
+
+/* ===== Issue cluster cards ===== */
+.cluster-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.cluster{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow);cursor:pointer;transition:.18s;border-top:3px solid var(--yili-green)}
+.cluster:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(20,40,70,.1)}
+.cluster.sel{border-color:var(--yili-blue);box-shadow:0 0 0 2px var(--yili-blue-l)}
+.cluster.hot{border-top-color:var(--red)}
+.cluster .c-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.cluster .c-title{font-size:15px;font-weight:700}
+.cluster .c-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.c-stat{background:#f7fafc;border-radius:8px;padding:8px 10px}
+.c-stat .n{font-size:18px;font-weight:800}
+.c-stat .n.neg{color:var(--red)}
+.c-stat .t{font-size:11px;color:var(--text-3)}
+.cluster .voice{font-size:12.5px;color:var(--text-2);background:#fbfdff;border-left:3px solid var(--yili-blue);padding:7px 11px;border-radius:0 7px 7px 0;margin:8px 0}
+.cluster .c-foot{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:12px;color:var(--text-3)}
+
+/* Insight area */
+.insight{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 26px;margin-top:16px}
+.insight .ins-head{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.insight .ins-head .t{font-size:17px;font-weight:800}
+.ins-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ins-block{background:#fbfdff;border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+.ins-block h4{font-size:13.5px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.ins-block h4 .ic{width:24px;height:24px;border-radius:7px;background:var(--yili-green-l);color:var(--yili-green-d);display:flex;align-items:center;justify-content:center;font-size:13px}
+.wordcloud{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.wc{border-radius:20px;padding:4px 12px;font-weight:700;background:var(--yili-green-l);color:var(--yili-green-d)}
+.impact-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed var(--border);font-size:13px}
+.impact-row:last-child{border:none}
+.suggest{display:grid;gap:10px}
+.suggest .s-item{background:#fff;border:1px solid var(--border);border-left:3px solid var(--yili-green);border-radius:0 8px 8px 0;padding:10px 14px;font-size:13px}
+.suggest .s-item.mid{border-left-color:var(--yili-blue)}
+.suggest .s-item.cross{border-left-color:var(--amber)}
+.suggest .s-item b{color:var(--yili-green-d)}
+
+/* Dept coordination */
+.dept-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.dept-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);cursor:pointer;transition:.18s}
+.dept-card:hover{border-color:var(--yili-blue);transform:translateY(-2px)}
+.dept-card .d-name{font-weight:700;font-size:14px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.dept-card .d-name .ico{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px}
+.d-metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.d-m .n{font-size:20px;font-weight:800}
+.d-m .n.r{color:var(--red)}
+.d-m .t{font-size:11px;color:var(--text-3)}
+
+/* Flow */
+.flow{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding:10px 0 20px}
+.flow-step{flex:1;min-width:150px;position:relative;text-align:center;padding:0 8px}
+.flow-step .node{width:52px;height:52px;border-radius:16px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:800;box-shadow:0 4px 12px rgba(0,114,198,.2);position:relative;z-index:2}
+.flow-step .st{font-size:13.5px;font-weight:700;margin-bottom:4px}
+.flow-step .sd{font-size:11.5px;color:var(--text-3);line-height:1.4}
+.flow-step:not(:last-child)::after{content:"";position:absolute;top:26px;left:calc(50% + 34px);right:calc(-50% + 34px);height:2px;background:linear-gradient(90deg,var(--yili-green),var(--yili-blue));z-index:1}
+.flow-step .arrow{position:absolute;top:20px;right:-6px;color:var(--yili-blue);z-index:3;font-size:14px}
+
+/* Timeline */
+.timeline{position:relative;padding-left:8px}
+.timeline::before{content:"";position:absolute;left:15px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--yili-green),var(--yili-blue))}
+.tl-item{position:relative;padding:0 0 20px 42px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item .tl-dot{position:absolute;left:8px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid var(--yili-green);z-index:2}
+.tl-item.blue .tl-dot{border-color:var(--yili-blue)}
+.tl-item .tl-time{font-size:11.5px;color:var(--text-3)}
+.tl-item .tl-t{font-size:13.5px;font-weight:700;margin:2px 0}
+.tl-item .tl-d{font-size:12.5px;color:var(--text-2)}
+
+/* Knowledge */
+.know-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.know-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow);transition:.18s;border-top:3px solid var(--yili-blue)}
+.know-card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(20,40,70,.1)}
+.know-card .kt{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;margin-bottom:8px}
+.know-card .kt .ktype{font-size:10.5px;background:var(--yili-blue-l);color:var(--yili-blue);padding:2px 8px;border-radius:6px}
+.know-card .krow{font-size:12.5px;color:var(--text-2);margin:5px 0;display:flex;gap:6px}
+.know-card .krow .lab{color:var(--text-3);flex-shrink:0;min-width:64px}
+.know-card .kfoot{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);font-size:11.5px;color:var(--text-3)}
+
+/* Modal */
+.modal-mask{position:fixed;inset:0;background:rgba(20,35,55,.5);backdrop-filter:blur(3px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-mask.show{display:flex;animation:fade .2s}
+.modal{background:#fff;border-radius:18px;width:640px;max-width:100%;max-height:90vh;overflow:auto;box-shadow:0 30px 80px rgba(0,0,0,.3);animation:pop .25s}
+@keyframes pop{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
+.modal-head{background:linear-gradient(120deg,var(--yili-green),var(--yili-blue));color:#fff;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
+.modal-head h3{font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px}
+.modal-head .x{cursor:pointer;font-size:22px;opacity:.85;line-height:1}
+.modal-body{padding:22px 24px}
+.form-row{margin-bottom:16px}
+.form-row label{display:block;font-size:12.5px;font-weight:600;color:var(--text-2);margin-bottom:6px}
+.form-row .ai-fill{font-size:10.5px;color:var(--yili-green-d);background:var(--yili-green-l);padding:2px 7px;border-radius:5px;margin-left:6px;font-weight:600}
+.form-row input,.form-row select,.form-row textarea{width:100%;border:1px solid var(--border);border-radius:9px;padding:9px 12px;font-size:13px;font-family:inherit;outline:none;transition:.15s}
+.form-row input:focus,.form-row select:focus,.form-row textarea:focus{border-color:var(--yili-green);box-shadow:0 0 0 3px var(--yili-green-l)}
+.form-row textarea{resize:vertical;min-height:70px}
+.form-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.modal-foot{padding:16px 24px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:10px;position:sticky;bottom:0;background:#fff}
+.btn{padding:9px 20px;border-radius:9px;font-size:13.5px;font-weight:600;cursor:pointer;border:none;transition:.15s}
+.btn.cancel{background:#f0f3f6;color:var(--text-2)}
+.btn.confirm{background:linear-gradient(120deg,var(--yili-green),var(--yili-blue));color:#fff;box-shadow:0 4px 12px rgba(0,166,81,.25)}
+.btn.confirm:hover{transform:translateY(-1px)}
+.info-block{background:#fbfdff;border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin-bottom:14px}
+.info-block .l{font-size:11.5px;color:var(--text-3);margin-bottom:3px}
+.info-block .v{font-size:13.5px;color:var(--text)}
+
+/* toast */
+.toast{position:fixed;top:22px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--yili-green-d);color:#fff;padding:12px 22px;border-radius:12px;font-size:13.5px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.2);z-index:200;opacity:0;transition:.35s;display:flex;align-items:center;gap:8px}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+.footer{text-align:center;color:var(--text-3);font-size:12px;padding:24px;border-top:1px solid var(--border);margin-top:20px}
+@media(max-width:1100px){.grid-2,.grid-3,.ins-grid,.detail-inner{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- ===== TOP BAR ===== -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="logo">YILI</div>
+      <div>
+        <h1>伊利线上平台 VOC 用户评价分析系统</h1>
+        <div class="sub">Voice of Customer · 发现问题 → 分析洞察 → 督办闭环 → 知识沉淀</div>
+      </div>
+    </div>
+    <div class="meta-chips">
+      <div class="chip"><span class="dot"></span>数据源：客诉问题智能处理系统</div>
+      <div class="chip"> 分析周期：<b>2024-03-01 ~ 2024-07-31</b></div>
+      <div class="chip"> 商品范围：<b>全品类 · 4 SKU</b></div>
+      <div class="chip"> 更新时间：<b>2024-07-31 09:20</b></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== GLOBAL FILTERS ===== -->
+<div class="filters">
+  <div class="filters-inner">
+    <div class="filter-item"><label>商品</label>
+      <select id="fProduct"><option>全部商品</option><option>全脂/低脂纯牛奶苗条装</option><option>风味酸奶200g*24盒</option><option>0乳糖纯牛奶</option><option>低脂高钙牛奶</option></select>
+    </div>
+    <div class="filter-item"><label>时间</label>
+      <select id="fTime"><option>近5个月</option><option>本月</option><option>近30天</option><option>近7天</option></select>
+    </div>
+    <div class="filter-item"><label>部门</label>
+      <select id="fDept"><option>全部部门</option><option>产品部门</option><option>物流部门</option><option>电商部门</option><option>安全部门</option><option>售后部门</option></select>
+    </div>
+    <div class="filter-item"><label>状态</label>
+      <select id="fStatus"><option>全部状态</option><option>未处理</option><option>处理中</option><option>处理延期</option><option>已处理</option><option>已关闭</option></select>
+    </div>
+    <div class="spacer"></div>
+    <button class="ai-btn ghost" onclick="toast('AI 已扫描本周期评价，发现 3 个上升趋势异常问题 ')"> AI 发现异常</button>
+    <button class="ai-btn" onclick="toast('AI 正在生成 VOC 周报，预计 8 秒后推送至飞书群 ')"> AI 生成周报</button>
+  </div>
+</div>
+
+<!-- ===== TABS ===== -->
+<div class="tabs">
+  <div class="tabs-inner">
+    <div class="tab active" data-tab="overview"><span class="num">1</span>VOC 总览驾驶舱</div>
+    <div class="tab" data-tab="voice"><span class="num">2</span>客户之声发现</div>
+    <div class="tab" data-tab="cluster"><span class="num">3</span>问题聚类与洞察</div>
+    <div class="tab" data-tab="dept"><span class="num">4</span>部门协同与督办</div>
+    <div class="tab" data-tab="closeloop"><span class="num">5</span>改进闭环与知识沉淀</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ============ MODULE 1: OVERVIEW ============ -->
+<div class="panel active" id="overview">
+  <div class="section-title"><span class="bar"></span>核心指标概览<span class="hint">点击卡片可联动下方明细</span></div>
+  <div class="kpi-grid" id="kpiGrid"></div>
+
+  <!-- AI Summary -->
+  <div class="section-title"><span class="bar"></span>AI 周期洞察摘要</div>
+  <div class="ai-summary">
+    <div class="head">
+      <span class="ai-badge"> AI 生成</span>
+      <h3>本周期 VOC 智能总结（2024-03 ~ 2024-07)</h3>
+    </div>
+    <div class="body">
+      本周期共采集用户评价 <b>1,286</b> 条,负面评价占比 <b>34.8%</b>,较上周期上升 <b>4.2pct</b>。用户反馈主要集中在
+      <b>全脂/低脂纯牛奶苗条装</b> 与 <b>风味酸奶</b> 两款主力 SKU;高频问题为
+      <b>包装破损/漏奶</b>、<b>日期新鲜度</b> 与 <b>物流配送湿损</b>。
+      <ul>
+        <li><span class="k"> 正在上升:</span>「包装破损/挤压变形」问题环比上升 27%,集中于天猫整箱装,已触发异常预警。</li>
+        <li><span class="k"> 需重点关注:</span>产品部门 与 物流部门 承接问题量合计占 61%,且逾期任务集中在物流侧。</li>
+        <li><span class="k"> 影响判断:</span>「产品变质/日期」类问题存在食品安全升级风险,建议优先介入。</li>
+      </ul>
+      <div class="pri-list">
+        <div class="pri-item"><span class="rank">1</span><div class="txt">优先处理:<b>整箱装包装破损与吸管缺失</b><small>建议归属 产品部门 + 物流部门协同 · P0 · 涉及 3 SKU · 相关评价 148 条</small></div></div>
+        <div class="pri-item"><span class="rank r2">2</span><div class="txt">优先处理:<b>产品变质/日期新鲜度</b><small>建议归属 安全部门(质检) · P0 · 食品安全风险 · 相关评价 63 条</small></div></div>
+        <div class="pri-item"><span class="rank r3">3</span><div class="txt">优先处理:<b>物流配送湿损/延迟</b><small>建议归属 物流部门 · P1 · 影响复购 · 相关评价 91 条</small></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title"><span class="bar"></span>趋势分析</div>
+  <div class="grid-2">
+    <div class="card"><h3> 评价量趋势</h3><div class="desc">按周展示用户评价数量变化(可切换日/周/月)</div><div class="chart-box"><canvas id="cVolume"></canvas></div></div>
+    <div class="card"><h3> 负面评价趋势</h3><div class="desc">负面评价数量与占比双轴变化</div><div class="chart-box"><canvas id="cNeg"></canvas></div></div>
+  </div>
+
+  <div class="section-title"><span class="bar"></span>分布分析</div>
+  <div class="grid-3">
+    <div class="card"><h3> 问题类型分布</h3><div class="desc">口味/包装/物流/日期/价格等</div><div class="chart-box sm"><canvas id="cType"></canvas></div></div>
+    <div class="card"><h3> 归属部门分布</h3><div class="desc">各部门承接问题量</div><div class="chart-box sm"><canvas id="cDept"></canvas></div></div>
+    <div class="card"><h3> 处理状态分布</h3><div class="desc">待识别→已闭环全链路</div><div class="chart-box sm"><canvas id="cStatus"></canvas></div></div>
+  </div>
+
+  <div class="section-title"><span class="bar"></span>商品问题排行 TOP</div>
+  <div class="card"><h3> 问题评价最多的商品</h3><div class="desc">按负面评价量降序</div><div class="chart-box"><canvas id="cProduct"></canvas></div></div>
+</div>
+
+<!-- ============ MODULE 2: VOICE ============ -->
+<div class="panel" id="voice">
+  <div class="section-title"><span class="bar"></span>客户之声发现<span class="hint">展开每条评价可查看 AI 结构化解析</span></div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;align-items:center">
+    <select class="vf" onchange="renderVoice()" id="vProduct"><option value="">全部商品</option><option>全脂/低脂纯牛奶苗条装</option><option>风味酸奶200g*24盒</option></select>
+    <select class="vf" onchange="renderVoice()" id="vStar"><option value="">全部星级</option><option value="5"></option><option value="3"></option><option value="1"></option></select>
+    <select class="vf" onchange="renderVoice()" id="vSent"><option value="">全部情绪</option><option>正向</option><option>中性</option><option>负向</option></select>
+    <select class="vf" onchange="renderVoice()" id="vType"><option value="">全部问题类型</option><option>包装问题</option><option>产品质量</option><option>日期新鲜度</option><option>物流配送</option><option>价格促销</option></select>
+    <select class="vf" onchange="renderVoice()" id="vDept"><option value="">全部归属部门</option><option>产品部门</option><option>物流部门</option><option>电商部门</option><option>安全部门</option></select>
+    <select class="vf" onchange="renderVoice()" id="vStatus"><option value="">全部状态</option><option>未处理</option><option>处理中</option><option>已处理</option></select>
+    <div class="spacer" style="flex:1"></div>
+    <button class="ai-btn" onclick="batchAI()"> AI 批量识别未处理评价</button>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th>商品名称</th><th>用户评价</th><th>星级</th><th>情绪</th><th>问题类型</th><th>关键词标签</th><th>归属部门</th><th>状态</th><th>优先级</th><th>操作</th>
+      </tr></thead>
+      <tbody id="voiceBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============ MODULE 3: CLUSTER ============ -->
+<div class="panel" id="cluster">
+  <div class="section-title"><span class="bar"></span>问题聚类看板<span class="hint">AI 自动将零散评价聚合为可行动问题主题 · 点击卡片查看洞察</span></div>
+  <div class="cluster-grid" id="clusterGrid"></div>
+
+  <div class="section-title"><span class="bar"></span>洞察分析区</div>
+  <div class="insight" id="insightArea"></div>
+</div>
+
+<!-- ============ MODULE 4: DEPT & DISPATCH ============ -->
+<div class="panel" id="dept">
+  <div class="section-title"><span class="bar"></span>部门协同视图<span class="hint">点击部门卡片查看该部门问题与任务</span></div>
+  <div class="dept-grid" id="deptGrid"></div>
+
+  <div class="section-title"><span class="bar"></span>督办任务中心<span class="hint">所有由 VOC 洞察生成的督办任务</span></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th>督办任务</th><th>来源问题</th><th>涉及商品</th><th>归属/协同</th><th>责任人</th><th>优先级</th><th>截止时间</th><th>状态</th><th>处理进度</th><th>操作</th>
+      </tr></thead>
+      <tbody id="taskBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============ MODULE 5: CLOSE LOOP ============ -->
+<div class="panel" id="closeloop">
+  <div class="section-title"><span class="bar"></span>闭环追踪看板</div>
+  <div class="kpi-grid" id="loopKpi"></div>
+
+  <div class="grid-2" style="margin-top:16px">
+    <div class="card"><h3> 商品问题改善趋势</h3><div class="desc">已闭环问题带动负面评价下降</div><div class="chart-box"><canvas id="cImprove"></canvas></div></div>
+    <div class="card"><h3> 部门闭环率对比</h3><div class="desc">各部门问题闭环完成率</div><div class="chart-box"><canvas id="cCloseRate"></canvas></div></div>
+  </div>
+
+  <div class="section-title"><span class="bar"></span>已闭环问题追踪</div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>问题主题</th><th>处理动作</th><th>处理结果</th><th>业务确认人</th><th>用户反馈改善</th><th>是否沉淀知识</th></tr></thead>
+      <tbody id="closedBody"></tbody>
+    </table>
+  </div>
+
+  <div class="section-title"><span class="bar"></span>知识沉淀区<span class="hint">将典型问题沉淀为可复用知识资产</span></div>
+  <div class="know-grid" id="knowGrid"></div>
+
+  <!-- Flow + Timeline -->
+  <div class="section-title"><span class="bar"></span>VOC 闭环链路</div>
+  <div class="card">
+    <h3> 从「用户评价采集」到「知识沉淀」的全链路闭环</h3>
+    <div class="flow" id="flow"></div>
+  </div>
+
+  <div class="section-title"><span class="bar"></span>VOC 闭环流程时间线（示例:整箱装包装破损问题）</div>
+  <div class="card"><div class="timeline" id="timeline"></div></div>
+</div>
+
+</div>
+
+<!-- ===== MODAL: Generate Dispatch ===== -->
+<div class="modal-mask" id="modalMask">
+  <div class="modal">
+    <div class="modal-head">
+      <h3> AI 一键生成督办任务</h3>
+      <span class="x" onclick="closeModal()">&times;</span>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-foot">
+      <button class="btn cancel" onclick="closeModal()">取消</button>
+      <button class="btn confirm" onclick="confirmDispatch()"> 确认生成督办任务</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="footer">伊利线上平台 VOC 用户评价分析系统 · 数据来源:客诉问题智能处理系统 · 演示版本 Demo v1.0</div>
+
+<script>
+/* ================= MOCK DATA (derived from real base) ================= */
+const P1="全脂/低脂纯牛奶苗条装250ml*12包", P2="风味酸奶200g*24盒";
+const voiceData=[
+ {p:P1,txt:"产品部分吸管掉了,还有些许挤压变形,好几盒都挤坏了",star:1,sent:"负向",type:"包装问题",kw:["吸管缺失","挤压变形","破损"],dept:"产品部门",invd:"产品部门,物流部门",status:"处理延期",pri:"P0",core:"整箱产品吸管掉落、多盒挤压变形",ai_sent:"负向 · 强烈不满",ai_type:"包装问题(含运输损伤)",ai_dept:"产品部门(包装) + 物流部门(运输)",ai_pri:"P0 高优先级",need:"是,涉及批量破损"},
+ {p:P1,txt:"我不知道新鲜不新鲜,就是在保质期内,瓶子上生产日期20240616,变质了,一箱10瓶,都这样。",star:1,sent:"负向",type:"日期新鲜度",kw:["变质","保质期内","整箱"],dept:"安全部门",invd:"安全部门,产品部门",status:"处理延期",pri:"P0",core:"保质期内整箱产品出现变质",ai_sent:"负向 · 食安投诉倾向",ai_type:"产品质量/食品安全",ai_dept:"安全部门(质检) + 产品部门",ai_pri:"P0 高优先级",need:"是,存在食安升级风险"},
+ {p:P1,txt:"不行,快递都湿透了,没法送人,无语",star:1,sent:"负向",type:"物流配送",kw:["快递湿透","送礼场景","无法使用"],dept:"物流部门",invd:"物流部门",status:"未处理",pri:"P1",core:"外箱湿透影响送礼使用",ai_sent:"负向 · 失望",ai_type:"物流配送(湿损)",ai_dept:"物流部门",ai_pri:"P1 中高优先级",need:"是,影响复购"},
+ {p:P1,txt:"完啦,买贵了,超市49.9",star:2,sent:"负向",type:"价格促销",kw:["买贵了","线下比价","性价比"],dept:"电商部门",invd:"电商部门",status:"未处理",pri:"P1",core:"线上价高于线下商超",ai_sent:"负向 · 价格敏感",ai_type:"价格与性价比",ai_dept:"电商部门",ai_pri:"P1 中优先级",need:"否,可客服话术处理"},
+ {p:P1,txt:"亲,我刚刚收到了货,日期一般,等我喝完了,下次须要在回来买。",star:4,sent:"中性",type:"日期新鲜度",kw:["日期一般","复购意愿"],dept:"产品部门",invd:"产品部门",status:"未处理",pri:"No",core:"日期偏近但有复购意愿",ai_sent:"中性 · 温和提醒",ai_type:"日期新鲜度",ai_dept:"产品部门",ai_pri:"低优先级",need:"否"},
+ {p:P1,txt:"凑单买的,比较划算",star:5,sent:"正向",type:"价格促销",kw:["凑单","划算"],dept:"电商部门",invd:"电商部门",status:"已处理",pri:"No",core:"凑单划算,满意",ai_sent:"正向 · 满意",ai_type:"价格与性价比",ai_dept:"电商部门",ai_pri:"无需督办",need:"否"},
+ {p:P2,txt:"包装随机发,收到的口味不是我想要的,而且盒子有点鼓",star:2,sent:"负向",type:"包装问题",kw:["口味随机","胀盒","页面信息"],dept:"产品部门",invd:"产品部门,电商部门",status:"未处理",pri:"P0",core:"胀盒 + 随机口味不符预期",ai_sent:"负向 · 担忧变质",ai_type:"产品质量 + 商品页面信息",ai_dept:"产品部门 + 电商部门(页面)",ai_pri:"P0 高优先级",need:"是,胀盒疑似变质"},
+ {p:P2,txt:"酸奶口感比以前稀了,味道也淡,是不是配方改了?",star:2,sent:"负向",type:"产品质量",kw:["口感变稀","味道变淡","配方"],dept:"产品部门",invd:"产品部门",status:"处理中",pri:"P1",core:"口感变稀、风味变淡",ai_sent:"负向 · 质疑品质",ai_type:"口味口感",ai_dept:"产品部门",ai_pri:"P1 中高优先级",need:"是,可能批次差异"},
+ {p:P2,txt:"物流太慢了,下单4天才到,酸奶都不敢喝了",star:2,sent:"负向",type:"物流配送",kw:["配送慢","时效","冷链担忧"],dept:"物流部门",invd:"物流部门",status:"未处理",pri:"P1",core:"配送时效慢引发冷链担忧",ai_sent:"负向 · 担忧",ai_type:"物流配送",ai_dept:"物流部门",ai_pri:"P1 中优先级",need:"是"},
+ {p:P2,txt:"味道很不错,孩子很喜欢,会回购",star:5,sent:"正向",type:"产品质量",kw:["口味好","儿童喜欢","回购"],dept:"产品部门",invd:"产品部门",status:"已处理",pri:"No",core:"口味满意,愿回购",ai_sent:"正向 · 推荐",ai_type:"口味口感",ai_dept:"产品部门",ai_pri:"无需督办",need:"否"},
+ {p:P2,txt:"说好的赠品呢?下单页面写着送杯子,结果没有",star:2,sent:"负向",type:"价格促销",kw:["赠品缺失","活动不符","页面承诺"],dept:"电商部门",invd:"电商部门",status:"未处理",pri:"P1",core:"页面承诺赠品未随货发出",ai_sent:"负向 · 被欺骗感",ai_type:"赠品活动",ai_dept:"电商部门",ai_pri:"P1 中优先级",need:"是,影响信任"},
+ {p:P1,txt:"客服半天不回消息,售后体验太差了",star:1,sent:"负向",type:"客服服务",kw:["客服慢","响应差","售后"],dept:"售后部门",invd:"售后部门",status:"处理中",pri:"P1",core:"客服响应慢、售后体验差",ai_sent:"负向 · 不满",ai_type:"客服服务",ai_dept:"售后部门",ai_pri:"P1 中优先级",need:"是"},
+];
+const statusMap={"未处理":"b-wait","处理中":"b-doing","处理延期":"b-over","已处理":"b-done","已关闭":"b-closed"};
+const sentMap={"正向":"b-pos","中性":"b-neu","负向":"b-neg"};
+const priMap={"P0":"b-p0","P1":"b-p1","P2":"b-p2","No":"b-neu"};
+
+/* clusters */
+const clusters=[
+ {id:"c1",name:"包装破损 / 漏奶 / 吸管缺失",hot:true,prods:"全脂/低脂纯牛奶、风味酸奶",cnt:148,negRate:92,voice:"「好几盒都挤坏了,有的吸管也没有」",kw:["挤压变形","吸管缺失","漏奶","外箱破损","胀盒"],dept:"产品部门 + 物流部门",sugDept:"产品部门(包装工艺) / 物流部门(运输)",impact:"高",urgent:"高",status:"处理延期",hasTask:true},
+ {id:"c2",name:"日期不新鲜 / 产品变质",hot:true,prods:"全脂/低脂纯牛奶",cnt:63,negRate:78,voice:"「保质期内,一箱10瓶都变质了」",kw:["变质","日期近","保质期","新鲜度"],dept:"安全部门 + 产品部门",sugDept:"安全部门(质检) / 产品部门",impact:"高",urgent:"高",status:"处理中",hasTask:true},
+ {id:"c3",name:"物流配送慢 / 湿损",prods:"全脂/低脂、风味酸奶",cnt:91,negRate:71,voice:"「快递都湿透了,没法送人」",kw:["配送慢","湿透","时效","冷链"],dept:"物流部门",sugDept:"物流部门",impact:"中",urgent:"中",status:"未处理",hasTask:false},
+ {id:"c4",name:"口味变淡 / 口感变化",prods:"风味酸奶",cnt:47,negRate:66,voice:"「酸奶口感比以前稀了,味道也淡」",kw:["口感稀","味道淡","配方","批次"],dept:"产品部门",sugDept:"产品部门(研发/质检)",impact:"中",urgent:"中",status:"处理中",hasTask:true},
+ {id:"c5",name:"价格波动 / 促销不一致",prods:"全脂/低脂纯牛奶",cnt:38,negRate:58,voice:"「买贵了,超市49.9」",kw:["买贵","比价","促销","价保"],dept:"电商部门",sugDept:"电商部门(定价)",impact:"低",urgent:"低",status:"未处理",hasTask:false},
+ {id:"c6",name:"赠品缺失 / 活动规则不清",prods:"风味酸奶",cnt:29,negRate:62,voice:"「页面写着送杯子,结果没有」",kw:["赠品缺失","活动不符","规则模糊"],dept:"电商部门",sugDept:"电商部门(活动)",impact:"中",urgent:"中",status:"未处理",hasTask:false},
+ {id:"c7",name:"客服响应慢 / 售后体验",prods:"全品类",cnt:34,negRate:69,voice:"「客服半天不回,售后体验太差」",kw:["响应慢","售后","态度"],dept:"售后部门",sugDept:"售后部门",impact:"中",urgent:"中",status:"处理中",hasTask:true},
+ {id:"c8",name:"商品页面信息不清晰",prods:"风味酸奶(随机口味)",cnt:22,negRate:55,voice:"「包装随机发,收到不是我想要的」",kw:["随机发","规格误解","页面描述"],dept:"电商部门",sugDept:"电商部门(商品运营)",impact:"低",urgent:"低",status:"未处理",hasTask:false},
+];
+
+/* tasks */
+const tasks=[
+ {name:"整箱装包装破损专项治理",src:"包装破损/吸管缺失",prod:"全脂/低脂、风味酸奶",dept:"产品部门",coop:"物流部门",owner:"龚演",pri:"P0",due:"2024-08-05",status:"处理中",prog:60,action:"包装加固+运输抽检"},
+ {name:"整箱产品变质批次核查",src:"日期不新鲜/变质",prod:"全脂/低脂纯牛奶",dept:"安全部门",coop:"产品部门",owner:"周恒毅",pri:"P0",due:"2024-08-02",status:"待业务确认",prog:85,action:"批次追溯+召回评估"},
+ {name:"华东区物流湿损改善",src:"物流配送慢/湿损",prod:"全品类",dept:"物流部门",coop:"—",owner:"麻季远",pri:"P1",due:"2024-07-28",status:"已逾期",prog:40,action:"更换防水外箱+承运商考核"},
+ {name:"风味酸奶口感一致性排查",src:"口味变淡/口感变化",prod:"风味酸奶",dept:"产品部门",coop:"安全部门",owner:"李欣怡",pri:"P1",due:"2024-08-10",status:"处理中",prog:35,action:"配方复核+批次比对"},
+ {name:"客服响应时效提升",src:"客服响应慢",prod:"全品类",dept:"售后部门",coop:"—",owner:"张骏驰",pri:"P1",due:"2024-08-08",status:"已分派",prog:20,action:"增配坐席+SLA优化"},
+ {name:"赠品履约与页面一致性核对",src:"赠品缺失",prod:"风味酸奶",dept:"电商部门",coop:"—",owner:"高凯轩",pri:"P2",due:"2024-08-12",status:"待分派",prog:0,action:"活动核对+页面更新"},
+];
+const taskStatusMap={"待分派":"b-wait","已分派":"b-doing","处理中":"b-doing","待业务确认":"b-p1","已完成":"b-done","已关闭":"b-closed","已逾期":"b-over"};
+
+/* departments */
+const depts=[
+ {name:"产品部门",ico:"",color:"#00a651",pending:212,over:1,rate:74,avg:"2.8天"},
+ {name:"物流部门",ico:"",color:"#0072c6",pending:126,over:3,rate:61,avg:"3.6天"},
+ {name:"安全部门",ico:"",color:"#e5484d",pending:63,over:0,rate:82,avg:"2.1天"},
+ {name:"电商部门",ico:"",color:"#f5a623",pending:89,over:1,rate:68,avg:"3.1天"},
+ {name:"售后部门",ico:"",color:"#7b61ff",pending:34,over:0,rate:79,avg:"1.9天"},
+];
+
+/* closed issues */
+const closedIssues=[
+ {theme:"整箱装外箱防护不足",action:"升级5层瓦楞箱+角部缓冲",result:"破损率由8.2%降至2.1%",confirm:"龚演",improved:"是,好评回升",know:"已沉淀"},
+ {theme:"酸奶冷链时效不达标",action:"华东区切换冷链专线",result:"平均时效3.6→2.2天",confirm:"麻季远",improved:"是,湿损投诉↓",know:"已沉淀"},
+ {theme:"客服首响超时",action:"增配3坐席+SLA看板",result:"首响时长12→3分钟",confirm:"张骏驰",improved:"是",know:"待评估"},
+];
+
+/* knowledge */
+const knows=[
+ {type:"客服应答口径",title:"整箱破损/吸管缺失标准话术",scene:"用户反馈整箱挤压、吸管缺失",dept:"售后部门",prod:"全脂/低脂纯牛奶",sync:"推荐"},
+ {type:"质量复盘",title:"保质期内变质批次追溯 SOP",scene:"用户反馈保质期内变质",dept:"安全部门",prod:"全脂/低脂纯牛奶",sync:"推荐"},
+ {type:"供应链改进",title:"整箱运输包装加固方案",scene:"电商整箱远距运输",dept:"物流部门",prod:"全品类整箱",sync:"推荐"},
+ {type:"商品页面优化",title:"随机口味商品页面说明规范",scene:"随机发货口味争议",dept:"电商部门",prod:"风味酸奶",sync:"待评估"},
+ {type:"运营优化建议",title:"线上线下价格一致性话术",scene:"用户线下比价投诉",dept:"电商部门",prod:"全脂/低脂纯牛奶",sync:"推荐"},
+ {type:"商品FAQ",title:"酸奶口感/配方常见问答",scene:"口感变化质疑",dept:"产品部门",prod:"风味酸奶",sync:"待评估"},
+];
+
+/* ================= RENDER ================= */
+function starHtml(n){let s="";for(let i=1;i<=5;i++)s+=`<span class="${i<=n?'':'off'}"></span>`;return`<span class="stars">${s}</span>`;}
+
+/* KPI */
+const kpis=[
+ {l:"总评价数",v:"1,286",t:"较上周期 +6.4%",c:"",cls:"up"},
+ {l:"负面评价数",v:"448",t:"较上周期 +58",c:"danger",cls:"up"},
+ {l:"负面评价占比",v:"34.8%",t:"较上周期 +4.2pct",c:"danger",cls:"up"},
+ {l:"待处理问题数",v:"327",t:"需分派 89",c:"warn",cls:"up"},
+ {l:"高优先级问题",v:"52",t:"P0:11 · P1:41",c:"danger",cls:"up"},
+ {l:"已闭环问题数",v:"196",t:"闭环率 43.8%",c:"ok",cls:"down"},
+ {l:"平均处理时长",v:"2.9天",t:"较上周期 -0.4天",c:"ok",cls:"down"},
+ {l:"涉及商品数",v:"4",t:"主力 SKU 2 款",c:"",cls:""},
+ {l:"涉及部门数",v:"5",t:"产品/物流/安全/电商/售后",c:"",cls:""},
+];
+function renderKpi(){
+ document.getElementById('kpiGrid').innerHTML=kpis.map(k=>`
+  <div class="kpi ${k.c}" onclick="switchTab('voice');toast('已联动明细:${k.l}')">
+   <div class="label">${k.l}</div><div class="val">${k.v}</div>
+   <div class="trend ${k.cls}">${k.cls==='up'?'▲':k.cls==='down'?'▼':''} ${k.t}</div>
+  </div>`).join('');
+}
+
+/* Voice table */
+function renderVoice(){
+ const fp=vProduct.value,fs=vStar.value,fse=vSent.value,ft=vType.value,fd=vDept.value,fst=vStatus.value;
+ const rows=voiceData.filter(d=>(!fp||d.p.includes(fp))&&(!fs||d.star==fs)&&(!fse||d.sent==fse)&&(!ft||d.type==ft)&&(!fd||d.dept==fd)&&(!fst||d.status==fst));
+ const b=document.getElementById('voiceBody');
+ if(!rows.length){b.innerHTML=`<tr><td colspan="10" style="text-align:center;color:#93a3b3;padding:30px">无匹配评价</td></tr>`;return;}
+ b.innerHTML=rows.map((d,i)=>`
+  <tr onclick="toggleDetail(${i})">
+   <td style="max-width:130px">${d.p.slice(0,12)} </td>
+   <td style="max-width:220px">${d.txt.slice(0,26)} </td>
+   <td>${starHtml(d.star)}</td>
+   <td><span class="badge ${sentMap[d.sent]}">${d.sent}</span></td>
+   <td>${d.type}</td>
+   <td style="max-width:150px">${d.kw.map(k=>`<span class="tag">${k}</span>`).join('')}</td>
+   <td>${d.dept}</td>
+   <td><span class="badge ${statusMap[d.status]}">${d.status}</span></td>
+   <td><span class="badge ${priMap[d.pri]}">${d.pri}</span></td>
+   <td><button class="op-btn" onclick="event.stopPropagation();openDispatchFromVoice(${i})">生成督办</button></td>
+  </tr>
+  <tr class="detail-row" id="dr${i}" style="display:none"><td colspan="10">
+   <div class="detail-inner">
+    <div class="detail-block">
+     <h5>原始评价内容</h5>
+     <div class="quote">${d.txt}</div>
+    </div>
+    <div class="detail-block">
+     <h5> AI 结构化解析</h5>
+     <div class="ai-tag-line"><span class="mini-ai">核心问题</span><span class="mini-ai">情绪判断</span><span class="mini-ai">部门推荐</span></div>
+     <div style="font-size:13px;line-height:1.9">
+      <b>核心问题:</b> ${d.core}<br>
+      <b>情绪倾向:</b> ${d.ai_sent}<br>
+      <b>关键词:</b> ${d.kw.join(' / ')}<br>
+      <b>推荐问题类型:</b> ${d.ai_type}<br>
+      <b>推荐归属/涉及部门:</b> ${d.ai_dept}<br>
+      <b>推荐优先级:</b> <span class="badge ${priMap[d.pri]}">${d.ai_pri}</span><br>
+      <b>是否需督办:</b> ${d.need}
+     </div>
+    </div>
+   </div>
+  </td></tr>`).join('');
+}
+function toggleDetail(i){const r=document.getElementById('dr'+i);r.style.display=r.style.display==='none'?'table-row':'none';}
+function batchAI(){toast(' AI 已完成 327 条未处理评价的情绪识别、标签提取、部门推荐与优先级判断');}
+function openDispatchFromVoice(i){const d=voiceData[i];openDispatch({name:d.core,src:d.type,prod:d.p,voice:d.txt,dept:d.ai_dept,pri:d.pri,impact:d.ai_sent});}
+
+/* Clusters */
+let selCluster="c1";
+function renderClusters(){
+ document.getElementById('clusterGrid').innerHTML=clusters.map(c=>`
+  <div class="cluster ${c.hot?'hot':''} ${c.id===selCluster?'sel':''}" onclick="selectCluster('${c.id}')">
+   <div class="c-head">
+    <div class="c-title">${c.name}</div>
+    <span class="badge ${statusMap[c.status]}">${c.status}</span>
+   </div>
+   <div style="font-size:12px;color:#5a6b7b">涉及商品:${c.prods}</div>
+   <div class="c-stats">
+    <div class="c-stat"><div class="n">${c.cnt}</div><div class="t">相关评价数</div></div>
+    <div class="c-stat"><div class="n neg">${c.negRate}%</div><div class="t">负面占比</div></div>
+   </div>
+   <div class="voice"> ${c.voice}</div>
+   <div>${c.kw.slice(0,4).map(k=>`<span class="tag">${k}</span>`).join('')}</div>
+   <div class="c-foot">
+    <span>影响 <b style="color:${c.impact==='高'?'#e5484d':'#5a6b7b'}">${c.impact}</b> · 紧急 <b style="color:${c.urgent==='高'?'#e5484d':'#5a6b7b'}">${c.urgent}</b></span>
+    <span>${c.hasTask?' 已生成督办':'⏳ 待督办'}</span>
+   </div>
+  </div>`).join('');
+}
+function selectCluster(id){selCluster=id;renderClusters();renderInsight();document.getElementById('insightArea').scrollIntoView({behavior:'smooth',block:'nearest'});}
+function renderInsight(){
+ const c=clusters.find(x=>x.id===selCluster);
+ const voices=voiceData.filter(v=>v.sent==='负向').slice(0,3);
+ document.getElementById('insightArea').innerHTML=`
+  <div class="ins-head">
+   <span class="ai-badge"> AI 深度洞察</span>
+   <span class="t">${c.name}</span>
+   <span class="badge ${statusMap[c.status]}">${c.status}</span>
+   <div style="margin-left:auto;display:flex;gap:8px">
+    <button class="ai-btn ghost" onclick="toast('AI 已生成客服应答口径并同步售后部门')"> 生成客服口径</button>
+    <button class="ai-btn" onclick="openDispatch({name:'${c.name}',src:'${c.name}',prod:'${c.prods}',voice:'${c.voice}',dept:'${c.sugDept}',pri:'${c.impact==='高'?'P0':'P1'}',impact:'影响:${c.impact} · 紧急:${c.urgent}'})"> 一键生成督办</button>
+   </div>
+  </div>
+  <div class="ins-grid">
+   <div class="ins-block">
+    <h4><span class="ic"></span>用户原声摘要</h4>
+    <div style="font-size:13px;color:#5a6b7b;margin-bottom:10px">用户主要不满点集中于<b>${c.name.split(' /')[0]}</b>,涉及 ${c.cnt} 条评价,负面占比 ${c.negRate}%。</div>
+    ${voices.map(v=>`<div class="quote" style="margin-bottom:6px;background:#fff;border-left:3px solid #0072c6;padding:8px 12px;border-radius:0 8px 8px 0;font-size:12.5px">「${v.txt}」<br><small style="color:#93a3b3">— ${v.p.slice(0,10)}  · ${v.star}星</small></div>`).join('')}
+   </div>
+   <div class="ins-block">
+    <h4><span class="ic"></span>高频关键词分析</h4>
+    <div class="wordcloud">${c.kw.map((k,i)=>`<span class="wc" style="font-size:${20-i*2}px;opacity:${1-i*0.12}">${k}</span>`).join('')}</div>
+    <div style="margin-top:14px;font-size:12.5px;color:#5a6b7b">出现频次 TOP:${c.kw[0]}(${Math.round(c.cnt*0.6)}) · ${c.kw[1]}(${Math.round(c.cnt*0.4)}) · ${c.kw[2]||'—'}(${Math.round(c.cnt*0.25)})</div>
+   </div>
+   <div class="ins-block">
+    <h4><span class="ic"></span>商品维度分析</h4>
+    <div class="impact-row"><span>反馈最集中商品</span><b>${c.prods.split('、')[0]}</b></div>
+    <div class="impact-row"><span>问题集中 SKU</span><b>整箱/多包装规格</b></div>
+    <div class="impact-row"><span>相关评价占比</span><b>${c.negRate}% 为负面</b></div>
+   </div>
+   <div class="ins-block">
+    <h4><span class="ic"></span>部门归因分析</h4>
+    <div style="font-size:13px;line-height:1.9">
+     AI 判断该问题主要涉及:<br><b style="color:#00a651">${c.dept}</b><br>
+     建议归属部门:<b>${c.sugDept}</b>
+    </div>
+   </div>
+   <div class="ins-block">
+    <h4><span class="ic"></span>影响判断</h4>
+    <div class="impact-row"><span>是否影响复购</span><b style="color:${c.impact==='高'?'#e5484d':'#c47f00'}">${c.impact==='高'?'是,高风险':'部分影响'}</b></div>
+    <div class="impact-row"><span>是否影响品牌口碑</span><b style="color:${c.impact==='高'?'#e5484d':'#c47f00'}">${c.impact==='高'?'是':'轻度'}</b></div>
+    <div class="impact-row"><span>平台投诉风险</span><b style="color:${c.urgent==='高'?'#e5484d':'#5a6b7b'}">${c.urgent==='高'?'较高':'可控'}</b></div>
+    <div class="impact-row"><span>是否需升级处理</span><b style="color:${c.impact==='高'?'#e5484d':'#5a6b7b'}">${c.impact==='高'?'建议升级':'常规处理'}</b></div>
+   </div>
+   <div class="ins-block">
+    <h4><span class="ic"></span>AI 改进建议</h4>
+    <div class="suggest">
+     <div class="s-item"><b>短期:</b> ${c.id==='c1'?'对整箱装加固包装并抽检,客服主动补发':c.id==='c2'?'冻结疑似批次,启动质检追溯并评估召回':'针对该问题制定专项处理话术与补偿方案'}</div>
+     <div class="s-item mid"><b>中长期:</b> ${c.id==='c1'?'优化运输包装工艺标准,建立承运商破损考核':c.id==='c2'?'强化出厂日期与仓储先进先出管理':'从源头优化产品/流程,降低复发率'}</div>
+     <div class="s-item cross"><b>跨部门协同:</b> ${c.dept.includes('+')?'需 '+c.dept+' 联合处理':'以 '+c.dept+' 为主,必要时联动电商/售后'}</div>
+    </div>
+   </div>
+  </div>`;
+}
+
+/* Departments */
+function renderDepts(){
+ document.getElementById('deptGrid').innerHTML=depts.map(d=>`
+  <div class="dept-card" onclick="toast('已筛选 ${d.name} 的相关问题与督办任务')">
+   <div class="d-name"><span class="ico" style="background:${d.color}">${d.ico}</span>${d.name}</div>
+   <div class="d-metrics">
+    <div class="d-m"><div class="n">${d.pending}</div><div class="t">待处理问题</div></div>
+    <div class="d-m"><div class="n ${d.over>0?'r':''}">${d.over}</div><div class="t">逾期任务</div></div>
+    <div class="d-m"><div class="n">${d.rate}%</div><div class="t">闭环率</div></div>
+    <div class="d-m"><div class="n">${d.avg}</div><div class="t">平均处理时长</div></div>
+   </div>
+   <div class="prog" style="margin-top:10px"><i style="width:${d.rate}%"></i></div>
+  </div>`).join('');
+}
+
+/* Tasks */
+function renderTasks(){
+ document.getElementById('taskBody').innerHTML=tasks.map(t=>`
+  <tr>
+   <td style="font-weight:600;max-width:150px">${t.name}</td>
+   <td>${t.src}</td>
+   <td style="max-width:110px">${t.prod}</td>
+   <td>${t.dept}${t.coop!=='—'?' <span style="color:#93a3b3">+ '+t.coop+'</span>':''}</td>
+   <td>${t.owner}</td>
+   <td><span class="badge ${priMap[t.pri]}">${t.pri}</span></td>
+   <td>${t.due}</td>
+   <td><span class="badge ${taskStatusMap[t.status]}">${t.status}</span></td>
+   <td><div class="prog"><i style="width:${t.prog}%"></i></div><small style="color:#93a3b3">${t.prog}% · ${t.action}</small></td>
+   <td><button class="op-btn" onclick="toast('已打开任务:${t.name}')">跟进</button></td>
+  </tr>`).join('');
+}
+
+/* Close loop */
+const loopKpis=[
+ {l:"已关闭问题",v:"196",c:"ok"},{l:"待验证问题",v:"41",c:"warn"},{l:"重复出现问题",v:"18",c:"danger"},
+ {l:"本月新增高频问题",v:"3",c:"danger"},{l:"本月已解决高频",v:"5",c:"ok"},
+ {l:"问题复发率",v:"9.2%",c:"warn"},{l:"部门平均闭环率",v:"72.8%",c:"ok"},{l:"商品问题改善趋势",v:"↓17%",c:"ok"},
+];
+function renderLoopKpi(){
+ document.getElementById('loopKpi').innerHTML=loopKpis.map(k=>`<div class="kpi ${k.c}"><div class="label">${k.l}</div><div class="val">${k.v}</div></div>`).join('');
+}
+function renderClosed(){
+ document.getElementById('closedBody').innerHTML=closedIssues.map(c=>`
+  <tr><td style="font-weight:600">${c.theme}</td><td>${c.action}</td><td>${c.result}</td><td>${c.confirm}</td>
+   <td><span class="badge b-pos">${c.improved}</span></td>
+   <td><span class="badge ${c.know==='已沉淀'?'b-done':'b-wait'}">${c.know}</span></td></tr>`).join('');
+}
+function renderKnow(){
+ document.getElementById('knowGrid').innerHTML=knows.map(k=>`
+  <div class="know-card">
+   <div class="kt">${k.title}<span class="ktype">${k.type}</span></div>
+   <div class="krow"><span class="lab">适用场景</span>${k.scene}</div>
+   <div class="krow"><span class="lab">责任部门</span>${k.dept}</div>
+   <div class="krow"><span class="lab">关联商品</span>${k.prod}</div>
+   <div class="kfoot"><span>更新:2024-07-30</span><span class="badge ${k.sync==='推荐'?'b-done':'b-wait'}">${k.sync==='推荐'?' 推荐同步知识库':'待评估'}</span></div>
+  </div>`).join('');
+}
+
+/* Flow */
+const flowSteps=[
+ {n:1,ic:"",t:"用户评价采集",d:"从天猫/京东平台采集商品评价",c:"#00a651"},
+ {n:2,ic:"",t:"AI 自动识别",d:"情绪/分类/关键词/部门推荐",c:"#00a651"},
+ {n:3,ic:"",t:"问题聚类分析",d:"相似评价聚合为高频主题",c:"#0088aa"},
+ {n:4,ic:"",t:"洞察生成",d:"商品/用户/部门/影响多维洞察",c:"#0072c6"},
+ {n:5,ic:"",t:"任务督办",d:"高优问题生成任务并分派",c:"#0072c6"},
+ {n:6,ic:"",t:"处理反馈",d:"责任部门更新进展与结果",c:"#4a63c6"},
+ {n:7,ic:"",t:"闭环验证",d:"通过后续评价趋势验证改善",c:"#7b61ff"},
+ {n:8,ic:"",t:"知识沉淀",d:"复盘经验沉淀为知识资产",c:"#7b61ff"},
+];
+function renderFlow(){
+ document.getElementById('flow').innerHTML=flowSteps.map((s,i)=>`
+  <div class="flow-step">
+   <div class="node" style="background:${s.c}">${s.ic}</div>
+   ${i<flowSteps.length-1?'<span class="arrow">▶</span>':''}
+   <div class="st">${s.n}. ${s.t}</div>
+   <div class="sd">${s.d}</div>
+  </div>`).join('');
+}
+const tl=[
+ {time:"2024-04-10",t:"用户评价采集",d:"天猫用户反馈「产品部分吸管掉了,挤压变形」,AI 标记为负向 · P0",blue:false},
+ {time:"2024-04-10",t:"AI 自动识别 & 聚类",d:"归入「包装破损/吸管缺失」主题,累计相关评价 148 条,触发上升异常预警",blue:true},
+ {time:"2024-04-11",t:"洞察生成 & 生成督办",d:"AI 判定影响复购、涉及产品+物流,一键生成督办「整箱装包装破损专项治理」",blue:false},
+ {time:"2024-04-12",t:"任务分派",d:"分派至 产品部门(龚演)主办、物流部门 协同,优先级 P0,截止 2024-08-05",blue:true},
+ {time:"2024-06-20",t:"处理反馈",d:"包装升级为5层瓦楞箱+角部缓冲,运输环节增加抽检,进度 60%",blue:false},
+ {time:"2024-07-25",t:"闭环验证",d:"后续评价破损率由 8.2% 降至 2.1%,好评回升,业务确认改善",blue:true},
+ {time:"2024-07-30",t:"知识沉淀",d:"沉淀为「整箱运输包装加固方案」与客服标准话术,推荐同步知识库",blue:false},
+];
+function renderTimeline(){
+ document.getElementById('timeline').innerHTML=tl.map(x=>`
+  <div class="tl-item ${x.blue?'blue':''}"><div class="tl-dot"></div>
+   <div class="tl-time">${x.time}</div><div class="tl-t">${x.t}</div><div class="tl-d">${x.d}</div>
+  </div>`).join('');
+}
+
+/* ================= CHARTS ================= */
+const GRN='#00a651',BLU='#0072c6',AMB='#f5a623',RED='#e5484d',PUR='#7b61ff',GRY='#c9d3dc';
+let charts={};
+function mkCharts(){
+ Chart.defaults.font.family="'PingFang SC','Microsoft YaHei',sans-serif";Chart.defaults.font.size=11;Chart.defaults.color='#5a6b7b';
+ const wk=['3月W1','3月W3','4月W1','4月W3','5月W1','5月W3','6月W1','6月W3','7月W1','7月W3'];
+ charts.vol=new Chart(cVolume,{type:'line',data:{labels:wk,datasets:[{label:'评价量',data:[92,108,121,134,118,142,156,148,163,158],borderColor:BLU,backgroundColor:'rgba(0,114,198,.08)',fill:true,tension:.4,borderWidth:2,pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}}});
+ charts.neg=new Chart(cNeg,{type:'bar',data:{labels:wk,datasets:[{type:'bar',label:'负面评价数',data:[28,34,45,52,41,53,58,55,62,60],backgroundColor:'rgba(229,72,77,.75)',yAxisID:'y',borderRadius:4},{type:'line',label:'负面占比%',data:[30.4,31.5,37.2,38.8,34.7,37.3,37.2,37.2,38,38],borderColor:AMB,backgroundColor:AMB,yAxisID:'y1',tension:.4,borderWidth:2,pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{position:'left'},y1:{position:'right',grid:{drawOnChartArea:false},ticks:{callback:v=>v+'%'}}}}});
+ charts.type=new Chart(cType,{type:'doughnut',data:{labels:['包装问题','日期新鲜度','物流配送','产品质量','价格促销','客服服务','赠品活动','其他'],datasets:[{data:[148,63,91,84,38,34,29,41],backgroundColor:[RED,'#f0863a',BLU,GRN,AMB,PUR,'#00b8c4',GRY],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{boxWidth:10,padding:8,font:{size:10}}}},cutout:'58%'}});
+ charts.dept=new Chart(cDept,{type:'bar',data:{labels:['产品部门','物流部门','电商部门','安全部门','售后部门'],datasets:[{data:[212,126,89,63,34],backgroundColor:[GRN,BLU,AMB,RED,PUR],borderRadius:5}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}}});
+ charts.status=new Chart(cStatus,{type:'polarArea',data:{labels:['待识别','待分派','处理中','已完成','已关闭'],datasets:[{data:[74,89,164,196,73],backgroundColor:['rgba(245,166,35,.7)','rgba(229,72,77,.7)','rgba(0,114,198,.7)','rgba(0,166,81,.7)','rgba(147,163,179,.6)'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{boxWidth:10,font:{size:10}}}}}});
+ charts.prod=new Chart(cProduct,{type:'bar',data:{labels:['全脂/低脂纯牛奶苗条装','风味酸奶200g*24盒','0乳糖纯牛奶','低脂高钙牛奶'],datasets:[{label:'负面评价',data:[268,142,26,12],backgroundColor:RED,borderRadius:5},{label:'正/中性评价',data:[312,198,42,26],backgroundColor:GRN,borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{x:{stacked:true},y:{stacked:true}}}});
+}
+function mkLoopCharts(){
+ if(charts.imp)return;
+ const m=['3月','4月','5月','6月','7月'];
+ charts.imp=new Chart(cImprove,{type:'line',data:{labels:m,datasets:[{label:'全脂/低脂负面率%',data:[42,45,40,35,29],borderColor:RED,backgroundColor:'rgba(229,72,77,.08)',fill:true,tension:.4,borderWidth:2},{label:'风味酸奶负面率%',data:[38,40,36,33,28],borderColor:BLU,backgroundColor:'rgba(0,114,198,.06)',fill:true,tension:.4,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{ticks:{callback:v=>v+'%'}}}}});
+ charts.cr=new Chart(cCloseRate,{type:'bar',data:{labels:['安全部门','售后部门','产品部门','电商部门','物流部门'],datasets:[{label:'闭环率%',data:[82,79,74,68,61],backgroundColor:['#00a651','#7b61ff','#00a651','#f5a623','#e5484d'],borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{max:100,ticks:{callback:v=>v+'%'}}}}});
+}
+
+/* ================= MODAL ================= */
+function openDispatch(o){
+ document.getElementById('modalBody').innerHTML=`
+  <div class="info-block"><div class="l"> AI 生成 · 问题摘要</div><div class="v">${o.name}</div></div>
+  <div class="info-block"><div class="l"> AI 生成 · 影响分析</div><div class="v">${o.impact||'该问题影响用户体验与复购,存在口碑扩散风险,建议尽快处理。'} 相关评价具备聚集性,已达督办阈值。</div></div>
+  <div class="form-row"><label>督办任务标题 <span class="ai-fill">AI 已填充</span></label><input value="${o.name.length>18?o.name.slice(0,18):o.name}专项治理"></div>
+  <div class="form-row"><label>关联商品 <span class="ai-fill">AI 已填充</span></label><input value="${o.prod}"></div>
+  <div class="form-row"><label>典型用户评价 <span class="ai-fill">AI 已提取</span></label><textarea>${o.voice||'（多条负面评价聚合）'}</textarea></div>
+  <div class="form-2">
+   <div class="form-row"><label>推荐责任部门 <span class="ai-fill">AI</span></label><input value="${(o.dept||'').split('+')[0].split('(')[0].trim()||'产品部门'}"></div>
+   <div class="form-row"><label>推荐协同部门 <span class="ai-fill">AI</span></label><input value="${(o.dept||'').includes('+')?o.dept.split('+')[1].split('(')[0].trim():'—'}"></div>
+  </div>
+  <div class="form-2">
+   <div class="form-row"><label>推荐优先级 <span class="ai-fill">AI</span></label>
+    <select><option ${o.pri==='P0'?'selected':''}>P0 高优先级</option><option ${o.pri==='P1'?'selected':''}>P1 中高优先级</option><option>P2 中优先级</option></select></div>
+   <div class="form-row"><label>建议截止时间 <span class="ai-fill">AI</span></label><input type="date" value="2024-08-05"></div>
+  </div>
+  <div class="form-row"><label>建议处理动作 <span class="ai-fill">AI 已生成</span></label><textarea>短期:客服主动补发/补偿并安抚;中长期:定位根因并优化源头流程,建立监控指标防复发。</textarea></div>`;
+ document.getElementById('modalMask').classList.add('show');
+}
+function closeModal(){document.getElementById('modalMask').classList.remove('show');}
+function confirmDispatch(){closeModal();toast(' 督办任务已生成并分派至责任部门,已同步飞书工单群');}
+
+/* ================= TABS & INIT ================= */
+function switchTab(id){
+ document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===id));
+ document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));
+ if(id==='closeloop'){setTimeout(mkLoopCharts,60);}
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>switchTab(t.dataset.tab));
+
+let toastTimer;
+function toast(msg){const el=document.getElementById('toast');el.innerHTML=' '+msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2800);}
+
+/* global filters trigger */
+['fProduct','fTime','fDept','fStatus'].forEach(id=>document.getElementById(id).onchange=()=>toast('已按筛选条件刷新全站数据视图'));
+
+/* init */
+renderKpi();renderVoice();renderClusters();renderInsight();renderDepts();renderTasks();renderLoopKpi();renderClosed();renderKnow();renderFlow();renderTimeline();mkCharts();
+</script>
+</body>
+</html>
