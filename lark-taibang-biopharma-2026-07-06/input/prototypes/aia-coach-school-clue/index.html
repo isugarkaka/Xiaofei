@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>巨石生物 AI 销售陪练 · demo</title>
+<title>泰邦生物 AI 岗前培训师 · demo</title>
 <style>
   :root{
     --blue:#3C7FFF; --cyan:#33D6C0; --amber:#FE7F00; --gold:#FFB454;
@@ -144,45 +144,45 @@
 <body>
 <div class="screenwrap">
   <div class="status"><span>9:41</span><span class="sig">●●● ▌</span></div>
-  <div class="nav"><span class="back">‹</span><span class="ttl" id="navttl">每日随机陪练</span><span class="more">⋯</span></div>
+  <div class="nav"><span class="back">‹</span><span class="ttl" id="navttl">每日岗前训练</span><span class="more">⋯</span></div>
 
   <!-- ============ CHAT (multi-round, auto-play) ============ -->
   <div data-screen="chat" class="on">
     <div class="scroll" id="chatscroll">
       <div class="pchip">
-        <div class="av">李</div>
-        <div><div class="nm">王工 资深 QA</div><div class="sub">质量管理部 · GMP专家 · 商业化批次负责人</div></div>
+        <div class="av">周</div>
+        <div><div class="nm">周工 资深 QA</div><div class="sub">质量管理部 · GMP 培训师 · IVIG 放行专家</div></div>
         <div class="live2"><i></i>模拟中</div>
       </div>
 
-      <!-- Round 1 · 起效速度 -->
+      <!-- Round 1 · 现场止损 -->
       <div class="rnd" data-rnd="0">
-        <div class="rnd-tag reveal">第 <b>1</b> 轮 / 3 · 起效速度异议</div>
-        <div class="msg reveal"><span class="ava">李</span><div class="bub">小张啊，你们这药 <b>达峰时间</b> 不占优——真到 <b>急救场景</b>，是不是比原研慢半拍？</div></div>
+        <div class="rnd-tag reveal">第 <b>1</b> 轮 / 3 · 现场止损</div>
+        <div class="msg reveal"><span class="ava">周</span><div class="bub"><b>IVIG-P2407</b> 分装段压差连续两次接近预警线，但还没有超限。你准备怎么处理？</div></div>
         <div class="pickline reveal">✓ 已选最佳应答</div>
-        <div class="msg me reveal"><div class="bub me">主任关注的正是急救达峰——我们有 <b>头对头 BE 数据</b>：Tmax 与原研一致，急救起效不慢，我把数据发您。</div></div>
-        <div class="msg reveal"><span class="ava">李</span><div class="bub">嗯……Tmax 一致这点我以前没注意。把那份头对头数据发我看看。</div></div>
-        <div class="tip reveal"><div class="h">★ 教练点评 · 到位</div>正面接住 <b>真实顾虑</b>，用 <b>头对头 BE/Tmax 证据</b> 回应，没被带偏到价格。</div>
+        <div class="msg me reveal"><div class="bub me">先暂停相关操作并隔离当前物料，核对压差趋势、报警和设备状态，同时按 SOP 启动偏差记录，不能用“未超限”直接判定可继续。</div></div>
+        <div class="msg reveal"><span class="ava">周</span><div class="bub">对。第一步先控制风险，再判断影响范围。继续说说你要保留哪些现场证据。</div></div>
+        <div class="tip reveal"><div class="h">★ 教练点评 · 到位</div>先控风险，再查证据；没有用 <b>“未超限”替代质量判断</b>。</div>
       </div>
 
-      <!-- Round 2 · 安全性 -->
+      <!-- Round 2 · 偏差判断 -->
       <div class="rnd" data-rnd="1">
-        <div class="rnd-tag reveal">第 <b>2</b> 轮 / 3 · 长期安全性异议</div>
-        <div class="msg reveal"><span class="ava">李</span><div class="bub">原研我用了十年，安全性心里有数。你们上市才几年，<b>长期数据</b> 够吗？</div></div>
+        <div class="rnd-tag reveal">第 <b>2</b> 轮 / 3 · 偏差判断</div>
+        <div class="msg reveal"><span class="ava">周</span><div class="bub">复测压差已经恢复正常，生产计划很紧，这一批能不能直接继续？</div></div>
         <div class="pickline reveal">✓ 已选最佳应答</div>
-        <div class="msg me reveal"><div class="bub me">安全性不能赌——除注册研究，我们有 <b>3.2 万例真实世界数据</b>，长期不良反应率与原研相当，给您一份本地化的真实世界报告。</div></div>
-        <div class="msg reveal"><span class="ava">李</span><div class="bub">真实世界的数据更有说服力，发我科里看看。</div></div>
-        <div class="tip reveal"><div class="h">★ 教练点评 · 到位</div>用 <b>历史偏差与验证证据</b> 回应"放行风险"，比只背 SOP 更接住现场真实担心。</div>
+        <div class="msg me reveal"><div class="bub me">不能只看一次复测结果。需要结合环境监测、设备日志、操作记录和受影响时段评估产品风险，由 QA 完成影响判断后再决定是否复产。</div></div>
+        <div class="msg reveal"><span class="ava">周</span><div class="bub">正确。“恢复正常”不等于“风险解除”，证据链必须完整。</div></div>
+        <div class="tip reveal"><div class="h">★ 教练点评 · 到位</div>把 <b>瞬时恢复</b> 与 <b>批次风险解除</b> 区分开，判断不只停留在读数表面。</div>
       </div>
 
-      <!-- Round 3 · 切换阻力 -->
+      <!-- Round 3 · CAPA 与复产边界 -->
       <div class="rnd" data-rnd="2">
-        <div class="rnd-tag reveal">第 <b>3</b> 轮 / 3 · 切换阻力异议</div>
-        <div class="msg reveal"><span class="ava">李</span><div class="bub">话是这么说，可我科里一直用原研，换药要走流程、还得跟同事打招呼，<b>麻烦</b>。</div></div>
+        <div class="rnd-tag reveal">第 <b>3</b> 轮 / 3 · CAPA 与复产边界</div>
+        <div class="msg reveal"><span class="ava">周</span><div class="bub">调查还没完全结束，供应端又催得紧，能否先放行、后补 CAPA？</div></div>
         <div class="pickline reveal">✓ 已选最佳应答</div>
-        <div class="msg me reveal"><div class="bub me">不用一下子全换——先在 <b>急症亚组</b> 这类原研没覆盖好的 <b>增量场景</b> 试起来，数据说话，进院流程我来跑。</div></div>
-        <div class="msg reveal"><span class="ava">李</span><div class="bub">增量场景先试……这个我能接受，你把急症那部分整理给我。</div></div>
-        <div class="tip reveal"><div class="h">★ 教练点评 · 到位</div>切 <b>增量场景</b> 而非"替换"，降低切换阻力，并主动承担流程成本。</div>
+        <div class="msg me reveal"><div class="bub me">不能用供应压力替代放行依据。调查、影响评估和必要 CAPA 必须满足放行要求；如需调整节奏，应由质量负责人基于证据批准并完整留痕。</div></div>
+        <div class="msg reveal"><span class="ava">周</span><div class="bub">很好。业务节奏可以协调，但质量放行边界不能被绕过。</div></div>
+        <div class="tip reveal"><div class="h">★ 教练点评 · 到位</div>守住 <b>放行边界</b>，同时给出可审计、可追溯的升级路径。</div>
       </div>
     </div>
     <div class="foot">
@@ -196,11 +196,11 @@
   <!-- ============ RESULT (评测结果 + 发勋章) ============ -->
   <div data-screen="result">
     <div class="scroll">
-      <div class="res-head"><div class="k">EVALUATION · 评测结果</div><div class="t">本次陪练 · 3 轮全部命中真实顾虑</div></div>
+      <div class="res-head"><div class="k">EVALUATION · 岗位胜任力评估</div><div class="t">本次岗前训练 · 3 轮完成</div></div>
 
       <div class="scorecard">
         <div class="big">82<small> 分</small></div>
-        <div class="meta"><div class="grade">良好 · 稳定进步</div><div class="gd2">超过同期新代表 <b style="color:#fff">86%</b> · 距老专家基线还差 1 个短板</div></div>
+        <div class="meta"><div class="grade">良好 · 继续补训</div><div class="gd2">超过同期新员工 <b style="color:#fff">86%</b> · 距岗位授权标准还差 1 个短板</div></div>
       </div>
 
       <!-- 发勋章 -->
@@ -213,23 +213,23 @@
         </div>
         <div class="bt">
           <div class="label">解锁徽章</div>
-          <div class="name">异议拆解 · 进阶 <span class="lv">Lv.3</span></div>
-          <div class="desc">连续 3 轮正面接住真实顾虑 · 已计入个人能力档案</div>
+          <div class="name">IVIG 偏差处置 · 进阶 <span class="lv">Lv.3</span></div>
+          <div class="desc">已完成 3 轮情境训练 · 结果将写入个人能力档案</div>
         </div>
       </div>
 
       <div class="recap">
         <div class="rh">本次 3 轮回顾</div>
-        <div class="rcrow"><span class="ck">✓</span><span class="rl">第1轮</span><span class="rx">起效速度 → 头对头 BE/Tmax 数据</span></div>
-        <div class="rcrow"><span class="ck">✓</span><span class="rl">第2轮</span><span class="rx">长期安全性 → 真实世界证据</span></div>
-        <div class="rcrow"><span class="ck">✓</span><span class="rl">第3轮</span><span class="rx">切换阻力 → 增量场景切入</span></div>
+        <div class="rcrow"><span class="ck">✓</span><span class="rl">第1轮</span><span class="rx">现场信号 → 暂停、隔离与证据保全</span></div>
+        <div class="rcrow"><span class="ck">✓</span><span class="rl">第2轮</span><span class="rx">读数恢复 → 完整证据链与影响评估</span></div>
+        <div class="rcrow"><span class="ck">✓</span><span class="rl">第3轮</span><span class="rx">供应压力 → CAPA 与放行边界</span></div>
       </div>
 
-      <div class="erow good"><span class="ic">✓</span><span class="x">真实顾虑识别<small>三轮都抓住了现场没有明说的真实风险</small></span><span class="sv">90</span></div>
-      <div class="erow warn"><span class="ic">!</span><span class="x">证据选择<small>方向对，缺一个"急症起效"的临床场景化佐证</small></span><span class="sv">58</span></div>
-      <div class="erow good"><span class="ic">✓</span><span class="x">异议回应<small>切增量而非替换，可再补一句合规收口</small></span><span class="sv">76</span></div>
+      <div class="erow good"><span class="ic">✓</span><span class="x">SOP 关键点<small>现场止损、隔离和记录动作完整</small></span><span class="sv">90</span></div>
+      <div class="erow warn"><span class="ic">!</span><span class="x">偏差判断<small>需加强趋势、设备与环境证据的交叉判断</small></span><span class="sv">58</span></div>
+      <div class="erow good"><span class="ic">✓</span><span class="x">合规边界<small>没有因供应压力绕过质量放行要求</small></span><span class="sv">82</span></div>
 
-      <div class="point">右侧雷达 = 你与 <b>老专家基线</b> 的差距。<b>短板：证据选择</b> → 接下来 2 周，AI 会专门推"达峰时间、PK 数据、临床场景化回应"的随机陪练。</div>
+      <div class="point">结果可回写 <b>TMS 岗位能力档案</b>。<b>短板：偏差判断</b> → 自动派发补训；通过后进入岗位资质确认，并可按需联动门禁、排班或岗位授权。</div>
     </div>
     <div class="foot"><button class="cta ghost" id="replay">再练一轮 ↺</button></div>
   </div>
@@ -244,7 +244,7 @@
     screens.forEach(function(s){ s.classList.toggle('on', s.getAttribute('data-screen')===name); });
     navttl.innerHTML = name==='chat'
       ? '<span class="live"></span>与 QA 负责人 · 模拟中'
-      : (TITLES[name]||'每日随机陪练');
+      : (TITLES[name]||'每日岗前训练');
   }
 
   var scroll=document.getElementById('chatscroll');
