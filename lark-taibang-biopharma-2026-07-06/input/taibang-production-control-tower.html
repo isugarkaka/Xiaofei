@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>泰邦生物 · 血制品稳态生产智能控制塔 | 生产数据实时跟踪与风险预判</title>
+<style>
+  :root{
+    --bg:#0a1120; --bg2:#0e1730; --panel:rgba(19,30,56,.72); --panel2:rgba(15,24,46,.9);
+    --line:rgba(90,130,220,.18); --txt:#e8eefc; --sub:#93a6cf; --mut:#5f739e;
+    --accent:#3b7cff; --accent2:#22d3ee; --ok:#22c55e; --warn:#f59e0b; --risk:#ef4444;
+    --glow:0 0 24px rgba(59,124,255,.35);
+    --font:"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:var(--font); color:var(--txt); overflow:hidden;
+    background:radial-gradient(1200px 700px at 78% -8%,rgba(34,211,238,.10),transparent 60%),
+               radial-gradient(1000px 600px at 12% 110%,rgba(59,124,255,.14),transparent 55%),
+               linear-gradient(160deg,var(--bg),var(--bg2));
+  }
+  /* subtle grid */
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:linear-gradient(rgba(90,130,220,.05) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(90,130,220,.05) 1px,transparent 1px);
+    background-size:44px 44px;mask:radial-gradient(circle at 50% 40%,#000 40%,transparent 90%)}
+  .stage{position:relative;z-index:1;height:100vh;display:flex;flex-direction:column;padding:18px 26px 14px}
+  /* ---------- header ---------- */
+  header{display:flex;align-items:center;justify-content:space-between;gap:16px;flex:0 0 auto}
+  .brand{display:flex;align-items:center;gap:14px}
+  .logo{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;position:relative;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:var(--glow)}
+  .logo svg{width:26px;height:26px}
+  .radar{position:absolute;inset:0;border-radius:12px;overflow:hidden}
+  .radar::after{content:"";position:absolute;top:50%;left:50%;width:150%;height:150%;
+    background:conic-gradient(from 0deg,rgba(255,255,255,.55),transparent 25%);
+    transform-origin:0 0;animation:sweep 3s linear infinite;opacity:.5}
+  @keyframes sweep{to{transform:rotate(360deg)}}
+  .brand h1{font-size:19px;letter-spacing:.5px}
+  .brand p{font-size:12px;color:var(--sub);margin-top:2px}
+  .clock{text-align:right;font-size:12px;color:var(--sub)}
+  .clock b{display:block;font-size:20px;color:var(--txt);font-variant-numeric:tabular-nums;letter-spacing:1px}
+  .live{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ok);
+    background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3);padding:3px 10px;border-radius:20px}
+  .live .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);animation:blink 1.2s infinite}
+  @keyframes blink{50%{opacity:.25}}
+  /* ---------- KPI row ---------- */
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:14px 0 12px;flex:0 0 auto}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;position:relative;overflow:hidden}
+  .kpi .lab{font-size:12px;color:var(--sub)}
+  .kpi .val{font-size:26px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums}
+  .kpi .sub{font-size:11px;color:var(--mut);margin-top:2px}
+  .kpi .bar{position:absolute;left:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:width 1.2s ease}
+  .kpi.warn .val{color:var(--warn)} .kpi.risk .val{color:var(--risk)} .kpi.ok .val{color:var(--ok)}
+  /* ---------- main 3-column ---------- */
+  .main{flex:1 1 auto;display:grid;grid-template-columns:1.05fr 1.25fr 1fr;gap:14px;min-height:0}
+  .col{background:var(--panel2);border:1px solid var(--line);border-radius:16px;display:flex;flex-direction:column;min-height:0;position:relative;overflow:hidden}
+  .col-h{display:flex;align-items:center;gap:10px;padding:14px 16px 10px;flex:0 0 auto}
+  .step-badge{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-weight:700;font-size:14px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+  .col-h h2{font-size:15px} .col-h span{font-size:11px;color:var(--sub);margin-left:auto}
+  .col-b{flex:1 1 auto;overflow:hidden;padding:0 16px 16px;min-height:0}
+  /* --- col1: lines --- */
+  .line-item{display:flex;align-items:center;gap:12px;padding:11px 12px;border:1px solid var(--line);
+    border-radius:12px;margin-bottom:10px;background:rgba(11,20,42,.5);opacity:0;transform:translateX(-14px);
+    transition:opacity .5s ease,transform .5s ease}
+  .line-item.in{opacity:1;transform:none}
+  .line-icon{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;flex:0 0 auto;
+    background:rgba(59,124,255,.14);border:1px solid rgba(59,124,255,.3)}
+  .line-icon svg{width:18px;height:18px;stroke:var(--accent2)}
+  .line-meta{flex:1 1 auto;min-width:0}
+  .line-meta .t{font-size:13px;font-weight:600}
+  .line-meta .d{font-size:11px;color:var(--mut);margin-top:2px}
+  .flow{height:6px;border-radius:6px;background:rgba(90,130,220,.14);overflow:hidden;margin-top:6px;position:relative}
+  .flow i{position:absolute;top:0;bottom:0;width:38%;border-radius:6px;
+    background:linear-gradient(90deg,transparent,var(--accent2),transparent);animation:stream 1.6s linear infinite}
+  @keyframes stream{from{left:-40%}to{left:100%}}
+  .tag{font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;flex:0 0 auto}
+  .tag.on{color:var(--ok);background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3)}
+  /* --- col2: AI chart --- */
+  .ai-wrap{height:100%;display:flex;flex-direction:column;gap:10px}
+  .proj-tabs{display:flex;gap:6px;flex-wrap:wrap;flex:0 0 auto}
+  .ptab{font-size:11px;padding:5px 11px;border-radius:20px;cursor:pointer;color:var(--sub);
+    border:1px solid var(--line);background:rgba(11,20,42,.5);transition:.25s}
+  .ptab.active{color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:transparent}
+  .chart{flex:1 1 auto;position:relative;border:1px solid var(--line);border-radius:12px;background:rgba(8,15,34,.5);overflow:hidden}
+  .chart svg{width:100%;height:100%;display:block}
+  .legend{display:flex;gap:16px;font-size:11px;color:var(--sub);flex:0 0 auto;padding-left:4px}
+  .legend i{display:inline-block;width:14px;height:3px;border-radius:3px;margin-right:5px;vertical-align:middle}
+  .ai-verdict{flex:0 0 auto;font-size:12px;padding:9px 12px;border-radius:10px;line-height:1.5;
+    background:rgba(59,124,255,.08);border:1px solid rgba(59,124,255,.25)}
+  .ai-verdict b{color:var(--accent2)}
+  /* --- col3: risk + actions --- */
+  .risk-item{border:1px solid var(--line);border-radius:12px;padding:11px 12px;margin-bottom:10px;
+    background:rgba(11,20,42,.5);opacity:0;transform:translateY(12px);transition:.5s}
+  .risk-item.in{opacity:1;transform:none}
+  .risk-item .top{display:flex;align-items:center;gap:8px}
+  .sev{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+  .sev.high{background:var(--risk);box-shadow:0 0 8px var(--risk);animation:blink 1s infinite}
+  .sev.mid{background:var(--warn);box-shadow:0 0 8px var(--warn)}
+  .sev.low{background:var(--ok)}
+  .risk-item .top .name{font-size:13px;font-weight:600}
+  .risk-item .top .lv{margin-left:auto;font-size:10px;padding:2px 8px;border-radius:20px;font-weight:700}
+  .lv.high{color:var(--risk);background:rgba(239,68,68,.13)} .lv.mid{color:var(--warn);background:rgba(245,158,11,.13)} .lv.low{color:var(--ok);background:rgba(34,197,94,.13)}
+  .risk-item .desc{font-size:11px;color:var(--sub);margin:6px 0 8px;line-height:1.5}
+  .action{display:flex;align-items:flex-start;gap:7px;font-size:11px;color:var(--txt);
+    background:rgba(34,211,238,.07);border:1px dashed rgba(34,211,238,.35);border-radius:8px;padding:7px 9px}
+  .action svg{width:14px;height:14px;stroke:var(--accent2);flex:0 0 auto;margin-top:1px}
+  /* ---------- footer / controls ---------- */
+  .foot{flex:0 0 auto;display:flex;align-items:center;gap:14px;margin-top:12px}
+  .steps-nav{display:flex;gap:8px}
+  .snav{font-size:12px;color:var(--sub);border:1px solid var(--line);border-radius:20px;padding:5px 14px;cursor:pointer;transition:.25s;background:rgba(11,20,42,.5)}
+  .snav.active{color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:transparent}
+  .btns{margin-left:auto;display:flex;gap:10px}
+  .btn{font-size:13px;padding:8px 18px;border-radius:22px;border:none;cursor:pointer;font-weight:600;color:#fff;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:var(--glow);transition:.2s}
+  .btn.ghost{background:rgba(255,255,255,.06);box-shadow:none;color:var(--sub);border:1px solid var(--line)}
+  .btn:hover{transform:translateY(-1px)}
+  .caption{position:fixed;left:50%;bottom:74px;transform:translateX(-50%);z-index:5;
+    font-size:13px;color:#eaf1ff;background:rgba(8,15,34,.85);border:1px solid var(--line);
+    padding:8px 20px;border-radius:24px;backdrop-filter:blur(6px);opacity:0;transition:.4s;max-width:80vw;text-align:center}
+  .caption.show{opacity:1}
+  .fade{opacity:0;animation:fade .7s forwards} @keyframes fade{to{opacity:1}}
+  @media(max-width:1024px){.main{grid-template-columns:1fr;overflow:auto}.kpis{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="stage">
+  <!-- ===== Header ===== -->
+  <header>
+    <div class="brand">
+      <div class="logo">
+        <div class="radar"></div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round">
+          <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/>
+        </svg>
+      </div>
+      <div>
+        <h1>泰邦生物 · 血制品稳态生产智能控制塔</h1>
+        <p>Taibang Biologic · 从血浆到成品全链数据实时跟踪 & AI 风险预判 —— 守住每一份稀缺血浆</p>
+      </div>
+    </div>
+    <div class="clock">
+      <span class="live"><span class="dot"></span>泰安 · 贵阳双基地实时联机</span>
+      <b id="clock">--:--:--</b>
+    </div>
+  </header>
+
+  <!-- ===== KPI ===== -->
+  <div class="kpis">
+    <div class="kpi ok"><div class="lab">在产品规</div><div class="val" data-count="21">0</div><div class="sub">Product SKUs Online</div><div class="bar" style="width:88%"></div></div>
+    <div class="kpi"><div class="lab">在制血浆批次</div><div class="val" data-count="96">0</div><div class="sub">Plasma Batches In-Process</div><div class="bar" style="width:72%"></div></div>
+    <div class="kpi"><div class="lab">工艺数据点/分钟</div><div class="val" data-count="5240">0</div><div class="sub">Process Data Points/min</div><div class="bar" style="width:95%"></div></div>
+    <div class="kpi warn"><div class="lab">AI 预警(24h)</div><div class="val" data-count="6">0</div><div class="sub">Predictive Alerts</div><div class="bar" style="width:38%"></div></div>
+    <div class="kpi risk"><div class="lab">待处置高风险</div><div class="val" data-count="2">0</div><div class="sub">High-Risk Open</div><div class="bar" style="width:22%"></div></div>
+  </div>
+
+  <!-- ===== Main ===== -->
+  <div class="main">
+    <!-- Col 1 -->
+    <section class="col" id="col1">
+      <div class="col-h"><div class="step-badge">1</div><h2>全链工序数据统一采集</h2><span>信息化 · 血浆到成品</span></div>
+      <div class="col-b" id="lines"></div>
+    </section>
+
+    <!-- Col 2 -->
+    <section class="col" id="col2">
+      <div class="col-h"><div class="step-badge">2</div><h2>AI 模型分品规分析 & 收率预测</h2><span id="curProj">人血白蛋白</span></div>
+      <div class="col-b">
+        <div class="ai-wrap">
+          <div class="proj-tabs" id="ptabs"></div>
+          <div class="chart"><svg id="svg" viewBox="0 0 600 260" preserveAspectRatio="none"></svg></div>
+          <div class="legend">
+            <span><i style="background:#22d3ee"></i>实测数据</span>
+            <span><i style="background:#3b7cff"></i>AI 预测</span>
+            <span><i style="background:#ef4444"></i>工艺/质量控制限</span>
+          </div>
+          <div class="ai-verdict" id="verdict">AI 正在拟合工艺曲线…</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Col 3 -->
+    <section class="col" id="col3">
+      <div class="col-h"><div class="step-badge">3</div><h2>风险分级 & 控制措施输出</h2><span>闭环处置</span></div>
+      <div class="col-b" id="risks"></div>
+    </section>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <div class="foot">
+    <div class="steps-nav">
+      <div class="snav active" data-step="0">全景</div>
+      <div class="snav" data-step="1">① 全链采集</div>
+      <div class="snav" data-step="2">② AI 分品规预测</div>
+      <div class="snav" data-step="3">③ 风险处置闭环</div>
+    </div>
+    <div class="btns">
+      <button class="btn ghost" id="replay">↺ 重播</button>
+      <button class="btn" id="play">▶ 自动演示</button>
+    </div>
+  </div>
+</div>
+<div class="caption" id="caption"></div>
+
+<script>
+/* ============ Data ============ */
+const LINES = [
+  {t:"血浆接收与检疫放行",d:"检疫期 / 病毒筛查 / 温度追溯 · 每袋一码",ic:"drop"},
+  {t:"低温乙醇组分分离",d:"温度 / pH / 乙醇浓度 / 离心转速 · 14 测点",ic:"flask"},
+  {t:"层析纯化(IgG/因子)",d:"层析压差 / 电导 / 流速 / 收集峰 · 11 测点",ic:"filter"},
+  {t:"病毒灭活/去除(S/D·纳滤)",d:"温度 / 时间 / 跨膜压 / TNBP-吐温 · 9 测点",ic:"shield"},
+  {t:"无菌分装与冻干",d:"装量 / 环境粒子 / 板温 / 真空度 · 15 测点",ic:"vial"}
+];
+const PROJECTS = [
+  {name:"人血白蛋白 · 收率",
+   real:[92,93,94,93,95,94,96,95],
+   pred:[95,96,96,97,96,97],
+   hi:100, lo:88,
+   verdict:"过程平稳,预测未来 6 批收率稳定于 <b>96%±1%</b>,过程能力 <b>Cpk 1.45</b>,一浆多用达标",
+   status:"ok"},
+  {name:"静丙(IgG,pH4) · 纯度",
+   real:[96.2,96.0,96.3,96.1,95.8,95.6,95.4,95.1],
+   pred:[95.1,94.8,94.5,94.2,93.9,93.6],
+   hi:98, lo:95,
+   verdict:"IgG 纯度呈下行趋势,预测 <b>3 批后</b>将跌破 95% 质量下限,疑与层析载量漂移相关",
+   status:"warn"},
+  {name:"人凝血因子Ⅷ · 效价",
+   real:[62,66,71,78,84,90,96,102],
+   pred:[102,108,115,122,128,133],
+   hi:130, lo:40,
+   verdict:"因子Ⅷ活性单位快速上行,预测第 <b>11</b> 批将于 <b>5h 后</b>触及灭活工艺温控上限,存在活性损失风险",
+   status:"risk"}
+];
+const RISKS = [
+  {sev:"high",name:"人凝血因子Ⅷ · 活性损失风险",lv:"高",
+   desc:"AI 预测灭活工序温度将于 5h 内触及上限,因子Ⅷ为热敏成分,越限将导致效价衰减、批次不合格。血浆稀缺,单批损失价值高。",
+   act:"自动下发工单:S/D 灭活温度下调 1.5℃、缩短保温时长;通知工艺工程师复核,批次进入加严监控与留样。"},
+  {sev:"high",name:"静丙(IgG,pH4) · 纯度越限风险",lv:"高",
+   desc:"IgG 纯度趋势下行,预测 3 批后跌破 95% 放行下限,根因指向层析柱载量漂移与洗脱梯度偏移。",
+   act:"提前触发层析柱性能核查+洗脱程序校准,启动 CAPA 预案,避免批量偏差与返工。"},
+  {sev:"mid",name:"血浆检疫放行 · 检疫期临期预警",lv:"中",
+   desc:"AI 识别到一批血浆检疫期临近到期但未完成复检,若超期将影响投产计划与浆源综合利用率。",
+   act:"自动提醒质量放行岗优先处理,联动排产系统预留投料窗口,保障一浆多用。"},
+  {sev:"low",name:"冻干工序 · 板温短时波动",lv:"低",
+   desc:"某冻干箱板温出现短时波动,当前仍在控制限内,趋势可控。",
+   act:"纳入日报观察项,持续监控,暂无需即时干预。"}
+];
+
+/* ============ Helpers ============ */
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const ICONS={
+  drop:'<path d="M12 2s7 8 7 13a7 7 0 01-14 0c0-5 7-13 7-13z"/>',
+  flask:'<path d="M9 2h6M10 2v6l-6 11a2 2 0 001.8 3h12.4A2 2 0 0026 19L14 8V2"/>',
+  filter:'<path d="M3 4h18l-7 8v6l-4 2v-8z"/>',
+  shield:'<path d="M12 2l8 3v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V5z"/><path d="M9 12l2 2 4-4"/>',
+  vial:'<path d="M8 2h8M9 2v4l4 4v10a2 2 0 01-2 2 2 2 0 01-2-2V10l0-4"/>',
+  snow:'<path d="M12 2v20M4 6l16 12M20 6L4 18M6 12h12"/>',
+  box:'<path d="M3 7l9-4 9 4-9 4-9-4zM3 7v10l9 4 9-4V7"/>'
+};
+function icon(n){return '<svg viewBox="0 0 28 28" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+(ICONS[n]||'')+'</svg>';}
+
+/* ---- clock ---- */
+function tick(){const d=new Date();$('#clock').textContent=d.toLocaleTimeString('zh-CN',{hour12:false});}
+setInterval(tick,1000);tick();
+
+/* ---- KPI count up ---- */
+function countUp(){
+  $$('.kpi .val').forEach(el=>{
+    const target=+el.dataset.count; let cur=0; const step=Math.max(1,Math.ceil(target/45));
+    const iv=setInterval(()=>{cur+=step; if(cur>=target){cur=target;clearInterval(iv);} el.textContent=cur.toLocaleString();},22);
+  });
+  $$('.kpi .bar').forEach(b=>{const w=b.style.width;b.style.width='0';requestAnimationFrame(()=>b.style.width=w);});
+}
+
+/* ---- build lines ---- */
+function buildLines(){
+  const box=$('#lines');box.innerHTML='';
+  LINES.forEach(l=>{
+    const el=document.createElement('div');el.className='line-item';
+    el.innerHTML=`<div class="line-icon">${icon(l.ic)}</div>
+      <div class="line-meta"><div class="t">${l.t}</div><div class="d">${l.d}</div>
+      <div class="flow"><i></i></div></div>
+      <div class="tag on">采集中</div>`;
+    box.appendChild(el);
+  });
+}
+function animLines(){$$('#lines .line-item').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),i*180));}
+
+/* ---- project tabs + chart ---- */
+let curP=0;
+function buildTabs(){
+  const box=$('#ptabs');box.innerHTML='';
+  PROJECTS.forEach((p,i)=>{
+    const t=document.createElement('div');t.className='ptab'+(i===0?' active':'');
+    t.textContent=p.name.split(' · ')[0];
+    t.onclick=()=>{curP=i;drawChart(i);setActiveTab(i);};
+    box.appendChild(t);
+  });
+}
+function setActiveTab(i){$$('.ptab').forEach((t,j)=>t.classList.toggle('active',j===i));}
+
+function drawChart(i){
+  const p=PROJECTS[i];const svg=$('#svg');const W=600,H=260,pad=24;
+  $('#curProj').textContent=p.name.split(' · ')[0];
+  const all=[...p.real,...p.pred,p.hi,p.lo];
+  const max=Math.max(...all)*1.08, min=Math.min(...all)*0.9;
+  const N=p.real.length+p.pred.length-1;
+  const X=k=>pad+(W-2*pad)*(k/(N));
+  const Y=v=>H-pad-(H-2*pad)*((v-min)/(max-min));
+  let html='';
+  // grid
+  for(let g=0;g<=4;g++){const y=pad+(H-2*pad)*g/4;html+=`<line x1="${pad}" y1="${y}" x2="${W-pad}" y2="${y}" stroke="rgba(90,130,220,.12)"/>`;}
+  // control limits
+  html+=`<line x1="${pad}" y1="${Y(p.hi)}" x2="${W-pad}" y2="${Y(p.hi)}" stroke="#ef4444" stroke-dasharray="6 5" stroke-width="1.4"/>`;
+  html+=`<line x1="${pad}" y1="${Y(p.lo)}" x2="${W-pad}" y2="${Y(p.lo)}" stroke="#ef4444" stroke-dasharray="6 5" stroke-width="1.4" opacity=".6"/>`;
+  html+=`<text x="${W-pad-2}" y="${Y(p.hi)-5}" fill="#ef4444" font-size="10" text-anchor="end">控制上限 ${p.hi}</text>`;
+  html+=`<text x="${W-pad-2}" y="${Y(p.lo)+14}" fill="#ef4444" font-size="10" text-anchor="end" opacity=".8">控制下限 ${p.lo}</text>`;
+  // real line
+  const realPts=p.real.map((v,k)=>[X(k),Y(v)]);
+  const predStart=p.real.length-1;
+  const predPts=p.pred.map((v,k)=>[X(predStart+k),Y(v)]);
+  const toPath=pts=>pts.map((pt,k)=>(k?'L':'M')+pt[0].toFixed(1)+' '+pt[1].toFixed(1)).join(' ');
+  // area under real
+  const areaReal=`${toPath(realPts)} L ${realPts[realPts.length-1][0]} ${H-pad} L ${realPts[0][0]} ${H-pad} Z`;
+  html+=`<path d="${areaReal}" fill="url(#gA)" opacity=".5"/>`;
+  const realLen=1600;
+  html+=`<path d="${toPath(realPts)}" fill="none" stroke="#22d3ee" stroke-width="2.6" stroke-linecap="round"
+          stroke-dasharray="${realLen}" stroke-dashoffset="${realLen}"><animate attributeName="stroke-dashoffset" from="${realLen}" to="0" dur="1s" fill="freeze"/></path>`;
+  html+=`<path d="${toPath(predPts)}" fill="none" stroke="#3b7cff" stroke-width="2.6" stroke-dasharray="7 6" stroke-linecap="round" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="1s" dur=".6s" fill="freeze"/></path>`;
+  // dots
+  realPts.forEach(pt=>html+=`<circle cx="${pt[0]}" cy="${pt[1]}" r="3" fill="#22d3ee"/>`);
+  predPts.forEach((pt,k)=>html+=`<circle cx="${pt[0]}" cy="${pt[1]}" r="3" fill="#3b7cff" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="${1+k*.12}s" dur=".3s" fill="freeze"/></circle>`);
+  // moving pulse on last pred point
+  const lp=predPts[predPts.length-1];
+  html+=`<circle cx="${lp[0]}" cy="${lp[1]}" r="5" fill="none" stroke="#3b7cff" stroke-width="2">
+          <animate attributeName="r" values="5;12;5" dur="1.6s" repeatCount="indefinite" begin="1.6s"/>
+          <animate attributeName="opacity" values="1;0;1" dur="1.6s" repeatCount="indefinite" begin="1.6s"/></circle>`;
+  // divider "now"
+  html+=`<line x1="${X(predStart)}" y1="${pad}" x2="${X(predStart)}" y2="${H-pad}" stroke="rgba(255,255,255,.25)" stroke-dasharray="3 4"/>`;
+  html+=`<text x="${X(predStart)+4}" y="${pad+12}" fill="#93a6cf" font-size="10">当前</text>`;
+  const defs=`<defs><linearGradient id="gA" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#22d3ee" stop-opacity=".35"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/></linearGradient></defs>`;
+  svg.innerHTML=defs+html;
+  // verdict
+  const v=$('#verdict');v.style.opacity=0;
+  setTimeout(()=>{v.innerHTML=p.verdict;v.style.opacity=1;
+    v.style.borderColor=p.status==='risk'?'rgba(239,68,68,.4)':p.status==='warn'?'rgba(245,158,11,.4)':'rgba(34,197,94,.4)';
+    v.style.background=p.status==='risk'?'rgba(239,68,68,.08)':p.status==='warn'?'rgba(245,158,11,.08)':'rgba(34,197,94,.08)';
+  },900);
+}
+
+/* ---- risks ---- */
+function buildRisks(){
+  const box=$('#risks');box.innerHTML='';
+  RISKS.forEach(r=>{
+    const el=document.createElement('div');el.className='risk-item';
+    el.innerHTML=`<div class="top"><span class="sev ${r.sev}"></span><span class="name">${r.name}</span><span class="lv ${r.sev==='high'?'high':r.sev==='mid'?'mid':'low'}">${r.lv}风险</span></div>
+      <div class="desc">${r.desc}</div>
+      <div class="action"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg><div>${r.act}</div></div>`;
+    box.appendChild(el);
+  });
+}
+function animRisks(){$$('#risks .risk-item').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),i*220));}
+
+/* ---- caption ---- */
+let capT;
+function caption(txt){const c=$('#caption');clearTimeout(capT);c.textContent=txt;c.classList.add('show');capT=setTimeout(()=>c.classList.remove('show'),3600);}
+
+/* ---- focus a step (highlight) ---- */
+function focusStep(s){
+  $$('.snav').forEach(n=>n.classList.toggle('active',+n.dataset.step===s));
+  [ '#col1','#col2','#col3'].forEach((id,i)=>{
+    const el=$(id);el.style.transition='.4s';
+    if(s===0){el.style.opacity=1;el.style.boxShadow='none';}
+    else{const on=(i+1)===s;el.style.opacity=on?1:.4;el.style.boxShadow=on?'0 0 0 1.5px rgba(59,124,255,.6),0 0 30px rgba(59,124,255,.25)':'none';}
+  });
+}
+
+/* ============ Sequences ============ */
+function initAll(){
+  buildLines();buildTabs();buildRisks();drawChart(0);setActiveTab(0);countUp();
+}
+let timers=[];
+function clearTimers(){timers.forEach(t=>clearTimeout(t));timers=[];}
+function T(fn,ms){timers.push(setTimeout(fn,ms));}
+
+function replay(){
+  clearTimers();
+  $$('#lines .line-item').forEach(e=>e.classList.remove('in'));
+  $$('#risks .risk-item').forEach(e=>e.classList.remove('in'));
+  focusStep(0);drawChart(0);setActiveTab(0);countUp();
+  caption("品规多、批次多、血浆稀缺 —— 人工难以全覆盖风险,构建血制品智能控制塔");
+  T(animLines,600);
+}
+
+function autoPlay(){
+  clearTimers();
+  // reset
+  $$('#lines .line-item').forEach(e=>e.classList.remove('in'));
+  $$('#risks .risk-item').forEach(e=>e.classList.remove('in'));
+  focusStep(0);countUp();
+  caption("痛点:20+ 品规 · 血浆稀缺不可替代 · 工艺数据海量,人手不足难以全批次盯防");
+  // Step1
+  T(()=>{focusStep(1);animLines();caption("第 ① 步:信息化打通「血浆接收→分离→纯化→病毒灭活→分装冻干」全链数据统一采集");},1600);
+  // Step2 iterate projects
+  T(()=>{focusStep(2);curP=0;drawChart(0);setActiveTab(0);caption("第 ② 步:AI 对每个品规分别建模,实时分析收率/纯度/效价并预测未来批次趋势");},5200);
+  T(()=>{curP=1;drawChart(1);setActiveTab(1);},8200);
+  T(()=>{curP=2;drawChart(2);setActiveTab(2);},10800);
+  // Step3
+  T(()=>{focusStep(3);animRisks();caption("第 ③ 步:基于数据模型与风险分级,自动输出控制措施并联动工单,形成质量处置闭环");},13600);
+  // panorama
+  T(()=>{focusStep(0);caption("血制品智能控制塔:数据全采集 → AI 分品规预测 → 风险闭环,守住每一份稀缺血浆与批次");},17800);
+}
+
+/* ---- bind ---- */
+$('#play').onclick=autoPlay;
+$('#replay').onclick=replay;
+$$('.snav').forEach(n=>n.onclick=()=>{
+  const s=+n.dataset.step;focusStep(s);
+  if(s===1){$$('#lines .line-item').forEach(e=>e.classList.remove('in'));animLines();}
+  if(s===3){$$('#risks .risk-item').forEach(e=>e.classList.remove('in'));animRisks();}
+});
+
+initAll();
+// initial gentle intro
+setTimeout(()=>{animLines();},400);
+setTimeout(()=>{animRisks();},900);
+</script>
+</body>
+</html>
