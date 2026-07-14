@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>泰邦生物 · AI 国内外迎检智能系统 | NMPA · FDA · EMA 迎检 / 缺陷整改 / 智能应答</title>
+<style>
+  :root{
+    --bg:#0a1120; --bg2:#0e1730; --panel:rgba(19,30,56,.72); --panel2:rgba(15,24,46,.9);
+    --line:rgba(90,130,220,.18); --txt:#e8eefc; --sub:#93a6cf; --mut:#5f739e;
+    --accent:#3b7cff; --accent2:#22d3ee; --ok:#22c55e; --warn:#f59e0b; --risk:#ef4444; --purple:#a78bfa;
+    --glow:0 0 24px rgba(59,124,255,.35);
+    --font:"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:var(--font); color:var(--txt); overflow:hidden;
+    background:radial-gradient(1200px 700px at 78% -8%,rgba(167,139,250,.10),transparent 60%),
+               radial-gradient(1000px 600px at 12% 110%,rgba(59,124,255,.14),transparent 55%),
+               linear-gradient(160deg,var(--bg),var(--bg2));
+  }
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:linear-gradient(rgba(90,130,220,.05) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(90,130,220,.05) 1px,transparent 1px);
+    background-size:44px 44px;mask:radial-gradient(circle at 50% 40%,#000 40%,transparent 90%)}
+  .stage{position:relative;z-index:1;height:100vh;display:flex;flex-direction:column;padding:16px 24px 12px}
+  /* header */
+  header{display:flex;align-items:center;justify-content:space-between;gap:16px;flex:0 0 auto}
+  .brand{display:flex;align-items:center;gap:14px}
+  .logo{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;position:relative;
+    background:linear-gradient(135deg,var(--accent),var(--purple));box-shadow:var(--glow)}
+  .logo svg{width:24px;height:24px}
+  .radar{position:absolute;inset:0;border-radius:12px;overflow:hidden}
+  .radar::after{content:"";position:absolute;top:50%;left:50%;width:150%;height:150%;
+    background:conic-gradient(from 0deg,rgba(255,255,255,.5),transparent 25%);
+    transform-origin:0 0;animation:sweep 3.4s linear infinite;opacity:.45}
+  @keyframes sweep{to{transform:rotate(360deg)}}
+  .brand h1{font-size:19px;letter-spacing:.4px}
+  .brand p{font-size:12px;color:var(--sub);margin-top:2px}
+  .clock{text-align:right;font-size:12px;color:var(--sub)}
+  .clock b{display:block;font-size:19px;color:var(--txt);font-variant-numeric:tabular-nums;letter-spacing:1px}
+  .live{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ok);
+    background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3);padding:3px 10px;border-radius:20px}
+  .live .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);animation:blink 1.2s infinite}
+  @keyframes blink{50%{opacity:.25}}
+  /* KPI */
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin:12px 0 10px;flex:0 0 auto}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:11px 14px;position:relative;overflow:hidden}
+  .kpi .lab{font-size:12px;color:var(--sub)}
+  .kpi .val{font-size:25px;font-weight:700;margin-top:3px;font-variant-numeric:tabular-nums}
+  .kpi .val small{font-size:14px;font-weight:600;color:var(--sub)}
+  .kpi .sub{font-size:11px;color:var(--mut);margin-top:2px}
+  .kpi .bar{position:absolute;left:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--purple));width:0;transition:width 1.2s ease}
+  .kpi.warn .val{color:var(--warn)} .kpi.ok .val{color:var(--ok)} .kpi.pp .val{color:var(--purple)}
+  /* main */
+  .main{flex:1 1 auto;display:grid;grid-template-columns:0.95fr 1.35fr 1.05fr;gap:13px;min-height:0}
+  .col{background:var(--panel2);border:1px solid var(--line);border-radius:16px;display:flex;flex-direction:column;min-height:0;position:relative;overflow:hidden;transition:.4s}
+  .col-h{display:flex;align-items:center;gap:10px;padding:13px 15px 9px;flex:0 0 auto}
+  .step-badge{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-weight:700;font-size:14px;
+    background:linear-gradient(135deg,var(--accent),var(--purple));color:#fff}
+  .col-h h2{font-size:14.5px} .col-h span{font-size:11px;color:var(--sub);margin-left:auto}
+  .col-b{flex:1 1 auto;overflow:hidden;padding:0 15px 14px;min-height:0}
+  /* col1: scenarios */
+  .scene{border:1px solid var(--line);border-radius:12px;padding:11px 12px;margin-bottom:9px;background:rgba(11,20,42,.5);
+    opacity:0;transform:translateX(-14px);transition:.5s;cursor:pointer}
+  .scene.in{opacity:1;transform:none}
+  .scene:hover{border-color:rgba(167,139,250,.5)}
+  .scene .row1{display:flex;align-items:center;gap:9px}
+  .flag{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-size:14px;font-weight:800;flex:0 0 auto;color:#fff}
+  .flag.cn{background:linear-gradient(135deg,#ef4444,#f59e0b)} .flag.us{background:linear-gradient(135deg,#3b7cff,#22d3ee)}
+  .flag.eu{background:linear-gradient(135deg,#6366f1,#a78bfa)} .flag.self{background:linear-gradient(135deg,#22c55e,#22d3ee)}
+  .scene .tt{font-size:13px;font-weight:600} .scene .st{font-size:11px;color:var(--mut);margin-top:1px}
+  .scene .desc{font-size:11px;color:var(--sub);margin-top:8px;line-height:1.5}
+  .scene .chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+  .chip{font-size:10px;padding:2px 8px;border-radius:20px;background:rgba(90,130,220,.14);color:var(--sub);border:1px solid var(--line)}
+  /* col2: capabilities flow + query */
+  .cap-wrap{height:100%;display:flex;flex-direction:column;gap:9px}
+  .caps{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;flex:0 0 auto}
+  .cap{border:1px solid var(--line);border-radius:10px;padding:8px 7px;text-align:center;background:rgba(11,20,42,.5);
+    position:relative;opacity:.45;transition:.45s}
+  .cap.on{opacity:1;border-color:rgba(167,139,250,.55);box-shadow:0 0 16px rgba(167,139,250,.25)}
+  .cap .ci{width:26px;height:26px;margin:0 auto 5px;border-radius:7px;display:grid;place-items:center;background:rgba(167,139,250,.15)}
+  .cap .ci svg{width:15px;height:15px;stroke:var(--purple)}
+  .cap .cl{font-size:10.5px;line-height:1.25;color:var(--txt)}
+  .cap .num{position:absolute;top:4px;left:6px;font-size:9px;color:var(--mut)}
+  /* chat / query panel */
+  .chat{flex:1 1 auto;border:1px solid var(--line);border-radius:12px;background:rgba(8,15,34,.55);display:flex;flex-direction:column;min-height:0;overflow:hidden}
+  .chat-h{font-size:11px;color:var(--sub);padding:9px 12px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:7px;flex:0 0 auto}
+  .chat-h .rec{width:8px;height:8px;border-radius:50%;background:var(--risk);animation:blink 1s infinite}
+  .chat-b{flex:1 1 auto;overflow:hidden;padding:11px 12px;display:flex;flex-direction:column;gap:9px}
+  .bubble{max-width:92%;font-size:12px;line-height:1.55;padding:9px 12px;border-radius:12px;opacity:0;transform:translateY(8px);transition:.45s}
+  .bubble.in{opacity:1;transform:none}
+  .bubble.q{align-self:flex-start;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);border-bottom-left-radius:3px}
+  .bubble.q .who{font-size:10px;color:var(--risk);font-weight:700;margin-bottom:3px}
+  .bubble.a{align-self:flex-end;background:rgba(59,124,255,.12);border:1px solid rgba(59,124,255,.32);border-bottom-right-radius:3px}
+  .bubble.a .who{font-size:10px;color:var(--accent2);font-weight:700;margin-bottom:3px;display:flex;align-items:center;gap:5px}
+  .bubble.a .cite{margin-top:7px;font-size:10.5px;color:var(--purple);background:rgba(167,139,250,.1);border:1px dashed rgba(167,139,250,.4);border-radius:7px;padding:5px 8px}
+  .typing{align-self:flex-end;font-size:11px;color:var(--sub);display:flex;gap:4px;align-items:center;padding:4px 2px}
+  .typing i{width:5px;height:5px;border-radius:50%;background:var(--accent2);animation:bounce 1s infinite}
+  .typing i:nth-child(2){animation-delay:.15s} .typing i:nth-child(3){animation-delay:.3s}
+  @keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-5px);opacity:1}}
+  /* col3: defect / CAPA */
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:11px;flex:0 0 auto}
+  .cc{border-radius:11px;padding:9px 10px;font-size:11px}
+  .cc.old{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.28)}
+  .cc.new{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.28)}
+  .cc .h{font-size:10px;font-weight:700;margin-bottom:5px}
+  .cc.old .h{color:var(--risk)} .cc.new .h{color:var(--ok)}
+  .cc .big{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums}
+  .cc .u{font-size:10px;color:var(--sub)}
+  .defect{border:1px solid var(--line);border-radius:12px;padding:11px 12px;margin-bottom:9px;background:rgba(11,20,42,.5);
+    opacity:0;transform:translateY(12px);transition:.5s}
+  .defect.in{opacity:1;transform:none}
+  .defect .top{display:flex;align-items:center;gap:8px}
+  .defect .code{font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;background:rgba(239,68,68,.14);color:var(--risk)}
+  .defect .nm{font-size:12.5px;font-weight:600}
+  .defect .st{margin-left:auto;font-size:10px;padding:2px 8px;border-radius:20px;background:rgba(34,197,94,.14);color:var(--ok);font-weight:600}
+  .defect .desc{font-size:11px;color:var(--sub);margin:6px 0 8px;line-height:1.5}
+  .capa{font-size:11px;background:rgba(59,124,255,.07);border:1px dashed rgba(59,124,255,.35);border-radius:8px;padding:7px 9px;line-height:1.5}
+  .capa b{color:var(--accent2)}
+  .capa .m{color:var(--purple)}
+  /* footer */
+  .foot{flex:0 0 auto;display:flex;align-items:center;gap:14px;margin-top:10px}
+  .steps-nav{display:flex;gap:7px}
+  .snav{font-size:12px;color:var(--sub);border:1px solid var(--line);border-radius:20px;padding:5px 13px;cursor:pointer;transition:.25s;background:rgba(11,20,42,.5)}
+  .snav.active{color:#fff;background:linear-gradient(135deg,var(--accent),var(--purple));border-color:transparent}
+  .btns{margin-left:auto;display:flex;gap:10px}
+  .btn{font-size:13px;padding:8px 18px;border-radius:22px;border:none;cursor:pointer;font-weight:600;color:#fff;
+    background:linear-gradient(135deg,var(--accent),var(--purple));box-shadow:var(--glow);transition:.2s}
+  .btn.ghost{background:rgba(255,255,255,.06);box-shadow:none;color:var(--sub);border:1px solid var(--line)}
+  .btn:hover{transform:translateY(-1px)}
+  .caption{position:fixed;left:50%;bottom:70px;transform:translateX(-50%);z-index:5;
+    font-size:13px;color:#eaf1ff;background:rgba(8,15,34,.85);border:1px solid var(--line);
+    padding:8px 20px;border-radius:24px;backdrop-filter:blur(6px);opacity:0;transition:.4s;max-width:82vw;text-align:center}
+  .caption.show{opacity:1}
+  @media(max-width:1024px){.main{grid-template-columns:1fr;overflow:auto}.kpis{grid-template-columns:repeat(2,1fr)}.caps{grid-template-columns:repeat(3,1fr)}}
+
+  /* Deck embed: enlarge critical copy and use the full vertical canvas. */
+  .brand h1{font-size:24px}.brand p{font-size:14px}.clock{font-size:14px}.clock b{font-size:22px}.live{font-size:14px}
+  .kpi .lab{font-size:14px}.kpi .val{font-size:30px}.kpi .val small{font-size:16px}.kpi .sub{font-size:13px}
+  .col-h h2{font-size:18px}.col-h span{font-size:13px}.step-badge{font-size:16px}
+  #scenes{height:100%;display:grid;grid-template-rows:repeat(4,minmax(0,1fr));gap:10px}
+  .scene{margin:0;display:flex;flex-direction:column;justify-content:center}
+  .scene .tt{font-size:16px}.scene .st{font-size:13px}.scene .desc{font-size:14px}.chip{font-size:12px}
+  .cap .cl{font-size:13px}.cap .num{font-size:11px}.chat-h{font-size:13px}
+  .chat-b{justify-content:space-evenly}.bubble{font-size:14px}.bubble.q .who,.bubble.a .who{font-size:12px}.bubble.a .cite{font-size:12px}.typing{font-size:13px}
+  .cc{font-size:13px}.cc .h{font-size:12px}.cc .big{font-size:24px}.cc .u{font-size:12px}
+  .col-b:has(#defects){display:flex;flex-direction:column}
+  #defects{flex:1;min-height:0;display:grid;grid-template-rows:repeat(2,minmax(0,1fr));gap:10px}
+  .defect{margin:0;display:flex;flex-direction:column;justify-content:center}
+  .defect .code{font-size:12px}.defect .nm{font-size:15px}.defect .st{font-size:12px}.defect .desc{font-size:14px}.capa{font-size:13px}
+  .snav{font-size:14px}.btn{font-size:14px}.caption{font-size:14px}
+</style>
+</head>
+<body>
+<div class="stage">
+  <!-- header -->
+  <header>
+    <div class="brand">
+      <div class="logo">
+        <div class="radar"></div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2l8 3v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V5z"/><path d="M9 12l2 2 4-4"/>
+        </svg>
+      </div>
+      <div>
+        <h1>泰邦生物 · AI 国内外迎检智能系统</h1>
+        <p>Global Inspection-Ready Intelligence · NMPA / FDA / EMA / ICH 全法规迎检 · 缺陷整改 · 现场智能应答</p>
+      </div>
+    </div>
+    <div class="clock">
+      <span class="live"><span class="dot"></span>法规知识库实时联机</span>
+      <b id="clock">--:--:--</b>
+    </div>
+  </header>
+
+  <!-- KPI -->
+  <div class="kpis">
+    <div class="kpi ok"><div class="lab">迎检就绪度</div><div class="val" data-count="98"><span>0</span><small>%</small></div><div class="sub">Inspection Readiness</div><div class="bar" style="width:98%"></div></div>
+    <div class="kpi pp"><div class="lab">覆盖法规条款</div><div class="val" data-count="4200"><span>0</span><small>+</small></div><div class="sub">NMPA·FDA·EMA·ICH</div><div class="bar" style="width:92%"></div></div>
+    <div class="kpi"><div class="lab">已索引公司文件</div><div class="val" data-count="128"><span>0</span><small>万</small></div><div class="sub">QMS·DMS 全链路</div><div class="bar" style="width:88%"></div></div>
+    <div class="kpi warn"><div class="lab">自查合规差距</div><div class="val" data-count="12"><span>0</span><small>项</small></div><div class="sub">Gap Items Open</div><div class="bar" style="width:30%"></div></div>
+    <div class="kpi ok"><div class="lab">备检周期</div><div class="val">3<small>天</small></div><div class="sub">较人工 1–2 月 ↓90%</div><div class="bar" style="width:15%"></div></div>
+  </div>
+
+  <!-- main -->
+  <div class="main">
+    <!-- col1: scenarios -->
+    <section class="col" id="col1">
+      <div class="col-h"><div class="step-badge">1</div><h2>三大迎检场景全覆盖</h2><span>国内 · 海外 · 自查</span></div>
+      <div class="col-b" id="scenes"></div>
+    </section>
+
+    <!-- col2: capabilities + live Q&A -->
+    <section class="col" id="col2">
+      <div class="col-h"><div class="step-badge">2</div><h2>飞书五大能力 · 现场智能应答</h2><span id="capTag">法规解析</span></div>
+      <div class="col-b">
+        <div class="cap-wrap">
+          <div class="caps" id="caps"></div>
+          <div class="chat">
+            <div class="chat-h"><span class="rec"></span>FDA 现场审计 · 实时应答辅助(生产车间)</div>
+            <div class="chat-b" id="chat"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- col3: defect & CAPA -->
+    <section class="col" id="col3">
+      <div class="col-h"><div class="step-badge">3</div><h2>缺陷智能整改 & CAPA</h2><span>483 · 核查通报</span></div>
+      <div class="col-b">
+        <div class="compare">
+          <div class="cc old"><div class="h">人工整改</div><div class="big">30–45</div><div class="u">天/项 · 依赖专家</div></div>
+          <div class="cc new"><div class="h">AI 辅助整改</div><div class="big">3–5</div><div class="u">天/项 · 自带依据</div></div>
+        </div>
+        <div id="defects"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- footer -->
+  <div class="foot">
+    <div class="steps-nav">
+      <div class="snav active" data-step="0">全景</div>
+      <div class="snav" data-step="1">① 迎检场景</div>
+      <div class="snav" data-step="2">② 智能应答</div>
+      <div class="snav" data-step="3">③ 缺陷整改</div>
+    </div>
+    <div class="btns">
+      <button class="btn ghost" id="replay">↺ 重播</button>
+      <button class="btn" id="play">▶ 自动演示</button>
+    </div>
+  </div>
+</div>
+<div class="caption" id="caption"></div>
+
+<script>
+/* ============ Data ============ */
+const SCENES=[
+  {flag:"cn",fl:"CN",tt:"NMPA 国内迎检",st:"飞行检查 · 常规 GMP 核查",
+   desc:"应对 NMPA 飞行检查与常规 GMP 核查,自动生成核查清单、比对文件与数据完整性。",
+   chips:["飞行检查","GMP 核查","数据完整性"]},
+  {flag:"us",fl:"US",tt:"FDA 海外审计",st:"现场审计 · 483 缺陷整改",
+   desc:"应对 FDA 现场审计,实时应答辅助,自动解析 483 观察项并生成整改与 CAPA 初稿。",
+   chips:["Form 483","Warning Letter","CAPA"]},
+  {flag:"eu",fl:"EU",tt:"EMA / 第三方审计",st:"境外客户 · EU GMP 审计",
+   desc:"应对 EMA 现场审计与境外客户第三方审计,依 EU GMP / ICH 输出带依据应答。",
+   chips:["EU GMP","ICH Q7/Q10","客户审计"]},
+  {flag:"self",fl:"AI",tt:"AI 模拟审计自查",st:"审计质询 · 智能应答演练",
+   desc:"AI 扮演审计官发起质询,模拟迎检演练,逐条比对流程数据,提前暴露合规差距。",
+   chips:["模拟审计","质询演练","差距扫描"]}
+];
+const CAPS=[
+  {n:1,l:"法规智能解析<br>自带条款引用",ic:"book"},
+  {n:2,l:"系统打通<br>QMS·DMS 索引",ic:"link"},
+  {n:3,l:"合规自查<br>清单逐条比对",ic:"check"},
+  {n:4,l:"缺陷智能管理<br>483·CAPA",ic:"repair"},
+  {n:5,l:"现场应答<br>带依据话术",ic:"mic"}
+];
+const CHAT=[
+  {t:"q",who:"FDA 审计官(现场)",txt:"Please show me how you ensure data integrity for the chromatography purification step. Where are the audit trails and who has review authority?"},
+  {t:"a",txt:"该层析纯化工序采用电子批记录,审计追踪(Audit Trail)全程留痕、不可编辑;数据由 QA 独立复核放行,权限按角色分离。",
+   cite:"📖 依据:FDA 21 CFR Part 11.10(e) 审计追踪 · ICH Q7 §6.6 · 已定位批记录 B-2026-0714(点击调阅)"},
+  {t:"q",who:"FDA 审计官(现场)",txt:"How is this different from what NMPA requires? Show me the corresponding local procedure."},
+  {t:"a",txt:"NMPA 与 FDA 在数据完整性(ALCOA+)原则一致;差异点已自动标注:NMPA 依《药品记录与数据管理要求》,对应 SOP-QA-118,双语版本均已归档。",
+   cite:"🔎 法规差异对照已自动生成:NMPA vs FDA vs EU GMP · 应答无遗漏 · 一键导出双语话术卡"}
+];
+const DEFECTS=[
+  {code:"483 Obs.1",nm:"环境监测数据偏差处理不完整",
+   desc:"AI 解析本次 483 观察项,并从历史核查缺陷库匹配到 3 个同类问题及既往整改经验。",
+   capa:'<b>整改方案(AI 初稿):</b>修订 SOP-EM-045 偏差判定规则,补充趋势分析;<span class="m">匹配法规:EU GMP Annex 1 · ICH Q9</span>;引用历史案例 CAPA-2024-017。'},
+  {code:"缺陷 · 中",nm:"变更控制关闭时限超期",
+   desc:"NMPA 核查通报同类问题,自动比对企业变更记录,定位 2 笔超期变更。",
+   capa:'<b>整改方案(AI 初稿):</b>增设变更时限预警看板,超期自动升级;<span class="m">匹配法规:NMPA GMP 第240条 · ICH Q10</span>;生成 CAPA 任务派工。'}
+];
+
+/* ============ Helpers ============ */
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
+const ICONS={
+  book:'<path d="M4 4h11a3 3 0 013 3v13a2 2 0 00-2-2H4z"/><path d="M4 4v14"/>',
+  link:'<path d="M9 15l6-6"/><path d="M10 6l1-1a4 4 0 016 6l-1 1"/><path d="M14 18l-1 1a4 4 0 01-6-6l1-1"/>',
+  check:'<path d="M4 12l4 4L20 6"/>',
+  repair:'<path d="M14 6a4 4 0 00-5 5L4 16l4 4 5-5a4 4 0 005-5l-3 3-2-2 3-3z"/>',
+  mic:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0012 0M12 17v4"/>'
+};
+function icon(n){return '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+(ICONS[n]||'')+'</svg>';}
+function tick(){$('#clock').textContent=new Date().toLocaleTimeString('zh-CN',{hour12:false});}
+setInterval(tick,1000);tick();
+
+function countUp(){
+  $$('.kpi .val[data-count]').forEach(el=>{
+    const target=+el.dataset.count;const span=el.querySelector('span');let cur=0;const step=Math.max(1,Math.ceil(target/45));
+    const iv=setInterval(()=>{cur+=step;if(cur>=target){cur=target;clearInterval(iv);}span.textContent=cur.toLocaleString();},22);
+  });
+  $$('.kpi .bar').forEach(b=>{const w=b.style.width;b.style.width='0';requestAnimationFrame(()=>b.style.width=w);});
+}
+
+/* build scenes */
+function buildScenes(){
+  const box=$('#scenes');box.innerHTML='';
+  SCENES.forEach(s=>{
+    const el=document.createElement('div');el.className='scene';
+    el.innerHTML=`<div class="row1"><div class="flag ${s.flag}">${s.fl}</div>
+      <div><div class="tt">${s.tt}</div><div class="st">${s.st}</div></div></div>
+      <div class="desc">${s.desc}</div>
+      <div class="chips">${s.chips.map(c=>`<span class="chip">${c}</span>`).join('')}</div>`;
+    box.appendChild(el);
+  });
+}
+function animScenes(){$$('#scenes .scene').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),i*160));}
+
+/* build caps */
+function buildCaps(){
+  const box=$('#caps');box.innerHTML='';
+  CAPS.forEach(c=>{
+    const el=document.createElement('div');el.className='cap';
+    el.innerHTML=`<span class="num">${c.n}</span><div class="ci">${icon(c.ic)}</div><div class="cl">${c.l}</div>`;
+    box.appendChild(el);
+  });
+}
+function lightCaps(seq){ // seq: array of indices to turn on progressively
+  const els=$$('#caps .cap');
+  seq.forEach((idx,k)=>setTimeout(()=>els[idx].classList.add('on'),k*260));
+}
+
+/* build defects */
+function buildDefects(){
+  const box=$('#defects');box.innerHTML='';
+  DEFECTS.forEach(d=>{
+    const el=document.createElement('div');el.className='defect';
+    el.innerHTML=`<div class="top"><span class="code">${d.code}</span><span class="nm">${d.nm}</span><span class="st">已生成整改</span></div>
+      <div class="desc">${d.desc}</div><div class="capa">${d.capa}</div>`;
+    box.appendChild(el);
+  });
+}
+function animDefects(){$$('#defects .defect').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),i*260));}
+
+/* chat playback */
+let chatTimers=[];
+function clearChat(){chatTimers.forEach(t=>clearTimeout(t));chatTimers=[];$('#chat').innerHTML='';}
+function playChat(startDelay=0){
+  clearChat();
+  let t=startDelay;
+  CHAT.forEach((m)=>{
+    if(m.t==='a'){
+      // typing indicator then bubble
+      chatTimers.push(setTimeout(()=>{
+        const ty=document.createElement('div');ty.className='typing';ty.id='ty';
+        ty.innerHTML='AI 应答辅助 <i></i><i></i><i></i>';$('#chat').appendChild(ty);scroll();
+      },t));
+      t+=1100;
+      chatTimers.push(setTimeout(()=>{
+        const ty=$('#ty');if(ty)ty.remove();
+        const b=document.createElement('div');b.className='bubble a';
+        b.innerHTML=`<div class="who">✦ AI 应答辅助</div>${m.txt}${m.cite?`<div class="cite">${m.cite}</div>`:''}`;
+        $('#chat').appendChild(b);requestAnimationFrame(()=>b.classList.add('in'));scroll();
+      },t));
+      t+=1400;
+    }else{
+      chatTimers.push(setTimeout(()=>{
+        const b=document.createElement('div');b.className='bubble q';
+        b.innerHTML=`<div class="who">🎙 ${m.who}</div>${m.txt}`;
+        $('#chat').appendChild(b);requestAnimationFrame(()=>b.classList.add('in'));scroll();
+      },t));
+      t+=1600;
+    }
+  });
+}
+function scroll(){const c=$('#chat');c.scrollTop=c.scrollHeight;}
+
+/* caption */
+let capT;
+function caption(txt){const c=$('#caption');clearTimeout(capT);c.textContent=txt;c.classList.add('show');capT=setTimeout(()=>c.classList.remove('show'),4000);}
+
+/* focus */
+function focusStep(s){
+  $$('.snav').forEach(n=>n.classList.toggle('active',+n.dataset.step===s));
+  ['#col1','#col2','#col3'].forEach((id,i)=>{
+    const el=$(id);
+    if(s===0){el.style.opacity=1;el.style.boxShadow='none';}
+    else{const on=(i+1)===s;el.style.opacity=on?1:.42;el.style.boxShadow=on?'0 0 0 1.5px rgba(167,139,250,.6),0 0 30px rgba(167,139,250,.25)':'none';}
+  });
+}
+
+/* sequences */
+let timers=[];
+function clearTimers(){timers.forEach(t=>clearTimeout(t));timers=[];}
+function T(fn,ms){timers.push(setTimeout(fn,ms));}
+
+function initAll(){buildScenes();buildCaps();buildDefects();countUp();}
+
+function replay(){
+  clearTimers();clearChat();
+  $$('#scenes .scene').forEach(e=>e.classList.remove('in'));
+  $$('#defects .defect').forEach(e=>e.classList.remove('in'));
+  $$('#caps .cap').forEach(e=>e.classList.remove('on'));
+  focusStep(0);countUp();caption("痛点:人工提前 1–2 个月全员加班备检 · 多国法规差异大 · 应答易遗漏");
+  T(animScenes,600);
+}
+
+function autoPlay(){
+  clearTimers();clearChat();
+  $$('#scenes .scene').forEach(e=>e.classList.remove('in'));
+  $$('#defects .defect').forEach(e=>e.classList.remove('in'));
+  $$('#caps .cap').forEach(e=>e.classList.remove('on'));
+  focusStep(0);countUp();
+  caption("痛点:备检需 1–2 月全员加班 · NMPA/FDA/EU 法规差异大易遗漏 · 现场翻文档应答慢 · 整改周期长");
+  // Step1 scenes
+  T(()=>{focusStep(1);animScenes();caption("覆盖三大迎检场景:① NMPA 国内飞检/GMP核查 ② FDA·EMA 海外审计/483整改 ③ AI 模拟自查与质询演练");},1800);
+  // Step2 caps + chat
+  T(()=>{focusStep(2);lightCaps([0,1,2,3,4]);$('#capTag').textContent="法规解析 · 系统打通 · 自查 · 缺陷管理 · 应答";
+        caption("飞书五大能力:法规自带引用 · 非侵入对接 QMS/DMS · AI 自查比对 · 缺陷智能管理 · 现场带依据应答");},5000);
+  T(()=>{playChat(0);caption("现场质询智能应答:AI 实时输出带法规依据的话术,并自动区分 NMPA / FDA / EU 差异,应答零遗漏");},7400);
+  // Step3 defects
+  T(()=>{focusStep(3);animDefects();caption("缺陷智能整改:AI 解析 483/核查通报,匹配历史案例与法规依据,自动生成整改方案与 CAPA 初稿");},15200);
+  // panorama
+  T(()=>{focusStep(0);caption("AI 国内外迎检智能系统:备检周期 1–2 月 → 3 天,应答无遗漏,整改自带依据 —— 让泰邦从容迎接全球监管");},19400);
+}
+
+$('#play').onclick=autoPlay;
+$('#replay').onclick=replay;
+$$('.snav').forEach(n=>n.onclick=()=>{
+  const s=+n.dataset.step;focusStep(s);
+  if(s===1){$$('#scenes .scene').forEach(e=>e.classList.remove('in'));animScenes();}
+  if(s===2){$$('#caps .cap').forEach(e=>e.classList.remove('on'));lightCaps([0,1,2,3,4]);playChat(300);}
+  if(s===3){$$('#defects .defect').forEach(e=>e.classList.remove('in'));animDefects();}
+});
+
+initAll();
+setTimeout(animScenes,400);
+setTimeout(()=>{lightCaps([0,1,2,3,4]);},700);
+setTimeout(()=>{playChat(400);},1200);
+setTimeout(animDefects,900);
+</script>
+</body>
+</html>
